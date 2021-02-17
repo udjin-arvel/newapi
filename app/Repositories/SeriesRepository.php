@@ -36,7 +36,7 @@ class SeriesRepository extends Repository implements Chaptered
      */
     public function all(): array
     {
-        return Series::orderBy('created_at', 'desc')->get();
+        return Series::orderBy('created_at', 'desc')->get()->toArray();
     }
     
     /**

@@ -16,13 +16,13 @@ class CreateSubscriptionsTable extends Migration
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->bigIncrements('id');
     
-            $table->unsignedBigInteger('book_id');
+            $table->unsignedBigInteger('book_id')->nullable();
             $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
     
-            $table->unsignedBigInteger('series_id');
+            $table->unsignedBigInteger('series_id')->nullable();
             $table->foreign('series_id')->references('id')->on('series')->onDelete('cascade');
     
-            $table->unsignedBigInteger('author_id');
+            $table->unsignedBigInteger('author_id')->nullable();
             $table->foreign('author_id')->references('id')->on('users')->onDelete('cascade');
             
             $table->unsignedBigInteger('user_id');

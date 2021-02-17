@@ -4,6 +4,12 @@ namespace App\Repositories;
 
 interface IWriteableRepository {
     /**
+     * @param string $method
+     * @return mixed
+     */
+    public static function call(string $method);
+    
+    /**
      * @param int $id
      * @return mixed
      */

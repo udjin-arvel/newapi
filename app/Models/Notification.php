@@ -9,15 +9,14 @@ use Illuminate\Database\Eloquent\Model;
  * Class Note
  * @package App\Models
  *
- * @property int     $id
- * @property string  $title
- * @property string  $text
+ * @property int     $content_id
+ * @property string  $content_type
  * @property int     $user_id
- * @property int     $interest
- * @property boolean $is_published
  */
-class Note extends Model
+class Notification extends Model
 {
+    const TYPE_STORY  = 1;
+    
     /**
      * @return void
      */

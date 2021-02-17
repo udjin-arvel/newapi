@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Traits\StoryTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Fragment
@@ -11,5 +12,5 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Fragment extends Model
 {
-    use StoryTrait;
+    use StoryTrait, SoftDeletes;
 }

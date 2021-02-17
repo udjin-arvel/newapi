@@ -96,26 +96,15 @@ abstract class Repository implements IWriteableRepository
      * @return array
      * @throws TBError
      */
-    public function getOne(int $id) {
+    public function one(int $id) {
         return $this->getModel($id)->toArray();
     }
     
     /**
      * @return array
-     * @throws TBError
      */
-    public function getAll() {
-        $model = get_class($this->model);
-        
-        $records = $model::select('*')
-            ->orderBy('created_at', 'desc')
-            ->get();
-        
-        if (empty($records)) {
-            throw new TBError(TBError::CONTENT_NOT_FOUND);
-        }
-        
-        return $records;
+    public function all() {
+        return get_class($this->model)::orderBy('created_at', 'desc')->get();
     }
     
     /**

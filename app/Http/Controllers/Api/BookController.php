@@ -27,8 +27,6 @@ class BookController extends Controller
     public function getBasicData()
     {
         try {
-            return $this->sendSuccess(StoryRepository::call('all'));
-            
             return $this->sendSuccess([
                 'stories' => StoryRepository::call('all'),
                 'books'   => BookRepository::call('all'),

@@ -12,6 +12,7 @@ return [
     |
     */
    
+    'paths' => ['api/*'],
     'supportsCredentials' => false,
     'allowedOrigins' => ['http://localhost:8080', 'https://thebook.arvelov.com'],
     'allowedOriginsPatterns' => ['*'],

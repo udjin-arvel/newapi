@@ -7,6 +7,7 @@ use App\Models\Traits\BookTrait;
 use App\Models\Traits\SeriesTrait;
 use App\Models\Traits\StoryTrait;
 use App\Models\Traits\UserTrait;
+use App\Scopes\UserIdScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -31,5 +32,15 @@ class Subscription extends Model
     public function author()
     {
         return $this->belongsTo(User::class, 'author_id');
+    }
+    
+    /**
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+        
+        static::addGlobalScope(new UserIdScope);
     }
 }

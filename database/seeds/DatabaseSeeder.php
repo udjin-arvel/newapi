@@ -20,5 +20,6 @@ class DatabaseSeeder extends Seeder
         $this->call(NotionsTableSeeder::class);
         $this->call(NotesTableSeeder::class);
         $this->call(LoreItemsTableSeeder::class);
+        $this->call(SubscriptionsTableSeeder::class);
     }
 }

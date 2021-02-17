@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use App\Models\Note;
+use App\Models\Subscription;
 use App\Repositories\NoteRepository;
 use App\Repositories\NotionRepository;
 use App\Repositories\ProjectRepository;
 use App\Repositories\StoryRepository;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -45,10 +48,13 @@ class HomeController extends Controller
     public function run()
     {
     
-        $data = new StoryRepository;
         
         
-        dd($data->getOne(47));
+        $data = Subscription::where('book_id', 8)->get();
+        
+        
+        
+        dd($data);
         
         
         return response()->json(['success' => []], $this->successStatus);

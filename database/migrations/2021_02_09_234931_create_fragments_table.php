@@ -23,7 +23,8 @@ class CreateFragmentsTable extends Migration
     
             $table->unsignedBigInteger('story_id');
             $table->foreign('story_id')->references('id')->on('stories')->onDelete('cascade');
-            
+    
+            $table->softDeletes();
             $table->timestamps();
         });
     }
