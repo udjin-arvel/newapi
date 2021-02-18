@@ -32,7 +32,7 @@ class UserController extends Controller
             $user = Auth::user();
             
             $success['user'] = $user->getDataForJson();
-            $success['token'] = $user->createToken('TheBook'); //->accessToken;
+            $success['token'] = $user->createToken(env('APP_NAME', 'accessToken')); // php artisan passport:client --personal
             
             return $this->sendSuccess($success);
         } else {

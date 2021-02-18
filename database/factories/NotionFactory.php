@@ -8,7 +8,7 @@ $factory->define(Notion::class, function (Faker $faker) {
         'title' => $faker->word,
         'text' => $faker->realText(500),
         'type' => $faker->word,
-        'poster' => $faker->imageUrl(),
+        'poster' => 'https://i.pinimg.com/564x/92/6b/fe/926bfec664ba55c4898538fb28ef93d0.jpg',
         'user_id' => 1,
     ];
 });
