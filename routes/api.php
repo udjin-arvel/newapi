@@ -55,7 +55,7 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::post('addLoreItem', 'Api\BookController@addLoreItem');
     Route::delete('deleteLoreItem/{id}', 'Api\BookController@deleteLoreItem');
     
-    Route::get('notes', 'Api\BookController@getNotes');
+    Route::get('getNotes', 'Api\BookController@getNotes');
 	Route::post('saveNote', 'Api\BookController@saveNote');
 	Route::delete('deleteNote/{id}', 'Api\BookController@deleteNote');
     

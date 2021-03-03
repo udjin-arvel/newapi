@@ -35,7 +35,7 @@ class NoteRepository extends Repository
         $model->title        = $data['title'];
         $model->text         = $data['text'];
         $model->interest     = $data['interest'];
-        $model->is_published = (bool) $data['title'];
+        $model->is_published = (bool) $data['is_published'];
         $model->user_id      = $this->user->id;
     
         if (!$model->save()) {

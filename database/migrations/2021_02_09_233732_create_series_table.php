@@ -20,6 +20,9 @@ class CreateSeriesTable extends Migration
             $table->text('description');
             $table->unsignedTinyInteger('era')->nullable();
     
+            $table->unsignedBigInteger('book_id')->nullable();
+            $table->foreign('book_id')->references('id')->on('books');
+            
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
     

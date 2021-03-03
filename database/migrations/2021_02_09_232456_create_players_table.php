@@ -17,8 +17,6 @@ class CreatePlayersTable extends Migration
             $table->bigIncrements('id');
         
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-    
             $table->string('login', 64)->default(\App\Models\Player::DEFAULT_LOGIN);
             $table->string('status', 24)->default(\App\Models\Player::STATUS_USER);
             $table->string('poster', 64)->nullable();
@@ -39,6 +37,6 @@ class CreatePlayersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Player');
+        Schema::dropIfExists('players');
     }
 }

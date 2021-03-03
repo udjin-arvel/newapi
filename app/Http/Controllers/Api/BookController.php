@@ -231,7 +231,7 @@ class BookController extends Controller
      */
 	public function getNotes(NoteRepository $repository)
 	{
-        return $this->sendSuccess($repository->getAll());
+        return $this->sendSuccess($repository->all());
 	}
 
     /**
