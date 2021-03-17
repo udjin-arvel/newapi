@@ -28,6 +28,11 @@ class CreatePlayersTable extends Migration
         
             $table->timestamps();
         });
+        
+        Schema::table('users', function (Blueprint $table) {
+            $table->unsignedBigInteger('player_id')->nullable();
+            $table->foreign('player_id')->references('id')->on('players');
+        });
     }
 
     /**
@@ -37,6 +42,11 @@ class CreatePlayersTable extends Migration
      */
     public function down()
     {
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropForeign('users_player_id_foreign');
+            $table->dropColumn('player_id');
+        });
+        
         Schema::dropIfExists('players');
     }
 }

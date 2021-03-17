@@ -90,7 +90,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'email', 'password',
+        'name', 'email', 'password',
     ];
 
     /**
@@ -127,7 +127,7 @@ class User extends Authenticatable
         $player = new Player;
         
         $player->user_id = $this->id;
-        $player->login   = $data['name'] ?: Player::DEFAULT_LOGIN;
+        $player->login   = $data['name'] ?? Player::DEFAULT_LOGIN;
         
         if (!$player->save()) {
             throw new TBError(TBError::SAVE_ERROR);

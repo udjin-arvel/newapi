@@ -4,11 +4,12 @@
     <list default="true" id="24e9da2f-bf30-4a2c-9f19-81b68f84e4d5" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/BookController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/BookController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/NoteRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/NoteRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Player.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Player.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/migrations/2021_02_09_232456_create_players_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_02_09_232456_create_players_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_02_09_233732_create_series_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_02_09_233732_create_series_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_02_09_235945_create_notes_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_02_09_235945_create_notes_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_02_09_233809_create_stories_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_02_09_233809_create_stories_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_02_09_234950_create_notions_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_02_09_234950_create_notions_table.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -177,7 +178,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../newbook" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -462,7 +463,16 @@
       <workItem from="1613961028404" duration="604000" />
       <workItem from="1614506974072" duration="1258000" />
       <workItem from="1614674443039" duration="1241000" />
-      <workItem from="1614775424622" duration="2068000" />
+      <workItem from="1614775424622" duration="2069000" />
+      <workItem from="1614831569783" duration="610000" />
+      <workItem from="1614948154662" duration="1274000" />
+      <workItem from="1614963740615" duration="864000" />
+      <workItem from="1615011391775" duration="2876000" />
+      <workItem from="1615167082136" duration="600000" />
+      <workItem from="1615536543897" duration="2261000" />
+      <workItem from="1615624391555" duration="1004000" />
+      <workItem from="1615655435890" duration="606000" />
+      <workItem from="1615987630582" duration="2341000" />
     </task>
     <servers />
   </component>

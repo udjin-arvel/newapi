@@ -28,11 +28,12 @@ class BookController extends Controller
     {
         try {
             return $this->sendSuccess([
-                'stories' => StoryRepository::call('all'),
-                'books'   => BookRepository::call('all'),
-                'series'  => SeriesRepository::call('all'),
-                'tags'    => TagRepository::call('all'),
-                'notions' => NotionRepository::call('all'),
+                'stories'    => StoryRepository::call('all'),
+                'books'      => BookRepository::call('all'),
+                'series'     => SeriesRepository::call('all'),
+                'tags'       => TagRepository::call('all'),
+                'notions'    => NotionRepository::call('all'),
+                'lore_items' => LoreItemRepository::call('all'),
             ]);
         } catch (TBError $e) {
             return $this->sendError($e->getErrorMessage(), TBError::CODE_405);

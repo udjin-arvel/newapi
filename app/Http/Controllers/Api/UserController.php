@@ -55,12 +55,13 @@ class UserController extends Controller
             'required' => 'Поле :attribute обязательно для заполнения',
             'email' => 'Поле :attribute должно быть вида: example@email.com',
             'unique' => 'Поле :attribute должно быть уникальным',
+            'min' => 'Минимальное количество символов: 4',
         ];
         
 		$validator = Validator::make($input, [
-			'email' => 'nullable|email|unique:users',
+			'name' => 'required|min:4|unique:users',
+			'email' => 'required|email|unique:users',
 			'password' => 'required',
-			'c_password' => 'required|same:password',
 		], $messages);
 		
 		if ($validator->fails()) {
@@ -73,19 +74,9 @@ class UserController extends Controller
          * @var User $user
          */
 		$user = User::create($input);
-        if ($user->save()) {
-            $user->createPlayer();
-            
-            if (!$input['is_social']) {
-                $this->sendMailConfirmation($user);
-            }
-        } else {
-            throw new TBError(TBError::SERVER_ERROR);
-        }
+        $user->createPlayer();
         
-        $success['name'] = $user->name;
-        
-        return $this->sendSuccess($success);
+        return $this->sendSuccess(true);
 	}
     
     /**

@@ -50,7 +50,10 @@ class Player extends Model
      */
     public function __construct()
     {
-        $this->user = Auth::user();
+        $user = Auth::user();
+        if ($user) {
+            $this->user = $user;
+        }
     }
     
     /**

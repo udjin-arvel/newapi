@@ -18,6 +18,7 @@ class CreateNotionsTable extends Migration
     
             $table->string('title');
             $table->text('text');
+            $table->text('explanation')->nullable();
             $table->string('type', 24);
             $table->string('poster')->nullable();
             

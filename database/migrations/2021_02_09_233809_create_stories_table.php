@@ -21,6 +21,7 @@ class CreateStoriesTable extends Migration
             $table->text('epigraph')->nullable();
             $table->unsignedTinyInteger('eon')->nullable();
             $table->boolean('is_published')->default(false);
+            $table->boolean('is_announce')->default(false);
             
             $table->unsignedBigInteger('book_id')->nullable();
             $table->foreign('book_id')->references('id')->on('books');
