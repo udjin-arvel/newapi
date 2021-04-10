@@ -3,13 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="24e9da2f-bf30-4a2c-9f19-81b68f84e4d5" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/BookController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/BookController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Player.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Player.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_02_09_232456_create_players_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_02_09_232456_create_players_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_02_09_233809_create_stories_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_02_09_233809_create_stories_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_02_09_234950_create_notions_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_02_09_234950_create_notions_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -472,7 +469,14 @@
       <workItem from="1615536543897" duration="2261000" />
       <workItem from="1615624391555" duration="1004000" />
       <workItem from="1615655435890" duration="606000" />
-      <workItem from="1615987630582" duration="2341000" />
+      <workItem from="1615987630582" duration="2392000" />
+      <workItem from="1616503499187" duration="683000" />
+      <workItem from="1616557737256" duration="594000" />
+      <workItem from="1616588354556" duration="628000" />
+      <workItem from="1616659636828" duration="1802000" />
+      <workItem from="1617284417176" duration="703000" />
+      <workItem from="1617366160718" duration="33000" />
+      <workItem from="1618043228355" duration="4656000" />
     </task>
     <servers />
   </component>

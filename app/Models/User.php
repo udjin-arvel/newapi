@@ -41,6 +41,20 @@ class User extends Authenticatable
 {
     use HasApiTokens, Notifiable;
     
+    /**
+     * @static
+     */
+    public static function boot()
+    {
+        parent::boot();
+        
+        self::created(function($model) {
+            /**
+             * @var User $model
+             */
+            $model->createPlayer();
+        });
+    }
     
     /**
      * User constructor.
@@ -140,6 +154,18 @@ class User extends Authenticatable
         }
     
         return $player;
+    }
+    
+    /**
+     * @return array
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     */
+    public function getAuthResponse(): array
+    {
+        return [
+            'user' => $this->getDataForJson(),
+            'token' => $this->createToken(env('APP_NAME', 'accessToken')),
+        ];
     }
 	
 	/**

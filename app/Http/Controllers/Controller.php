@@ -31,10 +31,10 @@ class Controller extends BaseController
      * Отправить json с ошибкой
      *
      * @param string $errorText
-     * @param int $errorCode
-     * @return JsonResponse
+     * @param int|null $errorCode
+     * @return Response
      */
-    public function sendError(string $errorText, int $errorCode)
+    public function sendError(string $errorText, int $errorCode = null)
     {
         return response()->json(['success' => false, 'result' => $errorText], $errorCode ?: $this->successStatus);
     }

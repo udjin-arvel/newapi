@@ -3,14 +3,12 @@
 namespace App\Http\Controllers\API;
 
 use App\Exceptions\TBError;
-use App\Repositories\NewsRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Mail;
 
@@ -18,6 +16,20 @@ class UserController extends Controller
 {
 	public $successStatus = 200;
     
+    /**
+     * Авторизация через соцсети
+     * @return Response
+     * @throws TBError
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     */
+	public function auth()
+    {
+        if (User::where('email', '=', request()->get('email'))->first()) {
+            return $this->login();
+        } else {
+            return $this->register();
+        }
+    }
     
     /**
      * Авторизация
@@ -29,12 +41,7 @@ class UserController extends Controller
 	public function login()
 	{
         if (Auth::attempt(request()->input())) {
-            $user = Auth::user();
-            
-            $success['user'] = $user->getDataForJson();
-            $success['token'] = $user->createToken(env('APP_NAME', 'accessToken')); // php artisan passport:client --personal
-            
-            return $this->sendSuccess($success);
+            return $this->sendSuccess((Auth::user())->getAuthResponse());
         } else {
             throw new TBError(TBError::USER_AUTH_FAILED);
         }
@@ -43,14 +50,12 @@ class UserController extends Controller
     /**
      * Регистрация
      *
-     * @param Request $request
      * @return Response
      * @throws TBError
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
-	public function register(Request $request)
+	public function register()
 	{
-        $input = $request->toArray();
-	    
         $messages = [
             'required' => 'Поле :attribute обязательно для заполнения',
             'email' => 'Поле :attribute должно быть вида: example@email.com',
@@ -58,27 +63,27 @@ class UserController extends Controller
             'min' => 'Минимальное количество символов: 4',
         ];
         
-		$validator = Validator::make($input, [
-			'name' => 'required|min:4|unique:users',
-			'email' => 'required|email|unique:users',
-			'password' => 'required',
-		], $messages);
+        $validator = Validator::make(request()->input(), [
+            'name' => 'required|min:4|unique:users',
+            'email' => 'required|email|unique:users',
+            'password' => 'required',
+        ], $messages);
+        
+        if ($validator->fails()) {
+            return $this->sendError($validator->errors());
+        }
 		
-		if ($validator->fails()) {
-			return response()->json(['error' => $validator->errors()], $this->successStatus);
-		}
-		
-		$input['password'] = bcrypt($input['password']);
+        $input = request()->input();
+		$input['password'] = bcrypt(request()->get('password'));
         
         /**
          * @var User $user
          */
 		$user = User::create($input);
-        $user->createPlayer();
         
-        return $this->sendSuccess(true);
+        return $this->sendSuccess($user->getAuthResponse());
 	}
-    
+	
     /**
      * Полная информация о пользователе
      *
