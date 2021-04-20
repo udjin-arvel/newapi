@@ -6,7 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tag extends Model
 {
-	/**
+    protected $fillable = [
+        'tag',
+        'stem',
+        'user_id',
+    ];
+    
+    /**
 	 * Истории, относящиеся к тэгу.
 	 */
 	public function stories()

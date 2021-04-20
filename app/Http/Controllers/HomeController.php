@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\GlobalHelper;
 use App\Models\Comment;
 use App\Models\Note;
+use App\Models\Notion;
 use App\Models\Subscription;
 use App\Repositories\NoteRepository;
 use App\Repositories\NotionRepository;
@@ -47,16 +49,12 @@ class HomeController extends Controller
      */
     public function run()
     {
-    
+        // dd(GlobalHelper::checkTextOnPattern('Какой то длинный текст /Да!=Нет/, а /Зеленое!=Красное/, так-то поц'));
         
         
-        $data = Subscription::where('book_id', 8)->get();
+        // exit;
         
         
-        
-        dd($data);
-        
-        
-        return response()->json(['success' => []], $this->successStatus);
+        // return response()->json(['success' => []], $this->successStatus);
     }
 }

@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Helpers\GlobalHelper;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class Notion
@@ -19,4 +21,21 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Notion extends Model
 {
     use SoftDeletes;
+    
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot() {
+        parent::boot();
+    
+        static::creating(function ($model) {
+            $model->tag_id = Tag::create([
+                'tag'     => $tag = GlobalHelper::tagized($model->text),
+                'stem'    => $tag,
+                'user_id' => Auth::user()->id,
+            ])->id;
+        });
+    }
 }

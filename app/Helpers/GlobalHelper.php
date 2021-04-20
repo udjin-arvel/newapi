@@ -36,4 +36,47 @@ class GlobalHelper
         
         return iconv_substr($text, 0, $cutLength, 'UTF-8');
     }
+    
+    /**
+     * Превращение строки в тэг
+     *
+     * @param string $string
+     * @return string
+     */
+    public static function tagized(string $string): string
+    {
+        return strtolower(preg_replace('![\s]+!', "_" , $string));
+    }
+    
+    /**
+     * Проверка текста на шаблоны замены
+     *
+     * @param string $text
+     * @return string
+     */
+    public static function checkTextOnPattern(string $text): string
+    {
+        if (!$text) {
+            return '';
+        }
+        
+        $result  = '';
+        $matches = [];
+    
+        preg_match_all('/\/(.+?)\//', $text, $matches);
+        
+        if (isset($matches[0])) {
+            foreach ($matches[0] as $number => $match) {
+                $position = mb_strpos($text, $match);
+                $meanings = explode('!=', $matches[1][$number]);
+                $span = "<span class='meaning-span' title='{$meanings[1]}'>{$meanings[0]}</span>";
+                $result .= mb_substr($text, 0, $position) . $span;
+                $text = mb_substr($text, $position + mb_strlen($match));
+            }
+    
+            $result .= $text;
+        }
+        
+        return $result;
+    }
 }
