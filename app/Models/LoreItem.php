@@ -3,8 +3,6 @@
 namespace App\Models;
 
 use App\Models\Traits\UserTrait;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class LoreItem
@@ -17,20 +15,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int     $user_id
  * @property boolean $is_published
  */
-class LoreItem extends Model
+class LoreItem extends AModel
 {
     use UserTrait;
-    
-    /**
-     * @var array
-     */
-    static $getAllSelectors = [
-        'id',
-        'title',
-        'text',
-        'level',
-        'is_published',
-        'user_id',
-        'created_at',
-    ];
 }

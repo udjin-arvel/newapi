@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\Traits\ScopeOwnTrait;
+use App\Models\Traits\StoriesTrait;
 use App\Models\Traits\UserTrait;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -21,9 +22,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property array  $storyProjects
  * @property array  $comments
  */
-class Book extends Model
+class Book extends AModel
 {
-    use SoftDeletes, UserTrait;
+    use SoftDeletes,
+        UserTrait,
+        StoriesTrait,
+        ScopeOwnTrait;
     
     public static function boot()
     {
@@ -32,14 +36,5 @@ class Book extends Model
         self::created(function($model) {
         
         });
-    }
-    
-    /**
-     * Истории, принадлежащие книге.
-     * @return HasMany
-     */
-    public function stories()
-    {
-        return $this->hasMany(Story::class)->orderBy('chapter');
     }
 }

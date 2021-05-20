@@ -4,43 +4,110 @@
 namespace App\Models;
 
 use App\Models\Traits\BookTrait;
+use App\Models\Traits\ScopeOwnTrait;
 use App\Models\Traits\SeriesTrait;
 use App\Models\Traits\StoryTrait;
 use App\Models\Traits\UserTrait;
-use App\Scopes\UserIdScope;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 /**
  * Class Subscription
  * @package App\Models
  *
- * @property int $id
- * @property int $user_id
- * @property int $author_id
- * @property int $book_id
- * @property int $last_checking_at
+ * @method static Builder|Subscription byAuthorId(int $id, string $boolean = 'and')
+ * @method static Builder|Subscription byBookId(int $id, string $boolean = 'and')
+ * @method static Builder|Subscription bySeriesId(int $id, string $boolean = 'and')
+ * @method static Builder|Subscription byOwn()
+ *
+ * @property int    $id
+ * @property int    $user_id
+ * @property int    $subscription_id
+ * @property string $subscription_type
+ *
+ * @mixin \Eloquent
  */
 class Subscription extends Model
 {
-    use UserTrait, StoryTrait, BookTrait, SeriesTrait;
+    use UserTrait,
+        StoryTrait,
+        BookTrait,
+        SeriesTrait,
+        ScopeOwnTrait;
     
     /**
      * Пользователь, на которого оформлена подписка
-     * @return BelongsTo
+     * @return MorphOne
      */
     public function author()
     {
-        return $this->belongsTo(User::class, 'author_id');
+        return $this->morphOne(User::class, 'subscription');
     }
     
     /**
-     * @return void
+     * Книга, на которую оформлена подписка
+     * @return MorphOne
      */
-    protected static function boot()
+    public function book()
     {
-        parent::boot();
-        
-        static::addGlobalScope(new UserIdScope);
+        return $this->morphOne(Book::class, 'subscription');
+    }
+    
+    /**
+     * Серия, на которую оформлена подписка
+     * @return MorphOne
+     */
+    public function series()
+    {
+        return $this->morphOne(Series::class, 'subscription');
+    }
+    
+    /**
+     * @param Builder $query
+     * @param int $authorId
+     * @param string $boolean
+     * @return Builder
+     */
+    public function scopeByAuthorId(Builder $query, ?int $authorId, string $boolean = 'and')
+    {
+        return empty($authorId) ? $query : $query->where(function (Builder $query) use ($authorId) {
+            return $query
+                ->where('subscription_id', '=', $authorId)
+                ->where('subscription_type', '=', User::class)
+            ;
+        }, null, null, $boolean);
+    }
+    
+    /**
+     * @param Builder $query
+     * @param int $bookId
+     * @param string $boolean
+     * @return Builder
+     */
+    public function scopeByBookId(Builder $query, ?int $bookId, string $boolean = 'and')
+    {
+        return empty($bookId) ? $query : $query->where(function (Builder $query) use ($bookId) {
+            return $query
+                ->where('subscription_id', '=', $bookId)
+                ->where('subscription_type', '=', Book::class)
+            ;
+        }, null, null, $boolean);
+    }
+    
+    /**
+     * @param Builder $query
+     * @param int $seriesId
+     * @param string $boolean
+     * @return Builder
+     */
+    public function scopeBySeriesId(Builder $query, ?int $seriesId, string $boolean = 'and')
+    {
+        return empty($seriesId) ? $query : $query->where(function (Builder $query) use ($seriesId) {
+            return $query
+                ->where('subscription_id', '=', $seriesId)
+                ->where('subscription_type', '=', Series::class)
+            ;
+        }, null, null, $boolean);
     }
 }

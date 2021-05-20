@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\GlobalHelper;
-use App\Models\Comment;
-use App\Models\Note;
-use App\Models\Notion;
+use App\Events\UpdateNotifications;
+use App\Models\Book;
+use App\Models\Notification;
+use App\Models\Story;
+use App\Models\StoryComment;
 use App\Models\Subscription;
-use App\Repositories\NoteRepository;
 use App\Repositories\NotionRepository;
-use App\Repositories\ProjectRepository;
+use App\Repositories\SeriesRepository;
 use App\Repositories\StoryRepository;
 use Illuminate\Contracts\Support\Renderable;
-use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -44,17 +42,12 @@ class HomeController extends Controller
     
     /**
      * Run custom code.
-     *
-     * @return Response
      */
     public function run()
     {
-        // dd(GlobalHelper::checkTextOnPattern('Какой то длинный текст /Да!=Нет/, а /Зеленое!=Красное/, так-то поц'));
         
+        dd(StoryComment::hydrate(['text' => 'some', 'importance' => 1, 'story_id' => 1]));
         
-        // exit;
-        
-        
-        // return response()->json(['success' => []], $this->successStatus);
+        exit;
     }
 }

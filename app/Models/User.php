@@ -3,21 +3,22 @@
 namespace App\Models;
 
 use App\Exceptions\TBError;
+use App\Models\Traits\StoriesTrait;
 use Illuminate\Database\Eloquent\Relations\BelongsTo as BelongsToAlias;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Log;
 use Laravel\Passport\HasApiTokens;
-use Mockery\Exception;
 
 /**
  * Class User
  * @package App\Models
  *
- * @property Player $player
+ * @method static Builder whoSubscribedOnNotions()
  *
+ * @property Player $player
  * @property int    $id
  * @property string $name
  * @property string $password
@@ -36,10 +37,13 @@ use Mockery\Exception;
  * @property mixed  $subscriptions
  * @property int    $player_id
  * @property array  $stories
+ * @property bool   $subscribe_on_notions
  */
 class User extends Authenticatable
 {
-    use HasApiTokens, Notifiable;
+    use HasApiTokens,
+        Notifiable,
+        StoriesTrait;
     
     /**
      * @static
@@ -73,14 +77,6 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Player::class);
     }
-    
-    /**
-	 * @return HasMany
-	 */
-	public function stories()
-	{
-		return $this->hasMany(Story::class)->orderBy('created_at', 'DESC');
-	}
     
     /**
      * @return HasMany
@@ -124,6 +120,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    /**
+     * @param $query
+     * @return Builder
+     */
+    public function scopeWhoSubscribedOnNotions($query)
+    {
+        return $query->where('subscribed_on_notions', '=', true);
+    }
     
     /**
      * Создание эксземпляра Player для пользователя

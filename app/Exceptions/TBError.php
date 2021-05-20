@@ -58,7 +58,7 @@ class TBError extends Exception
     const SUBSCRIPTION_EXIST    = 'subscription-exist';
     const NOT_ENOUGH_RESOURCES  = 'not-enough-resources';
     const IMPOSSIBLE_OPERATION  = 'impossible-operation';
-    const PROJECT_SAVE_ERROR    = 'project-save-error';
+    const MASS_SAVING_ERROR     = 'mass-saving-error';
     
     /**
      * Текущая ошибка
@@ -160,6 +160,7 @@ class TBError extends Exception
             self::NOT_ENOUGH_RESOURCES  => 'Недостаточно средств',
             self::IMPOSSIBLE_OPERATION  => 'Невозможная операция',
             self::PROJECT_SAVE_ERROR    => 'Произошла ошибка при сохранении проекта',
+            self::MASS_SAVING_ERROR     => 'Ошибка массового сохранения',
         ];
     }
 }

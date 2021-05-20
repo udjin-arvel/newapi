@@ -2,8 +2,8 @@
 	
 namespace App\Repositories;
 
-use App\Exceptions\TBError;
 use App\Models\Tag;
+use App\Repositories\Traits\MassSaveTrait;
 
 /**
  * Class TagRepository
@@ -11,6 +11,8 @@ use App\Models\Tag;
  */
 class TagRepository extends Repository
 {
+    use MassSaveTrait;
+    
     /**
      * @return mixed|string
      */

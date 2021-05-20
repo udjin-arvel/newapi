@@ -2,16 +2,52 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="24e9da2f-bf30-4a2c-9f19-81b68f84e4d5" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/arvelov.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/arvelov.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/admin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/admin.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/AModel.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/Traits/ChapteredTrait.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/Traits/DataHelperTrait.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/Traits/ScopeOwnTrait.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/Traits/ScopePublishedTrait.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/Traits/StoriesTrait.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Repositories/StoryCommentRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Repositories/Traits/BaseRepositoryMethodsTrait.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Repositories/Traits/MassSaveTrait.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.phpstorm.meta.php" beforeDir="false" afterPath="$PROJECT_DIR$/.phpstorm.meta.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_ide_helper.php" beforeDir="false" afterPath="$PROJECT_DIR$/_ide_helper.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Exceptions/TBError.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exceptions/TBError.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Helpers/Assert.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Helpers/Assert.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Helpers/GlobalHelper.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Helpers/GlobalHelper.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/BookController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/BookController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Book.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Book.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Fragment.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Fragment.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Image.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Image.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/LoreItem.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/LoreItem.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Notification.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Notification.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Notion.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Notion.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Tag.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Tag.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Player.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Player.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Series.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Series.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Story.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Story.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Subscription.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Subscription.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/EventServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/EventServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/BookRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/BookRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/Chaptered.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/FragmentRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/FragmentRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/IWriteableRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/Interfaces/IWriteableRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/ImageRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/ImageRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/LoreItemRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/LoreItemRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/NoteRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/NoteRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/NotionRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/NotionRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/Repository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/Repository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/SeriesRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/SeriesRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/StoryRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/StoryRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/SubscriptionRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/SubscriptionRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/TagRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/TagRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer1.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_02_10_002654_create_notifications_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_02_10_002654_create_notifications_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_04_18_104051_add_tag_id_to_notions_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_04_18_104051_add_tag_id_to_notions_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -200,6 +236,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\OSPanel\domains\arvelov.com\app\Repositories\Interfaces" />
       <recent name="C:\OSPanel\domains\arvelov\app\Models\StoryProject" />
       <recent name="C:\OSPanel\domains\arvelov\app\Models" />
       <recent name="C:\OSPanel\domains\arvelov.com\app\Models" />
@@ -496,7 +533,12 @@
       <workItem from="1618043228355" duration="4685000" />
       <workItem from="1618742199198" duration="3487000" />
       <workItem from="1618854959478" duration="3527000" />
-      <workItem from="1618946250822" duration="3115000" />
+      <workItem from="1618946250822" duration="3183000" />
+      <workItem from="1619247768614" duration="3201000" />
+      <workItem from="1620217164139" duration="795000" />
+      <workItem from="1621269015617" duration="611000" />
+      <workItem from="1621344057862" duration="8751000" />
+      <workItem from="1621450907925" duration="37633000" />
     </task>
     <servers />
   </component>

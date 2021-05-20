@@ -79,4 +79,15 @@ class GlobalHelper
         
         return $result;
     }
+    
+    /**
+     * Метод позволяет замерить время от начала работы laravel
+     */
+    public static function measureExecutionTime(): void
+    {
+        $time_end = microtime(true);
+        $time = $time_end - LARAVEL_START;
+        printf('Скрипт выполнялся %.4F сек.', $time);
+        dd($time);
+    }
 }

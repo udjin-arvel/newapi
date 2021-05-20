@@ -524,9 +524,35 @@ class Assert
      * @param string $message
      * @throws TBError
      */
-    public static function keysExist($keys, array $array, $message)
+    public static function keysExist(array $keys, array $array, string $message)
     {
         if (array_intersect($keys, array_keys($array)) !== $keys) {
+            static::reportInvalidArgument($message);
+        }
+    }
+    
+    /**
+     * Проверить, что массив имеет все переданные ключи и значения по ключам не пусты
+     *
+     * @param array $keys
+     * @param array $array
+     * @param string $message
+     * @param bool $atLeastOne
+     * @throws TBError
+     */
+    public static function keysExistAndValued(array $keys, array $array, string $message, bool $atLeastOne = false)
+    {
+        $checked = !$atLeastOne;
+        
+        foreach ($keys as $key) {
+            $checked = !empty($array[$key]);
+            
+            if ($atLeastOne && $checked) {
+                break;
+            }
+        }
+        
+        if (!$checked) {
             static::reportInvalidArgument($message);
         }
     }

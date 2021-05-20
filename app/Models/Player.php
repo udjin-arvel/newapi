@@ -5,7 +5,7 @@ namespace App\Models;
 use App\Exceptions\TBError;
 use App\Models\Traits\UserTrait;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Auth;
+use Auth;
 
 /**
  * Class Player
@@ -45,11 +45,13 @@ class Player extends Model
     const STATUS_MODERATOR = 'moderator';
     const STATUS_ADMIN     = 'admin';
     
-    
     /**
+     * Player constructor.
      */
     public function __construct()
     {
+        parent::__construct();
+        
         $user = Auth::user();
         if ($user) {
             $this->user = $user;
@@ -72,20 +74,15 @@ class Player extends Model
     
     /**
      * Выбрать сторону пользователя
+     *
      * @param int $clanType
-     * @return bool
      * @throws TBError
      */
-    public function chooseClan($clanType)
+    public function chooseClan(int $clanType): void
     {
-        if (!empty($clanType)) {
-            $this->clan = (int) $clanType;
-            
-            if (!$this->save()) {
-                throw new TBError(TBError::CHOICE_SIDE_FAILED);
-            }
+        $this->clan = $clanType;
+        if (!$this->save()) {
+            throw new TBError(TBError::CHOICE_SIDE_FAILED);
         }
-        
-        return true;
     }
 }

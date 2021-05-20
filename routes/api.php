@@ -18,12 +18,11 @@ Route::get('confirm', 'Api\SiteController@confirmMail');
 
 Route::group(['middleware' => 'auth:api'], function() {
 	Route::get('getBasicData', 'Api\BookController@getBasicData');
-	Route::get('home', 'Api\BookController@getHomeStories');
-	
-	Route::get('stories', 'Api\BookController@getStories');
-	Route::get('story/{id}', 'Api\BookController@getStory');
-	Route::get('getBookChapters/{id}', 'Api\BookController@getBookChapters');
-	Route::post('saveStory', 'Api\BookController@saveStory');
+    Route::post('saveStory', 'Api\BookController@saveStory');
+    
+    Route::get('stories', 'Api\BookController@getStories');
+    Route::get('story/{id}', 'Api\BookController@getStory');
+    Route::get('getBookChapters/{id}', 'Api\BookController@getBookChapters');
 	Route::delete('deleteStory/{id}', 'Api\BookController@deleteStory');
     Route::get('getBooks', 'Api\BookController@getBooks');
     Route::get('getBook/{id}', 'Api\BookController@getBook');

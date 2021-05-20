@@ -29,7 +29,7 @@ class Image extends Model
      */
 	public static function storedImageFromBase64($base64_string)
 	{
-	    if (!self::isImageInBase64($base64_string)) {
+	    if (!$base64_string || !self::isImageInBase64($base64_string)) {
 	       return $base64_string;
         }
 	    

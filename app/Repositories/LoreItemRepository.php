@@ -2,15 +2,18 @@
 
 namespace App\Repositories;
 
-use App\Exceptions\TBError;
 use App\Models\LoreItem as Model;
+use App\Repositories\Interfaces\IWriteableRepository;
+use App\Repositories\Traits\BaseRepositoryMethodsTrait;
 
 /**
  * Class LoreItemRepository
  * @package App\Repositories
  */
-class LoreItemRepository extends Repository
+class LoreItemRepository extends Repository implements IWriteableRepository
 {
+    use BaseRepositoryMethodsTrait;
+    
     /**
      * @return mixed|string
      */

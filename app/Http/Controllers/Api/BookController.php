@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Api;
 use App\Exceptions\TBError;
 use App\Repositories\BookRepository;
 use App\Repositories\CorrectionRepository;
+use App\Repositories\FragmentRepository;
 use App\Repositories\ImageRepository;
 use App\Repositories\LoreItemRepository;
 use App\Repositories\NoteRepository;
+use App\Repositories\StoryCommentRepository;
 use App\Repositories\SubscriptionRepository;
 use App\Repositories\TagRepository;
 use App\Http\Controllers\Controller;
@@ -19,8 +21,27 @@ use App\Repositories\NotionRepository;
 use App\Repositories\SeriesRepository;
 use Mockery\Exception;
 
+/**
+ * Class BookController
+ * @package App\Http\Controllers\Api
+ *
+ * @property mixed $input
+ */
 class BookController extends Controller
 {
+    /**
+     * @var mixed
+     */
+    protected $input;
+    
+    /**
+     * BookController constructor.
+     */
+    public function __construct()
+    {
+        $this->input = request()->input();
+    }
+    
     /**
      * Получить базовые данные для TheBook
      */
@@ -77,9 +98,9 @@ class BookController extends Controller
      */
     public function saveBook(BookRepository $repository)
     {
-        return $this->sendSuccess($repository->save(request()->input()));
+        return $this->sendSuccess($repository->save($this->input));
     }
-
+    
     /**
      * Удалить книгу
      *
@@ -142,7 +163,14 @@ class BookController extends Controller
      */
     public function saveStory(StoryRepository $repository)
     {
-        return $this->sendSuccess($repository->save(request()->input()));
+        $storyId = $repository->save(request()->all());
+        
+        FragmentRepository::massSaveProvider($storyId, request()->get('fragments'));
+        StoryCommentRepository::massSaveProvider($storyId, request()->get('comments'));
+        NotionRepository::massSaveProvider($storyId, request()->get('notions'), 'story_notion', 'notion_id');
+        TagRepository::massSaveProvider($storyId, request()->get('tags'), 'story_tag', 'tag_id');
+        
+        return $this->sendSuccess($repository->one($storyId));
     }
 
     /**
@@ -206,7 +234,7 @@ class BookController extends Controller
      */
 	public function saveNotion(NotionRepository $repository)
 	{
-		$data = request()->input();
+		$data = $this->input;
         return $this->sendSuccess($repository->save($data));
 	}
 
@@ -244,7 +272,7 @@ class BookController extends Controller
      */
 	public function saveNote(NoteRepository $repository)
 	{
-        $data = request()->input();
+        $data = $this->input;
         return $this->sendSuccess($repository->save($data));
 	}
 
@@ -281,7 +309,7 @@ class BookController extends Controller
      */
 	public function saveTag(TagRepository $repository)
     {
-        $data = request()->input();
+        $data = $this->input;
         return $this->sendSuccess($repository->save($data));
     }
 
@@ -292,7 +320,7 @@ class BookController extends Controller
      */
     public function like(LikeRepository $repository)
     {
-        $data = request()->input();
+        $data = $this->input;
         return $this->sendSuccess($repository->save($data));
 	}
 
@@ -318,7 +346,7 @@ class BookController extends Controller
      */
     public function comment(CommentRepository $repository)
     {
-        $data = request()->input();
+        $data = $this->input;
         return $this->sendSuccess($repository->save($data));
     }
 
@@ -343,7 +371,7 @@ class BookController extends Controller
      */
     public function chooseClan()
     {
-        $data = request()->input();
+        $data = $this->input;
         $user = Auth::user();
 
         return $this->sendSuccess($user->player->chooseClan($data['clanType']));
@@ -369,7 +397,7 @@ class BookController extends Controller
      */
     public function createDialog(DialogRepository $repository)
     {
-        $dialog = request()->input();
+        $dialog = $this->input;
         return $this->sendSuccess($repository->createDialog($dialog));
     }
 
@@ -382,7 +410,7 @@ class BookController extends Controller
      */
     public function sendMessage(DialogRepository $repository)
     {
-        $data = request()->input();
+        $data = $this->input;
         return $this->sendSuccess($repository->addMessage($data));
     }
 
@@ -395,7 +423,7 @@ class BookController extends Controller
      */
     public function messagesRead(DialogRepository $repository)
     {
-        $data = request()->input();
+        $data = $this->input;
         return $this->sendSuccess($repository->messagesRead($data));
     }
 
@@ -421,7 +449,7 @@ class BookController extends Controller
      */
     public function subscribe(SubscriptionRepository $repository)
     {
-        $data = request()->input();
+        $data = $this->input;
         return $this->sendSuccess($repository->subscribe($data));
     }
 
@@ -434,7 +462,7 @@ class BookController extends Controller
      */
     public function correct(CorrectionRepository $repository)
     {
-        $data = request()->input();
+        $data = $this->input;
         return $this->sendSuccess($repository->save($data));
     }
 
@@ -447,7 +475,7 @@ class BookController extends Controller
      */
     public function report(BugreportRepository $repository)
     {
-        $data = request()->input();
+        $data = $this->input;
         return $this->sendSuccess($repository->save($data));
     }
 
@@ -473,7 +501,7 @@ class BookController extends Controller
      */
     public function addCard(ContentRepository $repository)
     {
-        $data = request()->input();
+        $data = $this->input;
         return $this->sendSuccess($repository->save($data));
     }
 
@@ -560,7 +588,7 @@ class BookController extends Controller
      */
     public function changeLineName(LineRepository $repository)
     {
-        $data = request()->input();
+        $data = $this->input;
         return $this->sendSuccess($repository->changeLineName($data));
     }
 
@@ -587,7 +615,7 @@ class BookController extends Controller
      */
     public function getLoreItems(LoreItemRepository $repository)
     {
-        return $this->sendSuccess($repository->getAll());
+        return $this->sendSuccess($repository->all());
     }
 
     /**
@@ -599,8 +627,7 @@ class BookController extends Controller
      */
     public function addLoreItem(LoreItemRepository $repository)
     {
-        $data = request()->input();
-        return $this->sendSuccess($repository->save($data));
+        return $this->sendSuccess($repository->save($this->input));
     }
 
     /**
@@ -627,7 +654,7 @@ class BookController extends Controller
      */
     public function addImage(ImageRepository $repository)
     {
-        $data = request()->input();
+        $data = $this->input;
         return $this->sendSuccess($repository->save($data));
     }
 
@@ -655,7 +682,7 @@ class BookController extends Controller
      */
     public function projectToStory(StoryProjectRepository $repository)
     {
-        $data = request()->input();
+        $data = $this->input;
         return $this->sendSuccess($repository->projectToStory($data));
     }
 
@@ -668,7 +695,7 @@ class BookController extends Controller
      */
     public function saveStoryProject(StoryProjectRepository $repository)
     {
-        $data = request()->input();
+        $data = $this->input;
         return $this->sendSuccess($repository->save($data));
     }
 

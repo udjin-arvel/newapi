@@ -4,14 +4,20 @@ namespace App\Repositories;
 
 use App\Models\Story;
 use App\Exceptions\TBError;
-use Illuminate\Support\Facades\DB;
+use App\Repositories\Interfaces\IWriteableRepository;
+use App\Repositories\Traits\BaseRepositoryMethodsTrait;
+use Illuminate\Database\Query\Builder;
 
 /**
  * Class StoryRepository
  * @package App\Repositories
+ *
+ * @property Story $model
  */
-class StoryRepository extends Repository
+class StoryRepository extends Repository implements IWriteableRepository
 {
+    use BaseRepositoryMethodsTrait;
+    
 	/**
 	 * @return mixed|string
 	 */
@@ -22,17 +28,14 @@ class StoryRepository extends Repository
 	public function all()
     {
         return Story::published()
-            ->with('fragments')
-            ->with('storyComments')
-            ->with('tags')
-            ->with('notions')
+            ->byOwn()
             ->get();
     }
     
     public function one(int $id)
     {
-        return Story::where(['id', $id])
-            ->with('fragments')
+        return Story::findOrFail($id)
+            ->load(['fragments', 'remarks', 'tags', 'notions'])
             ->first();
     }
     
@@ -40,22 +43,15 @@ class StoryRepository extends Repository
      * Сохранить историю
      *
      * @param array $data
-     * @return array
+     * @return int
      * @throws TBError
      */
-	public function save(array $data)
+	public function save(array $data): int
 	{
-        DB::beginTransaction();
+        $this->getModel($data['id'])
+            ->fillModelFromArray($data)
+            ->saveModel();
         
-        try {
-        
-        } catch (TBError $error) {
-            DB::rollback();
-            throw $error;
-        }
-        
-        DB::commit();
-        
-        return [];
+        return $this->model->id;
 	}
 }

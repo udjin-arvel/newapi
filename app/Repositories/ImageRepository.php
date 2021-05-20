@@ -3,16 +3,18 @@
 namespace App\Repositories;
 
 use App\Exceptions\TBError;
-use App\Helpers\Assert;
 use App\Models\Image;
-use Illuminate\Support\Facades\Log;
+use App\Repositories\Interfaces\IWriteableRepository;
+use App\Repositories\Traits\BaseRepositoryMethodsTrait;
 
 /**
  * Class NotionRepository
  * @package App\Repositories
  */
-class ImageRepository extends Repository
+class ImageRepository extends Repository implements IWriteableRepository
 {
+    use BaseRepositoryMethodsTrait;
+    
     /**
      * @return mixed|string
      */
@@ -21,82 +23,25 @@ class ImageRepository extends Repository
         return Image::class;
     }
     
-    public function one(int $id)
-    {
-        // TODO: Implement one() method.
-    }
-    
-    public function all()
-    {
-        // TODO: Implement all() method.
-    }
-    
-    /**
-     * Проверить файлы и удалить старый экземпляр в случае, если получен новый
-     *
-     * @param string $newFile
-     * @param string $oldFile
-     * @return string
-     */
-    public static function getLatestImage(string $newFile, string $oldFile): string
-    {
-        if ($oldFile !== $newFile) {
-            if ($oldFile && !Image::deleteImage($oldFile)) {
-                Log::warning("Изображение ({$oldFile}) не было удалено.");
-            }
-        
-            if ($newFile) {
-                return Image::storedImageFromBase64($newFile);
-            }
-        }
-        
-        return '';
-    }
-    
     /**
      * Сохранить изображение
      *
-     * @param $data
-     * @return Image
+     * @param array $data
+     * @return int
      * @throws TBError
      */
-    public function save(array $data)
+    public function save(array $data): int
     {
-        Assert::keysExist(['base64', 'content_id', 'content_type'], $data, TBError::DATA_NOT_FOUND);
-        
-        $model = new Image;
-        
-        $model->content_id   = $data['content_id'];
-        $model->content_type = $data['content_type'];
-        $model->user_id      = $this->user->id;
-        
-        if ($data['base64']) {
-            $model->path = Image::storedImageFromBase64($data['base64']);
+        if (empty($data['base64'])) {
+            throw new TBError(TBError::CONTENT_NOT_FOUND);
         }
         
-        if (!$model->save()) {
-            throw new TBError(TBError::SAVE_ERROR);
-        }
+        $this->getModel($data['id'])
+            ->fillModelFromArray($data);
+        
+        $this->model->path = Image::storedImageFromBase64($data['base64']);
+        $this->saveModel();
     
-        return $model;
-    }
-    
-    /**
-     * @param int $id
-     * @return Image
-     * @throws TBError
-     */
-    public function delete(int $id)
-    {
-        /**
-         * @type Image $model
-         */
-        $model = parent::delete($id);
-    
-        if (!Image::deleteImage($model->path)) {
-            Log::warning("Изображение ({$model->path}) не было удалено.");
-        }
-    
-        return $model;
+        return $this->model->id;
     }
 }

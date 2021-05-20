@@ -4,10 +4,11 @@ namespace App\Repositories;
 
 use App\Exceptions\TBError;
 use App\Models\Player;
+use App\Models\Story;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
+use Auth;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Schema;
+use Schema;
 
 /**
  * Репозиторий для выдачи наборов данных сущности.
@@ -16,10 +17,14 @@ use Illuminate\Support\Facades\Schema;
  *
  * @package App\Repositories
  *
+ * @method static void massSave(int $relatedId, array $data, string $table, string $pivotKey)
+ * @method public Repository delete(int $id)
+ *
+ * @property Model|Story $model
  * @property User $user
  * @property Player $player
  */
-abstract class Repository implements IWriteableRepository
+abstract class Repository
 {
 	/**
 	 * @var Model
@@ -52,97 +57,90 @@ abstract class Repository implements IWriteableRepository
 	abstract protected function getModelClass();
     
     /**
-     * Статический вызов публичного метода
-     *
-     * @param string $method
-     * @return mixed
-     * @throws TBError
+     * @return Repository
      */
-	public static function call(string $method)
+    public static function getInstance(): Repository
     {
         $className = static::class;
-        $model = new $className;
-
-        if (!method_exists($model, $method)) {
-            throw new TBError(TBError::METHOD_NOT_EXIST);
-        }
-
-        return $model->{$method}();
+        return new $className;
     }
 	
     /**
-     * @param array $data
+     * Статический вызов публичного метода
+     *
+     * @param string $method
+     * @param mixed $params
      * @return mixed
      * @throws TBError
      */
-    public function save(array $data) {
-        $model = $this->getModel($data['id']);
-    
-        $model->setRawAttributes($data);
-        
-        if (Schema::hasColumn($model->getTable(), 'user_id')) {
-            $model->user_id = $this->user->id;
-        }
-    
-        if (!$model->save()) {
-            throw new TBError(TBError::SAVE_ERROR);
-        }
-    
-        return $model->toArray();
-    }
-    
-    /**
-     * @param int $id
-     * @return array
-     * @throws TBError
-     */
-    public function one(int $id) {
-        return $this->getModel($id)->toArray();
-    }
-    
-    /**
-     * @return array
-     */
-    public function all() {
-        return get_class($this->model)::orderBy('created_at', 'desc')->get();
-    }
-    
-    /**
-     * @param int $id
-     * @return mixed
-     * @throws TBError
-     * @throws \Exception
-     */
-	public function delete(int $id)
+    public static function call(string $method, ...$params)
     {
-        $model = $this->getModel($id);
+        $model = self::getInstance();
         
-        if (!$model->delete()) {
-            throw new TBError(TBError::DELETE_ERROR);
+        if (! method_exists($model, $method)) {
+            throw new TBError(TBError::METHOD_NOT_EXIST);
         }
         
-        return $model;
+        return $model->{$method}(...$params);
     }
     
     /**
      * Получить конкретную модель или экземпляр
      *
      * @param int $id
-     * @return \Eloquent
+     * @param bool $emptyIdAllow
+     * @return Repository
      * @throws TBError
      */
-    public function getModel(int $id = null)
+    public function getModel(int $id = null, bool $emptyIdAllow = true): Repository
     {
-        if (empty($id)) {
-            $model = new $this->model;
-        } else {
-            $model = get_class($this->model)::where(['id' => $id])->first();
+        if (! empty($id)) {
+            $this->model = get_class($this->model)::where(['id' => $id])->first();
             
-            if (empty($model)) {
+            if (null === $this->model) {
                 throw new TBError(TBError::CONTENT_NOT_FOUND);
+            }
+        } elseif (! $emptyIdAllow) {
+            throw new TBError(TBError::CONTENT_NOT_FOUND);
+        }
+        
+        return $this;
+    }
+    
+    /**
+     * @param $data
+     * @return Repository
+     * @throws TBError
+     */
+    public function fillModelFromArray($data): Repository
+    {
+        if (empty($this->model)) {
+            throw new TBError(TBError::CONTENT_NOT_FOUND);
+        }
+        
+        foreach ($data as $key => $input) {
+            if (Schema::hasColumn($this->model->getTable(), $key)) {
+                $this->model->{$key} = $input;
             }
         }
         
-        return $model;
+        return $this;
+    }
+    
+    /**
+     * @return Repository
+     * @throws TBError
+     */
+    public function saveModel(): Repository
+    {
+        if (empty($this->model->id)) {
+            throw new TBError(TBError::CONTENT_NOT_FOUND);
+        }
+        
+        if (! $this->model->save()) {
+            throw new TBError(TBError::SAVE_ERROR);
+        }
+        
+        return $this;
     }
 }

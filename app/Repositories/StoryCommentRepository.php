@@ -2,14 +2,14 @@
 
 namespace App\Repositories;
 
-use App\Models\Fragment;
+use App\Models\StoryComment;
 use App\Repositories\Traits\MassSaveTrait;
 
 /**
- * Class FragmentRepository
+ * Class StoryCommentRepository
  * @package App\Repositories
  */
-class FragmentRepository extends Repository
+class StoryCommentRepository extends Repository
 {
     use MassSaveTrait;
     
@@ -18,6 +18,6 @@ class FragmentRepository extends Repository
      */
     protected function getModelClass()
     {
-        return Fragment::class;
+        return StoryComment::class;
     }
 }

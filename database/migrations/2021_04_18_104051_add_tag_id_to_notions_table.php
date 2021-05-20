@@ -14,7 +14,7 @@ class AddTagIdToNotionsTable extends Migration
     public function up()
     {
         Schema::table('notions', function (Blueprint $table) {
-            $table->unsignedBigInteger('tag_id')->after('text');
+            $table->unsignedBigInteger('tag_id')->nullable()->after('text');
             $table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade');
         });
     }
