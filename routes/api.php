@@ -19,8 +19,9 @@ Route::get('confirm', 'Api\SiteController@confirmMail');
 Route::group(['middleware' => 'auth:api'], function() {
 	Route::get('getBasicData', 'Api\BookController@getBasicData');
     Route::post('saveStory', 'Api\BookController@saveStory');
+    Route::get('getStories', 'Api\BookController@getStories');
+    Route::get('getNotes', 'Api\BookController@getNotes');
     
-    Route::get('stories', 'Api\BookController@getStories');
     Route::get('story/{id}', 'Api\BookController@getStory');
     Route::get('getBookChapters/{id}', 'Api\BookController@getBookChapters');
 	Route::delete('deleteStory/{id}', 'Api\BookController@deleteStory');
@@ -53,7 +54,6 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::post('addLoreItem', 'Api\BookController@addLoreItem');
     Route::delete('deleteLoreItem/{id}', 'Api\BookController@deleteLoreItem');
     
-    Route::get('getNotes', 'Api\BookController@getNotes');
 	Route::post('saveNote', 'Api\BookController@saveNote');
 	Route::delete('deleteNote/{id}', 'Api\BookController@deleteNote');
     

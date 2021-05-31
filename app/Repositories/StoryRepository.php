@@ -28,6 +28,12 @@ class StoryRepository extends Repository implements IWriteableRepository
 	public function all()
     {
         return Story::published()
+            ->with([
+                'fragments',
+                'notions',
+                'remarks',
+                'tags',
+            ])
             ->byOwn()
             ->get();
     }

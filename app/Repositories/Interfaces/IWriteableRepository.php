@@ -16,13 +16,13 @@ interface IWriteableRepository {
     
     /**
      * @param array $data
-     * @return int
+     * @return mixed
      */
-    public function save(array $data): int;
+    public function save(array $data);
     
     /**
      * @param int $id
-     * @return int
+     * @return mixed
      */
-    public function delete(int $id): int;
+    public function delete(int $id);
 }

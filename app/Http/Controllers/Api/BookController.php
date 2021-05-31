@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Exceptions\TBError;
+use App\Models\Note;
 use App\Repositories\BookRepository;
 use App\Repositories\CorrectionRepository;
 use App\Repositories\FragmentRepository;
@@ -47,20 +48,9 @@ class BookController extends Controller
      */
     public function getBasicData()
     {
-        try {
-            return $this->sendSuccess([
-                'stories'    => StoryRepository::call('all'),
-                'books'      => BookRepository::call('all'),
-                'series'     => SeriesRepository::call('all'),
-                'tags'       => TagRepository::call('all'),
-                'notions'    => NotionRepository::call('all'),
-                'lore_items' => LoreItemRepository::call('all'),
-            ]);
-        } catch (TBError $e) {
-            return $this->sendError($e->getErrorMessage(), TBError::CODE_405);
-        } catch (Exception $e) {
-            return $this->sendError($e->getMessage(), $e->getCode());
-        }
+        return $this->sendSuccess([
+            'note_types' => Note::getTypes(),
+        ]);
     }
     
     // -------------  BOOKS --------------------------------------------------------------------------------------------
@@ -256,7 +246,6 @@ class BookController extends Controller
      *
      * @param NoteRepository $repository
      * @return Response
-     * @throws TBError
      */
 	public function getNotes(NoteRepository $repository)
 	{
