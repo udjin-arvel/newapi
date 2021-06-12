@@ -26,7 +26,8 @@ trait BaseRepositoryMethodsTrait {
     /**
      * @return array
      */
-    public function all() {
+    public function all()
+    {
         return get_class($this->model)::orderBy('created_at', 'desc')->get();
     }
     
@@ -34,7 +35,8 @@ trait BaseRepositoryMethodsTrait {
      * @param array $data
      * @return mixed
      */
-    public function save(array $data) {
+    public function save(array $data)
+    {
         return $this->getModel($data['id'])
             ->fillModelFromArray($data)
             ->saveModel()

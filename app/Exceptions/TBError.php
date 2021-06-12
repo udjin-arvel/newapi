@@ -159,7 +159,6 @@ class TBError extends Exception
             self::SUBSCRIPTION_EXIST    => 'Вы уже подписаны',
             self::NOT_ENOUGH_RESOURCES  => 'Недостаточно средств',
             self::IMPOSSIBLE_OPERATION  => 'Невозможная операция',
-            self::PROJECT_SAVE_ERROR    => 'Произошла ошибка при сохранении проекта',
             self::MASS_SAVING_ERROR     => 'Ошибка массового сохранения',
         ];
     }

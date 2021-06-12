@@ -123,6 +123,9 @@ abstract class Repository
                 $this->model->{$key} = $input;
             }
         }
+        if (Schema::hasColumn($this->model->getTable(), 'user_id')) {
+            $this->model->user_id = $this->user->id;
+        }
         
         return $this;
     }
@@ -133,10 +136,6 @@ abstract class Repository
      */
     public function saveModel(): Repository
     {
-        if (empty($this->model->id)) {
-            throw new TBError(TBError::CONTENT_NOT_FOUND);
-        }
-        
         if (! $this->model->save()) {
             throw new TBError(TBError::SAVE_ERROR);
         }

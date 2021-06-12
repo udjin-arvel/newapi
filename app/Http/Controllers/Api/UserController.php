@@ -51,7 +51,6 @@ class UserController extends Controller
      * Регистрация
      *
      * @return Response
-     * @throws TBError
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
 	public function register()

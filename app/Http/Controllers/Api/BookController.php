@@ -72,7 +72,6 @@ class BookController extends Controller
      * @param BookRepository $repository
      * @param int $id
      * @return Response
-     * @throws TBError
      */
     public function getBook(BookRepository $repository, int $id)
     {
@@ -84,7 +83,6 @@ class BookController extends Controller
      *
      * @param BookRepository $repository
      * @return Response
-     * @throws TBError
      */
     public function saveBook(BookRepository $repository)
     {
@@ -257,12 +255,10 @@ class BookController extends Controller
      *
      * @param NoteRepository $repository
      * @return Response
-     * @throws TBError
      */
 	public function saveNote(NoteRepository $repository)
 	{
-        $data = $this->input;
-        return $this->sendSuccess($repository->save($data));
+        return $this->sendSuccess($repository->save($this->input));
 	}
 
     /**

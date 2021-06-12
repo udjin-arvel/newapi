@@ -35,6 +35,6 @@ class Controller extends BaseController
      */
     public function sendError(string $errorText, int $errorCode = null)
     {
-        return response()->json(['success' => false, 'result' => $errorText], $errorCode ?: $this->successStatus);
+        return response()->json(['success' => false, 'error' => $errorText], $errorCode ?: $this->successStatus);
     }
 }
