@@ -37,11 +37,11 @@ trait BaseRepositoryMethodsTrait {
      */
     public function save(array $data)
     {
-        return $this->getModel($data['id'])
+        return optional($this->getModel($data['id'])
             ->fillModelFromArray($data)
             ->saveModel()
             ->model
-            ->id;
+        )->id;
     }
     
     /**

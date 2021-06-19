@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Helpers\GlobalHelper;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
 
@@ -36,7 +35,7 @@ class Notion extends AModel
              * @var Notion $model
              */
             $model->tag_id = Tag::create([
-                'tag'     => $tag = GlobalHelper::tagized($model->text),
+                'tag'     => $tag = tagized($model->text),
                 'stem'    => $tag,
                 'user_id' => Auth::user()->id,
             ])->id;

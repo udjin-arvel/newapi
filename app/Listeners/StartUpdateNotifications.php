@@ -3,7 +3,6 @@
 namespace App\Listeners;
 
 use App\Events\UpdateNotifications;
-use App\Helpers\GlobalHelper;
 use App\Models\Book;
 use App\Models\Notification;
 use App\Models\Notion;
@@ -83,8 +82,6 @@ class StartUpdateNotifications
         } catch (Exception $e) {
             Log::error('Не удалось обновить уведомления. Причина: ' . $e->getMessage());
         }
-    
-        GlobalHelper::measureExecutionTime();
     }
     
     public static function handleNotionNotifications(UpdateNotifications $event)

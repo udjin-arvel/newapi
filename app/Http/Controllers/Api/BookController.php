@@ -596,7 +596,6 @@ class BookController extends Controller
      *
      * @param LoreItemRepository $repository
      * @return Response
-     * @throws TBError
      */
     public function getLoreItems(LoreItemRepository $repository)
     {
@@ -608,9 +607,8 @@ class BookController extends Controller
      *
      * @param LoreItemRepository $repository
      * @return Response
-     * @throws TBError
      */
-    public function addLoreItem(LoreItemRepository $repository)
+    public function saveLoreItem(LoreItemRepository $repository)
     {
         return $this->sendSuccess($repository->save($this->input));
     }
@@ -656,55 +654,40 @@ class BookController extends Controller
         return $this->sendSuccess($repository->delete($id));
     }
 
-    // -------------  PROJECTS -----------------------------------------------------------------------------------------
+    // -------------  SERIES -------------------------------------------------------------------------------------------
 
     /**
-     * Превратить проект в историю
+     * Получить список серий
      *
-     * @param StoryProjectRepository $repository
+     * @param SeriesRepository $repository
+     * @return Response
+     */
+    public function getSeries(SeriesRepository $repository)
+    {
+        return $this->sendSuccess($repository->all());
+    }
+    
+    /**
+     * Сохранить серию
+     *
+     * @param SeriesRepository $repository
+     * @return Response
+     */
+    public function saveSeries(SeriesRepository $repository)
+    {
+        return $this->sendSuccess($repository->save($this->input));
+    }
+    
+    /**
+     * Удалить серию
+     *
+     * @param SeriesRepository $repository
+     * @param {integer} $id
      * @return Response
      * @throws TBError
      */
-    public function projectToStory(StoryProjectRepository $repository)
+    public function deleteSeries(SeriesRepository $repository, $id)
     {
-        $data = $this->input;
-        return $this->sendSuccess($repository->projectToStory($data));
-    }
-
-    /**
-     * Сохранить проект истории
-     *
-     * @param StoryProjectRepository $repository
-     * @return Response
-     * @throws TBError
-     */
-    public function saveStoryProject(StoryProjectRepository $repository)
-    {
-        $data = $this->input;
-        return $this->sendSuccess($repository->save($data));
-    }
-
-    /**
-     * Получить проекты историй
-     *
-     * @param StoryProjectRepository $repository
-     * @return Response
-     */
-    public function getStoryProjects(StoryProjectRepository $repository)
-    {
-        return $this->sendSuccess($repository->getAll());
-    }
-
-    /**
-     * Получить проект истории по id
-     *
-     * @param StoryProjectRepository $repository
-     * @param int $id
-     *
-     * @return Response
-     */
-    public function getStoryProject(StoryProjectRepository $repository, $id)
-    {
-        return $this->sendSuccess($repository->getOne($id));
+        return $this->sendSuccess($repository->delete($id));
     }
 }

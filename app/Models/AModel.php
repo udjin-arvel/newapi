@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
-use Storage;
+use App\Helpers\ImageHelper;
 use Log;
 use Schema;
 
@@ -12,6 +13,8 @@ use Schema;
  * @package App\Models
  *
  * @property string $poster
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
  */
 class AModel extends Model {
     /**
@@ -19,40 +22,44 @@ class AModel extends Model {
      *
      * @return void
      */
-    protected static function boot()
+    public static function boot()
     {
         parent::boot();
     
-        static::creating(function (Model $model) {
+        static::creating(function (self $model) {
             /**
              * @var AModel $model
              */
             if (isset($model->poster)) {
-                $model->poster = Image::storedImageFromBase64($model->poster);
+                $model->poster = ImageHelper::store($model->poster);
             }
+            
+            // $model->created_at = now();
         });
     
-        static::updating(function ($model) {
+        static::updating(function (self $model) {
             /**
              * @var AModel $model
              */
             if (Schema::hasColumn($model->getTable(), 'poster')
                 && $model->poster !== $model->getOriginal('poster'))
             {
-                if ($model->getOriginal('poster') && !Image::deleteImage($model->poster)) {
+                if ($model->getOriginal('poster') && !ImageHelper::deleteImages($model->poster)) {
                     Log::warning("Изображение ({$model->poster}) не было удалено.");
                 }
             
-                $model->poster = Image::storedImageFromBase64($model->poster);
+                $model->poster = ImageHelper::store($model->poster);
             }
+    
+            // $model->updated_at = now();
         });
     
-        static::deleting(function ($model) {
+        static::deleting(function (self $model) {
             /**
              * @var AModel $model
              */
-            if (isset($model->poster)) {
-                Storage::disk('public')->delete($model->poster);
+            if (!empty($model->poster)) {
+                ImageHelper::deleteImages($model->poster);
             }
         });
     }

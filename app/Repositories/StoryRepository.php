@@ -18,6 +18,11 @@ class StoryRepository extends Repository implements IWriteableRepository
 {
     use BaseRepositoryMethodsTrait;
     
+    /**
+     * Историй на страницу
+     */
+    const STORIES_IN_PAGE = 10;
+    
 	/**
 	 * @return mixed|string
 	 */
@@ -35,29 +40,19 @@ class StoryRepository extends Repository implements IWriteableRepository
                 'tags',
             ])
             ->byOwn()
-            ->get();
+            ->paginate(self::STORIES_IN_PAGE)
+        ;
     }
     
     public function one(int $id)
     {
         return Story::findOrFail($id)
-            ->load(['fragments', 'remarks', 'tags', 'notions'])
+            ->with([
+                'fragments',
+                'remarks',
+                'tags',
+                'notions'
+            ])
             ->first();
     }
-    
-    /**
-     * Сохранить историю
-     *
-     * @param array $data
-     * @return int
-     * @throws TBError
-     */
-	public function save(array $data): int
-	{
-        $this->getModel($data['id'])
-            ->fillModelFromArray($data)
-            ->saveModel();
-        
-        return $this->model->id;
-	}
 }

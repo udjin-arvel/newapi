@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Exceptions\TBError;
 use App\Models\Player;
+use App\Models\Series;
 use App\Models\Story;
 use App\Models\User;
 use Auth;
@@ -61,8 +62,7 @@ abstract class Repository
      */
     public static function getInstance(): Repository
     {
-        $className = static::class;
-        return new $className;
+        return new static();
     }
 	
     /**
@@ -119,7 +119,7 @@ abstract class Repository
         }
         
         foreach ($data as $key => $input) {
-            if (Schema::hasColumn($this->model->getTable(), $key)) {
+            if ($input && Schema::hasColumn($this->model->getTable(), $key)) {
                 $this->model->{$key} = $input;
             }
         }

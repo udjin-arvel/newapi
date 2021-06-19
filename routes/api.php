@@ -23,17 +23,23 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::get('getNotes', 'Api\BookController@getNotes');
     Route::post('saveNote', 'Api\BookController@saveNote');
     Route::delete('deleteNote/{id}', 'Api\BookController@deleteNote');
+    Route::get('getLoreItems', 'Api\BookController@getLoreItems');
+    Route::post('saveLoreItem', 'Api\BookController@saveLoreItem');
+    Route::delete('deleteLoreItem/{id}', 'Api\BookController@deleteLoreItem');
+    Route::get('getSeries', 'Api\BookController@getSeries');
+    Route::post('saveSeries', 'Api\BookController@saveSeries');
+    Route::delete('deleteSeries/{id}', 'Api\BookController@deleteSeries');
+    Route::get('getBooks', 'Api\BookController@getBooks');
     
     // ------------------------ NEW / OLD ------------------------ //
     
     Route::get('story/{id}', 'Api\BookController@getStory');
     Route::get('getBookChapters/{id}', 'Api\BookController@getBookChapters');
 	Route::delete('deleteStory/{id}', 'Api\BookController@deleteStory');
-    Route::get('getBooks', 'Api\BookController@getBooks');
+    
     Route::get('getBook/{id}', 'Api\BookController@getBook');
     Route::post('saveBook', 'Api\BookController@saveBook');
     Route::delete('deleteBook/{id}', 'Api\BookController@deleteBook');
-    
     Route::post('projectToStory', 'Api\BookController@projectToStory');
     Route::post('saveStoryProject', 'Api\BookController@saveStoryProject');
     Route::get('getStoryProjects', 'Api\BookController@getStoryProjects');
@@ -53,10 +59,6 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::post('changeLineName', 'Api\BookController@changeLineName');
     
     Route::get('getStatistic', 'Api\BookController@getStatistic');
-    
-    Route::get('getLoreItems', 'Api\BookController@getLoreItems');
-    Route::post('addLoreItem', 'Api\BookController@addLoreItem');
-    Route::delete('deleteLoreItem/{id}', 'Api\BookController@deleteLoreItem');
     
     Route::post('correct', 'Api\BookController@correct');
     Route::post('report', 'Api\BookController@report');

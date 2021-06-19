@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Exceptions\TBError;
+use App\Helpers\ImageHelper;
 use App\Models\Image;
 use App\Repositories\Interfaces\IWriteableRepository;
 use App\Repositories\Traits\BaseRepositoryMethodsTrait;
@@ -39,7 +40,7 @@ class ImageRepository extends Repository implements IWriteableRepository
         $this->getModel($data['id'])
             ->fillModelFromArray($data);
         
-        $this->model->path = Image::storedImageFromBase64($data['base64']);
+        $this->model->path = ImageHelper::store($data['base64']);
         $this->saveModel();
     
         return $this->model->id;

@@ -59,6 +59,8 @@ class TBError extends Exception
     const NOT_ENOUGH_RESOURCES  = 'not-enough-resources';
     const IMPOSSIBLE_OPERATION  = 'impossible-operation';
     const MASS_SAVING_ERROR     = 'mass-saving-error';
+    const BIG_FILE              = 'big-file';
+    const WRONG_IMAGE_MIME      = 'wrong-image-mime';
     
     /**
      * Текущая ошибка
@@ -160,6 +162,8 @@ class TBError extends Exception
             self::NOT_ENOUGH_RESOURCES  => 'Недостаточно средств',
             self::IMPOSSIBLE_OPERATION  => 'Невозможная операция',
             self::MASS_SAVING_ERROR     => 'Ошибка массового сохранения',
+            self::BIG_FILE              => 'Файл слишком тяжелый',
+            self::WRONG_IMAGE_MIME      => 'Нечитаемый формат изображения',
         ];
     }
 }

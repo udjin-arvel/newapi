@@ -2,14 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="24e9da2f-bf30-4a2c-9f19-81b68f84e4d5" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Helpers/ImageHelper.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Helpers/helper.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Repositories/Interfaces/Chapterable.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/admin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/admin.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Exceptions/TBError.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exceptions/TBError.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Helpers/GlobalHelper.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/BookController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/BookController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SiteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SiteController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Listeners/StartUpdateNotifications.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Listeners/StartUpdateNotifications.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/AModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/AModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Image.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Image.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Notion.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Notion.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/BookRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/BookRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/ImageRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/ImageRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Repositories/Repository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/Repository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/SeriesRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/SeriesRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/StoryRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/StoryRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Repositories/Traits/BaseRepositoryMethodsTrait.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/Traits/BaseRepositoryMethodsTrait.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/filesystems.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/filesystems.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -191,7 +203,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../newbook" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -508,7 +520,12 @@
       <workItem from="1622205998760" duration="1832000" />
       <workItem from="1622464927648" duration="2051000" />
       <workItem from="1622635755497" duration="3003000" />
-      <workItem from="1623481967092" duration="2927000" />
+      <workItem from="1623481967092" duration="3525000" />
+      <workItem from="1623516849414" duration="604000" />
+      <workItem from="1623566380464" duration="3352000" />
+      <workItem from="1623770473876" duration="5080000" />
+      <workItem from="1623797347434" duration="16481000" />
+      <workItem from="1624023643460" duration="7535000" />
     </task>
     <servers />
   </component>
