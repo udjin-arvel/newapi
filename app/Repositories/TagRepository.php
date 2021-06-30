@@ -3,7 +3,6 @@
 namespace App\Repositories;
 
 use App\Models\Tag;
-use App\Repositories\Traits\MassSaveTrait;
 
 /**
  * Class TagRepository
@@ -11,12 +10,11 @@ use App\Repositories\Traits\MassSaveTrait;
  */
 class TagRepository extends Repository
 {
-    use MassSaveTrait;
-    
     /**
-     * @return mixed|string
+     * @return string
      */
-    protected function getModelClass() {
+    protected function getModelClass(): string
+    {
         return Tag::class;
     }
 }

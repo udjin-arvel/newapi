@@ -11,6 +11,6 @@ class BooksTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Models\Book::class, 10)->create();
+        factory(\App\Models\Composition::class, 10)->create();
     }
 }

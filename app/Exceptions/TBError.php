@@ -61,6 +61,7 @@ class TBError extends Exception
     const MASS_SAVING_ERROR     = 'mass-saving-error';
     const BIG_FILE              = 'big-file';
     const WRONG_IMAGE_MIME      = 'wrong-image-mime';
+    const REPOSITORY_ERROR      = 'repository-error';
     
     /**
      * Текущая ошибка
@@ -164,6 +165,7 @@ class TBError extends Exception
             self::MASS_SAVING_ERROR     => 'Ошибка массового сохранения',
             self::BIG_FILE              => 'Файл слишком тяжелый',
             self::WRONG_IMAGE_MIME      => 'Нечитаемый формат изображения',
+            self::REPOSITORY_ERROR      => 'Ошибка репозитория',
         ];
     }
 }

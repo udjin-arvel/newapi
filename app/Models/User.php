@@ -38,6 +38,8 @@ use Laravel\Passport\HasApiTokens;
  * @property int    $player_id
  * @property array  $stories
  * @property bool   $subscribe_on_notions
+ *
+ * @mixin \Eloquent
  */
 class User extends Authenticatable
 {

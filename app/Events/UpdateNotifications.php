@@ -20,7 +20,9 @@ use Illuminate\Broadcasting\InteractsWithSockets;
  */
 class UpdateNotifications
 {
-    use Dispatchable, InteractsWithSockets, SerializesModels;
+    use Dispatchable,
+        InteractsWithSockets,
+        SerializesModels;
     
     /**
      * @var Model

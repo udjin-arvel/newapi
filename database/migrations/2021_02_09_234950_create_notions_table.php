@@ -22,7 +22,7 @@ class CreateNotionsTable extends Migration
             $table->string('type', 24);
             $table->string('poster')->nullable();
             
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
     
             $table->softDeletes();

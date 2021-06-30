@@ -1,6 +1,7 @@
 <?php
-
-use Illuminate\Support\Facades\Schema;
+    
+    use App\Models\Story;
+    use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
@@ -21,13 +22,10 @@ class CreateStoriesTable extends Migration
             $table->text('epigraph')->nullable();
             $table->unsignedTinyInteger('eon')->nullable();
             $table->boolean('is_published')->default(false);
-            $table->boolean('is_announce')->default(false);
+            $table->string('type', 64)->default(Story::TYPE_STORY);
             
-            $table->unsignedBigInteger('book_id')->nullable();
-            $table->foreign('book_id')->references('id')->on('books');
-    
-            $table->unsignedBigInteger('series_id')->nullable();
-            $table->foreign('series_id')->references('id')->on('series');
+            $table->unsignedBigInteger('composition_id')->nullable();
+            $table->foreign('composition_id')->references('id')->on('compositions');
     
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');

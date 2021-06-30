@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
  * @property int    $tag_id
  * @property string $title
  * @property string $text
+ * @property string $explanation
  * @property string $poster
  * @property int    $type
  */
@@ -34,11 +35,11 @@ class Notion extends AModel
             /**
              * @var Notion $model
              */
-            $model->tag_id = Tag::create([
-                'tag'     => $tag = tagized($model->text),
-                'stem'    => $tag,
-                'user_id' => Auth::user()->id,
-            ])->id;
+//            $model->tag_id = Tag::create([
+//                'name'    => $tag = tagized($model->title),
+//                'stem'    => $tag,
+//                'user_id' => optional(Auth::user())->id ?? 1,
+//            ])->id;
         });
     }
     

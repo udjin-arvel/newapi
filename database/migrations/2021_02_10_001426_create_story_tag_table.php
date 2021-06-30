@@ -13,14 +13,10 @@ class CreateStoryTagTable extends Migration
      */
     public function up()
     {
-        Schema::create('story_tag', function (Blueprint $table) {
-            $table->bigIncrements('id');
-    
-            $table->unsignedBigInteger('story_id');
-            $table->foreign('story_id')->references('id')->on('stories')->onDelete('cascade');
-    
+        Schema::create('taggables', function (Blueprint $table) {
             $table->unsignedBigInteger('tag_id');
-            $table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade');
+            $table->unsignedBigInteger('taggable_id');
+            $table->string('taggable_type', 64);
         });
     }
 
@@ -31,6 +27,6 @@ class CreateStoryTagTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('story_tag');
+        Schema::dropIfExists('taggables');
     }
 }

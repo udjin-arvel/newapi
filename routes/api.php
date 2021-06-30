@@ -17,81 +17,41 @@ Route::post('authorize', 'Api\UserController@auth');
 Route::get('confirm', 'Api\SiteController@confirmMail');
 
 Route::group(['middleware' => 'auth:api'], function() {
-	Route::get('getBasicData', 'Api\BookController@getBasicData');
-    Route::post('saveStory', 'Api\BookController@saveStory');
-    Route::get('getStories', 'Api\BookController@getStories');
-    Route::get('getNotes', 'Api\BookController@getNotes');
-    Route::post('saveNote', 'Api\BookController@saveNote');
-    Route::delete('deleteNote/{id}', 'Api\BookController@deleteNote');
-    Route::get('getLoreItems', 'Api\BookController@getLoreItems');
-    Route::post('saveLoreItem', 'Api\BookController@saveLoreItem');
-    Route::delete('deleteLoreItem/{id}', 'Api\BookController@deleteLoreItem');
-    Route::get('getSeries', 'Api\BookController@getSeries');
-    Route::post('saveSeries', 'Api\BookController@saveSeries');
-    Route::delete('deleteSeries/{id}', 'Api\BookController@deleteSeries');
-    Route::get('getBooks', 'Api\BookController@getBooks');
     
-    // ------------------------ NEW / OLD ------------------------ //
+    // ------------------------ Basic routes ------------------------ //
+    Route::get('getBasicData', 'Api\BaseController@getBasicData');
     
-    Route::get('story/{id}', 'Api\BookController@getStory');
-    Route::get('getBookChapters/{id}', 'Api\BookController@getBookChapters');
-	Route::delete('deleteStory/{id}', 'Api\BookController@deleteStory');
+    // ------------------------ Story routes ------------------------ //
+    Route::get('story/get/{id}', 'Api\StoryController@one');
+    Route::get('story/all', 'Api\StoryController@all');
+    Route::post('story/save', 'Api\StoryController@save');
+    Route::delete('story/delete/{id}', 'Api\StoryController@delete');
     
-    Route::get('getBook/{id}', 'Api\BookController@getBook');
-    Route::post('saveBook', 'Api\BookController@saveBook');
-    Route::delete('deleteBook/{id}', 'Api\BookController@deleteBook');
-    Route::post('projectToStory', 'Api\BookController@projectToStory');
-    Route::post('saveStoryProject', 'Api\BookController@saveStoryProject');
-    Route::get('getStoryProjects', 'Api\BookController@getStoryProjects');
-    Route::get('getStoryProject/{id}', 'Api\BookController@getStoryProject');
+    // ------------------------ Notes routes ------------------------ //
+    Route::get('note/all', 'Api\NoteController@all');
+    Route::post('note/save', 'Api\NoteController@save');
+    Route::delete('note/delete/{id}', 'Api\NoteController@delete');
     
-    Route::get('getContent', 'Api\BookController@getContent');
-    Route::post('addCard', 'Api\BookController@addCard');
-    Route::get('getCard/{id}', 'Api\BookController@getCard');
-    Route::get('buyCard/{id}', 'Api\BookController@buyCard');
-    Route::get('buyStory/{id}', 'Api\BookController@buyStory');
-    Route::get('deleteCard/{id}', 'Api\BookController@deleteCard');
+    // ------------------------ Loreitems routes ------------------------ //
+    Route::get('loreitem/all', 'Api\LoreitemController@all');
+    Route::post('loreitem/save', 'Api\LoreitemController@save');
+    Route::delete('loreitem/delete/{id}', 'Api\LoreitemController@delete');
     
-    Route::get('exchangeExperience/{xcoins}', 'Api\BookController@exchangeExperience');
-    Route::post('changePassword', 'Api\UserController@changePassword');
+    // ------------------------ Composition routes ------------------------ //
+    Route::get('composition/get/{id}', 'Api\CompositionController@one');
+    Route::get('composition/all', 'Api\CompositionController@all');
+    Route::post('composition/save', 'Api\CompositionController@save');
+    Route::delete('composition/delete/{id}', 'Api\CompositionController@delete');
     
-    Route::get('getLines', 'Api\BookController@getLines');
-    Route::post('changeLineName', 'Api\BookController@changeLineName');
+    // ------------------------ Notion routes ------------------------ //
+    Route::get('notion/get/{id}', 'Api\NotionController@one');
+    Route::get('notion/all', 'Api\NotionController@all');
+    Route::post('notion/save', 'Api\NotionController@save');
+    Route::delete('notion/delete/{id}', 'Api\NotionController@delete');
     
-    Route::get('getStatistic', 'Api\BookController@getStatistic');
+    // ------------------------ Tag routes ------------------------ //
+    Route::get('tag/all', 'Api\TagController@all');
+    Route::post('tag/save', 'Api\TagController@save');
+    Route::delete('tag/delete/{id}', 'Api\TagController@delete');
     
-    Route::post('correct', 'Api\BookController@correct');
-    Route::post('report', 'Api\BookController@report');
-	
-	Route::get('notions', 'Api\BookController@getNotions');
-	Route::get('notion/{id}', 'Api\BookController@getNotion');
-	Route::get('getNotionGallery/{id}', 'Api\BookController@getNotionGallery');
-	Route::post('saveNotion', 'Api\BookController@saveNotion');
-	Route::delete('deleteNotion/{id}', 'Api\BookController@deleteNotion');
-    
-    Route::post('addImage', 'Api\BookController@addImage');
-    Route::delete('deleteImage/{id}', 'Api\BookController@deleteImage');
-    
-    Route::get('tags', 'Api\BookController@getTags');
-	Route::post('saveTag', 'Api\BookController@saveTag');
-    
-    Route::post('like', 'Api\BookController@like');
-    
-    Route::get('comments/{id}', 'Api\BookController@comments');
-    Route::post('comment', 'Api\BookController@comment');
-    Route::delete('deleteComment/{id}', 'Api\BookController@deleteComment');
-    
-    Route::get('getSubscriptionsStories', 'Api\UserController@getSubscriptionsStories');
-    Route::post('subscribe', 'Api\BookController@subscribe');
-    Route::get('getUserData', 'Api\UserController@details');
-    Route::post('editProfile', 'Api\UserController@editProfile');
-    Route::get('getProfileByUserId/{id}', 'Api\UserController@getProfileByUserId');
-    
-    Route::post('chooseClan', 'Api\BookController@chooseClan');
-    
-    Route::get('getDialogs', 'Api\BookController@getDialogs');
-    Route::post('createDialog', 'Api\BookController@createDialog');
-    Route::post('sendMessage', 'Api\BookController@sendMessage');
-    Route::post('messagesRead', 'Api\BookController@messagesRead');
-    Route::delete('deleteDialog/{id}', 'Api\BookController@deleteDialog');
 });

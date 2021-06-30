@@ -6,23 +6,29 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use App\Helpers\ImageHelper;
 use Log;
-use Schema;
 
 /**
  * Class AModel
  * @package App\Models
  *
+ * @property int    $id
+ * @property int    $user_id
  * @property string $poster
  * @property Carbon $created_at
  * @property Carbon $updated_at
+ *
+ * @mixin \Eloquent
  */
 class AModel extends Model {
+    
+    protected $related = [];
+    
     /**
      * The "booting" method of the model.
      *
      * @return void
      */
-    public static function boot()
+    protected static function boot()
     {
         parent::boot();
     
@@ -30,19 +36,20 @@ class AModel extends Model {
             /**
              * @var AModel $model
              */
-            if (isset($model->poster)) {
+            if (!empty($model->poster)) {
                 $model->poster = ImageHelper::store($model->poster);
             }
-            
-            // $model->created_at = now();
+    
+            if (isset($model->user_id)) {
+                $model->user_id = optional(\Auth::user())->id;
+            }
         });
     
         static::updating(function (self $model) {
             /**
              * @var AModel $model
              */
-            if (Schema::hasColumn($model->getTable(), 'poster')
-                && $model->poster !== $model->getOriginal('poster'))
+            if (isset($model->poster) && $model->poster !== $model->getOriginal('poster'))
             {
                 if ($model->getOriginal('poster') && !ImageHelper::deleteImages($model->poster)) {
                     Log::warning("Изображение ({$model->poster}) не было удалено.");
@@ -50,8 +57,6 @@ class AModel extends Model {
             
                 $model->poster = ImageHelper::store($model->poster);
             }
-    
-            // $model->updated_at = now();
         });
     
         static::deleting(function (self $model) {
@@ -62,5 +67,33 @@ class AModel extends Model {
                 ImageHelper::deleteImages($model->poster);
             }
         });
+    }
+    
+    /**
+     * Сохранить связанные модели
+     *
+     * @param array $data
+     * @return bool
+     */
+    public function storeRelations(array $data): bool
+    {
+        try {
+            foreach ($this->related as $relation) {
+                $relationData = $data[$relation];
+                
+                if (!empty($relationData) && is_array($relationData)) {
+                    if (is_array($relationData[0])) {
+                        $this->{$relation}()->createMany($relationData);
+                    } else if (is_int($relationData[0])) {
+                        $this->{$relation}()->attach($relationData);
+                    }
+                }
+            }
+        } catch (\Exception $e) {
+            Log::error('Возникла ошибка при сохранении связанных моделей:' . $e->getMessage());
+            return false;
+        }
+        
+        return true;
     }
 }

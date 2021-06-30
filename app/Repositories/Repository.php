@@ -3,12 +3,10 @@
 namespace App\Repositories;
 
 use App\Exceptions\TBError;
+use App\Models\AModel;
 use App\Models\Player;
-use App\Models\Series;
-use App\Models\Story;
 use App\Models\User;
 use Auth;
-use Illuminate\Database\Eloquent\Model;
 use Schema;
 
 /**
@@ -18,19 +16,16 @@ use Schema;
  *
  * @package App\Repositories
  *
- * @method static void massSave(int $relatedId, array $data, string $table, string $pivotKey)
- * @method public Repository delete(int $id)
- *
- * @property Model|Story $model
+ * @property AModel $model
  * @property User $user
  * @property Player $player
  */
 abstract class Repository
 {
-	/**
-	 * @var Model
-	 */
-	protected $model;
+    /**
+     * @var AModel
+     */
+    protected $model;
     
     /**
      * @var User
@@ -38,108 +33,61 @@ abstract class Repository
     protected $user;
     
     /**
-     * @var Player
-     */
-    protected $player;
-    
-    /**
      * Repository constructor.
      */
-	public function __construct()
-	{
-        $this->model  = app($this->getModelClass());
-        $this->user   = Auth::user();
-        $this->player = $this->user->player;
-	}
-	
-	/**
-	 * @return mixed
-	 */
-	abstract protected function getModelClass();
+    public function __construct()
+    {
+        $this->model = app($this->getModelClass());
+        $this->user  = Auth::user();
+    }
     
     /**
-     * @return Repository
+     * @return string
      */
-    public static function getInstance(): Repository
-    {
-        return new static();
-    }
-	
-    /**
-     * Статический вызов публичного метода
-     *
-     * @param string $method
-     * @param mixed $params
-     * @return mixed
-     * @throws TBError
-     */
-    public static function call(string $method, ...$params)
-    {
-        $model = self::getInstance();
-        
-        if (! method_exists($model, $method)) {
-            throw new TBError(TBError::METHOD_NOT_EXIST);
-        }
-        
-        return $model->{$method}(...$params);
-    }
+    abstract protected function getModelClass(): string;
     
     /**
      * Получить конкретную модель или экземпляр
      *
      * @param int $id
-     * @param bool $emptyIdAllow
-     * @return Repository
-     * @throws TBError
+     * @return self
      */
-    public function getModel(int $id = null, bool $emptyIdAllow = true): Repository
+    protected function take(int $id = null): self
     {
-        if (! empty($id)) {
-            $this->model = get_class($this->model)::where(['id' => $id])->first();
-            
-            if (null === $this->model) {
-                throw new TBError(TBError::CONTENT_NOT_FOUND);
-            }
-        } elseif (! $emptyIdAllow) {
-            throw new TBError(TBError::CONTENT_NOT_FOUND);
+        if (is_null($id)) {
+            return $this;
+        }
+        
+        $this->model = $this->model::where(['id' => $id])->first();
+    
+        if (null === $this->model) {
+            $this->model = app($this->getModelClass());
         }
         
         return $this;
     }
     
     /**
-     * @param $data
-     * @return Repository
+     * @param array $data
+     * @return self
      * @throws TBError
      */
-    public function fillModelFromArray($data): Repository
+    protected function store(array $data): self
     {
-        if (empty($this->model)) {
-            throw new TBError(TBError::CONTENT_NOT_FOUND);
-        }
+        $this->model->fill($data);
         
-        foreach ($data as $key => $input) {
-            if ($input && Schema::hasColumn($this->model->getTable(), $key)) {
-                $this->model->{$key} = $input;
-            }
-        }
-        if (Schema::hasColumn($this->model->getTable(), 'user_id')) {
-            $this->model->user_id = $this->user->id;
-        }
-        
-        return $this;
-    }
-    
-    /**
-     * @return Repository
-     * @throws TBError
-     */
-    public function saveModel(): Repository
-    {
-        if (! $this->model->save()) {
+        if (! ($this->model->save() && $this->model->storeRelations($data))) {
             throw new TBError(TBError::SAVE_ERROR);
         }
-        
+    
         return $this;
+    }
+    
+    /**
+     * @return AModel
+     */
+    protected function model()
+    {
+        return optional($this->model);
     }
 }

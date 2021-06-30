@@ -30,10 +30,11 @@ trait MassSaveTrait {
      * @param array $data
      * @param string $table
      * @param string $pivotKey
+     * @throws TBError
      */
-    public static function massSaveProvider(int $relatedId, array $data = [], string $table = '', $pivotKey = '')
+    public function massSaveProvider(int $relatedId, array $data = [], string $table = '', $pivotKey = '')
     {
-        self::getInstance()->massSave($relatedId, $data, $table, $pivotKey);
+        $this->massSave($relatedId, $data, $table, $pivotKey);
     }
     
     /**

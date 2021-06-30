@@ -3,10 +3,6 @@
 namespace App\Repositories;
 
 use App\Models\Story;
-use App\Exceptions\TBError;
-use App\Repositories\Interfaces\IWriteableRepository;
-use App\Repositories\Traits\BaseRepositoryMethodsTrait;
-use Illuminate\Database\Query\Builder;
 
 /**
  * Class StoryRepository
@@ -14,10 +10,8 @@ use Illuminate\Database\Query\Builder;
  *
  * @property Story $model
  */
-class StoryRepository extends Repository implements IWriteableRepository
+class StoryRepository extends CrudRepository
 {
-    use BaseRepositoryMethodsTrait;
-    
     /**
      * Историй на страницу
      */
@@ -26,7 +20,8 @@ class StoryRepository extends Repository implements IWriteableRepository
 	/**
 	 * @return mixed|string
 	 */
-	protected function getModelClass() {
+	protected function getModelClass(): string
+    {
 		return Story::class;
 	}
 	

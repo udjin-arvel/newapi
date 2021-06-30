@@ -4,6 +4,8 @@ namespace App\Http\Controllers\API;
 
 use App\Exceptions\TBError;
 use App\Repositories\UserRepository;
+use Illuminate\Contracts\Container\BindingResolutionException;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
@@ -20,7 +22,7 @@ class UserController extends Controller
      * Авторизация через соцсети
      * @return Response
      * @throws TBError
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @throws BindingResolutionException
      */
 	public function auth()
     {
@@ -34,9 +36,9 @@ class UserController extends Controller
     /**
      * Авторизация
      *
-     * @return Response
+     * @return JsonResponse
      * @throws TBError
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @throws BindingResolutionException
      */
 	public function login()
 	{
@@ -50,8 +52,8 @@ class UserController extends Controller
     /**
      * Регистрация
      *
-     * @return Response
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @return JsonResponse
+     * @throws BindingResolutionException
      */
 	public function register()
 	{
@@ -86,7 +88,7 @@ class UserController extends Controller
     /**
      * Полная информация о пользователе
      *
-     * @return Response
+     * @return JsonResponse
      * @throws TBError
      */
 	public function details()
@@ -104,7 +106,7 @@ class UserController extends Controller
      * Сменить пароль пользователя
      *
      * @param Request $request
-     * @return Response
+     * @return JsonResponse
      * @throws TBError
      */
     public function changePassword(Request $request) {
@@ -122,7 +124,7 @@ class UserController extends Controller
      *
      * @param UserRepository $repository
      * @param Request $request
-     * @return Response
+     * @return JsonResponse
      * @throws TBError
      */
     public function editProfile(UserRepository $repository, Request $request)

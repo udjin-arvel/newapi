@@ -36,6 +36,8 @@ class Subscription extends Model
         SeriesTrait,
         ScopeOwnTrait;
     
+    public const TYPE_STORY = 'type-story';
+    
     /**
      * Пользователь, на которого оформлена подписка
      * @return MorphOne

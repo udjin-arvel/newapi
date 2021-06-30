@@ -5,8 +5,8 @@ use Faker\Generator as Faker;
 
 $factory->define(Subscription::class, function (Faker $faker) {
     return [
-        'book_id'   => random_int(1, 10),
-        'series_id' => random_int(1, 10),
-        'user_id'   => 1,
+        'subscription_id'   => random_int(1, 10),
+        'subscription_type' => Subscription::TYPE_STORY,
+        'user_id'           => 1,
     ];
 });

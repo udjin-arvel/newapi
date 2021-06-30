@@ -1,6 +1,7 @@
 <?php
-
-use Illuminate\Support\Facades\Schema;
+    
+    use App\Models\Note;
+    use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
@@ -18,11 +19,10 @@ class CreateNotesTable extends Migration
             
             $table->string('title');
             $table->text('text');
-            
             $table->unsignedBigInteger('content_id')->nullable();
             $table->string('content_type', 24)->nullable();
-    
             $table->unsignedTinyInteger('importance')->default(1);
+            $table->string('type', 64)->default(Note::TYPE_NO_SUBJECT);
     
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

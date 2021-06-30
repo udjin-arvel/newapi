@@ -22,7 +22,7 @@ trait ChapteredTrait {
      */
     public function getChapters(int $id, string $keeperType): array
     {
-        $this->getModel($id, false);
+        $this->take($id);
         
         return [
             'id'       => $this->model->id,

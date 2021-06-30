@@ -15,4 +15,11 @@ class Fragment extends AModel
     use StoryTrait,
         SoftDeletes,
         DataHelperTrait;
+    
+    protected $fillable = [
+      'text',
+      'order',
+      'poster',
+      'remark',
+    ];
 }

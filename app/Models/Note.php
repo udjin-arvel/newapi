@@ -13,8 +13,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property string  $title
  * @property string  $text
  * @property int     $user_id
- * @property int     $interest
- * @property boolean $is_published
+ * @property int     $content_id
+ * @property string  $content_type
+ * @property string  $type
+ * @property int     $importance
  */
 class Note extends Model
 {

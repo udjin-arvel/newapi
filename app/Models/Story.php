@@ -12,8 +12,11 @@ use App\Models\Traits\UserTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Builder;
+use Cog\Likeable\Contracts\Likeable as LikeableContract;
+use Cog\Likeable\Traits\Likeable;
 
 /**
  * Class Story
@@ -23,57 +26,67 @@ use Illuminate\Database\Eloquent\Builder;
  * @method static Builder|Story byOwn()
  * @method static Builder|Story byKeeperId(string $keeperType, int $keeperId)
  *
- * @property int    $id
+ * @property int $id
  * @property string $title
- * @property int    $chapter
- * @property int    $level
- * @property int    $time
- * @property string $remark
- * @property bool   $is_published
- * @property int    $user_id
- * @property int    $book_id
- * @property int    $series_id
- * @property array  $tags
- * @property array  $comments
- * @property Book   $book
- * @property Series $series
- * @property User   $user
- * @property array  $fragments
+ * @property int $chapter
+ * @property int $level
+ * @property int $time
+ * @property string $epigraph
+ * @property string $type
+ * @property bool $is_published
+ * @property int $user_id
+ * @property int $composition_id
+ * @property array $tags
+ * @property array $comments
+ * @property Composition $composition
+ * @property User $user
+ * @property array $fragments
+ * @property array $notions
+ * @property array $remarks
  * @property string $created_at
  * @property string $updated_at
  *
  * @mixin \Eloquent
  */
-class Story extends Model
+class Story extends AModel implements LikeableContract
 {
     use SoftDeletes,
         UserTrait,
         BookTrait,
         SeriesTrait,
-        DataHelperTrait,
         ScopeOwnTrait,
-        ScopePublishedTrait;
+        ScopePublishedTrait,
+        Likeable;
     
     const TYPE_STORY    = 'type-story';
     const TYPE_ANNOUNCE = 'type-announce';
     
-    const KEEPER_TYPE_BOOK   = 'book_id';
-    const KEEPER_TYPE_SERIES = 'series_id';
+    protected $fillable = [
+        'title',
+        'chapter',
+        'epigraph',
+        'is_published',
+        'book_id',
+        'series_id',
+        'user_id',
+        'type',
+    ];
+    
+    protected $related = [
+        'fragments',
+        'tags',
+    ];
     
     public static function boot()
     {
         parent::boot();
         
-        self::created(function($model) {
-            if ($model->is_published) {
-                UpdateNotifications::dispatch($model, UpdateNotifications::TARGET_CREATED);
-            }
+        self::created(function(self $model) {
+            UpdateNotifications::dispatch($model, UpdateNotifications::TARGET_CREATED);
         });
         
-        self::updated(function($model) {
-            if ($model->is_published) {
-                UpdateNotifications::dispatch($model, UpdateNotifications::TARGET_UPDATED);
-            }
+        self::updated(function(self $model) {
+            UpdateNotifications::dispatch($model, UpdateNotifications::TARGET_UPDATED);
         });
     }
     
@@ -92,11 +105,11 @@ class Story extends Model
     
     /**
      * Тэги, принадлежащие истории
-     * @return BelongsToMany
+     * @return MorphToMany
      */
     public function tags()
     {
-        return $this->belongsToMany(Tag::class, 'story_tag', 'story_id', 'tag_id');
+        return $this->morphToMany(Tag::class, 'taggable');
     }
     
     /**

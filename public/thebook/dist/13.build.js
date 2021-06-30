@@ -1,0 +1,2 @@
+webpackJsonp([13],{554:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var s=n(569),a=n(610),r=n(7),l=r(s.a,a.a,!1,null,null,null);t.default=l.exports},569:function(e,t,n){"use strict";t.a={name:"EmptyMessage",props:{text:{type:String}}}},610:function(e,t,n){"use strict";var s=function(){var e=this,t=e.$createElement,n=e._self._c||t;return e.text?n("div",{staticClass:"empty-message color-pink small"},[e._v("\n\t"+e._s(e.text)+"\n")]):e._e()},a=[],r={render:s,staticRenderFns:a};t.a=r}});
+//# sourceMappingURL=13.build.js.map

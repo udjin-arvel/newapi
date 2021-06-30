@@ -13,15 +13,5 @@ class NotionsTableSeeder extends Seeder
     public function run()
     {
         factory(\App\Models\Notion::class, 25)->create();
-    
-        $notionStory = [];
-        for ($i = 1; $i <= 50; $i++) {
-            $notionStory[] = [
-                'story_id' => random_int(1, 20),
-                'notion_id' => random_int(1, 25),
-            ];
-        }
-    
-        \DB::table('story_notion')->insert($notionStory);
     }
 }

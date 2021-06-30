@@ -2,9 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
-class Tag extends Model
+/**
+ * Class Tag
+ * @package App\Models
+ *
+ * @property int $id
+ * @property string $name
+ * @property string $stem
+ */
+class Tag extends AModel
 {
     protected $fillable = [
         'tag',
@@ -15,8 +21,8 @@ class Tag extends Model
     /**
 	 * Истории, относящиеся к тэгу.
 	 */
-	public function stories()
-	{
-		return $this->belongsToMany(Story::class, 'tag_story', 'tag_id', 'story_id');
-	}
+    public function stories()
+    {
+        return $this->morphedByMany(Story::class, 'taggable');
+    }
 }
