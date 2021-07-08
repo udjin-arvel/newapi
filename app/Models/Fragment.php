@@ -12,10 +12,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Fragment extends AModel
 {
-    use StoryTrait,
-        SoftDeletes,
-        DataHelperTrait;
-    
+    use SoftDeletes;
+
     protected $fillable = [
       'text',
       'order',

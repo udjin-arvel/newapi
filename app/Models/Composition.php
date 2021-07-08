@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use App\Models\Traits\ScopeOwnTrait;
+use App\Models\Traits\ScopeOwn;
 use App\Models\Traits\StoriesTrait;
-use App\Models\Traits\UserTrait;
+use App\Models\Traits\UserRelation;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -24,10 +24,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Composition extends AModel
 {
     use SoftDeletes,
-        UserTrait,
+        UserRelation,
         StoriesTrait,
-        ScopeOwnTrait;
-    
+        ScopeOwn;
+
     public const TYPE_BOOK   = 'type-book';
     public const TYPE_SERIES = 'type-series';
 }

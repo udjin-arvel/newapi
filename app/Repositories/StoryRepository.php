@@ -16,7 +16,7 @@ class StoryRepository extends CrudRepository
      * Историй на страницу
      */
     const STORIES_IN_PAGE = 10;
-    
+
 	/**
 	 * @return mixed|string
 	 */
@@ -24,21 +24,19 @@ class StoryRepository extends CrudRepository
     {
 		return Story::class;
 	}
-	
+
 	public function all()
     {
         return Story::published()
             ->with([
                 'fragments',
-                'notions',
-                'remarks',
                 'tags',
             ])
-            ->byOwn()
+            ->own()
             ->paginate(self::STORIES_IN_PAGE)
         ;
     }
-    
+
     public function one(int $id)
     {
         return Story::findOrFail($id)

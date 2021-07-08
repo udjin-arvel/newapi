@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Traits\UserTrait;
+use App\Models\Traits\UserRelation;
 
 /**
  * Class LoreItem
@@ -17,5 +17,5 @@ use App\Models\Traits\UserTrait;
  */
 class LoreItem extends AModel
 {
-    use UserTrait;
+    use UserRelation;
 }

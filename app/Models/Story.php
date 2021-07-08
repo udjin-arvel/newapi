@@ -3,16 +3,11 @@
 namespace App\Models;
 
 use App\Events\UpdateNotifications;
-use App\Models\Traits\BookTrait;
-use App\Models\Traits\DataHelperTrait;
-use App\Models\Traits\ScopeOwnTrait;
-use App\Models\Traits\ScopePublishedTrait;
-use App\Models\Traits\SeriesTrait;
-use App\Models\Traits\UserTrait;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use App\Models\Traits\ScopeOwn;
+use App\Models\Traits\ScopePublished;
+use App\Models\Traits\Taggable;
+use App\Models\Traits\UserRelation;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Builder;
 use Cog\Likeable\Contracts\Likeable as LikeableContract;
@@ -23,8 +18,8 @@ use Cog\Likeable\Traits\Likeable;
  * @package App\Models
  *
  * @method static Builder|Story published()
- * @method static Builder|Story byOwn()
- * @method static Builder|Story byKeeperId(string $keeperType, int $keeperId)
+ * @method static Builder|Story own()
+ * @method static Builder|Story compositionId(int $compositionId)
  *
  * @property int $id
  * @property string $title
@@ -51,16 +46,15 @@ use Cog\Likeable\Traits\Likeable;
 class Story extends AModel implements LikeableContract
 {
     use SoftDeletes,
-        UserTrait,
-        BookTrait,
-        SeriesTrait,
-        ScopeOwnTrait,
-        ScopePublishedTrait,
-        Likeable;
-    
+        UserRelation,
+        ScopeOwn,
+        ScopePublished,
+        Likeable,
+        Taggable;
+
     const TYPE_STORY    = 'type-story';
     const TYPE_ANNOUNCE = 'type-announce';
-    
+
     protected $fillable = [
         'title',
         'chapter',
@@ -71,56 +65,37 @@ class Story extends AModel implements LikeableContract
         'user_id',
         'type',
     ];
-    
+
     protected $related = [
         'fragments',
         'tags',
     ];
-    
+
     public static function boot()
     {
         parent::boot();
-        
+
         self::created(function(self $model) {
             UpdateNotifications::dispatch($model, UpdateNotifications::TARGET_CREATED);
         });
-        
+
         self::updated(function(self $model) {
             UpdateNotifications::dispatch($model, UpdateNotifications::TARGET_UPDATED);
         });
     }
-    
+
     /**
      * Выбрать истории, относящиеся к определенной серии или книге
      *
      * @param Builder $query
-     * @param string $keeperType
-     * @param int $keeperId
+     * @param int $compositionId
      * @return Builder
      */
-    public function scopeByKeeperId(Builder $query, string $keeperType, int $keeperId): Builder
+    public function scopeCompositionId(Builder $query, int $compositionId): Builder
     {
-        return $query->where($keeperType, $keeperId);
+        return $query->where('composition_id', $compositionId);
     }
-    
-    /**
-     * Тэги, принадлежащие истории
-     * @return MorphToMany
-     */
-    public function tags()
-    {
-        return $this->morphToMany(Tag::class, 'taggable');
-    }
-    
-    /**
-     * Понятия, принадлежащие истории
-     * @return BelongsToMany
-     */
-    public function notions()
-    {
-        return $this->belongsToMany(Notion::class, 'story_notion', 'story_id', 'notion_id');
-    }
-    
+
     /**
      * Фрагменты, принадлежащие истории.
      * @return HasMany
@@ -128,14 +103,5 @@ class Story extends AModel implements LikeableContract
     public function fragments()
     {
         return $this->hasMany(Fragment::class)->orderBy('order', 'desc');
-    }
-    
-    /**
-     * Комментарии, принадлежащие истории.
-     * @return HasMany
-     */
-    public function remarks()
-    {
-        return $this->hasMany(StoryComment::class)->orderBy('importance', 'desc');
     }
 }

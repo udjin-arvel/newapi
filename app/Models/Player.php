@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Traits\UserTrait;
+use App\Models\Traits\UserRelation;
 use Illuminate\Database\Eloquent\Model;
 use Auth;
 
@@ -24,8 +24,8 @@ use Auth;
  */
 class Player extends Model
 {
-    use UserTrait;
-    
+    use UserRelation;
+
     /**
      * Player constructor.
      */

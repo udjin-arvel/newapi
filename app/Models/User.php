@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Exceptions\TBError;
-use App\Models\Traits\StoriesTrait;
 use Illuminate\Database\Eloquent\Relations\BelongsTo as BelongsToAlias;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Builder;
@@ -44,11 +43,10 @@ use Laravel\Passport\HasApiTokens;
 class User extends Authenticatable
 {
     use HasApiTokens,
-        Notifiable,
-        StoriesTrait;
-    
+        Notifiable;
+
     const DEFAULT_LOGIN = 'Читатель';
-    
+
     /**
      * Статус пользователя
      */
@@ -56,17 +54,17 @@ class User extends Authenticatable
     const STATUS_WRITER    = 'writer';
     const STATUS_MODERATOR = 'moderator';
     const STATUS_ADMIN     = 'admin';
-    
+
     const GENDER_FEMALE = 0;
     const GENDER_MALE   = 1;
-    
+
     /**
      * @static
      */
     public static function boot()
     {
         parent::boot();
-        
+
         self::created(function($model) {
             /**
              * @var User $model
@@ -74,7 +72,7 @@ class User extends Authenticatable
             $model->createPlayer();
         });
     }
-    
+
     /**
      * User constructor.
      * @param array $attributes
@@ -83,7 +81,7 @@ class User extends Authenticatable
     {
         parent::__construct($attributes);
     }
-    
+
     /**
      * Пользователь, что создал книгу
      * @return BelongsToAlias
@@ -92,7 +90,7 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Player::class);
     }
-    
+
     /**
      * @return HasMany
      */
@@ -100,7 +98,7 @@ class User extends Authenticatable
     {
         return $this->hasMany(UserView::class);
 	}
-    
+
     /**
      * @return HasMany
      */
@@ -135,7 +133,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    
+
     /**
      * @param $query
      * @return Builder
@@ -144,38 +142,32 @@ class User extends Authenticatable
     {
         return $query->where('subscribed_on_notions', '=', true);
     }
-    
+
     /**
      * Создание эксземпляра Player для пользователя
      *
-     * @param array $data
      * @return Player
      * @throws TBError
      */
-    public function createPlayer($data = [])
+    public function createPlayer()
     {
         if (!empty($this->player)) {
             return $this->player;
         }
-        
+
         $player = new Player;
-        
-        $player->user_id = $this->id;
-        $player->login   = $data['name'] ?? Player::DEFAULT_LOGIN;
-        
         if (!$player->save()) {
             throw new TBError(TBError::SAVE_ERROR);
         }
-    
+
         $this->player_id = $player->id;
-    
         if (!$this->save()) {
             throw new TBError(TBError::SAVE_ERROR);
         }
-    
+
         return $player;
     }
-    
+
     /**
      * @return array
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
@@ -187,7 +179,7 @@ class User extends Authenticatable
             'token' => $this->createToken(env('APP_NAME', 'accessToken')),
         ];
     }
-	
+
 	/**
      * Получить доступную по API информацию о пользователе
 	 * @return array
@@ -200,10 +192,10 @@ class User extends Authenticatable
             'email'      => $this->email,
             'created_at' => $this->created_at,
         ];
-	    
+
         return $data;
 	}
-    
+
     /**
      * Сменить пароль
      *
@@ -218,11 +210,11 @@ class User extends Authenticatable
         ) {
             throw new TBError(TBError::PASSWORD_INCORRECT);
         }
-        
+
         $this->password = Hash::make($data['new_password']);
         return $this->save();
     }
-    
+
     /**
      * Получить hash пользователя для подтверждения почты
      * @return string
@@ -231,10 +223,10 @@ class User extends Authenticatable
     {
         $solt = '@thebook!';
         $stringForCrypt = $this->email . $this->name . $this->created_at . $solt;
-        
+
         return md5($stringForCrypt);
     }
-    
+
     /**
      * Получить ссылку по которой можно будет подтвердить почту пользователя
      * @return string
@@ -244,10 +236,10 @@ class User extends Authenticatable
         $http = 'https://';
         $host = $_SERVER['HTTP_HOST'];
         $hash = $this->getUserHash();
-        
+
         return $http . $host . '/confirm?email='. $this->email . '&hash=' . $hash;
     }
-    
+
     /**
      * Совпадают ли user hash, можно ли активировать пользователя
      *
@@ -259,7 +251,7 @@ class User extends Authenticatable
         $realHash = $this->getUserHash();
         return $realHash === $hash;
     }
-    
+
     /**
      * Уполномоченные статусы
      * @return array
@@ -273,7 +265,7 @@ class User extends Authenticatable
             Player::STATUS_ADMIN
         ];
     }
-    
+
     /**
      * @return bool
      */

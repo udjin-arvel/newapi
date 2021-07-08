@@ -4,10 +4,10 @@
 namespace App\Models;
 
 use App\Models\Traits\BookTrait;
-use App\Models\Traits\ScopeOwnTrait;
+use App\Models\Traits\ScopeOwn;
 use App\Models\Traits\SeriesTrait;
 use App\Models\Traits\StoryTrait;
-use App\Models\Traits\UserTrait;
+use App\Models\Traits\UserRelation;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
  * @method static Builder|Subscription byAuthorId(int $id, string $boolean = 'and')
  * @method static Builder|Subscription byBookId(int $id, string $boolean = 'and')
  * @method static Builder|Subscription bySeriesId(int $id, string $boolean = 'and')
- * @method static Builder|Subscription byOwn()
+ * @method static Builder|Subscription own()
  *
  * @property int    $id
  * @property int    $user_id
@@ -30,14 +30,11 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
  */
 class Subscription extends Model
 {
-    use UserTrait,
-        StoryTrait,
-        BookTrait,
-        SeriesTrait,
-        ScopeOwnTrait;
-    
+    use UserRelation,
+        ScopeOwn;
+
     public const TYPE_STORY = 'type-story';
-    
+
     /**
      * Пользователь, на которого оформлена подписка
      * @return MorphOne
@@ -46,7 +43,7 @@ class Subscription extends Model
     {
         return $this->morphOne(User::class, 'subscription');
     }
-    
+
     /**
      * Книга, на которую оформлена подписка
      * @return MorphOne
@@ -55,7 +52,7 @@ class Subscription extends Model
     {
         return $this->morphOne(Book::class, 'subscription');
     }
-    
+
     /**
      * Серия, на которую оформлена подписка
      * @return MorphOne
@@ -64,7 +61,7 @@ class Subscription extends Model
     {
         return $this->morphOne(Series::class, 'subscription');
     }
-    
+
     /**
      * @param Builder $query
      * @param int $authorId
@@ -80,7 +77,7 @@ class Subscription extends Model
             ;
         }, null, null, $boolean);
     }
-    
+
     /**
      * @param Builder $query
      * @param int $bookId
@@ -96,7 +93,7 @@ class Subscription extends Model
             ;
         }, null, null, $boolean);
     }
-    
+
     /**
      * @param Builder $query
      * @param int $seriesId
