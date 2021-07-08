@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUserViewsTable extends Migration
+class CreateAchievementsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreateUserViewsTable extends Migration
      */
     public function up()
     {
-        Schema::create('views', function (Blueprint $table) {
+        Schema::create('achievements', function (Blueprint $table) {
             $table->bigIncrements('id');
+            
+            $table->string('achievement', 64);
     
-            $table->unsignedBigInteger('content_id');
-            $table->unsignedTinyInteger('content_type');
-    
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('player_id')->nullable();
+            $table->foreign('player_id')->references('id')->on('players')->onDelete('cascade');
             
             $table->timestamps();
         });
@@ -33,6 +32,6 @@ class CreateUserViewsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('views');
+        Schema::dropIfExists('achievements');
     }
 }

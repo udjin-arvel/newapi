@@ -47,6 +47,19 @@ class User extends Authenticatable
         Notifiable,
         StoriesTrait;
     
+    const DEFAULT_LOGIN = 'Читатель';
+    
+    /**
+     * Статус пользователя
+     */
+    const STATUS_USER      = 'user';
+    const STATUS_WRITER    = 'writer';
+    const STATUS_MODERATOR = 'moderator';
+    const STATUS_ADMIN     = 'admin';
+    
+    const GENDER_FEMALE = 0;
+    const GENDER_MALE   = 1;
+    
     /**
      * @static
      */

@@ -23,6 +23,15 @@ class Notion extends AModel
     use SoftDeletes;
     
     /**
+     * Типы понятий
+     */
+    const TYPE_DEFINITION = 'type-definition';
+    const TYPE_CHARACTER  = 'type-character';
+    const TYPE_PLACE      = 'type-place';
+    const TYPE_ENTITY     = 'type-entity';
+    const TYPE_EVENT      = 'type-event';
+    
+    /**
      * The "booting" method of the model.
      *
      * @return void

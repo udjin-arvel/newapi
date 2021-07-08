@@ -19,7 +19,8 @@ class CreateLoreItemsTable extends Migration
             $table->string('title');
             $table->text('text');
             $table->string('poster');
-            $table->string('is_published')->default(false);
+            $table->boolean('is_published')->default(false);
+            $table->unsignedSmallInteger('level')->default(1);
             
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUserViewsTable extends Migration
+class CreatePlotsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateUserViewsTable extends Migration
      */
     public function up()
     {
-        Schema::create('views', function (Blueprint $table) {
+        Schema::create('plots', function (Blueprint $table) {
             $table->bigIncrements('id');
     
+            $table->string('title')->nullable();
+            $table->text('text');
+            
             $table->unsignedBigInteger('content_id');
-            $table->unsignedTinyInteger('content_type');
-    
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('content_type');
             
             $table->timestamps();
         });
@@ -33,6 +33,6 @@ class CreateUserViewsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('views');
+        Schema::dropIfExists('plots');
     }
 }

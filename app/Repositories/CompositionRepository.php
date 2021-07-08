@@ -5,7 +5,7 @@ namespace App\Repositories;
 use App\Models\Composition;
 
 /**
- * Class BookRepository
+ * Class CompositionRepository
  * @package App\Repositories
  */
 class CompositionRepository extends CrudRepository

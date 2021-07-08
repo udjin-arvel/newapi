@@ -20,9 +20,11 @@ class CreateBooksTable extends Migration
             $table->text('description');
             $table->string('poster')->nullable();
             $table->unsignedTinyInteger('era')->nullable();
-            $table->json('size')->nullable();
             $table->unsignedTinyInteger('parent_id')->nullable();
             $table->string('type', 64);
+            $table->boolean('is_published')->default(false);
+            $table->unsignedSmallInteger('level')->default(1);
+            $table->unsignedSmallInteger('chapter')->nullable();
             
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');

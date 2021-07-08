@@ -22,7 +22,7 @@ class CompositionResource extends BaseResource
             'title'       => $this->title,
             'description' => $this->description,
             'era'         => $this->era,
-            'size'        => \GuzzleHttp\json_decode($this->size, true),
+            'size'        => json_decode($this->size, true),
             'parent_id'   => $this->parent_id,
             'type'        => $this->type,
         ]);

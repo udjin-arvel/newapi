@@ -18,8 +18,12 @@ class CreateImagesTable extends Migration
     
             $table->string('path');
             $table->string('title')->nullable();
+            
             $table->unsignedBigInteger('content_id');
-            $table->string('content_type', 24);
+            $table->string('content_type');
+    
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             
             $table->timestamps();
         });

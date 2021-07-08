@@ -20,7 +20,7 @@ class CreateNotesTable extends Migration
             $table->string('title');
             $table->text('text');
             $table->unsignedBigInteger('content_id')->nullable();
-            $table->string('content_type', 24)->nullable();
+            $table->string('content_type')->nullable();
             $table->unsignedTinyInteger('importance')->default(1);
             $table->string('type', 64)->default(Note::TYPE_NO_SUBJECT);
     

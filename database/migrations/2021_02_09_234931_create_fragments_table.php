@@ -18,8 +18,6 @@ class CreateFragmentsTable extends Migration
             
             $table->text('text');
             $table->unsignedInteger('order');
-            $table->string('poster')->nullable();
-            $table->text('remark')->nullable();
     
             $table->unsignedBigInteger('story_id');
             $table->foreign('story_id')->references('id')->on('stories')->onDelete('cascade');

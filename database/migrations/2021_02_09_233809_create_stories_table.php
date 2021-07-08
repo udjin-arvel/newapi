@@ -18,12 +18,13 @@ class CreateStoriesTable extends Migration
             $table->bigIncrements('id');
     
             $table->string('title');
-            $table->unsignedSmallInteger('chapter')->nullable();
             $table->text('epigraph')->nullable();
             $table->unsignedTinyInteger('eon')->nullable();
-            $table->boolean('is_published')->default(false);
             $table->string('type', 64)->default(Story::TYPE_STORY);
-            
+            $table->boolean('is_published')->default(false);
+            $table->unsignedSmallInteger('level')->default(1);
+            $table->unsignedSmallInteger('chapter')->nullable();
+    
             $table->unsignedBigInteger('composition_id')->nullable();
             $table->foreign('composition_id')->references('id')->on('compositions');
     
