@@ -2,25 +2,26 @@
 
 namespace App\Models;
 
+use App\Models\Interfaces\ITypes;
+use App\Models\Traits\Taggable;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Facades\Auth;
 
 /**
  * Class Notion
  * @package App\Models
  *
- * @property int    $id
  * @property int    $user_id
- * @property int    $tag_id
+ * @property int    $level
  * @property string $title
  * @property string $text
- * @property string $explanation
  * @property string $poster
  * @property int    $type
+ * @property bool   $is_published
  */
-class Notion extends AModel
+class Notion extends AModel implements ITypes
 {
-    use SoftDeletes;
+    use SoftDeletes,
+        Taggable;
     
     /**
      * Типы понятий
@@ -32,31 +33,17 @@ class Notion extends AModel
     const TYPE_EVENT      = 'type-event';
     
     /**
-     * The "booting" method of the model.
-     *
-     * @return void
+     * Получить типы модели
+     * @return array
      */
-    protected static function boot()
+    public static function getTypes(): array
     {
-        parent::boot();
-    
-        static::creating(function ($model) {
-            /**
-             * @var Notion $model
-             */
-//            $model->tag_id = Tag::create([
-//                'name'    => $tag = tagized($model->title),
-//                'stem'    => $tag,
-//                'user_id' => optional(Auth::user())->id ?? 1,
-//            ])->id;
-        });
-    }
-    
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function tag()
-    {
-        return $this->hasOne(Tag::class, 'id', 'tag_id');
+        return [
+            self::TYPE_DEFINITION => 'Определение',
+            self::TYPE_CHARACTER  => 'Персонаж',
+            self::TYPE_PLACE      => 'Место',
+            self::TYPE_EVENT      => 'Событие',
+            self::TYPE_ENTITY     => 'Сущность',
+        ];
     }
 }

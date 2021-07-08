@@ -2,17 +2,18 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Model;
+
 /**
- * Class Image
+ * Class Plot
  * @package App\Models
  *
- * @property string $path
+ * @property string $text
  * @property string $title
  * @property int    $content_id
- * @property int    $user_id
  * @property string $content_type
  */
-class Image extends AModel
+class Plot extends Model
 {
 
 }

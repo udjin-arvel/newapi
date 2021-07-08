@@ -14,19 +14,19 @@ class ApiStoryTest extends TestCase
     use WithoutMiddleware;
 
     /**
+     * @test
      */
     public function getStoryTest()
     {
         $response = $this
             ->withoutExceptionHandling()
-            ->getJson('/api/getStory/1')
+            ->getJson('/api/story/get/1')
         ;
 
         $response->assertStatus(200);
     }
 
     /**
-     * @test
      */
     public function getStoriesTest()
     {
@@ -35,9 +35,6 @@ class ApiStoryTest extends TestCase
             ->actingAs(User::findOrFail(1))
             ->getJson('/api/story/all')
         ;
-
-        $s = \App\Models\Story::modelTags();
-        exit;
 
         $response->assertStatus(200);
     }

@@ -2,32 +2,19 @@
 	
 namespace App\Repositories;
 
-use App\Exceptions\TBError;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 
 /**
  * Class UserRepository
  * @package App\Repositories
- *
- * @property User $model
  */
-class UserRepository
+class UserRepository extends Repository
 {
-    public function __construct()
-    {
-        $this->model = Auth::user();
-    }
-    
     /**
-     * Отредактировать пользователя
-     *
-     * @param array $data
-     * @return array
-     * @throws TBError
+     * @return string
      */
-    public function editProfile($data)
+    protected function getModelClass(): string
     {
-    
+        return User::class;
     }
 }

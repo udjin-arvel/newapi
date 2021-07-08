@@ -42,9 +42,7 @@ class StoryRepository extends CrudRepository
         return Story::findOrFail($id)
             ->with([
                 'fragments',
-                'remarks',
                 'tags',
-                'notions'
             ])
             ->first();
     }

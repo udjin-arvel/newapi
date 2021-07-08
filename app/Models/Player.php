@@ -2,36 +2,17 @@
 
 namespace App\Models;
 
-use App\Models\Traits\UserRelation;
 use Illuminate\Database\Eloquent\Model;
-use Auth;
 
 /**
  * Class Player
  * @package App\Models
  *
- * @property User $user
- *
  * @property int    $id
- * @property int    $user_id
- * @property int    $age
- * @property int    $sex
- * @property string $poster
- * @property string $city
- * @property string $login
- * @property string $info
- * @property int    $clan
+ * @property int    $level
+ * @property int    $experience
  */
 class Player extends Model
 {
-    use UserRelation;
 
-    /**
-     * Player constructor.
-     */
-    public function __construct()
-    {
-        parent::__construct();
-        $this->user = Auth::user();
-    }
 }

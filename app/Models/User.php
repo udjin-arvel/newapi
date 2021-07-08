@@ -44,7 +44,10 @@ class User extends Authenticatable
 {
     use HasApiTokens,
         Notifiable;
-
+    
+    /**
+     * Логин по умолчанию
+     */
     const DEFAULT_LOGIN = 'Читатель';
 
     /**
@@ -54,7 +57,10 @@ class User extends Authenticatable
     const STATUS_WRITER    = 'writer';
     const STATUS_MODERATOR = 'moderator';
     const STATUS_ADMIN     = 'admin';
-
+    
+    /**
+     * Пол пользователя
+     */
     const GENDER_FEMALE = 0;
     const GENDER_MALE   = 1;
 
@@ -65,21 +71,9 @@ class User extends Authenticatable
     {
         parent::boot();
 
-        self::created(function($model) {
-            /**
-             * @var User $model
-             */
+        self::created(function(self $model) {
             $model->createPlayer();
         });
-    }
-
-    /**
-     * User constructor.
-     * @param array $attributes
-     */
-    public function __construct(array $attributes = [])
-    {
-        parent::__construct($attributes);
     }
 
     /**
@@ -96,7 +90,7 @@ class User extends Authenticatable
      */
     public function views()
     {
-        return $this->hasMany(UserView::class);
+        return $this->hasMany(View::class);
 	}
 
     /**
@@ -104,7 +98,7 @@ class User extends Authenticatable
      */
     public function subscriptions()
     {
-        return $this->hasMany(Subscription::class, 'user_id');
+        return $this->hasMany(Subscription::class);
     }
 
     /**
@@ -113,7 +107,9 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name',
+        'email',
+        'password',
     ];
 
     /**
@@ -122,7 +118,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
 
     /**
@@ -133,15 +130,6 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    /**
-     * @param $query
-     * @return Builder
-     */
-    public function scopeWhoSubscribedOnNotions($query)
-    {
-        return $query->where('subscribed_on_notions', '=', true);
-    }
 
     /**
      * Создание эксземпляра Player для пользователя
@@ -238,40 +226,6 @@ class User extends Authenticatable
         $hash = $this->getUserHash();
 
         return $http . $host . '/confirm?email='. $this->email . '&hash=' . $hash;
-    }
-
-    /**
-     * Совпадают ли user hash, можно ли активировать пользователя
-     *
-     * @param string $hash
-     * @return bool
-     */
-    public function canUserActivate($hash)
-    {
-        $realHash = $this->getUserHash();
-        return $realHash === $hash;
-    }
-
-    /**
-     * Уполномоченные статусы
-     * @return array
-     */
-    public static function entitledStatuses(): array
-    {
-        return [
-            Player::STATUS_USER,
-            Player::STATUS_WRITER,
-            Player::STATUS_MODERATOR,
-            Player::STATUS_ADMIN
-        ];
-    }
-
-    /**
-     * @return bool
-     */
-    public function isUserWithRights(): bool
-    {
-        return in_array($this->status, self::entitledStatuses());
     }
 }
 

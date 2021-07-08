@@ -5,16 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Correction
+ * Class Reward
  * @package App\Models
  *
- * @property int    $user_id
+ * @property int    $exp_amount
+ * @property int    $player_id
  * @property int    $content_id
  * @property string $content_type
- * @property string $old_variant
- * @property string $new_variant
+ * @property string $reward_type
  */
-class Correction extends Model
+class Reward extends Model
 {
 
 }

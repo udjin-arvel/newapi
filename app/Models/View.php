@@ -2,25 +2,20 @@
 
 namespace App\Models;
 
-use App\Exceptions\TBError;
 use App\Models\Traits\UserRelation;
 use App\Scopes\UserIdScope;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Auth;
 
 /**
  * Class UserView
  * @package App\Models
  *
- * @property User $user
+ * @property int    $user_id
+ * @property int    $content_id
+ * @property string $content_type
  */
-class UserView extends Model
+class View extends AModel
 {
     use UserRelation;
-
-    const TYPE_STORY     = 1;
-    const TYPE_NOTION    = 2;
-    const TYPE_LORE_ITEM = 3;
 
     /**
      * @return void
@@ -28,7 +23,6 @@ class UserView extends Model
     protected static function boot()
     {
         parent::boot();
-
         static::addGlobalScope(new UserIdScope);
     }
 }

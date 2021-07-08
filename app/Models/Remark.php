@@ -5,16 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Correction
+ * Class Remark
  * @package App\Models
  *
- * @property int    $user_id
+ * @property string $text
+ * @property int    $importance
  * @property int    $content_id
  * @property string $content_type
- * @property string $old_variant
- * @property string $new_variant
  */
-class Correction extends Model
+class Remark extends Model
 {
 
 }

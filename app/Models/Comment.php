@@ -5,17 +5,16 @@ namespace App\Models;
 use App\Models\Traits\UserRelation;
 
 /**
- * Class LoreItem
+ * Class Comment
  * @package App\Models
  *
- * @property string $title
  * @property string $text
- * @property string $poster
- * @property int    $level
+ * @property int    $content_id
+ * @property string $content_type
  * @property int    $user_id
- * @property bool   $is_published
+ * @property int    $parent_id
  */
-class LoreItem extends AModel
+class Comment extends AModel
 {
     use UserRelation;
 }

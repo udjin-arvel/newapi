@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Interfaces\ITypes;
+use App\Models\Traits\UserRelation;
 use App\Scopes\UserIdScope;
 use Illuminate\Database\Eloquent\Model;
 
@@ -18,8 +20,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property string  $type
  * @property int     $importance
  */
-class Note extends Model
+class Note extends Model implements ITypes
 {
+    use UserRelation;
+    
     /**
      * Типы заметок
      */
@@ -35,7 +39,6 @@ class Note extends Model
     protected static function boot()
     {
         parent::boot();
-        
         static::addGlobalScope(new UserIdScope);
     }
     

@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Models\Traits\ScopeOwn;
-use App\Models\Traits\StoriesTrait;
 use App\Models\Traits\UserRelation;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -15,19 +14,20 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int    $user_id
  * @property int    $parent_id
  * @property int    $era
- * @property string $size
+ * @property int    $level
+ * @property int    $chapter
  * @property string $title
+ * @property bool   $is_published
+ * @property string $type
  * @property string $description
  * @property string $poster
- * @property string $type
  */
 class Composition extends AModel
 {
     use SoftDeletes,
         UserRelation,
-        StoriesTrait,
         ScopeOwn;
 
-    public const TYPE_BOOK   = 'type-book';
-    public const TYPE_SERIES = 'type-series';
+    const TYPE_BOOK   = 'type-book';
+    const TYPE_SERIES = 'type-series';
 }

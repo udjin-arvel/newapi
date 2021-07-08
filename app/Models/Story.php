@@ -3,10 +3,12 @@
 namespace App\Models;
 
 use App\Events\UpdateNotifications;
+use App\Models\Interfaces\ITypes;
 use App\Models\Traits\ScopeOwn;
 use App\Models\Traits\ScopePublished;
 use App\Models\Traits\Taggable;
 use App\Models\Traits\UserRelation;
+use App\Models\Traits\Viewable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Builder;
@@ -21,36 +23,25 @@ use Cog\Likeable\Traits\Likeable;
  * @method static Builder|Story own()
  * @method static Builder|Story compositionId(int $compositionId)
  *
- * @property int $id
  * @property string $title
- * @property int $chapter
- * @property int $level
- * @property int $time
+ * @property int    $chapter
+ * @property int    $level
+ * @property int    $eon
  * @property string $epigraph
  * @property string $type
- * @property bool $is_published
- * @property int $user_id
- * @property int $composition_id
- * @property array $tags
- * @property array $comments
- * @property Composition $composition
- * @property User $user
- * @property array $fragments
- * @property array $notions
- * @property array $remarks
- * @property string $created_at
- * @property string $updated_at
- *
- * @mixin \Eloquent
+ * @property bool   $is_published
+ * @property int    $user_id
+ * @property int    $composition_id
  */
-class Story extends AModel implements LikeableContract
+class Story extends AModel implements LikeableContract, ITypes
 {
     use SoftDeletes,
         UserRelation,
         ScopeOwn,
         ScopePublished,
         Likeable,
-        Taggable;
+        Taggable,
+        Viewable;
 
     const TYPE_STORY    = 'type-story';
     const TYPE_ANNOUNCE = 'type-announce';
@@ -83,6 +74,15 @@ class Story extends AModel implements LikeableContract
             UpdateNotifications::dispatch($model, UpdateNotifications::TARGET_UPDATED);
         });
     }
+    
+    /**
+     * Фрагменты, принадлежащие истории.
+     * @return HasMany
+     */
+    public function fragments()
+    {
+        return $this->hasMany(Fragment::class)->orderBy('order', 'desc');
+    }
 
     /**
      * Выбрать истории, относящиеся к определенной серии или книге
@@ -95,13 +95,16 @@ class Story extends AModel implements LikeableContract
     {
         return $query->where('composition_id', $compositionId);
     }
-
+    
     /**
-     * Фрагменты, принадлежащие истории.
-     * @return HasMany
+     * Получить типы модели
+     * @return array
      */
-    public function fragments()
+    public static function getTypes(): array
     {
-        return $this->hasMany(Fragment::class)->orderBy('order', 'desc');
+        return [
+            self::TYPE_STORY     => 'История',
+            self::TYPE_ANNOUNCE  => 'Анонс',
+        ];
     }
 }

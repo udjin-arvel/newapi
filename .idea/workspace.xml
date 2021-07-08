@@ -20,38 +20,44 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="24e9da2f-bf30-4a2c-9f19-81b68f84e4d5" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/phpunit.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/Traits/Taggable.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/Comment.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/Interfaces/ITypes.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/Plot.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/Remark.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/Reward.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/Traits/Viewable.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/arvelov.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/arvelov.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Composition.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Composition.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Correction.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Correction.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Fragment.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Fragment.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Image.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Image.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/LoreItem.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/LoreItem.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Note.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Note.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Notification.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Notification.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Notion.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Notion.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Player.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Player.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Story.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Story.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/StoryComment.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Subscription.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Subscription.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Traits/BookTrait.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Traits/ChapteredTrait.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Traits/DataHelperTrait.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Traits/ScopeOwnTrait.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Traits/ScopeOwn.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Traits/ScopePublishedTrait.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Traits/ScopePublished.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Traits/SeriesTrait.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Traits/StoriesTrait.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Traits/StoryTrait.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Traits/UserTrait.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Traits/UserRelation.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Tag.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Tag.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/UserView.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/UserView.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/UserView.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/View.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/CorrectionRepository.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/FragmentRepository.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/ImageRepository.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/NotionRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/NotionRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/StoryCommentRepository.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Repositories/StoryRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/StoryRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/CompositionFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/CompositionFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/FragmentFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/FragmentFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/StoriesTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/StoriesTableSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/SubscriptionRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/SubscriptionRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/Traits/MassSaveTrait.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/UserRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/UserRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/UserViewRepository.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Scopes/UserIdScope.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Scopes/UserIdScope.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/Feature/ApiStoryTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/ApiStoryTest.php" afterDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -59,7 +65,9 @@
   </component>
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
-    <execution />
+    <execution>
+      <executable />
+    </execution>
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -84,7 +92,7 @@
       <server host="arvelov" id="6f52f35e-c8f7-4f83-98b9-dde34fe854cf" name="arvelov" />
     </servers>
   </component>
-  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 7.4">
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP-7.2-x64">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/nikic/php-parser" />
       <path value="$PROJECT_DIR$/vendor/phpspec/prophecy" />
@@ -224,7 +232,7 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.PHP" />
+    <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\PhpStorm 2019.2\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -236,13 +244,24 @@
       <recent name="C:\OSPanel\domains\arvelov.com\app\Models" />
     </key>
   </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
   <component name="RunManager">
     <configuration name="LocalUnitTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml" scope="XML" />
       <method v="2" />
     </configuration>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="project-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -550,6 +569,7 @@
       <workItem from="1625570235975" duration="2137000" />
       <workItem from="1625660148795" duration="6052000" />
       <workItem from="1625723984081" duration="7041000" />
+      <workItem from="1625746778525" duration="6700000" />
     </task>
     <servers />
   </component>
@@ -563,19 +583,20 @@
     </todo-panel>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
+    <option name="version" value="1" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="2467" y="180" key="#CLI_Interpreters" timestamp="1625724264107">
@@ -644,15 +665,6 @@
     <state x="2543" y="230" width="672" height="678" key="search.everywhere.popup/1920.0.1920.1080/0.0.1920.1044@1920.0.1920.1080" timestamp="1625733454904" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/tests/Feature/ApiStoryTest.php</url>
-          <line>39</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="index.php">
         <watch expression="$user-&gt;email" language="PHP" />

@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Interfaces\ITypes;
+use App\Models\Traits\UserRelation;
 use App\Scopes\UserIdScope;
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,10 +16,13 @@ use Illuminate\Database\Eloquent\Model;
  * @property string  $message
  * @property int     $user_id
  */
-class Notification extends Model
+class Notification extends Model implements ITypes
 {
-    const TYPE_STORY   = 'story';
-    const TYPE_NOTION  = 'notion';
+    use UserRelation;
+    
+    const TYPE_STORY   = 'type-story';
+    const TYPE_NOTION  = 'type-notion';
+    const TYPE_USER    = 'type-user';
     
     /**
      * @return void
@@ -25,7 +30,18 @@ class Notification extends Model
     protected static function boot()
     {
         parent::boot();
-        
         static::addGlobalScope(new UserIdScope);
+    }
+    
+    /**
+     * @return array
+     */
+    public static function getTypes(): array
+    {
+        return [
+            self::TYPE_STORY  => 'История',
+            self::TYPE_NOTION => 'Понятие',
+            self::TYPE_USER   => 'Пользователь',
+        ];
     }
 }
