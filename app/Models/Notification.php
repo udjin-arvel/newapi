@@ -2,10 +2,8 @@
 
 namespace App\Models;
 
-use App\Models\Interfaces\ITypes;
 use App\Models\Traits\UserRelation;
 use App\Scopes\UserIdScope;
-use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Note
@@ -16,13 +14,20 @@ use Illuminate\Database\Eloquent\Model;
  * @property string  $message
  * @property int     $user_id
  */
-class Notification extends Model implements ITypes
+class Notification extends AModel
 {
     use UserRelation;
     
     const TYPE_STORY   = 'type-story';
     const TYPE_NOTION  = 'type-notion';
     const TYPE_USER    = 'type-user';
+    
+    protected $fillable = [
+        'content_id',
+        'content_type',
+        'message',
+        'user_id',
+    ];
     
     /**
      * @return void
@@ -34,14 +39,43 @@ class Notification extends Model implements ITypes
     }
     
     /**
-     * @return array
+     * Метод-фабрика возвращает заголовок и текст новости по классу модели и состоянию создан/обновлен
+     *
+     * @param AModel $model
+     * @param string $status - возможные значения: "created" и "updated"
+     * @return string
      */
-    public static function getTypes(): array
+    public static function getMessageByModel($model, $status): string
     {
-        return [
-            self::TYPE_STORY  => 'История',
-            self::TYPE_NOTION => 'Понятие',
-            self::TYPE_USER   => 'Пользователь',
-        ];
+        $user = !empty($model->user_id) ? User::find($model->user_id) : null;
+        
+        switch (get_class($model)) {
+            case Story::class:
+                /**
+                 * @var Story $model
+                 */
+                return ($status === 'created'
+                        ? "Новая история «{$model->title}» была создана"
+                        : "История «{$model->title}» была обновлена")
+                    . ($user !== null ? " пользователем <i>{$user->name}</i>" : '')  . '.';
+            case Notion::class:
+                /**
+                 * @var Notion $model
+                 */
+                return ($status === 'created'
+                        ? "Новое понятие «{$model->title}» было создано"
+                        : "Понятие «{$model->title}» было обновлено")
+                    . ($user !== null ? " пользователем <i>{$user->name}</i>" : '')  . '.';
+            case LoreItem::class:
+                /**
+                 * @var LoreItem $model
+                 */
+                return ($status === 'created'
+                        ? "Новый элемент лора «{$model->title}» был создан"
+                        : "Элемент лора «{$model->title}» был обновлен")
+                    . ($user !== null ? " пользователем <i>{$user->name}</i>" : '')  . '.';
+            default:
+                return null;
+        }
     }
 }

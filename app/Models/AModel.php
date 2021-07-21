@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
-use App\Helpers\ImageHelper;
+use Illuminate\Support\Collection;
 use Log;
 
 /**
@@ -20,54 +20,80 @@ use Log;
  * @mixin \Eloquent
  */
 class AModel extends Model {
-    
+    /**
+     * @var array
+     */
     protected $related = [];
+    
+    /**
+     * @var array
+     */
+    protected $contracts = [];
+    
+    /**
+     * @return Collection
+     */
+    public function contracts(): Collection
+    {
+        return collect($this->contracts)->map(function ($contractClass) {
+            return new $contractClass;
+        });
+    }
+    
+    /**
+     * @param string $contract
+     * @return bool
+     */
+    public function hasContract(string $contract): bool
+    {
+        return $this->contracts()->has($contract);
+    }
     
     /**
      * The "booting" method of the model.
      *
      * @return void
      */
-    protected static function boot()
-    {
-        parent::boot();
-    
-        static::creating(function (self $model) {
-            /**
-             * @var AModel $model
-             */
-            if (!empty($model->poster)) {
-                $model->poster = ImageHelper::store($model->poster);
-            }
-    
-            if (isset($model->user_id)) {
-                $model->user_id = optional(\Auth::user())->id;
-            }
-        });
-    
-        static::updating(function (self $model) {
-            /**
-             * @var AModel $model
-             */
-            if (isset($model->poster) && $model->poster !== $model->getOriginal('poster'))
-            {
-                if ($model->getOriginal('poster') && !ImageHelper::deleteImages($model->poster)) {
-                    Log::warning("Изображение ({$model->poster}) не было удалено.");
-                }
-            
-                $model->poster = ImageHelper::store($model->poster);
-            }
-        });
-    
-        static::deleting(function (self $model) {
-            /**
-             * @var AModel $model
-             */
-            if (!empty($model->poster)) {
-                ImageHelper::deleteImages($model->poster);
-            }
-        });
-    }
+//    protected static function boot()
+//    {
+//        parent::boot();
+//
+//        static::creating(function (self $model) {
+//            /**
+//             * @var AModel $model
+//             */
+//            if (!empty($model->poster)) {
+//                $model->poster = ImageHelper::store($model->poster);
+//            }
+//
+//            if (isset($model->user_id)) {
+//                $model->user_id = optional(\Auth::user())->id;
+//            }
+//        });
+//
+//        static::updating(function (self $model) {
+//            /**
+//             * @var AModel $model
+//             */
+//            if (isset($model->poster) && $model->poster !== $model->getOriginal('poster'))
+//            {
+//                if ($model->getOriginal('poster') && !ImageHelper::deleteImages($model->poster)) {
+//                    Log::warning("Изображение ({$model->poster}) не было удалено.");
+//                }
+//
+//                $model->poster = ImageHelper::store($model->poster);
+//            }
+//        });
+//
+//        static::deleting(function (self $model) {
+//            /**
+//             * @var AModel $model
+//             */
+//            if (!empty($model->poster)) {
+//                ImageHelper::deleteImages($model->poster);
+//            }
+//        });
+//    }
     
     /**
      * Сохранить связанные модели

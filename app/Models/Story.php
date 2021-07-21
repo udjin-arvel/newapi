@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
-use App\Events\UpdateNotifications;
-use App\Models\Interfaces\ITypes;
+use App\Contracts\NewsContract;
+use App\Contracts\ViewContract;
 use App\Models\Traits\ScopeOwn;
 use App\Models\Traits\ScopePublished;
 use App\Models\Traits\Taggable;
 use App\Models\Traits\UserRelation;
-use App\Models\Traits\Viewable;
+use App\Contracts\NotificationContract;
+use App\Contracts\RewardContract;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Builder;
@@ -32,19 +33,29 @@ use Cog\Likeable\Traits\Likeable;
  * @property bool   $is_published
  * @property int    $user_id
  * @property int    $composition_id
+ * @property User   $user
  */
-class Story extends AModel implements LikeableContract, ITypes
+class Story extends AModel implements LikeableContract
 {
     use SoftDeletes,
         UserRelation,
         ScopeOwn,
         ScopePublished,
         Likeable,
-        Taggable,
-        Viewable;
+        Taggable;
 
     const TYPE_STORY    = 'type-story';
     const TYPE_ANNOUNCE = 'type-announce';
+    
+    /**
+     * @var array
+     */
+    protected $contracts = [
+        ViewContract::class,
+        NewsContract::class,
+        RewardContract::class,
+        NotificationContract::class,
+    ];
 
     protected $fillable = [
         'title',
@@ -61,18 +72,13 @@ class Story extends AModel implements LikeableContract, ITypes
         'fragments',
         'tags',
     ];
-
-    public static function boot()
+    
+    /**
+     * Композиция, которой принадлежит история.
+     */
+    public function composition()
     {
-        parent::boot();
-
-        self::created(function(self $model) {
-            UpdateNotifications::dispatch($model, UpdateNotifications::TARGET_CREATED);
-        });
-
-        self::updated(function(self $model) {
-            UpdateNotifications::dispatch($model, UpdateNotifications::TARGET_UPDATED);
-        });
+        return $this->belongsTo(Composition::class);
     }
     
     /**
@@ -94,17 +100,5 @@ class Story extends AModel implements LikeableContract, ITypes
     public function scopeCompositionId(Builder $query, int $compositionId): Builder
     {
         return $query->where('composition_id', $compositionId);
-    }
-    
-    /**
-     * Получить типы модели
-     * @return array
-     */
-    public static function getTypes(): array
-    {
-        return [
-            self::TYPE_STORY     => 'История',
-            self::TYPE_ANNOUNCE  => 'Анонс',
-        ];
     }
 }

@@ -5,47 +5,45 @@ namespace App\Http\Controllers;
 use App\Exceptions\TBError;
 use App\Http\Resources\BaseResource;
 use App\Repositories\CrudRepository;
-use App\Repositories\Repository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\ResourceCollection;
-use Illuminate\Http\Response;
 
 /**
  * Class CrudController
  * @package App\Http\Controllers
  *
  * @property array $input
- * @property Repository|CrudRepository $repository
+ * @property CrudRepository $repository
+ * @property string|BaseResource $resourceClass
  */
 abstract class CrudController extends Controller
 {
     /**
-     * @var array|Request|string
-     */
-    protected $input;
-    
-    /**
-     * @var Repository
+     * @var CrudRepository
      */
     protected $repository;
+    
+    /**
+     * @var string
+     */
+    protected $resourceClass;
     
     /**
      * BookController constructor.
      */
     public function __construct()
     {
-        $this->input      = request()->all();
-        $this->repository = $this->getRepository();
+        $this->repository    = new CrudRepository($this->getModelClass());
+        $this->resourceClass = $this->getResourceClass();
     }
     
     /**
-     * @return Repository
+     * @return string
      */
-    abstract protected function getRepository(): Repository;
+    abstract protected function getModelClass(): string;
     
     /**
-     * @return Repository
+     * @return string
      */
     abstract protected function getResourceClass(): string;
     
@@ -54,11 +52,18 @@ abstract class CrudController extends Controller
      *
      * @param int $id
      * @return JsonResponse
+     * @throws TBError
      */
     public function one(int $id): JsonResponse
     {
-        $resourceClass = $this->getResourceClass();
-        return $this->sendSuccess(new $resourceClass($this->repository->one($id)));
+        $result = $this->repository->one($id);
+    
+        event('crud.one', arrayToObject([
+            'model'     => $this->repository->model(),
+            'viewer_id' => auth()->id(),
+        ]));
+        
+        return $this->sendSuccess(new $this->resourceClass($result));
     }
     
     /**
@@ -68,11 +73,8 @@ abstract class CrudController extends Controller
      */
     public function all(): JsonResponse
     {
-        /**
-         * @var BaseResource $resourceClass
-         */
-        $resourceClass = $this->getResourceClass();
-        return $this->sendSuccess($resourceClass::collection($this->repository->all()));
+        $result = $this->repository->all();
+        return $this->sendSuccess($this->resourceClass::collection($result));
     }
     
     /**
@@ -83,7 +85,10 @@ abstract class CrudController extends Controller
      */
     public function save(): JsonResponse
     {
-        return $this->sendSuccess($this->repository->save($this->input));
+        $result = $this->repository->save(request()->all());
+        event(request()->get('id') ? 'crud.update' : 'crud.create', $this->repository->model());
+        
+        return $this->sendSuccess($result);
     }
     
     /**
@@ -95,6 +100,9 @@ abstract class CrudController extends Controller
      */
     public function delete(int $id): JsonResponse
     {
-        return $this->sendSuccess($this->repository->delete($id));
+        $result = $this->repository->delete($id);
+        event('crud.delete', $this->repository->model());
+        
+        return $this->sendSuccess($result);
     }
 }

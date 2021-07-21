@@ -2,9 +2,7 @@
 
 namespace App\Providers;
 
-use App\Events\UpdateNotifications;
-use App\Listeners\StartUpdateNotifications;
-use Event;
+use App\Listeners\Crud;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -17,9 +15,15 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        Registered::class => [
-            SendEmailVerificationNotification::class,
-        ],
+    
+        'crud.one'    => [Crud\One::class],
+        'crud.create' => [Crud\Create::class],
+        'crud.update' => [Crud\Update::class],
+        'crud.delete' => [Crud\Delete::class],
+        
+//        Registered::class => [
+//            SendEmailVerificationNotification::class,
+//        ],
     ];
 
     /**
@@ -30,10 +34,5 @@ class EventServiceProvider extends ServiceProvider
     public function boot()
     {
         parent::boot();
-    
-        Event::listen(
-            UpdateNotifications::class,
-            [StartUpdateNotifications::class, 'handle']
-        );
     }
 }

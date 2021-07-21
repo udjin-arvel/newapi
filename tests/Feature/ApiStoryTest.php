@@ -14,12 +14,12 @@ class ApiStoryTest extends TestCase
     use WithoutMiddleware;
 
     /**
-     * @test
      */
     public function getStoryTest()
     {
         $response = $this
             ->withoutExceptionHandling()
+            ->actingAs(User::findOrFail(1))
             ->getJson('/api/story/get/1')
         ;
 
@@ -40,12 +40,14 @@ class ApiStoryTest extends TestCase
     }
 
     /**
+     * @test
      */
     public function saveStoryTest()
     {
         $response = $this
             ->withoutExceptionHandling()
-            ->postJson('/api/saveStory', StoryFixture::storyFeature2)
+            ->actingAs(User::findOrFail(1))
+            ->postJson('/api/story/save', StoryFixture::storyFeature2)
         ;
 
         $response->assertStatus(200);

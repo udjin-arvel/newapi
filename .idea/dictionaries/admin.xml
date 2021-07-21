@@ -5,6 +5,9 @@
       <w>fillable</w>
       <w>loreitem</w>
       <w>loreitems</w>
+      <w>newsable</w>
+      <w>notificationable</w>
+      <w>rewardable</w>
       <w>tagized</w>
       <w>userable</w>
     </words>

@@ -28,15 +28,13 @@ class StoryFixture
     ];
 
     public const storyFeature2 = [
-        'id'             => 1,
         'title'          => 'Новая история',
         'chapter'        => 2,
         'epigraph'       => 'Какой-то эпиграф',
         'is_published'   => true,
-        'composition_id' => null,
+        'composition_id' => 1,
         'user_id'        => 1,
         'type'           => Story::TYPE_STORY,
-    
         'fragments' => [
             [
                 'text'  => 'Фрагмент 1',

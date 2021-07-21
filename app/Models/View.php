@@ -17,12 +17,17 @@ class View extends AModel
 {
     use UserRelation;
 
+    protected $fillable = [
+        'content_id',
+        'content_type',
+        'user_id',
+    ];
+    
     /**
-     * @return void
+     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
      */
-    protected static function boot()
+    public function content()
     {
-        parent::boot();
-        static::addGlobalScope(new UserIdScope);
+        return $this->morphTo();
     }
 }

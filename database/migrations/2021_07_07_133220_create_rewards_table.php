@@ -18,11 +18,10 @@ class CreateRewardsTable extends Migration
     
             $table->unsignedBigInteger('content_id')->nullable();
             $table->string('content_type')->nullable();
-            $table->string('reward_type');
-            $table->unsignedInteger('exp_amount');
-    
-            $table->unsignedBigInteger('player_id')->nullable();
-            $table->foreign('player_id')->references('id')->on('players')->onDelete('cascade');
+            $table->unsignedInteger('exp_amount')->default(0);
+            
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             
             $table->timestamps();
         });

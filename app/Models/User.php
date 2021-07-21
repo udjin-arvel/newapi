@@ -15,8 +15,6 @@ use Laravel\Passport\HasApiTokens;
  * Class User
  * @package App\Models
  *
- * @method static Builder whoSubscribedOnNotions()
- *
  * @property Player $player
  * @property int    $id
  * @property string $name
@@ -92,6 +90,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(View::class);
 	}
+    
+    /**
+     * @return HasMany
+     */
+    public function rewards()
+    {
+        return $this->hasMany(Reward::class);
+    }
 
     /**
      * @return HasMany

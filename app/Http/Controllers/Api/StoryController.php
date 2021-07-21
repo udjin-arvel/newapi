@@ -3,10 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\CrudController;
-use App\Repositories\Repository;
-use App\Repositories\StoryRepository;
+use App\Models\Story;
 use App\Http\Resources\StoryResource;
-use Illuminate\Http\JsonResponse;
 
 /**
  * Class StoryController
@@ -17,11 +15,11 @@ use Illuminate\Http\JsonResponse;
 class StoryController extends CrudController
 {
     /**
-     * @return Repository
+     * @return string
      */
-    protected function getRepository(): Repository
+    protected function getModelClass(): string
     {
-        return new StoryRepository;
+        return Story::class;
     }
     
     /**

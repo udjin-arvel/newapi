@@ -14,5 +14,13 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Player extends Model
 {
-
+    /**
+     * Обновить опыт игроку
+     * @param int $amount
+     */
+    public function updateExpAmount(int $amount)
+    {
+        $this->experience += $amount;
+        $this->save();
+    }
 }

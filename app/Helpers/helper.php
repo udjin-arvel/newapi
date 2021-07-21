@@ -39,3 +39,24 @@ if (! function_exists('cutOffByWords')) {
         return Str::words($text, $wordsCount);
     }
 }
+
+if (! function_exists('arrayToObject')) {
+    /**
+     * Метод заворачивает массив в объект
+     *
+     * @param array $data
+     * @return stdClass
+     */
+    function arrayToObject(array $data): stdClass
+    {
+        $object = new stdClass();
+        
+        foreach ($data as $key => $item) {
+            if ($item) {
+                $object->{$key} = $item;
+            }
+        }
+        
+        return $object;
+    }
+}
