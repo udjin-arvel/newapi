@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\CrudController;
+use App\Http\Filters\Filter;
 use App\Http\Resources\NotionResource;
 use App\Models\Notion;
 
@@ -28,5 +28,13 @@ class NotionController extends CrudController
     protected function getResourceClass(): string
     {
         return NotionResource::class;
+    }
+    
+    /**
+     * @return Filter|null
+     */
+    protected function getFilter()
+    {
+        return null;
     }
 }

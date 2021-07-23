@@ -23,7 +23,7 @@ use Cog\Likeable\Traits\Likeable;
  *
  * @method static Builder|Story published()
  * @method static Builder|Story own()
- * @method static Builder|Story compositionId(int $compositionId)
+ * @method static Builder|Story byCompositionId(int $compositionId)
  *
  * @property string $title
  * @property int    $chapter
@@ -103,7 +103,7 @@ class Story extends AModel implements LikeableContract
      * @param int $compositionId
      * @return Builder
      */
-    public function scopeCompositionId(Builder $query, int $compositionId): Builder
+    public function scopeByCompositionId(Builder $query, int $compositionId)
     {
         return $query->where('composition_id', $compositionId);
     }

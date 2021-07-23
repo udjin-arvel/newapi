@@ -15,5 +15,13 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Remark extends Model
 {
-
+    /**
+     * Типы примечаний
+     */
+    const TYPES = [
+        'story'       => Story::class,
+        'notion'      => Notion::class,
+        'loreitem'    => LoreItem::class,
+        'composition' => Composition::class,
+    ];
 }

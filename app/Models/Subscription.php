@@ -5,7 +5,6 @@ namespace App\Models;
 use App\Models\Traits\ScopeOwn;
 use App\Models\Traits\UserRelation;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Subscription
@@ -27,10 +26,12 @@ class Subscription extends AModel
     /**
      * Типы подписок
      */
-    const TYPE_USER        = User::class;
-    const TYPE_COMPOSITION = Composition::class;
-    const TYPE_NOTION      = Notion::class;
-    const TYPE_LORE_ITEM   = LoreItem::class;
+    const TYPES = [
+        User::class        => 'на пользователя',
+        Composition::class => 'на композицию',
+        Notion::class      => 'на понятия',
+        LoreItem::class    => 'на элементы лора',
+    ];
     
     /**
      * @param Builder $query

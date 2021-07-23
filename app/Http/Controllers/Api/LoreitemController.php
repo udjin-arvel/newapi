@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\CrudController;
+use App\Http\Filters\Filter;
 use App\Http\Resources\LoreItemResource;
-use App\Repositories\LoreItemRepository;
-use App\Repositories\Repository;
+use App\Models\LoreItem;
 
 /**
  * Class StoryController
@@ -16,11 +15,11 @@ use App\Repositories\Repository;
 class LoreitemController extends CrudController
 {
     /**
-     * @return Repository
+     * @return string
      */
-    protected function getRepository(): Repository
+    protected function getModelClass(): string
     {
-        return new LoreItemRepository;
+        return LoreItem::class;
     }
     
     /**
@@ -29,5 +28,13 @@ class LoreitemController extends CrudController
     protected function getResourceClass(): string
     {
         return LoreItemResource::class;
+    }
+    
+    /**
+     * @return Filter|null
+     */
+    protected function getFilter()
+    {
+        return null;
     }
 }

@@ -2,6 +2,11 @@
 
 namespace App\Models;
 
+use App\Contracts\NewsContract;
+use App\Contracts\NotificationContract;
+use App\Contracts\RewardContract;
+use App\Contracts\ViewContract;
+use App\Models\Traits\ScopePublished;
 use App\Models\Traits\UserRelation;
 
 /**
@@ -17,5 +22,25 @@ use App\Models\Traits\UserRelation;
  */
 class LoreItem extends AModel
 {
-    use UserRelation;
+    use UserRelation,
+        ScopePublished;
+    
+    protected $fillable = [
+        'title',
+        'text',
+        'poster',
+        'is_published',
+        'level',
+        'user_id',
+    ];
+    
+    /**
+     * @var array
+     */
+    protected $contracts = [
+        ViewContract::class,
+        NewsContract::class,
+        RewardContract::class,
+        NotificationContract::class,
+    ];
 }

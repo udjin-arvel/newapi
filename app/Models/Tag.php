@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Traits\UserRelation;
+
 /**
  * Class Tag
  * @package App\Models
@@ -12,6 +14,8 @@ namespace App\Models;
  */
 class Tag extends AModel
 {
+    use UserRelation;
+    
     protected $fillable = [
         'tag',
         'stem',

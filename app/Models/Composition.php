@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Contracts\NewsContract;
+use App\Contracts\RewardContract;
 use App\Models\Traits\ScopeOwn;
 use App\Models\Traits\UserRelation;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -30,4 +32,12 @@ class Composition extends AModel
 
     const TYPE_BOOK   = 'type-book';
     const TYPE_SERIES = 'type-series';
+    
+    /**
+     * @var array
+     */
+    protected $contracts = [
+        NewsContract::class,
+        RewardContract::class,
+    ];
 }

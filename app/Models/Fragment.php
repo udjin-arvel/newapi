@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * Class Fragment
  * @package App\Models
  *
- * @property int    $user_id
  * @property int    $story_id
  * @property int    $order
  * @property string $text
@@ -23,4 +22,12 @@ class Fragment extends AModel
       'poster',
       'remark',
     ];
+    
+    /**
+     * История, которой принадлежит фрагмент
+     */
+    public function story()
+    {
+        return $this->belongsTo(Composition::class);
+    }
 }

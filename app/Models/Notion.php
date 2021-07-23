@@ -2,7 +2,12 @@
 
 namespace App\Models;
 
+use App\Contracts\NewsContract;
+use App\Contracts\NotificationContract;
+use App\Contracts\RewardContract;
+use App\Contracts\ViewContract;
 use App\Models\Traits\Commentable;
+use App\Models\Traits\ScopePublished;
 use App\Models\Traits\Taggable;
 use App\Models\Traits\UserRelation;
 use Cog\Likeable\Traits\Likeable;
@@ -23,10 +28,22 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Notion extends AModel
 {
     use SoftDeletes,
+        ScopePublished,
         UserRelation,
         Likeable,
         Commentable,
         Taggable;
+    
+    /**
+     * Типы понятий
+     */
+    const TYPES = [
+        'definition' => 'Определение',
+        'character'  => 'Персонаж',
+        'place'      => 'Место',
+        'entity'     => 'Сущность',
+        'event'      => 'Событие',
+    ];
     
     protected $related = [
         'tags',
@@ -36,26 +53,12 @@ class Notion extends AModel
     ];
     
     /**
-     * Типы понятий
+     * @var array
      */
-    const TYPE_DEFINITION = 'type-definition';
-    const TYPE_CHARACTER  = 'type-character';
-    const TYPE_PLACE      = 'type-place';
-    const TYPE_ENTITY     = 'type-entity';
-    const TYPE_EVENT      = 'type-event';
-    
-    /**
-     * Получить типы модели
-     * @return array
-     */
-    public static function getTypes(): array
-    {
-        return [
-            self::TYPE_DEFINITION => 'Определение',
-            self::TYPE_CHARACTER  => 'Персонаж',
-            self::TYPE_PLACE      => 'Место',
-            self::TYPE_EVENT      => 'Событие',
-            self::TYPE_ENTITY     => 'Сущность',
-        ];
-    }
+    protected $contracts = [
+        ViewContract::class,
+        NewsContract::class,
+        RewardContract::class,
+        NotificationContract::class,
+    ];
 }

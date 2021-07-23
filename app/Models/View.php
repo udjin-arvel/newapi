@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Models\Traits\UserRelation;
-use App\Scopes\UserIdScope;
 
 /**
  * Class UserView
@@ -24,7 +23,7 @@ class View extends AModel
     ];
     
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
+     * Контент, которому принадлежит просмотр
      */
     public function content()
     {

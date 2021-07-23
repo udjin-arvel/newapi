@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Contracts\RewardContract;
 use App\Models\Traits\UserRelation;
 
 /**
@@ -32,5 +33,12 @@ class Comment extends AModel
         'parent_id',
         'content_id',
         'content_type',
+    ];
+    
+    /**
+     * @var array
+     */
+    protected $contracts = [
+        RewardContract::class,
     ];
 }

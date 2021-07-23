@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Models\Traits\UserRelation;
 use App\Scopes\UserIdScope;
-use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Note
@@ -26,11 +25,14 @@ class Note extends AModel
     /**
      * Типы заметок
      */
-    public const TYPE_NO_SUBJECT     = 'no_subject';
-    public const TYPE_PLOT_LAYOUT    = 'plot_layout';
-    public const TYPE_CHARACTER_INFO = 'character_info';
-    public const TYPE_THING_INFO     = 'place_info';
-    public const TYPE_GOOD_IDEA      = 'good_idea';
+    const TYPES = [
+        'no_subject'     => 'Без назначения',
+        'plot_layout'    => 'Заготовка сюжета',
+        'character_info' => 'О персонаже',
+        'place_info'     => 'О месте, предмете или понятии',
+        'good_idea'      => 'Хорошая идея',
+        'great_idea'     => 'Великолепная идея',
+    ];
     
     /**
      * @return void
@@ -39,19 +41,5 @@ class Note extends AModel
     {
         parent::boot();
         static::addGlobalScope(new UserIdScope);
-    }
-    
-    /**
-     * @return array
-     */
-    public static function getTypes(): array
-    {
-        return [
-            self::TYPE_NO_SUBJECT     => 'Без назначения',
-            self::TYPE_PLOT_LAYOUT    => 'Заготовка сюжета',
-            self::TYPE_CHARACTER_INFO => 'Информация о персонаже',
-            self::TYPE_THING_INFO     => 'Информация о месте, предмете или понятии',
-            self::TYPE_GOOD_IDEA      => 'Хорошая идея',
-        ];
     }
 }

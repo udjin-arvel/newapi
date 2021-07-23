@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\CrudController;
+use App\Http\Filters\Filter;
 use App\Http\Resources\TagResource;
-use App\Repositories\Repository;
-use App\Repositories\TagRepository;
+use App\Models\Tag;
 
 /**
  * Class StoryController
@@ -16,11 +15,11 @@ use App\Repositories\TagRepository;
 class TagController extends CrudController
 {
     /**
-     * @return Repository
+     * @return string
      */
-    protected function getRepository(): Repository
+    protected function getModelClass(): string
     {
-        return new TagRepository;
+        return Tag::class;
     }
     
     /**
@@ -29,5 +28,13 @@ class TagController extends CrudController
     protected function getResourceClass(): string
     {
         return TagResource::class;
+    }
+    
+    /**
+     * @return Filter|null
+     */
+    protected function getFilter()
+    {
+        return null;
     }
 }

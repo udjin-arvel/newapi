@@ -15,5 +15,13 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Plot extends Model
 {
-
+    /**
+     * Типы сюжетов
+     */
+    const TYPES = [
+        'story'       => Story::class,
+        'notion'      => Notion::class,
+        'loreitem'    => LoreItem::class,
+        'composition' => Composition::class,
+    ];
 }

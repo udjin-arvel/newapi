@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Connection;
 use App\Models\Note;
 use App\Http\Controllers\Controller;
+use App\Models\Notion;
 
 /**
  * Class BookController
@@ -17,7 +19,13 @@ class BaseController extends Controller
     public function getBasicData()
     {
         return $this->sendSuccess([
-            'note_types' => Note::getTypes(),
+            'types' => [
+                'note'   => Note::TYPES,
+                'notion' => Notion::TYPES,
+            ],
+            'statuses' => [
+                'connection' => Connection::STATUSES,
+            ],
         ]);
     }
 }

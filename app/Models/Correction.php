@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Contracts\RewardContract;
+use App\Models\Traits\ScopeOwn;
+use App\Models\Traits\UserRelation;
 
 /**
  * Class Correction
@@ -14,7 +16,23 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $old_variant
  * @property string $new_variant
  */
-class Correction extends Model
+class Correction extends AModel
 {
-
+    use UserRelation,
+        ScopeOwn;
+    
+    protected $fillable = [
+        'old_variant',
+        'new_variant',
+        'content_id',
+        'content_type',
+        'user_id',
+    ];
+    
+    /**
+     * @var array
+     */
+    protected $contracts = [
+        RewardContract::class,
+    ];
 }

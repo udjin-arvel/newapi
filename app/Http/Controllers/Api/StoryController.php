@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\CrudController;
+use App\Http\Filters\Filter;
 use App\Models\Story;
 use App\Http\Resources\StoryResource;
 
@@ -28,5 +28,13 @@ class StoryController extends CrudController
     protected function getResourceClass(): string
     {
         return StoryResource::class;
+    }
+    
+    /**
+     * @return Filter|null
+     */
+    protected function getFilter()
+    {
+        return null;
     }
 }

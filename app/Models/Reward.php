@@ -28,46 +28,76 @@ class Reward extends AModel
     /**
      * Типы наград
      */
-    const TYPE_MODEL_VIEW        = View::class;
-    const TYPE_MODEL_STORY       = Story::class;
-    const TYPE_MODEL_NOTION      = Notion::class;
-    const TYPE_MODEL_COMPOSITION = Composition::class;
-    const TYPE_MODEL_NOTE        = Note::class;
-    const TYPE_MODEL_COMMENT     = Comment::class;
-    const TYPE_MODEL_CORRECTION  = Correction::class;
-    const TYPE_MODEL_IMAGE       = Image::class;
-    const TYPE_MODEL_LIKE        = Like::class;
-    const TYPE_MODEL_TAG         = Tag::class;
-    
-    /**
-     * Количество опыта за действие
-     */
-    const REWARD_EXP_AMOUNT = [
-        self::TYPE_MODEL_VIEW        => 10,
-        self::TYPE_MODEL_STORY       => 750,
-        self::TYPE_MODEL_NOTION      => 500,
-        self::TYPE_MODEL_COMPOSITION => 250,
-        self::TYPE_MODEL_NOTE        => 50,
-        self::TYPE_MODEL_COMMENT     => 50,
-        self::TYPE_MODEL_CORRECTION  => 100,
-        self::TYPE_MODEL_IMAGE       => 50,
-        self::TYPE_MODEL_LIKE        => 10,
-        self::TYPE_MODEL_TAG         => 50,
-    ];
-    
-    /**
-     * Наименование наград
-     */
-    const REWARD_TITLES = [
-        self::TYPE_MODEL_VIEW        => 'Просмотр истории, понятия или элемента лора',
-        self::TYPE_MODEL_STORY       => 'Создание истории',
-        self::TYPE_MODEL_NOTION      => 'Создание понятия',
-        self::TYPE_MODEL_COMPOSITION => 'Создание книги или серии',
-        self::TYPE_MODEL_NOTE        => 'Создание заметки',
-        self::TYPE_MODEL_COMMENT     => 'Оставление коммента',
-        self::TYPE_MODEL_CORRECTION  => 'Внесение исправления',
-        self::TYPE_MODEL_IMAGE       => 'Добавление изображения к книге, серии, понятию или элементу лора',
-        self::TYPE_MODEL_LIKE        => 'Добавление лайка',
-        self::TYPE_MODEL_TAG         => 'Добавление тега к истории, понятию или элементу лора',
+    const TYPES = [
+        'view'         => [
+            'class'      => View::class,
+            'title'      => 'Просмотр истории, понятия или элемента лора',
+            'exp_amount' => 10,
+        ],
+        'story'        => [
+            'class'      => Story::class,
+            'title'      => 'Создание истории',
+            'exp_amount' => 750,
+        ],
+        'notion'       => [
+            'class'      => Notion::class,
+            'title'      => 'Создание понятия',
+            'exp_amount' => 500,
+        ],
+        'composition'  => [
+            'class'      => Composition::class,
+            'title'      => 'Создание книги или серии',
+            'exp_amount' => 250,
+        ],
+        'note'         => [
+            'class'      => Note::class,
+            'title'      => 'Создание заметки',
+            'exp_amount' => 50,
+        ],
+        'comment'      => [
+            'class'      => Comment::class,
+            'title'      => 'Оставление коммента',
+            'exp_amount' => 50,
+        ],
+        'correction'   => [
+            'class'      => Correction::class,
+            'title'      => 'Внесение исправления',
+            'exp_amount' => 100,
+        ],
+        'image'        => [
+            'class'      => Image::class,
+            'title'      => 'Добавление изображения к книге, серии, понятию или элементу лора',
+            'exp_amount' => 10,
+        ],
+        'like'         => [
+            'class'      => Like::class,
+            'title'      => 'Добавление лайка',
+            'exp_amount' => 10,
+        ],
+        'dislike'      => [
+            'class'      => Like::class,
+            'title'      => 'Добавление дизлайка',
+            'exp_amount' => 5,
+        ],
+        'tag'          => [
+            'class'      => Tag::class,
+            'title'      => 'Добавление тега к истории, понятию или элементу лора',
+            'exp_amount' => 50,
+        ],
+        'subscription' => [
+            'class'      => Subscription::class,
+            'title'      => 'Подписка на контент',
+            'exp_amount' => 10,
+        ],
+        'connection'   => [
+            'class'      => Connection::class,
+            'title'      => 'Предложить связь между историями',
+            'exp_amount' => 100,
+        ],
+        'short'        => [
+            'class'      => Short::class,
+            'title'      => 'Добавить краткий сюжет',
+            'exp_amount' => 1000,
+        ],
     ];
 }

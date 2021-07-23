@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Filters\Filter;
 use App\Http\Resources\NoteResource;
 use App\Models\Note;
 
@@ -27,5 +28,13 @@ class NoteController extends CrudController
     protected function getResourceClass(): string
     {
         return NoteResource::class;
+    }
+    
+    /**
+     * @return Filter|null
+     */
+    protected function getFilter()
+    {
+        return null;
     }
 }
