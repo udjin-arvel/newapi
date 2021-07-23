@@ -2,8 +2,7 @@
 
 namespace App\Models\Traits;
 
-use App\Models\Tag;
-use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use App\Models\Comment;
 
 /**
  * Trait Taggable
@@ -11,13 +10,13 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
  * @package App\Models\Traits
  * @mixin \Eloquent
  */
-trait Taggable {
+trait Commentable {
     /**
      * Тэги, принадлежащие контенту
-     * @return MorphToMany
      */
-    public function tags()
+    public function comments()
     {
-        return $this->morphToMany(Tag::class, 'taggable');
+        return $this->hasMany(Comment::class, 'content_id', 'id')
+            ->orderBy('created_at', 'desc');
     }
 }

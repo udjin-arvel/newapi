@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\CrudController;
 use App\Http\Resources\NoteResource;
-use App\Repositories\NoteRepository;
-use App\Repositories\Repository;
+use App\Models\Note;
 
 /**
  * Class StoryController
@@ -16,11 +14,11 @@ use App\Repositories\Repository;
 class NoteController extends CrudController
 {
     /**
-     * @return Repository
+     * @return string
      */
-    protected function getRepository(): Repository
+    protected function getModelClass(): string
     {
-        return new NoteRepository;
+        return Note::class;
     }
     
     /**

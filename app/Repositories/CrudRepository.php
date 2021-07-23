@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Exceptions\TBError;
+use App\Http\Filters\Filter;
 use App\Models\AModel;
 use App\Models\Player;
 use App\Models\User;
@@ -117,18 +118,21 @@ class CrudRepository
     }
     
     /**
-     * @param array $withModels
+     * @param Filter $filter
      * @return Collection
      */
-    public function all(array $withModels = [])
+    public function all(Filter $filter = null)
     {
         /**
          * @var \Eloquent $query
          */
         $query = $this->model::orderBy('created_at', 'desc');
-        
-        if (count($withModels)) {
-            $query = $query->with($withModels);
+    
+        if (null !== $filter) {
+            $query = $filter->addFiltersToQuery($query);
+        }
+        if (!empty($this->model->related())) {
+            $query = $query->with($this->model->related());
         }
         
         return $query->get();

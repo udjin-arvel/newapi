@@ -17,12 +17,4 @@ class Tag extends AModel
         'stem',
         'user_id',
     ];
-    
-    /**
-	 * Истории, относящиеся к тэгу.
-	 */
-    public function stories()
-    {
-        return $this->morphedByMany(Story::class, 'taggable');
-    }
 }

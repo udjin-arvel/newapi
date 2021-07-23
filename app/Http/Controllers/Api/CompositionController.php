@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\CrudController;
 use App\Http\Resources\CompositionResource;
-use App\Repositories\CompositionRepository;
-use App\Repositories\Repository;
+use App\Models\Composition;
 
 /**
  * Class StoryController
@@ -16,11 +14,11 @@ use App\Repositories\Repository;
 class CompositionController extends CrudController
 {
     /**
-     * @return Repository
+     * @return string
      */
-    protected function getRepository(): Repository
+    protected function getModelClass(): string
     {
-        return new CompositionRepository;
+        return Composition::class;
     }
     
     /**

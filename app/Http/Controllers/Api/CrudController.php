@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\Exceptions\TBError;
+use App\Http\Controllers\Controller;
+use App\Http\Filters\Filter;
 use App\Http\Resources\BaseResource;
 use App\Repositories\CrudRepository;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 /**
  * Class CrudController
@@ -43,9 +44,14 @@ abstract class CrudController extends Controller
     abstract protected function getModelClass(): string;
     
     /**
-     * @return string
+     * @return string|null
      */
-    abstract protected function getResourceClass(): string;
+    abstract protected function getResourceClass();
+    
+    /**
+     * @return Filter|null
+     */
+    abstract protected function getFilter();
     
     /**
      * Получить информацию об одной записи
@@ -73,7 +79,7 @@ abstract class CrudController extends Controller
      */
     public function all(): JsonResponse
     {
-        $result = $this->repository->all();
+        $result = $this->repository->all($this->getFilter());
         return $this->sendSuccess($this->resourceClass::collection($result));
     }
     

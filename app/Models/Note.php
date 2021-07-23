@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Interfaces\ITypes;
 use App\Models\Traits\UserRelation;
 use App\Scopes\UserIdScope;
 use Illuminate\Database\Eloquent\Model;
@@ -20,7 +19,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string  $type
  * @property int     $importance
  */
-class Note extends Model implements ITypes
+class Note extends AModel
 {
     use UserRelation;
     

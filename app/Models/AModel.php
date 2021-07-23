@@ -26,6 +26,7 @@ class AModel extends Model {
     protected $related = [];
     
     /**
+     * Контракты вступают в действие после событий модели One, Create, Update, Delete
      * @var array
      */
     protected $contracts = [];
@@ -38,6 +39,15 @@ class AModel extends Model {
         return collect($this->contracts)->map(function ($contractClass) {
             return new $contractClass;
         });
+    }
+    
+    /**
+     * Получить связанные модели
+     * @return array
+     */
+    public function related(): array
+    {
+        return is_array($this->related) ? $this->related : [];
     }
     
     /**

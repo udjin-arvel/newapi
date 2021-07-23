@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Contracts\NewsContract;
 use App\Contracts\ViewContract;
+use App\Models\Traits\Commentable;
 use App\Models\Traits\ScopeOwn;
 use App\Models\Traits\ScopePublished;
 use App\Models\Traits\Taggable;
@@ -42,6 +43,7 @@ class Story extends AModel implements LikeableContract
         ScopeOwn,
         ScopePublished,
         Likeable,
+        Commentable,
         Taggable;
 
     const TYPE_STORY    = 'type-story';
@@ -70,7 +72,11 @@ class Story extends AModel implements LikeableContract
 
     protected $related = [
         'fragments',
+        'comments',
         'tags',
+        'composition',
+        'user',
+        'likes',
     ];
     
     /**

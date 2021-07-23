@@ -4,8 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\CrudController;
 use App\Http\Resources\NotionResource;
-use App\Repositories\NotionRepository;
-use App\Repositories\Repository;
+use App\Models\Notion;
 
 /**
  * Class StoryController
@@ -16,11 +15,11 @@ use App\Repositories\Repository;
 class NotionController extends CrudController
 {
     /**
-     * @return Repository
+     * @return string
      */
-    protected function getRepository(): Repository
+    protected function getModelClass(): string
     {
-        return new NotionRepository;
+        return Notion::class;
     }
     
     /**

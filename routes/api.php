@@ -54,4 +54,10 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::post('tag/save', 'Api\TagController@save');
     Route::delete('tag/delete/{id}', 'Api\TagController@delete');
     
+    
+    // ------------------------ Comment routes ------------------------ //
+    Route::get('comment/all', 'Api\CommentController@all');
+    Route::post('comment/save', 'Api\CommentController@save');
+    Route::delete('comment/delete/{id}', 'Api\CommentController@delete');
+    
 });

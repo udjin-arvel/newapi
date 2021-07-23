@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use App\Models\Interfaces\ITypes;
+use App\Models\Traits\Commentable;
 use App\Models\Traits\Taggable;
+use App\Models\Traits\UserRelation;
+use Cog\Likeable\Traits\Likeable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -18,10 +20,20 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int    $type
  * @property bool   $is_published
  */
-class Notion extends AModel implements ITypes
+class Notion extends AModel
 {
     use SoftDeletes,
+        UserRelation,
+        Likeable,
+        Commentable,
         Taggable;
+    
+    protected $related = [
+        'tags',
+        'user',
+        'likes',
+        'comments',
+    ];
     
     /**
      * Типы понятий
