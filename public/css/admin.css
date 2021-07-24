@@ -1,0 +1,16 @@
+.navbar {
+	justify-content: unset;
+}
+
+.navbar-nav {
+	flex-direction: row;
+}
+
+.navbar-custom-menu {
+	margin-left: auto;
+}
+
+.content-header h1 {
+	padding-left: 2rem;
+	padding-top: 2rem;
+}

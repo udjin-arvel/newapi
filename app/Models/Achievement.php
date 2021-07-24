@@ -5,6 +5,8 @@ namespace App\Models;
 use App\Models\Traits\UserRelation;
 
 /**
+ * TODO: Переделать на админку, сделать ачивки динамичными
+ *
  * Class Achievement
  * @package App\Models
  *
@@ -91,32 +93,52 @@ class Achievement extends AModel
         'children' => [
             'correction_amount_20' => [
                 'title'      => 'Совершил двадцать исправлений!',
-                'status'     => '',
+                'status'     => 'Катректор',
                 'exp_amount' => 500,
             ],
             'correction_amount_50' => [
                 'title'      => 'Совершил пятьдесят исправлений!',
-                'status'     => '',
+                'status'     => 'Инкорпоратум',
                 'exp_amount' => 1000,
             ],
             'comment_amount_50' => [
                 'title'      => 'Оставил пятьдесят комментариев!',
-                'status'     => '',
+                'status'     => 'Епископария',
                 'exp_amount' => 500,
             ],
             'comment_amount_100' => [
                 'title'      => 'Оставил сто комментария!',
-                'status'     => '',
+                'status'     => 'Сенатор',
                 'exp_amount' => 1000,
             ],
             'image_amount_50' => [
                 'title'      => 'Добавил пятьдесят изображений!',
-                'status'     => '',
+                'status'     => 'Апостерия',
                 'exp_amount' => 350,
             ],
             'image_amount_100' => [
                 'title'      => 'Добавил сто изображений!',
-                'status'     => '',
+                'status'     => 'Гаума-палат',
+                'exp_amount' => 700,
+            ],
+            'finished_series_amount_3' => [
+                'title'      => 'Завершил три серии!',
+                'status'     => 'Белый лекарис',
+                'exp_amount' => 350,
+            ],
+            'finished_series_amount_10' => [
+                'title'      => 'Завершил десять серий!',
+                'status'     => 'Декасентрум',
+                'exp_amount' => 700,
+            ],
+            'finished_book_amount_1' => [
+                'title'      => 'Завершил одну книгу!',
+                'status'     => 'Прокоронул',
+                'exp_amount' => 350,
+            ],
+            'finished_book_amount_3' => [
+                'title'      => 'Завершил три книги!',
+                'status'     => 'Имматор',
                 'exp_amount' => 700,
             ],
         ],
@@ -126,7 +148,9 @@ class Achievement extends AModel
      * Список ачивок
      */
     const ACHIEVEMENTS = [
-        'story' => self::ACHIEVEMENT_INSTORIUM,
+        'instorium-block'  => self::ACHIEVEMENT_INSTORIUM,
+        'notariat-block'   => self::ACHIEVEMENT_NOTARIAT,
+        'ministoria-block' => self::ACHIEVEMENT_MINISTORIA,
     ];
     
     protected $fillable = [

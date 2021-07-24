@@ -8,8 +8,8 @@ use App\Models\Traits\UserRelation;
  * Class Connection
  * @package App\Models
  *
- * @property int $first_story
- * @property int $second_story
+ * @property int $first_content_id
+ * @property int $second_content_id
  * @property int $user_id
  */
 class Connection extends AModel

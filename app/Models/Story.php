@@ -22,8 +22,10 @@ use Cog\Likeable\Traits\Likeable;
  * @package App\Models
  *
  * @method static Builder|Story published()
+ * @method static Builder|Story withComposition()
  * @method static Builder|Story own()
  * @method static Builder|Story byCompositionId(int $compositionId)
+ * @method static Builder|Story uniqueUsers()
  *
  * @property string $title
  * @property int    $chapter
@@ -106,5 +108,27 @@ class Story extends AModel implements LikeableContract
     public function scopeByCompositionId(Builder $query, int $compositionId)
     {
         return $query->where('composition_id', $compositionId);
+    }
+    
+    /**
+     * Выбрать истории с композицией
+     *
+     * @param Builder $query
+     * @return Builder
+     */
+    public function scopeWithComposition(Builder $query)
+    {
+        return $query->where('composition_id', '!=', null);
+    }
+    
+    /**
+     * Вернуть количество уникальных писателей историй
+     *
+     * @param Builder $query
+     * @return Builder
+     */
+    public function scopeUniqueUsers(Builder $query)
+    {
+        return $query->select('user_id')->distinct();
     }
 }

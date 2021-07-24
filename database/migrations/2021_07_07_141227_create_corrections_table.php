@@ -18,9 +18,9 @@ class CreateCorrectionsTable extends Migration
             
             $table->text('old_variant');
             $table->text('new_variant');
-    
             $table->unsignedBigInteger('content_id');
             $table->string('content_type');
+            $table->string('status', 64);
     
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');

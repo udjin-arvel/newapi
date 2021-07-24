@@ -16,8 +16,8 @@ class CreateConnectionsTable extends Migration
         Schema::create('connections', function (Blueprint $table) {
             $table->bigIncrements('id');
             
-            $table->unsignedBigInteger('first_story');
-            $table->unsignedBigInteger('second_story');
+            $table->unsignedBigInteger('first_content_id');
+            $table->unsignedBigInteger('second_content_id');
             $table->string('status', 64);
             
             $table->unsignedBigInteger('user_id');

@@ -16,4 +16,6 @@ use App\Models\Traits\UserRelation;
 class Like extends AModel
 {
     use UserRelation;
+    
+    protected $table = 'like';
 }

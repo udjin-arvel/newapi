@@ -21,6 +21,15 @@ class Correction extends AModel
     use UserRelation,
         ScopeOwn;
     
+    /**
+     * Статусы исправлений
+     */
+    const STATUSES = [
+        'pending'   => 'На рассмотрении',
+        'canceled'  => 'Отменено',
+        'accepted'  => 'Принято',
+    ];
+    
     protected $fillable = [
         'old_variant',
         'new_variant',

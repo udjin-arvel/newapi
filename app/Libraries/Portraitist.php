@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Helpers;
+namespace App\Libraries;
 
 use App\Exceptions\TBError;
 use Config;
 use Image;
 
-class ImageHelper {
+class Portraitist {
     /**
      * Mimes
      */

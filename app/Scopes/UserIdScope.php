@@ -5,17 +5,16 @@ namespace App\Scopes;
 use Illuminate\Database\Eloquent\Scope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Facades\Auth;
 
 class UserIdScope implements Scope
 {
     /**
-     * @param Builder $builder
+     * @param Builder $query
      * @param Model $model
      * @return Builder
      */
-    public function apply(Builder $builder, Model $model)
+    public function apply(Builder $query, Model $model)
     {
-        return $builder->where('user_id', optional(Auth::user())->id);
+        return $query->where('user_id', \auth()->id());
     }
 }
