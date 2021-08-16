@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use Tests\Fixtures\CompositionFixture;
 use Tests\Fixtures\StoryFixture;
 use App\Models\User;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
@@ -12,7 +13,6 @@ class ApiTest extends TestCase
     use WithoutMiddleware;
     
     /**
-     * @test
      */
     public function getCommentsTest()
     {
@@ -115,4 +115,18 @@ class ApiTest extends TestCase
 
         $response->assertStatus(200);
     }
+	
+	/**
+	 * @test
+	 */
+	public function saveCompositionTest()
+	{
+		$response = $this
+			->withoutExceptionHandling()
+			->actingAs(User::findOrFail(1))
+			->postJson('/api/composition/save', CompositionFixture::feature1)
+		;
+		
+		$response->assertStatus(200);
+	}
 }

@@ -100,4 +100,19 @@ class Reward extends AModel
             'exp_amount' => 1000,
         ],
     ];
+	
+	/**
+	 * @param string $className
+	 * @return int
+	 */
+	public static function getRewardAmountByClassName(string $className): int
+	{
+		foreach (self::TYPES as $type) {
+			if ($type['class'] === $className) {
+				return $type['exp_amount'];
+			}
+		}
+		
+		return 0;
+    }
 }

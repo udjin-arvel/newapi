@@ -26,7 +26,7 @@ class RewardContract implements HasCreate, HasDelete
     
         if (null !== $user) {
             $className = get_class($model);
-            $expAmount = Reward::REWARD_EXP_AMOUNT[$className];
+            $expAmount = Reward::getRewardAmountByClassName($className);
             
             $saved = Reward::create([
                 'user_id'      => $user->id,

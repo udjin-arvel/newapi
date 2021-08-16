@@ -20,12 +20,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="24e9da2f-bf30-4a2c-9f19-81b68f84e4d5" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Models/Traits/Posterable.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Helpers/ImageHelper.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/Interfaces/PosterableInterface.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/Fixtures/CompositionFixture.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Exceptions/TBError.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exceptions/TBError.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Contracts/RewardContract.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Contracts/RewardContract.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/CrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/CrudController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/BaseResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/BaseResource.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Composition.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Composition.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Reward.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Reward.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Traits/Posterable.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Traits/Posterable.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Repositories/CrudRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/CrudRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/ApiTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/ApiTest.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -198,7 +204,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
     <property name="dart.analysis.tool.window.visible" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../newbook" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -565,6 +571,7 @@
       <workItem from="1628923520842" duration="1001000" />
       <workItem from="1629024042160" duration="3232000" />
       <workItem from="1629095415887" duration="4913000" />
+      <workItem from="1629129365112" duration="1559000" />
     </task>
     <servers />
   </component>
@@ -663,13 +670,6 @@
     <watches-manager>
       <configuration name="index.php">
         <watch expression="$user-&gt;email" language="PHP" />
-      </configuration>
-      <configuration name="PHPUnitRunConfigurationType">
-        <watch expression="$this-&gt;checkFiltersExist()" language="PHP" />
-        <watch expression="$this-&gt;getRequestFilters()" language="PHP" />
-        <watch expression="request()-&gt;all()" language="PHP" />
-        <watch expression="$this-&gt;filters" language="PHP" />
-        <watch expression="array_intersect_key(request()-&gt;all(), $this-&gt;filters)" language="PHP" />
       </configuration>
     </watches-manager>
   </component>

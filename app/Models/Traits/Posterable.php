@@ -2,6 +2,8 @@
 
 namespace App\Models\Traits;
 
+use App\Helpers\ImageHelper;
+
 /**
  * Trait Posterable
  *
@@ -22,6 +24,6 @@ trait Posterable {
 	 */
 	public function deletePoster()
 	{
-	
+		ImageHelper::delete($this->poster);
 	}
 }

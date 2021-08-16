@@ -20,22 +20,18 @@ class BaseResource extends JsonResource
      */
     public function toArray($request)
     {
-        $response = ['id' => $this->id];
-        
-        if ($this->created_at instanceof Carbon) {
-            $response['created_at'] = $this->created_at->format('d.m.Y H:i');
-        }
-    
-        if ($this->updated_at instanceof Carbon) {
-            $response['updated_at'] = $this->updated_at->format('d.m.Y H:i');
-        }
+        $response = [
+        	'id' => $this->id,
+        	'created_at' => optional($this->created_at)->format('d.m.Y H:i'),
+        	'updated_at' => optional($this->updated_at)->format('d.m.Y H:i'),
+        ];
         
         if (isset($this->user_id)) {
             $response['user_id'] = $this->user_id;
         }
     
         if (isset($this->poster)) {
-            $response['poster'] = $this->poster;
+            $response['poster'] = env('APP_URL') . '/storage/' .  $this->poster;
         }
         
         return $response;

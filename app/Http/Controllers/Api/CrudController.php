@@ -94,7 +94,7 @@ abstract class CrudController extends Controller
         $result = $this->repository->save(request()->all());
         event(request()->get('id') ? 'crud.update' : 'crud.create', $this->repository->model());
         
-        return $this->sendSuccess($result);
+        return $this->sendSuccess(\Auth::user());
     }
     
     /**

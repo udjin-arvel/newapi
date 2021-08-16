@@ -4,6 +4,8 @@ namespace App\Models;
 
 use App\Contracts\NewsContract;
 use App\Contracts\RewardContract;
+use App\Models\Interfaces\PosterableInterface;
+use App\Models\Traits\Posterable;
 use App\Models\Traits\ScopeOwn;
 use App\Models\Traits\UserRelation;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -24,10 +26,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $description
  * @property string $poster
  */
-class Composition extends AModel
+class Composition extends AModel implements PosterableInterface
 {
     use SoftDeletes,
         UserRelation,
+        Posterable,
         ScopeOwn;
 
     const TYPE_BOOK   = 'type-book';

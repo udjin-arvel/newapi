@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Exceptions\TBError;
 use App\Http\Filters\Filter;
 use App\Models\AModel;
+use App\Models\Interfaces\PosterableInterface;
 use App\Models\Player;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
@@ -29,18 +30,12 @@ class CrudRepository
     protected $model;
     
     /**
-     * @var User
-     */
-    protected $user;
-    
-    /**
      * Repository constructor.
      * @param string $modelClass
      */
     public function __construct(string $modelClass)
     {
         $this->model = app($modelClass);
-        $this->user  = \Auth::user();
     }
     
     /**
@@ -69,10 +64,6 @@ class CrudRepository
             throw new TBError(TBError::CONTENT_NOT_FOUND);
         }
         
-        if (in_array('user_id', $this->model->fillable)) {
-        	$taking->user_id = $this->user->id;
-        }
-    
         $this->model = $taking;
         
         return $this;
@@ -86,6 +77,11 @@ class CrudRepository
     protected function store(array $data): self
     {
         $this->model->fill($data);
+	    $this->model->user_id = \Auth::id();
+     
+	    if ($this->model instanceof PosterableInterface) {
+		    $this->model->storePoster();
+	    }
         
         if (!$this->model->save()) {
             throw new TBError(TBError::SAVE_ERROR);
