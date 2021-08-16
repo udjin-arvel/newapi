@@ -20,7 +20,6 @@ class UserController extends Controller
     
     /**
      * Авторизация через соцсети
-     * @return Response
      * @throws TBError
      * @throws BindingResolutionException
      */

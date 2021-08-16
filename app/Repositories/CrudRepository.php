@@ -68,6 +68,10 @@ class CrudRepository
         if (null === $taking) {
             throw new TBError(TBError::CONTENT_NOT_FOUND);
         }
+        
+        if (in_array('user_id', $this->model->fillable)) {
+        	$taking->user_id = $this->user->id;
+        }
     
         $this->model = $taking;
         
@@ -90,7 +94,7 @@ class CrudRepository
         if (method_exists($this->model, 'storeRelations')
             && !$this->model->storeRelations($data)
         ) {
-            throw new TBError(TBError::SAVE_ERROR);
+            throw new TBError(TBError::MODEL_ERROR);
         }
         
         return $this;

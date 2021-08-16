@@ -62,6 +62,7 @@ class TBError extends Exception
     const BIG_FILE              = 'big-file';
     const WRONG_IMAGE_MIME      = 'wrong-image-mime';
     const REPOSITORY_ERROR      = 'repository-error';
+    const MODEL_ERROR           = 'model-error';
     
     /**
      * Текущая ошибка
@@ -166,6 +167,7 @@ class TBError extends Exception
             self::BIG_FILE              => 'Файл слишком тяжелый',
             self::WRONG_IMAGE_MIME      => 'Нечитаемый формат изображения',
             self::REPOSITORY_ERROR      => 'Ошибка репозитория',
+            self::MODEL_ERROR           => 'Ошибка модели',
         ];
     }
 }

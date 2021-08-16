@@ -32,6 +32,19 @@ class Composition extends AModel
 
     const TYPE_BOOK   = 'type-book';
     const TYPE_SERIES = 'type-series';
+	
+	/**
+	 * @var array
+	 */
+    protected $fillable = [
+    	'title',
+    	'description',
+    	'era',
+    	'poster',
+    	'type',
+    	'is_published',
+    	'user_id',
+    ];
     
     /**
      * @var array
