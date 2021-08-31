@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Events\UpdateNotifications;
+use App\Http\Controllers\Api\NotionController;
 use App\Models\Book;
+use App\Models\Description;
 use App\Models\Notification;
 use App\Models\Story;
 use App\Models\StoryComment;
@@ -46,7 +48,9 @@ class HomeController extends Controller
     public function run()
     {
         
-        dd(StoryComment::hydrate(['text' => 'some', 'importance' => 1, 'story_id' => 1]));
+        $d = new NotionController;
+        
+        dd($d);
         
         exit;
     }

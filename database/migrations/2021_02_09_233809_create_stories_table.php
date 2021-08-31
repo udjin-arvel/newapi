@@ -21,7 +21,7 @@ class CreateStoriesTable extends Migration
             $table->text('epigraph')->nullable();
             $table->unsignedTinyInteger('eon')->nullable();
             $table->string('type', 64)->default(Story::TYPE_STORY);
-            $table->boolean('is_published')->default(false);
+            $table->boolean('is_public')->default(false);
             $table->unsignedSmallInteger('level')->default(1);
             $table->unsignedSmallInteger('chapter')->nullable();
     

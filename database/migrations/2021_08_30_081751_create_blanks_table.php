@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateConnectionsTable extends Migration
+class CreateBlanksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,17 @@ class CreateConnectionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('connections', function (Blueprint $table) {
+        Schema::create('blanks', function (Blueprint $table) {
             $table->bigIncrements('id');
             
-            $table->unsignedBigInteger('first_content_id');
-            $table->unsignedBigInteger('second_content_id');
-            $table->string('status', 64);
+            $table->string('title');
+            $table->text('text');
+            $table->unsignedSmallInteger('importance')->default(1);
+            $table->unsignedBigInteger('content_id')->nullable();
+            $table->string('content_type')->nullable();
             
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+	        $table->foreign('user_id')->references('id')->on('users');
             
             $table->timestamps();
         });
@@ -34,6 +36,6 @@ class CreateConnectionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('connections');
+        Schema::dropIfExists('blanks');
     }
 }

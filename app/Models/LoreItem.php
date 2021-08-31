@@ -18,9 +18,9 @@ use App\Models\Traits\UserRelation;
  * @property string $poster
  * @property int    $level
  * @property int    $user_id
- * @property bool   $is_published
+ * @property bool   $is_public
  */
-class LoreItem extends AModel
+class LoreItem extends AbstractModel
 {
     use UserRelation,
         ScopePublished;
@@ -29,7 +29,7 @@ class LoreItem extends AModel
         'title',
         'text',
         'poster',
-        'is_published',
+        'is_public',
         'level',
         'user_id',
     ];

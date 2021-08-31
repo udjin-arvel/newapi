@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use Tests\Fixtures\CompositionFixture;
+use Tests\Fixtures\NotionFixture;
 use Tests\Fixtures\StoryFixture;
 use App\Models\User;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
@@ -11,6 +12,16 @@ use Tests\TestCase;
 class ApiTest extends TestCase
 {
     use WithoutMiddleware;
+	
+	/**
+	 * @param $response
+	 * @return mixed
+	 */
+    public function getResultFromResponse($response)
+    {
+    	$data = json_decode($response->getContent(), true);
+    	return $data;
+    }
     
     /**
      */
@@ -39,16 +50,30 @@ class ApiTest extends TestCase
     }
     
     /**
+     * @test
      */
     public function getNotionTest()
     {
         $response = $this
             ->withoutExceptionHandling()
             ->actingAs(User::findOrFail(1))
-            ->getJson('/api/notion/get/1')
+            ->getJson('/api/notions/1')
         ;
-        
+	
         $response->assertStatus(200);
+    }
+	
+	/**
+	 */
+	public function deleteNotionTest()
+	{
+		$response = $this
+			->withoutExceptionHandling()
+			->actingAs(User::findOrFail(1))
+			->deleteJson('/api/notions/8')
+		;
+		
+		$response->assertStatus(200);
     }
     
     /**
@@ -58,23 +83,37 @@ class ApiTest extends TestCase
         $response = $this
             ->withoutExceptionHandling()
             ->actingAs(User::findOrFail(1))
-            ->getJson('/api/notion/all')
+            ->getJson('/api/notions')
         ;
-        
+	
         $response->assertStatus(200);
     }
+	
+	/**
+	 */
+	public function storeNotionTest()
+	{
+		$response = $this
+			->withoutExceptionHandling()
+			->actingAs(User::findOrFail(1))
+			->postJson('/api/notions', NotionFixture::notionFeature1)
+		;
+		
+		$response->assertStatus(201);
+	}
     
     /**
+     *
      */
-    public function saveNotionTest()
+    public function updateNotionTest()
     {
         $response = $this
             ->withoutExceptionHandling()
             ->actingAs(User::findOrFail(1))
-            ->postJson('/api/notion/save', StoryFixture::storyFeature2)
+            ->putJson('/api/notions/1', NotionFixture::notionFeature2)
         ;
         
-        $response->assertStatus(200);
+        $response->assertStatus(201);
     }
 
     /**
@@ -117,7 +156,6 @@ class ApiTest extends TestCase
     }
 	
 	/**
-	 * @test
 	 */
 	public function saveCompositionTest()
 	{

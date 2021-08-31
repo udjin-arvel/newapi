@@ -10,6 +10,7 @@ use App\Models\Traits\Commentable;
 use App\Models\Traits\ScopePublished;
 use App\Models\Traits\Taggable;
 use App\Models\Traits\UserRelation;
+use Cog\Likeable\Contracts\Likeable as LikeableContract;
 use Cog\Likeable\Traits\Likeable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -23,42 +24,39 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $text
  * @property string $poster
  * @property int    $type
- * @property bool   $is_published
+ * @property bool   $is_public
  */
-class Notion extends AModel
+class Notion extends AbstractModel implements LikeableContract
 {
     use SoftDeletes,
-        ScopePublished,
         UserRelation,
         Likeable,
-        Commentable,
         Taggable;
     
     /**
      * Типы понятий
      */
-    const TYPES = [
-        'definition' => 'Определение',
-        'character'  => 'Персонаж',
-        'place'      => 'Место',
-        'entity'     => 'Сущность',
-        'event'      => 'Событие',
-    ];
-    
-    protected $related = [
-        'tags',
-        'user',
-        'likes',
-        'comments',
-    ];
-    
-    /**
-     * @var array
-     */
-    protected $contracts = [
-        ViewContract::class,
-        NewsContract::class,
-        RewardContract::class,
-        NotificationContract::class,
-    ];
+	const TYPE_DEFINITION = 'type-definition';
+	const TYPE_CHARACTER  = 'type-character';
+	const TYPE_PLACE      = 'type-place';
+	const TYPE_ENTITY     = 'type-entity';
+	const TYPE_EVENT      = 'type-event';
+	
+	const TYPES = [
+		self::TYPE_DEFINITION => 'Определение',
+		self::TYPE_CHARACTER  => 'Персонаж',
+		self::TYPE_PLACE      => 'Место',
+		self::TYPE_ENTITY     => 'Сущность',
+		self::TYPE_EVENT      => 'Событие',
+	];
+	
+	protected $fillable = [
+		'title',
+		'text',
+		'poster',
+		'level',
+		'type',
+		'user_id',
+		'is_public',
+	];
 }

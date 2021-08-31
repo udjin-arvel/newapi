@@ -14,7 +14,7 @@ use App\Models\Traits\UserRelation;
  * @property string $content_type
  * @property string $type
  */
-class Reward extends AModel
+class Reward extends AbstractModel
 {
     use UserRelation;
     

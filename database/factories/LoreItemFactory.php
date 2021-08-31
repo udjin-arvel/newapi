@@ -9,6 +9,6 @@ $factory->define(LoreItem::class, function (Faker $faker) {
         'text' => $faker->realText(500),
         'poster' => $faker->imageUrl(),
         'user_id' => 1,
-        'is_published' => (bool) random_int(0, 1),
+        'is_public' => (bool) random_int(0, 1),
     ];
 });

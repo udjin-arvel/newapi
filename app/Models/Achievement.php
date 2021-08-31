@@ -13,7 +13,7 @@ use App\Models\Traits\UserRelation;
  * @property int    $user_id
  * @property string $achievement
  */
-class Achievement extends AModel
+class Achievement extends AbstractModel
 {
     use UserRelation;
     

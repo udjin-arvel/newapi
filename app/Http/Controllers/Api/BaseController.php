@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Connection;
-use App\Models\Note;
+use App\Models\Description;
+use App\Models\Enums\Targets;
 use App\Http\Controllers\Controller;
 use App\Models\Notion;
 
@@ -19,9 +20,12 @@ class BaseController extends Controller
     public function getBasicData()
     {
         return $this->sendSuccess([
-            'types' => [
-                'note'   => Note::TYPES,
-                'notion' => Notion::TYPES,
+	        'types' => [
+		        'notion'      => Notion::TYPES,
+		        'description' => Description::TYPES,
+	        ],
+            'targets' => [
+	            'content' => Targets::LIST,
             ],
             'statuses' => [
                 'connection' => Connection::STATUSES,

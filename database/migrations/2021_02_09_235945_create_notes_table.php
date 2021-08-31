@@ -22,7 +22,6 @@ class CreateNotesTable extends Migration
             $table->unsignedBigInteger('content_id')->nullable();
             $table->string('content_type')->nullable();
             $table->unsignedTinyInteger('importance')->default(1);
-            $table->string('type', 64)->default(Note::TYPE_NO_SUBJECT);
     
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

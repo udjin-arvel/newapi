@@ -6,12 +6,12 @@ use App\Models\Story;
 
 class StoryFixture
 {
-    public const storyFeature1 = [
+    const storyFeature1 = [
         'id'             => null,
         'title'          => 'Новая история',
         'chapter'        => 2,
         'epigraph'       => 'Какой-то эпиграф',
-        'is_published'   => true,
+        'is_public'   => true,
         'composition_id' => null,
         'user_id'        => 1,
         'type'           => Story::TYPE_STORY,
@@ -27,11 +27,11 @@ class StoryFixture
         ],
     ];
 
-    public const storyFeature2 = [
+    const storyFeature2 = [
         'title'          => 'Новая история',
         'chapter'        => 2,
         'epigraph'       => 'Какой-то эпиграф',
-        'is_published'   => true,
+        'is_public'   => true,
         'composition_id' => 1,
         'user_id'        => 1,
         'type'           => Story::TYPE_STORY,

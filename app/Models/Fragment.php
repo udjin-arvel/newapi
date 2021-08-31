@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int    $order
  * @property string $text
  */
-class Fragment extends AModel
+class Fragment extends AbstractModel
 {
     use SoftDeletes;
 

@@ -18,11 +18,15 @@ class NotionResource extends BaseResource
      */
     public function toArray($request)
     {
-        return array_merge(parent::toArray($request), [
-            'title'       => $this->title,
-            'text'        => $this->text,
-            'explanation' => $this->explanation,
-            'type'        => $this->type,
-        ]);
+	    return array_merge(parent::toArray($request), [
+		    'title'      => $this->title,
+		    'text'       => $this->text,
+		    'is_public'  => (bool) $this->is_public,
+		    'type'       => $this->type,
+		    'level'      => $this->level,
+		    'user'       => new UserResource($this->user),
+		    'tags'       => TagResource::collection($this->tags),
+		    'created_at' => optional($this->created_at)->format('d.m.Y H:i'),
+	    ]);
     }
 }

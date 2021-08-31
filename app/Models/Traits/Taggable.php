@@ -20,4 +20,14 @@ trait Taggable {
     {
         return $this->morphToMany(Tag::class, 'taggable');
     }
+	
+	/**
+	 * Синхронизировать теги модели с указанными тегами
+	 * @param array $ids
+	 */
+	public function syncTags($ids)
+	{
+		$this->tags()->whereNotIn('tag_id', $ids)->detach();
+		$this->tags()->attach($ids);
+	}
 }

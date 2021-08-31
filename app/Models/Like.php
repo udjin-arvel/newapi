@@ -13,7 +13,7 @@ use App\Models\Traits\UserRelation;
  * @property string $likeable_type
  * @property int    $type_id
  */
-class Like extends AModel
+class Like extends AbstractModel
 {
     use UserRelation;
     

@@ -3,7 +3,7 @@
 namespace App\Listeners\Crud;
 
 use App\Contracts\Interfaces\HasCreate;
-use App\Models\AModel;
+use App\Models\AbstractModel;
 
 class Create
 {
@@ -13,7 +13,7 @@ class Create
      * @param $model
      * @return void
      */
-    public function handle(AModel $model)
+    public function handle(AbstractModel $model)
     {
         $model->contracts()->each(function ($contract) use ($model) {
             if ($contract instanceof HasCreate) {

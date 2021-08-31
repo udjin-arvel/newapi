@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Contracts\RewardContract;
-use App\Models\Traits\ScopeOwn;
 use App\Models\Traits\UserRelation;
 
 /**
@@ -16,10 +15,9 @@ use App\Models\Traits\UserRelation;
  * @property int    $user_id
  * @property string $content_type
  */
-class Image extends AModel
+class Image extends AbstractModel
 {
-    use UserRelation,
-        ScopeOwn;
+    use UserRelation;
     
     /**
      * Контект, которому можно добавлять картинки

@@ -8,10 +8,11 @@ use App\Models\Interfaces\PosterableInterface;
 use App\Models\Traits\Posterable;
 use App\Models\Traits\ScopeOwn;
 use App\Models\Traits\UserRelation;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class Book
+ * Class Composition
  * @package App\Models
  *
  * @property int    $id
@@ -21,12 +22,15 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int    $level
  * @property int    $chapter
  * @property string $title
- * @property bool   $is_published
+ * @property bool   $is_public
  * @property string $type
  * @property string $description
  * @property string $poster
+ *
+ * @method static Builder|Composition books()
+ * @method static Builder|Composition series()
  */
-class Composition extends AModel implements PosterableInterface
+class Composition extends AbstractModel implements PosterableInterface
 {
     use SoftDeletes,
         UserRelation,
@@ -45,7 +49,7 @@ class Composition extends AModel implements PosterableInterface
     	'era',
     	'poster',
     	'type',
-    	'is_published',
+    	'is_public',
     	'user_id',
     ];
     
@@ -56,4 +60,37 @@ class Composition extends AModel implements PosterableInterface
         NewsContract::class,
         RewardContract::class,
     ];
+	
+	/**
+	 * @param Builder $query
+	 * @return Builder
+	 */
+	public function scopeBooks(Builder $query)
+	{
+		return $query->where('type', self::TYPE_BOOK);
+	}
+	
+	/**
+	 * @param Builder $query
+	 * @return Builder
+	 */
+	public function scopeSeries(Builder $query)
+	{
+		return $query->where('type', self::TYPE_SERIES);
+	}
+	
+	/**
+	 * @param Builder $query
+	 * @param int $parentId
+	 * @param string $operator
+	 * @return Builder
+	 */
+	public function scopeByParent(Builder $query, int $parentId, string $operator = 'and')
+	{
+		if ($operator === 'or') {
+			return $query->orWhere('parent_id', $parentId);
+		}
+		
+		return $query->where('parent_id', $parentId);
+	}
 }

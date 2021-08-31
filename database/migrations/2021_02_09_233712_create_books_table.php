@@ -22,7 +22,7 @@ class CreateBooksTable extends Migration
             $table->unsignedTinyInteger('era')->nullable();
             $table->unsignedTinyInteger('parent_id')->nullable();
             $table->string('type', 64);
-            $table->boolean('is_published')->default(false);
+            $table->boolean('is_public')->default(false);
             $table->unsignedSmallInteger('level')->default(1);
             $table->unsignedSmallInteger('chapter')->nullable();
             

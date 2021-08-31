@@ -21,7 +21,7 @@ class CreateNotionsTable extends Migration
             $table->text('text');
             $table->string('type', 64)->default(Notion::TYPE_DEFINITION);
             $table->string('poster')->nullable();
-            $table->boolean('is_published')->default(false);
+            $table->boolean('is_public')->default(false);
             $table->unsignedSmallInteger('level')->default(1);
             
             $table->unsignedBigInteger('user_id')->nullable();

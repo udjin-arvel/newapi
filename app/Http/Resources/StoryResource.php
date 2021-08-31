@@ -24,7 +24,7 @@ class StoryResource extends BaseResource
             'epigraph'       => $this->epigraph,
             'composition_id' => $this->composition_id,
             'type'           => $this->type,
-            'is_published'   => (bool) $this->is_published,
+            'is_public'   => (bool) $this->is_public,
             'fragments'      => $this->fragments,
             'notions'        => $this->notions,
             'remarks'        => $this->remarks,

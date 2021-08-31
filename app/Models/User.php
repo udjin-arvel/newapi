@@ -18,6 +18,7 @@ use Laravel\Passport\HasApiTokens;
  * @property Player $player
  * @property int    $id
  * @property string $name
+ * @property string $login
  * @property string $password
  * @property int    $level
  * @property int    $experience

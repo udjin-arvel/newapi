@@ -20,18 +20,80 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="24e9da2f-bf30-4a2c-9f19-81b68f84e4d5" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Helpers/ImageHelper.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/Interfaces/PosterableInterface.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/Fixtures/CompositionFixture.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Contracts/AbstractContract.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Managers/ContractManager.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Managers/ImageManager.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/Blank.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Contracts/RewardContract.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Contracts/RewardContract.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/CrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/CrudController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Contracts/Interfaces/HasCreate.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Contracts/Interfaces/HasDelete.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Contracts/Interfaces/HasUpdate.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Contracts/Interfaces/HasView.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Contracts/NewsContract.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Contracts/NewsContract.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Contracts/ViewContract.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Contracts/ViewContract.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/BaseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/BaseController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/NotionController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Filters/CommentFilter.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Filters/Filter.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Resources/BaseResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/BaseResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/CommentResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/CommentResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/LoreItemResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/LoreItemResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/NotionResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/NotionResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/StoryResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/StoryResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/TagResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/TagResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Listeners/Crud/Create.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Listeners/Crud/Create.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Listeners/Crud/Delete.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Listeners/Crud/Delete.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Listeners/Crud/Update.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Listeners/Crud/Update.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/AModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/AbstractModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Achievement.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Achievement.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Comment.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Comment.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Composition.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Composition.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Connection.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Correction.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Correction.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Fragment.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Fragment.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Image.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Image.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Like.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Like.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/LoreItem.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/LoreItem.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/News.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/News.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Note.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Note.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Notification.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Notification.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Notion.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Notion.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Plot.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Description.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Remark.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Reward.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Reward.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Traits/Posterable.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Traits/Posterable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/CrudRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/CrudRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Short.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Short.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Story.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Story.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Subscription.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Subscription.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Tag.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Tag.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Traits/Commentable.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Traits/Posterable.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Traits/ScopeOwn.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Traits/ScopePublished.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Traits/Taggable.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Traits/Taggable.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/View.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/View.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/CrudRepository.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/factories/LoreItemFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/LoreItemFactory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/factories/StoryFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/StoryFactory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/factories/SubscriptionFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/SubscriptionFactory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_02_09_233712_create_books_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_02_09_233712_create_books_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_02_09_233809_create_stories_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_02_09_233809_create_stories_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_02_09_234950_create_notions_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_02_09_234950_create_notions_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_02_09_235923_create_lore_items_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_02_09_235923_create_lore_items_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_02_09_235945_create_notes_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_02_09_235945_create_notes_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_02_10_002604_create_subscriptions_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_02_10_002604_create_subscriptions_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_07_07_125612_create_plots_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_07_07_132539_create_remarks_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_07_23_205032_create_connections_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_07_23_205047_create_shorts_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_07_23_205047_create_shorts_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/Feature/ApiTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/ApiTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Fixtures/CompositionFixture.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Fixtures/CompositionFixture.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Fixtures/NotionFixture.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Fixtures/NotionFixture.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Fixtures/StoryFixture.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Fixtures/StoryFixture.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -214,11 +276,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\OSPanel\domains\arvelov.com\app\Http" />
       <recent name="C:\OSPanel\domains\arvelov.com\resources\views\admin" />
       <recent name="C:\OSPanel\domains\arvelov.com\app\Http\Controllers\Api" />
       <recent name="C:\OSPanel\domains\arvelov.com\app\Services\Contractor" />
       <recent name="C:\OSPanel\domains\arvelov.com\app\Repositories\Interfaces" />
-      <recent name="C:\OSPanel\domains\arvelov\app\Models\StoryProject" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -572,6 +634,13 @@
       <workItem from="1629024042160" duration="3232000" />
       <workItem from="1629095415887" duration="4913000" />
       <workItem from="1629129365112" duration="1559000" />
+      <workItem from="1629458240418" duration="1831000" />
+      <workItem from="1629629985971" duration="4351000" />
+      <workItem from="1629879482744" duration="17517000" />
+      <workItem from="1630251851269" duration="9000" />
+      <workItem from="1630311412689" duration="2742000" />
+      <workItem from="1630340222404" duration="2493000" />
+      <workItem from="1630410735673" duration="13049000" />
     </task>
     <servers />
   </component>
@@ -667,9 +736,21 @@
     <state x="2543" y="230" width="672" height="678" key="search.everywhere.popup/1920.0.1920.1080/0.0.1920.1044@1920.0.1920.1080" timestamp="1625733454904" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/tests/Feature/ApiTest.php</url>
+          <line>22</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="index.php">
         <watch expression="$user-&gt;email" language="PHP" />
+      </configuration>
+      <configuration name="PHPUnitRunConfigurationType">
+        <watch expression="request()-&gt;all()" language="PHP" />
       </configuration>
     </watches-manager>
   </component>

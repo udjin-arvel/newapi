@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Traits\UserRelation;
 use App\Scopes\UserIdScope;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * Class Note
@@ -15,24 +16,14 @@ use App\Scopes\UserIdScope;
  * @property int     $user_id
  * @property int     $content_id
  * @property string  $content_type
- * @property string  $type
  * @property int     $importance
+ *
+ * @method static Builder|Note attached()
+ * @method static Builder|Note notAttached()
  */
-class Note extends AModel
+class Note extends AbstractModel
 {
     use UserRelation;
-    
-    /**
-     * Типы заметок
-     */
-    const TYPES = [
-        'no_subject'     => 'Без назначения',
-        'plot_layout'    => 'Заготовка сюжета',
-        'character_info' => 'О персонаже',
-        'place_info'     => 'О месте, предмете или понятии',
-        'good_idea'      => 'Хорошая идея',
-        'great_idea'     => 'Великолепная идея',
-    ];
     
     /**
      * @return void
@@ -42,4 +33,34 @@ class Note extends AModel
         parent::boot();
         static::addGlobalScope(new UserIdScope);
     }
+	
+	/**
+	 * @return \Illuminate\Database\Eloquent\Relations\MorphTo
+	 */
+	public function content()
+	{
+		return $this->morphTo();
+	}
+	
+	/**
+	 * Выбрать прикрепленные заметки
+	 *
+	 * @param Builder $query
+	 * @return Builder
+	 */
+	public function scopeAttached(Builder $query)
+	{
+		return $query->where('content_id', '!=', null);
+	}
+	
+	/**
+	 * Выбрать неприкрепленные заметки
+	 *
+	 * @param Builder $query
+	 * @return Builder
+	 */
+	public function scopeNotAttached(Builder $query)
+	{
+		return $query->where('content_id', '=', null);
+	}
 }

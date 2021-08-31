@@ -21,7 +21,7 @@ class LoreItemResource extends BaseResource
         return array_merge(parent::toArray($request), [
             'title'        => $this->title,
             'text'         => $this->text,
-            'is_published' => $this->is_published,
+            'is_public' => $this->is_public,
         ]);
     }
 }

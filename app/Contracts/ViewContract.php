@@ -2,8 +2,6 @@
     
 namespace App\Contracts;
 
-use App\Contracts\Interfaces\HasDelete;
-use App\Contracts\Interfaces\HasView;
 use App\Models\LoreItem;
 use App\Models\Notion;
 use App\Models\Story;
@@ -13,16 +11,23 @@ use App\Models\View;
  * Class ViewContract
  * @package App\Contracts
  */
-class ViewContract implements HasView, HasDelete
+class ViewContract extends AbstractContract
 {
-    /**
-     * @param Notion|Story|LoreItem $model
-     * @param int $viewerId
-     */
-    public function wasView($model, $viewerId)
+	protected $methods = [
+		self::METHOD_ONE,
+		self::METHOD_DELETE,
+	];
+	
+	/**
+	 * @param array $params
+	 */
+    public function one(array $params)
     {
+	    $model = $params['model'];
+	    $viewerId = $params['viewer_id'];
+    	
         if ($model->user_id !== $viewerId) {
-            View::create([
+            View::firstOrCreate([
                 'content_id'   => $model->id,
                 'content_type' => get_class($model),
                 'user_id'      => $viewerId,
@@ -34,7 +39,7 @@ class ViewContract implements HasView, HasDelete
      * @param Notion|Story|LoreItem $model
      * @throws \Exception
      */
-    public function wasDelete($model)
+    public function delete($model)
     {
         View::where([
             'content_id'   => $model->id,

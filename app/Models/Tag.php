@@ -12,7 +12,7 @@ use App\Models\Traits\UserRelation;
  * @property string $name
  * @property string $stem
  */
-class Tag extends AModel
+class Tag extends AbstractModel
 {
     use UserRelation;
     

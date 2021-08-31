@@ -15,9 +15,9 @@ use App\Models\Traits\UserRelation;
  * @property int    $order
  * @property int    $level
  * @property int    $user_id
- * @property bool   $is_published
+ * @property bool   $is_public
  */
-class Short extends AModel
+class Short extends AbstractModel
 {
     use UserRelation,
         ScopePublished;

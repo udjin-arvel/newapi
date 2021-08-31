@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Contracts\NewsContract;
 use App\Contracts\ViewContract;
 use App\Models\Traits\Commentable;
+use App\Models\Traits\Descriptionable;
 use App\Models\Traits\ScopeOwn;
 use App\Models\Traits\ScopePublished;
 use App\Models\Traits\Taggable;
@@ -33,12 +34,12 @@ use Cog\Likeable\Traits\Likeable;
  * @property int    $eon
  * @property string $epigraph
  * @property string $type
- * @property bool   $is_published
+ * @property bool   $is_public
  * @property int    $user_id
  * @property int    $composition_id
  * @property User   $user
  */
-class Story extends AModel implements LikeableContract
+class Story extends AbstractModel implements LikeableContract
 {
     use SoftDeletes,
         UserRelation,
@@ -46,6 +47,7 @@ class Story extends AModel implements LikeableContract
         ScopePublished,
         Likeable,
         Commentable,
+	    Descriptionable,
         Taggable;
 
     const TYPE_STORY    = 'type-story';
@@ -65,7 +67,7 @@ class Story extends AModel implements LikeableContract
         'title',
         'chapter',
         'epigraph',
-        'is_published',
+        'is_public',
         'book_id',
         'series_id',
         'user_id',

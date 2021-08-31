@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Builder;
  * @method static Builder|Subscription byUserId($userId)
  * @method static Builder|Subscription byType($types)
  */
-class Subscription extends AModel
+class Subscription extends AbstractModel
 {
     use UserRelation,
         ScopeOwn;
@@ -26,43 +26,15 @@ class Subscription extends AModel
     /**
      * Типы подписок
      */
-    const TYPES = [
-        User::class        => 'на пользователя',
-        Composition::class => 'на композицию',
-        Notion::class      => 'на понятия',
-        LoreItem::class    => 'на элементы лора',
-    ];
-    
-    /**
-     * @param Builder $query
-     * @param int $userId
-     * @return Builder
-     */
-    public function scopeByUserId(Builder $query, $userId)
-    {
-        return $query->when($userId, function ($query, $userId) {
-            return $query->where([
-                'content_id'   => $userId,
-                'content_type' => User::class,
-            ]);
-        });
-    }
-    
-    /**
-     * @param Builder $query
-     * @param string|array $types
-     * @return Builder
-     */
-    public function scopeByType(Builder $query, $types)
-    {
-        if (is_array($types)) {
-            return $query->whereIn('content_type', $types);
-        }
-        
-        if (is_string($types)) {
-            return $query->where('content_type', $types);
-        }
-        
-        return $query;
-    }
+	const TYPE_USER        = 'type-user';
+	const TYPE_COMPOSITION = 'type-composition';
+	const TYPE_NOTION      = 'type-notion';
+	const TYPE_LORE_ITEM   = 'type-lore-item';
+	
+	const TYPES = [
+		self::TYPE_USER        => 'на пользователя',
+		self::TYPE_COMPOSITION => 'на композицию',
+		self::TYPE_NOTION      => 'на понятия',
+		self::TYPE_LORE_ITEM   => 'на элементы лора',
+	];
 }

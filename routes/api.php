@@ -44,10 +44,7 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::delete('composition/delete/{id}', 'Api\CompositionController@delete');
     
     // ------------------------ Notion routes ------------------------ //
-    Route::get('notion/get/{id}', 'Api\NotionController@one');
-    Route::get('notion/all', 'Api\NotionController@all');
-    Route::post('notion/save', 'Api\NotionController@save');
-    Route::delete('notion/delete/{id}', 'Api\NotionController@delete');
+	Route::resource('notions', 'Api\NotionController');
     
     // ------------------------ Tag routes ------------------------ //
     Route::get('tag/all', 'Api\TagController@all');

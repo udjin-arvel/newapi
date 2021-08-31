@@ -16,7 +16,7 @@ use App\Models\Traits\UserRelation;
  * @property string $old_variant
  * @property string $new_variant
  */
-class Correction extends AModel
+class Correction extends AbstractModel
 {
     use UserRelation,
         ScopeOwn;

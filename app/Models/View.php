@@ -12,7 +12,7 @@ use App\Models\Traits\UserRelation;
  * @property int    $content_id
  * @property string $content_type
  */
-class View extends AModel
+class View extends AbstractModel
 {
     use UserRelation;
 

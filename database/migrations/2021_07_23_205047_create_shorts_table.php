@@ -20,7 +20,7 @@ class CreateShortsTable extends Migration
             $table->text('text');
             $table->unsignedInteger('order');
             $table->unsignedSmallInteger('level')->default(1);
-            $table->boolean('is_published')->default(false);
+            $table->boolean('is_public')->default(false);
     
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');

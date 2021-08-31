@@ -15,7 +15,7 @@ use App\Scopes\UserIdScope;
  * @property string  $message
  * @property int     $user_id
  */
-class Notification extends AModel
+class Notification extends AbstractModel
 {
     use UserRelation;
     

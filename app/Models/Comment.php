@@ -15,7 +15,7 @@ use App\Models\Traits\UserRelation;
  * @property int    $user_id
  * @property int    $parent_id
  */
-class Comment extends AModel
+class Comment extends AbstractModel
 {
     use UserRelation;
     

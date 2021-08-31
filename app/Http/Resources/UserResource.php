@@ -2,15 +2,12 @@
 
 namespace App\Http\Resources;
 
-use App\Models\AbstractModel;
-use Carbon\Carbon;
-use DateTime;
-use Illuminate\Http\Resources\Json\JsonResource;
+use App\Models\User;
 
 /**
- * @mixin AbstractModel
+ * @mixin User
  */
-class BaseResource extends JsonResource
+class UserResource extends BaseResource
 {
     /**
      * Transform the resource into an array.
@@ -20,8 +17,10 @@ class BaseResource extends JsonResource
      */
     public function toArray($request)
     {
-        return [
-	        'id' => $this->id,
-        ];
+	    return array_merge(parent::toArray($request), [
+		    'name'   => $this->name,
+		    'login'  => $this->login,
+		    'status' => $this->status,
+	    ]);
     }
 }
