@@ -180,7 +180,7 @@ class ApiTest extends TestCase
     }
 	
 	/**
-	 *
+	 * @test
 	 */
     public function storeStoryTest()
     {
@@ -200,7 +200,7 @@ class ApiTest extends TestCase
 	{
 		$response = $this
 			->actingAs($this->admin)
-			->putJson('/api/stories/1', StoryFixture::getFixture($this->faker, ['descriptions']))
+			->putJson('/api/stories/1', StoryFixture::getFixture($this->faker, ['tags', 'fragments', 'descriptions']))
 		;
 		
 		$this->getResultFromResponse($response);
@@ -221,15 +221,16 @@ class ApiTest extends TestCase
 	}
 	
 	/**
-	 * @test
+	 *
 	 */
 	public function likeContentTest()
 	{
 		$response = $this
 			->actingAs($this->admin)
-			->getJson('/api/like?content_id=1&content_type=story')
+			->getJson('/api/like?content_id=2&content_type=story&type=like')
 		;
 		
+		$this->getResultFromResponse($response);
 		$response->assertStatus(200);
 	}
 }

@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Traits\ScopeOwn;
+use App\Models\Traits\Contentable;
 use App\Models\Traits\UserRelation;
 use App\Scopes\UserIdScope;
 
@@ -17,7 +17,7 @@ use App\Scopes\UserIdScope;
  */
 class Notification extends AbstractModel
 {
-    use UserRelation;
+    use UserRelation, Contentable;
     
     const TYPES = [
         'story'    => Story::class,
@@ -25,13 +25,21 @@ class Notification extends AbstractModel
         'loreitem' => LoreItem::class,
         'user'     => User::class,
     ];
-    
+	
+	/**
+	 * @var array
+	 */
     protected $fillable = [
         'content_id',
         'content_type',
         'message',
         'user_id',
     ];
+	
+	/**
+	 * @var array
+	 */
+	public $timestamps = ['updated_at'];
     
     /**
      * @return void

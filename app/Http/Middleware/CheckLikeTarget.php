@@ -18,11 +18,13 @@ class CheckLikeTarget
      */
     public function handle(Request $request, Closure $next)
     {
-    	$className = app()->get('enum')->path('aliases.' . strtolower($request->get('content_type')));
-	
-    	if (app($className) instanceof LikeableContract) {
-		    $request->request->add(['content_type' => $className]);
-		    return $next($request);
+    	if ($request->get('content_type')) {
+	        $className = app()->get('enum')->path('aliases.' . strtolower($request->get('content_type')));
+		
+	        if (app($className) instanceof LikeableContract) {
+			    $request->request->add(['content_type' => $className]);
+			    return $next($request);
+		    }
 	    }
     	
         return response()->json(TBError::getErrorMessageByName(TBError::LIKE_ERROR), 400);

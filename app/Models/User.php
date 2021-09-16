@@ -3,10 +3,7 @@
 namespace App\Models;
 
 use App\Exceptions\TBError;
-use App\Models\Traits\HasRolesAndPermissions;
-use Illuminate\Database\Eloquent\Relations\BelongsTo as BelongsToAlias;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Hash;
@@ -18,35 +15,22 @@ use Laravel\Passport\HasApiTokens;
  *
  * @property int    $id
  * @property string $name
- * @property string $login
  * @property string $password
  * @property int    $level
  * @property int    $experience
  * @property int    $status
  * @property string $poster
- * @property int    $age
- * @property string $sex
- * @property string $city
  * @property string $info
  * @property string $email
  * @property string $created_at
- * @property string $full_name
- * @property int    $clan
  * @property mixed  $subscriptions
  * @property array  $stories
- * @property bool   $subscribe_on_notions
  *
  * @mixin \Eloquent
  */
 class User extends Authenticatable
 {
-    use HasApiTokens,
-        Notifiable;
-    
-    /**
-     * Логин по умолчанию
-     */
-    const DEFAULT_LOGIN = 'Читатель';
+	use HasApiTokens, Notifiable;
 
     /**
      * Статус пользователя
@@ -56,12 +40,6 @@ class User extends Authenticatable
     const STATUS_CORRECTOR = 'corrector';
     const STATUS_MODERATOR = 'moderator';
     const STATUS_ADMIN     = 'admin';
-    
-    /**
-     * Пол пользователя
-     */
-    const GENDER_FEMALE = 0;
-    const GENDER_MALE   = 1;
 
     /**
      * The attributes that are mass assignable.
@@ -199,6 +177,26 @@ class User extends Authenticatable
         $hash = $this->getUserHash();
 
         return $http . $host . '/confirm?email='. $this->email . '&hash=' . $hash;
+    }
+	
+	/**
+	 * Обновить опыт пользователю
+	 *
+	 * @param int $amount
+	 * @return bool
+	 */
+    public function updateExpAmount(int $amount): bool
+    {
+    	$this->experience += $amount;
+    	return $this->save();
+    }
+    
+	/**
+	 * @return bool
+	 */
+    public function isAdmin(): bool
+    {
+    	return $this->status === self::STATUS_ADMIN;
     }
 }
 

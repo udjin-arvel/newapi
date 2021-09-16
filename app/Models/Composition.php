@@ -5,10 +5,11 @@ namespace App\Models;
 use App\Contracts\NewsContract;
 use App\Contracts\RewardContract;
 use App\Models\Interfaces\PosterableInterface;
-use App\Models\Traits\Posterable;
-use App\Models\Traits\ScopeOwn;
+use App\Models\Traits\Commentable;
 use App\Models\Traits\Taggable;
 use App\Models\Traits\UserRelation;
+use Cog\Likeable\Contracts\Likeable as LikeableContract;
+use Cog\Likeable\Traits\Likeable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -31,10 +32,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static Builder|Composition books()
  * @method static Builder|Composition series()
  */
-class Composition extends AbstractModel implements PosterableInterface
+class Composition extends AbstractModel implements PosterableInterface, LikeableContract
 {
     use SoftDeletes,
+	    Likeable,
         UserRelation,
+	    Commentable,
         Taggable;
 	
 	/**
@@ -60,14 +63,11 @@ class Composition extends AbstractModel implements PosterableInterface
     	'is_public',
     	'user_id',
     ];
-    
-    /**
-     * @var array
-     */
-    protected $contracts = [
-        NewsContract::class,
-        RewardContract::class,
-    ];
+	
+	/**
+	 * @var array
+	 */
+	public $timestamps = ['updated_at'];
 	
 	/**
 	 * @param Builder $query

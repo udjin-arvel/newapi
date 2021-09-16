@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Traits\Contentable;
 use App\Models\Traits\UserRelation;
 
 /**
@@ -17,5 +18,5 @@ use App\Models\Traits\UserRelation;
  */
 class Blank extends AbstractModel
 {
-	use UserRelation;
+	use UserRelation, Contentable;
 }

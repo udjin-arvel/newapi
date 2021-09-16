@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Events\NewsProcessed;
+use App\Events\RewardProcessed;
+use App\Events\ViewProcessed;
 use App\Http\Controllers\Controller;
 use App\Http\Filters\StoryFilter;
 use App\Http\Requests\StoryRequest;
 use App\Http\Resources\StoryResource;
+use App\Models\News;
 use App\Models\Story;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -25,7 +29,7 @@ class StoryController extends Controller
 	{
 		return StoryResource::collection(
 			Story::filter($filter)
-				->with(['user', 'tags', 'fragments', 'composition'])
+				->with(['user', 'tags', 'fragments', 'composition', 'likes'])
 				->get()
 				->map(function ($story) {
 					$story->fragments = $story->fragments->slice(0, 3);
@@ -40,9 +44,10 @@ class StoryController extends Controller
 	 */
 	public function show(int $id)
 	{
-		return new StoryResource(Story::findOrFail($id)
-			->load(['user', 'tags', 'fragments', 'composition', 'descriptions'])
-		);
+		$story = Story::findOrFail($id)->load(['user', 'tags', 'fragments', 'composition', 'descriptions']);
+		event(new ViewProcessed($story));
+		
+		return new StoryResource($story);
 	}
 	
 	/**
@@ -66,6 +71,9 @@ class StoryController extends Controller
 			$story->tags()->attach($request->get('tags'));
 		}
 		
+		event(new NewsProcessed($story, News::ACTION_CREATE));
+		event(new RewardProcessed($story));
+		
 		return (new StoryResource($story))
 			->response()
 			->setStatusCode(201);
@@ -83,9 +91,12 @@ class StoryController extends Controller
 		 */
 		$story = Story::findOrFail($id)
 			->with(['tags', 'descriptions'])
-			->update($request->all())
+			->first()
 			->syncTags($request->get('tags'))
-			->syncDescriptions($request->get('descriptions'));
+			->syncDescriptions($request->get('descriptions'))
+			->update($request->all());
+		
+		event(new NewsProcessed($story, News::ACTION_UPDATE));
 		
 		return (new StoryResource($story))
 			->response()
@@ -107,6 +118,6 @@ class StoryController extends Controller
 		
 		return (new JsonResource(collect($id)))
 			->response()
-			->setStatusCode(200);
+			->setStatusCode(204);
 	}
 }

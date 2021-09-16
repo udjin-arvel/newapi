@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Contracts\RewardContract;
-use App\Models\Traits\ScopeOwn;
 use App\Models\Traits\UserRelation;
 
 /**
@@ -18,8 +17,7 @@ use App\Models\Traits\UserRelation;
  */
 class Correction extends AbstractModel
 {
-    use UserRelation,
-        ScopeOwn;
+    use UserRelation;
     
     /**
      * Статусы исправлений

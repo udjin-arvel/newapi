@@ -152,9 +152,17 @@ class Achievement extends AbstractModel
         'notariat-block'   => self::ACHIEVEMENT_NOTARIAT,
         'ministoria-block' => self::ACHIEVEMENT_MINISTORIA,
     ];
-    
+	
+	/**
+	 * @var array
+	 */
     protected $fillable = [
         'achievement',
         'user_id',
     ];
+	
+	/**
+	 * @var array
+	 */
+	public $timestamps = false;
 }

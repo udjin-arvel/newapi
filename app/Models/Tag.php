@@ -21,4 +21,9 @@ class Tag extends AbstractModel
         'stem',
         'user_id',
     ];
+	
+	/**
+	 * @var array
+	 */
+	public $timestamps = ['updated_at'];
 }

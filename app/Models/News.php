@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Traits\Contentable;
+
 /**
  * Class News
  * @package App\Models
@@ -13,6 +15,8 @@ namespace App\Models;
  */
 class News extends AbstractModel
 {
+	use Contentable;
+	
     /**
      * Контект, который имеет комментарии
      */
@@ -37,8 +41,14 @@ class News extends AbstractModel
       'content_id',
       'content_type',
       'text',
+      'action',
       'updated_at',
     ];
+	
+	/**
+	 * @var array
+	 */
+	public $timestamps = ['updated_at'];
 	
 	/**
 	 * Получить текст новости

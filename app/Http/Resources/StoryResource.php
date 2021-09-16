@@ -18,11 +18,14 @@ class StoryResource extends BaseResource
      */
     public function toArray($request)
     {
+    	// $this->when(Auth::user()->isAdmin(), 'secret-value')
     	$data = [
 		    'title'          => $this->title,
 		    'chapter'        => $this->chapter,
 		    'epigraph'       => $this->epigraph,
 		    'type'           => $this->type,
+		    'likes'          => LikeResource::collection($this->likesAndDislikes),
+		    'liked'          => $this->liked,
 		    'is_public'      => (bool) $this->is_public,
 		    'composition'    => CompositionResource::make($this->composition),
 		    'fragments'      => FragmentResource::collection($this->fragments),

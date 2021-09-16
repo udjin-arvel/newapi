@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\Traits\Contentable;
 use App\Models\Traits\UserRelation;
+use Cog\Likeable\Models\Like;
 
 /**
  * Class Reward
@@ -16,8 +18,11 @@ use App\Models\Traits\UserRelation;
  */
 class Reward extends AbstractModel
 {
-    use UserRelation;
+    use UserRelation, Contentable;
     
+	/**
+	 * @var array
+	 */
     protected $fillable = [
       'content_id',
       'content_type',
@@ -26,93 +31,90 @@ class Reward extends AbstractModel
     ];
     
     /**
-     * Типы наград
+     * @var array
      */
-    const TYPES = [
-        'view'         => [
-            'class'      => View::class,
-            'title'      => 'Просмотр истории, понятия или элемента лора',
-            'exp_amount' => 10,
-        ],
-        'story'        => [
-            'class'      => Story::class,
-            'title'      => 'Создание истории',
-            'exp_amount' => 750,
-        ],
-        'notion'       => [
-            'class'      => Notion::class,
-            'title'      => 'Создание понятия',
-            'exp_amount' => 500,
-        ],
-        'composition'  => [
-            'class'      => Composition::class,
-            'title'      => 'Создание книги или серии',
-            'exp_amount' => 250,
-        ],
-        'note'         => [
-            'class'      => Note::class,
-            'title'      => 'Создание заметки',
-            'exp_amount' => 50,
-        ],
-        'comment'      => [
-            'class'      => Comment::class,
-            'title'      => 'Оставление коммента',
-            'exp_amount' => 50,
-        ],
-        'correction'   => [
-            'class'      => Correction::class,
-            'title'      => 'Внесение исправления',
-            'exp_amount' => 100,
-        ],
-        'image'        => [
-            'class'      => Image::class,
-            'title'      => 'Добавление изображения к книге, серии, понятию или элементу лора',
-            'exp_amount' => 10,
-        ],
-        'like'         => [
-            'class'      => Like::class,
-            'title'      => 'Добавление лайка',
-            'exp_amount' => 10,
-        ],
-        'dislike'      => [
-            'class'      => Like::class,
-            'title'      => 'Добавление дизлайка',
-            'exp_amount' => 5,
-        ],
-        'tag'          => [
-            'class'      => Tag::class,
-            'title'      => 'Добавление тега к истории, понятию или элементу лора',
-            'exp_amount' => 50,
-        ],
-        'subscription' => [
-            'class'      => Subscription::class,
-            'title'      => 'Подписка на контент',
-            'exp_amount' => 10,
-        ],
-        'connection'   => [
-            'class'      => Connection::class,
-            'title'      => 'Предложить связь между историями',
-            'exp_amount' => 100,
-        ],
-        'short'        => [
-            'class'      => Short::class,
-            'title'      => 'Добавить краткий сюжет',
-            'exp_amount' => 1000,
-        ],
-    ];
+	const TYPES = [
+		'view'         => 'Просмотр истории, понятия или элемента лора',
+		'story'        => 'Создание истории',
+		'notion'       => 'Создание понятия',
+		'composition'  => 'Создание книги или серии',
+		'note'         => 'Создание заметки',
+		'comment'      => 'Оставление коммента',
+		'correction'   => 'Внесение исправления',
+		'image'        => 'Добавление изображения к книге, серии, понятию или элементу лора',
+		'like'         => 'Добавление лайка',
+		'dislike'      => 'Добавление дизлайка',
+		'tag'          => 'Добавление тега к истории, понятию или элементу лора',
+		'subscription' => 'Подписка на контент',
+		'short'        => 'Добавить краткий сюжет',
+		'description'  => 'Добавить описание персонажа, места или события',
+		'blank'        => 'Добавить заготовку для сюжета',
+		'fragment'     => 'Добавить фрагмент к истории или другому контенту',
+	];
 	
 	/**
-	 * @param string $className
+	 * @var array
+	 */
+	const TYPE_IN_CLASS = [
+		'view'         => View::class,
+		'story'        => Story::class,
+		'notion'       => Notion::class,
+		'composition'  => Composition::class,
+		'note'         => Note::class,
+		'comment'      => Comment::class,
+		'correction'   => Correction::class,
+		'image'        => Image::class,
+		'like'         => Like::class,
+		'dislike'      => Like::class,
+		'tag'          => Tag::class,
+		'subscription' => Subscription::class,
+		'short'        => Short::class,
+		'description'  => Description::class,
+		'blank'        => Blank::class,
+		'fragment'     => Fragment::class,
+	];
+    
+	/**
+	 * @var array
+	 */
+	const REWARD_FOR_TYPE = [
+		'view'         => 10,
+		'story'        => 750,
+		'notion'       => 500,
+		'composition'  => 250,
+		'note'         => 50,
+		'comment'      => 50,
+		'correction'   => 100,
+		'image'        => 10,
+		'like'         => 10,
+		'dislike'      => 5,
+		'tag'          => 50,
+		'subscription' => 20,
+		'short'        => 1000,
+		'description'  => 100,
+		'blank'        => 50,
+		'fragment'     => 10,
+	];
+	
+	/**
+	 * Размер опыта за действие
+	 *
+	 * @param string $type
 	 * @return int
 	 */
-	public static function getRewardAmountByClassName(string $className): int
-	{
-		foreach (self::TYPES as $type) {
-			if ($type['class'] === $className) {
-				return $type['exp_amount'];
-			}
-		}
-		
-		return 0;
+    public static function getExpAmountByType(string $type): int
+    {
+    	return self::REWARD_FOR_TYPE[$type] ?? 1;
     }
+	
+	/**
+	 * Получить тип по классу модели
+	 *
+	 * @param string $className
+	 * @return string
+	 */
+	public static function getTypeByClassName(string $className): string
+	{
+		return array_flip(self::TYPE_IN_CLASS)[$className] ?? '';
+	}
 }

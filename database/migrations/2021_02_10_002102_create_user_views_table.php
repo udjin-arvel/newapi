@@ -17,7 +17,7 @@ class CreateUserViewsTable extends Migration
             $table->bigIncrements('id');
     
             $table->unsignedBigInteger('content_id');
-            $table->unsignedTinyInteger('content_type');
+            $table->string('content_type');
     
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

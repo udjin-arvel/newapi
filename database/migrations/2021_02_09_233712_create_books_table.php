@@ -30,7 +30,7 @@ class CreateBooksTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
     
             $table->softDeletes();
-            $table->timestamps();
+	        $table->timestamp('updated_at');
         });
     }
 

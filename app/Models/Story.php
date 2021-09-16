@@ -35,8 +35,10 @@ use Cog\Likeable\Traits\Likeable;
  * @property string $epigraph
  * @property string $type
  * @property bool   $is_public
+ * @property bool   $liked
  * @property int    $user_id
  * @property int    $composition_id
+ * @property array  $likesAndDislikes
  *
  * @property User $user
  * @property array $fragments
@@ -49,6 +51,7 @@ class Story extends AbstractModel implements LikeableContract
         UserRelation,
         Likeable,
         Taggable,
+        Commentable,
 	    Descriptionable;
     
 	/**

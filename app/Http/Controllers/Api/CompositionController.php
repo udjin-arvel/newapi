@@ -26,7 +26,7 @@ class CompositionController extends Controller
 	{
 		return CompositionResource::collection(
 			Composition::filter($filter)
-				->with(['user', 'tags'])
+				->with(['user', 'tags', 'likes'])
 				->get()
 		);
 	}

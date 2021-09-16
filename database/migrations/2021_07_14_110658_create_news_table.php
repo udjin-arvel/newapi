@@ -19,8 +19,9 @@ class CreateNewsTable extends Migration
             $table->unsignedBigInteger('content_id');
             $table->string('content_type');
             $table->string('text');
-            
-            $table->timestamps();
+            $table->string('action', 64);
+	
+	        $table->timestamp('updated_at');
         });
     }
 

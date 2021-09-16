@@ -26,7 +26,7 @@ trait Descriptionable
 	 * Синхронизировать описания модели с указанными описаниями
 	 *
 	 * @param array|null $descriptions
-	 * @return AbstractModel
+	 * @return Descriptionable|AbstractModel
 	 */
 	public function syncDescriptions(?array $descriptions)
 	{

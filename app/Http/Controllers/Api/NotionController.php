@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\NotionRequest;
 use App\Http\Resources\NotionResource;
 use App\Models\Notion;
+use App\Models\User;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**

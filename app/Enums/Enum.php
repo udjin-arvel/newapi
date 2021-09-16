@@ -8,6 +8,7 @@ use App\Models\LoreItem;
 use App\Models\Note;
 use App\Models\Notion;
 use App\Models\Story;
+use Cog\Likeable\Enums\LikeType;
 
 /**
  * Class Enum
@@ -52,6 +53,10 @@ class Enum
 			Notion::TYPE_PLACE      => 'Место',
 			Notion::TYPE_ENTITY     => 'Сущность',
 			Notion::TYPE_EVENT      => 'Событие',
+		],
+		'like' => [
+			LikeType::LIKE    => 'Понравилось',
+			LikeType::DISLIKE => 'Не понравилось',
 		],
 	];
 	

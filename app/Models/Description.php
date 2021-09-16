@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Traits\Contentable;
 use App\Models\Traits\Taggable;
 use App\Models\Traits\UserRelation;
 use App\Scopes\UserIdScope;
@@ -33,8 +34,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Description extends AbstractModel
 {
-	use UserRelation,
-		Taggable;
+	use UserRelation, Taggable, Contentable;
 	
     /**
      * Типы сюжетов

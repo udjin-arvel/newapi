@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
+use App\Models\Traits\Contentable;
 use App\Models\Traits\UserRelation;
 
 /**
- * Class UserView
+ * Class View
  * @package App\Models
  *
  * @property int    $user_id
@@ -14,19 +15,15 @@ use App\Models\Traits\UserRelation;
  */
 class View extends AbstractModel
 {
-    use UserRelation;
-
+    use UserRelation, Contentable;
+    
+	/**
+	 * @var array
+	 */
     protected $fillable = [
         'content_id',
         'content_type',
         'user_id',
+        'updated_at',
     ];
-    
-    /**
-     * Контент, которому принадлежит просмотр
-     */
-    public function content()
-    {
-        return $this->morphTo();
-    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Traits\Contentable;
 use App\Models\Traits\Taggable;
 use App\Models\Traits\UserRelation;
 use App\Scopes\UserIdScope;
@@ -24,8 +25,12 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class Note extends AbstractModel
 {
-    use UserRelation,
-	    Taggable;
+    use UserRelation, Taggable, Contentable;
+	
+	/**
+	 * @var array
+	 */
+	public $timestamps = ['updated_at'];
     
     /**
      * @return void
@@ -35,14 +40,6 @@ class Note extends AbstractModel
         parent::boot();
         static::addGlobalScope(new UserIdScope);
     }
-	
-	/**
-	 * @return \Illuminate\Database\Eloquent\Relations\MorphTo
-	 */
-	public function content()
-	{
-		return $this->morphTo();
-	}
 	
 	/**
 	 * Выбрать прикрепленные заметки

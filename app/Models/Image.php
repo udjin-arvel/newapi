@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Contracts\RewardContract;
+use App\Models\Traits\Contentable;
 use App\Models\Traits\UserRelation;
 
 /**
@@ -17,7 +17,7 @@ use App\Models\Traits\UserRelation;
  */
 class Image extends AbstractModel
 {
-    use UserRelation;
+    use UserRelation, Contentable;
     
     /**
      * Контект, которому можно добавлять картинки
@@ -28,7 +28,10 @@ class Image extends AbstractModel
         'composition' => Composition::class,
         'fragment'    => Fragment::class,
     ];
-    
+	
+	/**
+	 * @var array
+	 */
     protected $fillable = [
         'path',
         'title',
@@ -36,11 +39,9 @@ class Image extends AbstractModel
         'content_type',
         'user_id',
     ];
-    
-    /**
-     * @var array
-     */
-    protected $contracts = [
-        RewardContract::class,
-    ];
+	
+	/**
+	 * @var array
+	 */
+	public $timestamps = ['updated_at'];
 }

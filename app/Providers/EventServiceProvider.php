@@ -2,9 +2,12 @@
 
 namespace App\Providers;
 
-use App\Listeners\Crud;
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
+use App\Events\NewsProcessed;
+use App\Events\RewardProcessed;
+use App\Events\ViewProcessed;
+use App\Listeners\NewsListener;
+use App\Listeners\RewardListener;
+use App\Listeners\ViewListener;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider
@@ -14,17 +17,11 @@ class EventServiceProvider extends ServiceProvider
      *
      * @var array
      */
-    protected $listen = [
-    
-        'crud.one'    => [Crud\One::class],
-        'crud.create' => [Crud\Create::class],
-        'crud.update' => [Crud\Update::class],
-        'crud.delete' => [Crud\Delete::class],
-        
-//        Registered::class => [
-//            SendEmailVerificationNotification::class,
-//        ],
-    ];
+	protected $listen = [
+		ViewProcessed::class   => [ViewListener::class],
+		RewardProcessed::class => [RewardListener::class],
+		NewsProcessed::class   => [NewsListener::class],
+	];
 
     /**
      * Register any events for your application.

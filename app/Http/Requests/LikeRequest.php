@@ -4,6 +4,12 @@ namespace App\Http\Requests;
 
 class LikeRequest extends AbstractRequest
 {
+	
+	public function authorize()
+	{
+		return true;
+	}
+	
 	/**
 	 * Get the validation rules that apply to the request.
 	 *
@@ -14,6 +20,7 @@ class LikeRequest extends AbstractRequest
 		return [
 			'content_id'   => 'required|integer',
 			'content_type' => 'required|string',
+			'type'         => 'required|string',
 		];
 	}
 }

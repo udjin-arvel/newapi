@@ -2,32 +2,26 @@
 
 namespace App\Models;
 
+use App\Models\Traits\Contentable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Fragment
  * @package App\Models
  *
- * @property int    $story_id
+ * @property int    $content_id
+ * @property string $content_type
  * @property int    $order
  * @property string $text
  */
 class Fragment extends AbstractModel
 {
-    use SoftDeletes;
+    use SoftDeletes, Contentable;
 
     protected $fillable = [
       'text',
       'order',
-      'poster',
-      'remark',
+      'content_id',
+      'content_type',
     ];
-    
-    /**
-     * История, которой принадлежит фрагмент
-     */
-    public function story()
-    {
-        return $this->belongsTo(Composition::class);
-    }
 }

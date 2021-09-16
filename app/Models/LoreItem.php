@@ -2,11 +2,6 @@
 
 namespace App\Models;
 
-use App\Contracts\NewsContract;
-use App\Contracts\NotificationContract;
-use App\Contracts\RewardContract;
-use App\Contracts\ViewContract;
-use App\Models\Traits\ScopePublished;
 use App\Models\Traits\Taggable;
 use App\Models\Traits\UserRelation;
 
@@ -23,9 +18,11 @@ use App\Models\Traits\UserRelation;
  */
 class LoreItem extends AbstractModel
 {
-    use UserRelation,
-        Taggable;
-    
+    use UserRelation, Taggable;
+	
+	/**
+	 * @var array
+	 */
     protected $fillable = [
         'title',
         'text',
@@ -34,14 +31,9 @@ class LoreItem extends AbstractModel
         'level',
         'user_id',
     ];
-    
-    /**
-     * @var array
-     */
-    protected $contracts = [
-        ViewContract::class,
-        NewsContract::class,
-        RewardContract::class,
-        NotificationContract::class,
-    ];
+	
+	/**
+	 * @var array
+	 */
+	public $timestamps = ['updated_at'];
 }

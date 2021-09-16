@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Traits\ScopeOwn;
 use App\Models\Traits\UserRelation;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -20,8 +19,7 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class Subscription extends AbstractModel
 {
-    use UserRelation,
-        ScopeOwn;
+    use UserRelation;
     
     /**
      * Типы подписок
@@ -37,4 +35,18 @@ class Subscription extends AbstractModel
 		self::TYPE_NOTION      => 'на понятия',
 		self::TYPE_LORE_ITEM   => 'на элементы лора',
 	];
+	
+	/**
+	 * @var array
+	 */
+	public $timestamps = ['updated_at'];
+	
+	/**
+	 * Подписка на
+	 * @return \Illuminate\Database\Eloquent\Relations\MorphTo
+	 */
+	public function subscription()
+	{
+		return $this->morphTo();
+	}
 }

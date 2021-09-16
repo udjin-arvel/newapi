@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Exceptions\TBError;
 use HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
@@ -21,9 +22,9 @@ class AbstractRequest extends FormRequest
 	 * Send 422 Response if Validator fails.
 	 *
 	 * @param Validator $validator
-	 * @throws HttpResponseException
+	 * @return \Illuminate\Http\JsonResponse
 	 */
 	protected function failedValidation(Validator $validator) {
-		throw new HttpResponseException(response()->json($validator->errors(), 422));
+		return response()->json($validator->errors(), 422);
 	}
 }

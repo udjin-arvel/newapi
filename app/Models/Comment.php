@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Traits\Contentable;
 use App\Models\Traits\UserRelation;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -17,16 +18,7 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class Comment extends AbstractModel
 {
-    use UserRelation;
-    
-    /**
-     * Контект, который имеет комментарии
-     */
-    const TYPES = [
-        'story'    => Story::class,
-        'notion'   => Notion::class,
-        'loreitem' => LoreItem::class,
-    ];
+    use UserRelation, Contentable;
     
     protected $fillable = [
         'text',

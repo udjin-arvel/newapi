@@ -25,7 +25,7 @@ trait Taggable {
 	/**
 	 * Синхронизировать теги модели с указанными тегами
 	 * @param array|null $ids
-	 * @return AbstractModel
+	 * @return AbstractModel|Taggable
 	 */
 	public function syncTags(?array $ids)
 	{
