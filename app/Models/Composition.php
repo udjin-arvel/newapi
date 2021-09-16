@@ -7,6 +7,7 @@ use App\Contracts\RewardContract;
 use App\Models\Interfaces\PosterableInterface;
 use App\Models\Traits\Posterable;
 use App\Models\Traits\ScopeOwn;
+use App\Models\Traits\Taggable;
 use App\Models\Traits\UserRelation;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -34,11 +35,18 @@ class Composition extends AbstractModel implements PosterableInterface
 {
     use SoftDeletes,
         UserRelation,
-        Posterable,
-        ScopeOwn;
-
+        Taggable;
+	
+	/**
+	 * Типы композиций
+	 */
     const TYPE_BOOK   = 'type-book';
     const TYPE_SERIES = 'type-series';
+	
+	const TYPES = [
+		self::TYPE_BOOK   => 'Книга',
+		self::TYPE_SERIES => 'Серия',
+	];
 	
 	/**
 	 * @var array
@@ -92,5 +100,21 @@ class Composition extends AbstractModel implements PosterableInterface
 		}
 		
 		return $query->where('parent_id', $parentId);
+	}
+	
+	/**
+	 * @return mixed
+	 */
+	public function storePoster()
+	{
+		// TODO: Implement storePoster() method.
+	}
+	
+	/**
+	 * @return mixed
+	 */
+	public function deletePoster()
+	{
+		// TODO: Implement deletePoster() method.
 	}
 }

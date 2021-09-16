@@ -27,6 +27,8 @@ class CommentResource extends JsonResource
             'parent_id'    => $this->parent_id,
             'content_id'   => $this->content_id,
             'content_type' => $this->content_type,
+            'children'     => CommentResource::collection($this->children),
+	        'user'         => new UserResource($this->user),
         ];
     }
 }

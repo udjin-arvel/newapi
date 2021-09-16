@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Traits\Taggable;
 use App\Models\Traits\UserRelation;
 use App\Scopes\UserIdScope;
 use Illuminate\Database\Eloquent\Builder;
@@ -23,7 +24,8 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class Note extends AbstractModel
 {
-    use UserRelation;
+    use UserRelation,
+	    Taggable;
     
     /**
      * @return void

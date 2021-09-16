@@ -7,6 +7,7 @@ use App\Contracts\NotificationContract;
 use App\Contracts\RewardContract;
 use App\Contracts\ViewContract;
 use App\Models\Traits\ScopePublished;
+use App\Models\Traits\Taggable;
 use App\Models\Traits\UserRelation;
 
 /**
@@ -23,7 +24,7 @@ use App\Models\Traits\UserRelation;
 class LoreItem extends AbstractModel
 {
     use UserRelation,
-        ScopePublished;
+        Taggable;
     
     protected $fillable = [
         'title',

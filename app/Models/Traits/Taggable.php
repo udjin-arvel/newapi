@@ -2,6 +2,7 @@
 
 namespace App\Models\Traits;
 
+use App\Models\AbstractModel;
 use App\Models\Tag;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
@@ -23,11 +24,18 @@ trait Taggable {
 	
 	/**
 	 * Синхронизировать теги модели с указанными тегами
-	 * @param array $ids
+	 * @param array|null $ids
+	 * @return AbstractModel
 	 */
-	public function syncTags($ids)
+	public function syncTags(?array $ids)
 	{
-		$this->tags()->whereNotIn('tag_id', $ids)->detach();
-		$this->tags()->attach($ids);
+		if ($ids) {
+			$this->tags()->whereNotIn('tag_id', $ids)->detach();
+			$this->tags()->attach($ids);
+		} else {
+			$this->tags()->detach();
+		}
+		
+		return $this;
 	}
 }

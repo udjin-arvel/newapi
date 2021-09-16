@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\Traits\Taggable;
 use App\Models\Traits\UserRelation;
+use App\Scopes\UserIdScope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -29,9 +31,10 @@ use Illuminate\Database\Eloquent\Model;
  * @method static Builder|Description characters()
  * @method static Builder|Description places()
  */
-class Description extends Model
+class Description extends AbstractModel
 {
-	use UserRelation;
+	use UserRelation,
+		Taggable;
 	
     /**
      * Типы сюжетов
@@ -44,6 +47,21 @@ class Description extends Model
 		self::TYPE_PLOT      => 'Описание сюжета',
 		self::TYPE_PLACE     => 'Описание места',
 		self::TYPE_CHARACTER => 'Описание персонажа',
+	];
+	
+	/**
+	 * @var array
+	 */
+	protected $fillable = [
+		'text',
+		'title',
+		'type',
+		'user_id',
+		'content_id',
+		'content_type',
+		'importance',
+		'is_public',
+		'realized_at',
 	];
 	
 	/**

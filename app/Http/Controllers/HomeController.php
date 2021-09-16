@@ -2,17 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\UpdateNotifications;
-use App\Http\Controllers\Api\NotionController;
-use App\Models\Book;
-use App\Models\Description;
-use App\Models\Notification;
-use App\Models\Story;
-use App\Models\StoryComment;
-use App\Models\Subscription;
-use App\Repositories\NotionRepository;
-use App\Repositories\SeriesRepository;
-use App\Repositories\StoryRepository;
 use Illuminate\Contracts\Support\Renderable;
 
 class HomeController extends Controller
@@ -47,11 +36,10 @@ class HomeController extends Controller
      */
     public function run()
     {
-        
-        $d = new NotionController;
-        
-        dd($d);
-        
+	    $routes = app()->get('enum')->all(true);
+	    
+	    dd($routes);
+	    
         exit;
     }
 }

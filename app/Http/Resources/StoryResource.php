@@ -18,17 +18,22 @@ class StoryResource extends BaseResource
      */
     public function toArray($request)
     {
-        return array_merge(parent::toArray($request), [
-            'title'          => $this->title,
-            'chapter'        => $this->chapter,
-            'epigraph'       => $this->epigraph,
-            'composition_id' => $this->composition_id,
-            'type'           => $this->type,
-            'is_public'   => (bool) $this->is_public,
-            'fragments'      => $this->fragments,
-            'notions'        => $this->notions,
-            'remarks'        => $this->remarks,
-            'tags'           => $this->tags,
-        ]);
+    	$data = [
+		    'title'          => $this->title,
+		    'chapter'        => $this->chapter,
+		    'epigraph'       => $this->epigraph,
+		    'type'           => $this->type,
+		    'is_public'      => (bool) $this->is_public,
+		    'composition'    => CompositionResource::make($this->composition),
+		    'fragments'      => FragmentResource::collection($this->fragments),
+		    'user'           => UserResource::make($this->user),
+		    'tags'           => TagResource::collection($this->tags),
+	    ];
+    	
+    	if ($this->user->canRedact($this)) {
+		    $data['descriptions'] = DescriptionResource::collection($this->descriptions);
+	    }
+    	
+        return array_merge(parent::toArray($request), $data);
     }
 }

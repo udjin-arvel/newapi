@@ -4,28 +4,28 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Filters\CompositionFilter;
-use App\Http\Requests\CompositionPostRequest;
-use App\Http\Requests\CompositionRequest;
-use App\Http\Resources\CompositionResource;
-use App\Models\Composition;
+use App\Http\Filters\DescriptionFilter;
+use App\Http\Requests\DescriptionRequest;
+use App\Http\Resources\DescriptionResource;
+use App\Models\Description;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
- * Class StoryController
+ * Class DescriptionController
  * @package App\Http\Controllers\Api
  *
  * @property mixed $input
  */
-class CompositionController extends Controller
+class DescriptionController extends Controller
 {
 	/**
 	 * @param CompositionFilter $filter
 	 * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
 	 */
-	public function index(CompositionFilter $filter)
+	public function index(DescriptionFilter $filter)
 	{
-		return CompositionResource::collection(
-			Composition::filter($filter)
+		return DescriptionResource::collection(
+			Description::filter($filter)
 				->with(['user', 'tags'])
 				->get()
 		);
@@ -33,46 +33,46 @@ class CompositionController extends Controller
 	
 	/**
 	 * @param int $id
-	 * @return CompositionResource
+	 * @return DescriptionResource
 	 */
 	public function show(int $id)
 	{
-		return new CompositionResource(
-			Composition::findOrFail($id)->load(['user', 'tags'])
+		return new DescriptionResource(
+			Description::findOrFail($id)->load(['user', 'tags'])
 		);
 	}
 	
 	/**
-	 * @param CompositionRequest $request
+	 * @param DescriptionRequest $request
 	 * @return \Illuminate\Http\JsonResponse
 	 */
-	public function store(CompositionRequest $request)
+	public function store(DescriptionRequest $request)
 	{
-		$loreItem = Composition::create($request->all());
+		$loreItem = Description::create($request->all());
 		
 		if ($request->has('tags')) {
 			$loreItem->tags()->attach($request->get('tags'));
 		}
 		
-		return (new CompositionResource($loreItem))
+		return (new DescriptionResource($loreItem))
 			->response()
 			->setStatusCode(201);
 	}
 	
 	/**
-	 * @param CompositionRequest $request
+	 * @param DescriptionRequest $request
 	 * @param int $id
 	 * @return \Illuminate\Http\JsonResponse
 	 */
-	public function update(CompositionRequest $request, int $id)
+	public function update(DescriptionRequest $request, int $id)
 	{
-		$notion = Composition::findOrFail($id)->update($request->all());
+		$notion = Description::findOrFail($id)->update($request->all());
 		
 		if ($request->has('tags')) {
 			$notion->syncTags($request->get('tags'));
 		}
 		
-		return (new CompositionResource($notion))
+		return (new DescriptionResource($notion))
 			->response()
 			->setStatusCode(201);
 	}
@@ -84,7 +84,7 @@ class CompositionController extends Controller
 	 */
 	public function destroy(int $id)
 	{
-		Composition::findOrFail($id)->delete();
+		Description::findOrFail($id)->delete();
 		return (new JsonResource(collect($id)))
 			->response()
 			->setStatusCode(200);

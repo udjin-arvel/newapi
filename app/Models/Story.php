@@ -23,7 +23,7 @@ use Cog\Likeable\Traits\Likeable;
  * @package App\Models
  *
  * @method static Builder|Story published()
- * @method static Builder|Story withComposition()
+ * @method static Builder|Story compositionExist()
  * @method static Builder|Story own()
  * @method static Builder|Story byCompositionId(int $compositionId)
  * @method static Builder|Story uniqueUsers()
@@ -37,53 +37,51 @@ use Cog\Likeable\Traits\Likeable;
  * @property bool   $is_public
  * @property int    $user_id
  * @property int    $composition_id
- * @property User   $user
+ *
+ * @property User $user
+ * @property array $fragments
+ * @property array $descriptions
+ * @property Composition $composition
  */
 class Story extends AbstractModel implements LikeableContract
 {
     use SoftDeletes,
         UserRelation,
-        ScopeOwn,
-        ScopePublished,
         Likeable,
-        Commentable,
-	    Descriptionable,
-        Taggable;
-
+        Taggable,
+	    Descriptionable;
+    
+	/**
+	 * Типы историй
+	 */
     const TYPE_STORY    = 'type-story';
-    const TYPE_ANNOUNCE = 'type-announce';
-    
-    /**
-     * @var array
-     */
-    protected $contracts = [
-        ViewContract::class,
-        NewsContract::class,
-        RewardContract::class,
-        NotificationContract::class,
-    ];
-
-    protected $fillable = [
-        'title',
-        'chapter',
-        'epigraph',
-        'is_public',
-        'book_id',
-        'series_id',
-        'user_id',
-        'type',
-    ];
-
-    protected $related = [
-        'fragments',
-        'comments',
-        'tags',
-        'composition',
-        'user',
-        'likes',
-    ];
-    
-    /**
+	const TYPE_ANNOUNCE = 'type-announce';
+	
+	const TYPES = [
+		self::TYPE_STORY    => 'История',
+		self::TYPE_ANNOUNCE => 'Анонс',
+	];
+	
+	/**
+	 * @var array
+	 */
+	protected $fillable = [
+		'title',
+		'type',
+		'chapter',
+		'eon',
+		'epigraph',
+		'is_public',
+		'composition_id',
+		'user_id',
+	];
+	
+	/**
+	 * @var array
+	 */
+	public $timestamps = ['updated_at'];
+	
+	/**
      * Композиция, которой принадлежит история.
      */
     public function composition()
@@ -118,7 +116,7 @@ class Story extends AbstractModel implements LikeableContract
      * @param Builder $query
      * @return Builder
      */
-    public function scopeWithComposition(Builder $query)
+    public function scopeCompositionExist(Builder $query)
     {
         return $query->where('composition_id', '!=', null);
     }

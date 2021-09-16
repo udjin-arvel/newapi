@@ -2,53 +2,34 @@
 
 namespace Tests\Fixtures;
 
-use App\Models\Story;
-
-class StoryFixture
+class StoryFixture extends BaseFixture
 {
-    const storyFeature1 = [
-        'id'             => null,
-        'title'          => 'Новая история',
-        'chapter'        => 2,
-        'epigraph'       => 'Какой-то эпиграф',
-        'is_public'   => true,
-        'composition_id' => null,
-        'user_id'        => 1,
-        'type'           => Story::TYPE_STORY,
-        'fragments'      => [
-            [
-                'text'  => 'Фрагмент 1',
-                'order' => 1,
-            ],
-            [
-                'text'  => 'Фрагмент 2',
-                'order' => 2,
-            ],
-        ],
-    ];
-
-    const storyFeature2 = [
-        'title'          => 'Новая история',
-        'chapter'        => 2,
-        'epigraph'       => 'Какой-то эпиграф',
-        'is_public'   => true,
-        'composition_id' => 1,
-        'user_id'        => 1,
-        'type'           => Story::TYPE_STORY,
-        'fragments' => [
-            [
-                'text'  => 'Фрагмент 1',
-                'order' => 1,
-            ],
-            [
-                'text'  => 'Фрагмент 2',
-                'order' => 2,
-            ],
-        ],
-    
-        'tags' => [
-            1,
-            20,
-        ],
-    ];
+	/**
+	 * @var array
+	 */
+	protected $template = [
+		'title'          => 'string',
+		'chapter'        => 'number|5:30',
+		'epigraph'       => 'text|100',
+		'is_public'      => 'boolean',
+		'composition_id' => 'id|composition',
+		'user_id'        => 'id|user',
+		'type'           => 'type|story',
+		'tags'           => 'ids|tag|1:5',
+		
+		'fragments|3:15' => [
+			'text'  => 'text|200',
+			'order' => 'number|20',
+		],
+		
+		'descriptions|1:5' => [
+			'title'        => 'string',
+			'type'         => 'type|description',
+			'text'         => 'text|200',
+			'content_id'   => 'id|story',
+			'content_type' => 'class|story',
+			'user_id'      => 'id|user',
+			'is_public'    => 'boolean',
+		],
+	];
 }

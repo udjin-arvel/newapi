@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Exceptions\TBError;
+use App\Models\Traits\HasRolesAndPermissions;
 use Illuminate\Database\Eloquent\Relations\BelongsTo as BelongsToAlias;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Builder;
@@ -15,7 +16,6 @@ use Laravel\Passport\HasApiTokens;
  * Class User
  * @package App\Models
  *
- * @property Player $player
  * @property int    $id
  * @property string $name
  * @property string $login
@@ -33,7 +33,6 @@ use Laravel\Passport\HasApiTokens;
  * @property string $full_name
  * @property int    $clan
  * @property mixed  $subscriptions
- * @property int    $player_id
  * @property array  $stories
  * @property bool   $subscribe_on_notions
  *
@@ -52,8 +51,9 @@ class User extends Authenticatable
     /**
      * Статус пользователя
      */
-    const STATUS_USER      = 'user';
+    const STATUS_READER    = 'reader';
     const STATUS_WRITER    = 'writer';
+    const STATUS_CORRECTOR = 'corrector';
     const STATUS_MODERATOR = 'moderator';
     const STATUS_ADMIN     = 'admin';
     
@@ -62,51 +62,6 @@ class User extends Authenticatable
      */
     const GENDER_FEMALE = 0;
     const GENDER_MALE   = 1;
-
-    /**
-     * @static
-     */
-    public static function boot()
-    {
-        parent::boot();
-
-        self::created(function(self $model) {
-            $model->createPlayer();
-        });
-    }
-
-    /**
-     * Пользователь, что создал книгу
-     * @return BelongsToAlias
-     */
-    public function player()
-    {
-        return $this->belongsTo(Player::class);
-    }
-
-    /**
-     * @return HasMany
-     */
-    public function views()
-    {
-        return $this->hasMany(View::class);
-	}
-    
-    /**
-     * @return HasMany
-     */
-    public function rewards()
-    {
-        return $this->hasMany(Reward::class);
-    }
-
-    /**
-     * @return HasMany
-     */
-    public function subscriptions()
-    {
-        return $this->hasMany(Subscription::class);
-    }
 
     /**
      * The attributes that are mass assignable.
@@ -137,31 +92,42 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    /**
-     * Создание эксземпляра Player для пользователя
-     *
-     * @return Player
-     * @throws TBError
-     */
-    public function createPlayer()
+	
+	/**
+	 * Проверка может ли пользователь редактировать данный контент
+	 *
+	 * @param mixed $content
+	 * @return bool
+	 */
+    public function canRedact($content): bool
     {
-        if (!empty($this->player)) {
-            return $this->player;
-        }
-
-        $player = new Player;
-        if (!$player->save()) {
-            throw new TBError(TBError::SAVE_ERROR);
-        }
-
-        $this->player_id = $player->id;
-        if (!$this->save()) {
-            throw new TBError(TBError::SAVE_ERROR);
-        }
-
-        return $player;
+    	return !empty($content->user_id)
+		    && ($content->user_id === $this->id || in_array($this->status, [self::STATUS_ADMIN, self::STATUS_MODERATOR]));
     }
+    
+	/**
+	 * @return HasMany
+	 */
+	public function views()
+	{
+		return $this->hasMany(View::class);
+	}
+	
+	/**
+	 * @return HasMany
+	 */
+	public function rewards()
+	{
+		return $this->hasMany(Reward::class);
+	}
+	
+	/**
+	 * @return HasMany
+	 */
+	public function subscriptions()
+	{
+		return $this->hasMany(Subscription::class);
+	}
 
     /**
      * @return array

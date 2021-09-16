@@ -12,7 +12,7 @@ use App\Models\Notion;
  * Class BookController
  * @package App\Http\Controllers\Api
  */
-class BaseController extends Controller
+class SiteController extends Controller
 {
     /**
      * Получить базовые данные для TheBook

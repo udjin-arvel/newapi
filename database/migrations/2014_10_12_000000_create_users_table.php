@@ -23,6 +23,8 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('login', 64)->default(User::DEFAULT_LOGIN);
             $table->string('status', 24)->default(User::STATUS_USER);
+	        $table->unsignedSmallInteger('level')->default(1);
+	        $table->unsignedBigInteger('experience')->default(0);
             $table->string('poster')->nullable();
             $table->unsignedTinyInteger('age')->nullable();
             $table->boolean('sex')->nullable();

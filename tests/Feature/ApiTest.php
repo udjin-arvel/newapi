@@ -2,17 +2,48 @@
 
 namespace Tests\Feature;
 
+use Illuminate\Foundation\Testing\WithFaker;
 use Tests\Fixtures\CompositionFixture;
 use Tests\Fixtures\NotionFixture;
-use Tests\Fixtures\StoryFixture;
 use App\Models\User;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
+use Tests\Fixtures\StoryFixture;
 use Tests\TestCase;
 
 class ApiTest extends TestCase
 {
-    use WithoutMiddleware;
+    use WithFaker;
+	    //WithoutMiddleware;
+    
+	/**
+	 * @var User
+	 */
+    protected $admin;
 	
+	/**
+	 * Setup the test environment.
+	 */
+    protected function setUp(): void
+    {
+	    parent::setUp();
+	
+	    $this->setUpFaker();
+	    $this->setUpUser();
+    }
+	
+	/**
+	 * Установить юзера
+	 * Передать status, если нужен пользователь других полномочий
+	 *
+	 * @param string $status
+	 * @return ApiTest
+	 */
+    protected function setUpUser(string $status = User::STATUS_ADMIN): self
+    {
+	    $this->admin = User::where('status', $status)->first();
+	    return $this;
+    }
+    
 	/**
 	 * @param $response
 	 * @return mixed
@@ -24,19 +55,21 @@ class ApiTest extends TestCase
     }
     
     /**
+     *
      */
     public function getCommentsTest()
     {
         $response = $this
-            ->withoutExceptionHandling()
-            ->actingAs(User::findOrFail(1))
-            ->getJson('/api/comment/all?content_type=story&content_id=1')
+            ->actingAs($this->admin)
+            ->getJson('/api/comments?content_type=story&content_id=1')
         ;
         
+        $this->getResultFromResponse($response);
         $response->assertStatus(200);
     }
     
     /**
+     *
      */
     public function getNotesTest()
     {
@@ -50,7 +83,7 @@ class ApiTest extends TestCase
     }
     
     /**
-     * @test
+     *
      */
     public function getNotionTest()
     {
@@ -64,6 +97,7 @@ class ApiTest extends TestCase
     }
 	
 	/**
+	 *
 	 */
 	public function deleteNotionTest()
 	{
@@ -90,6 +124,7 @@ class ApiTest extends TestCase
     }
 	
 	/**
+	 *
 	 */
 	public function storeNotionTest()
 	{
@@ -117,43 +152,60 @@ class ApiTest extends TestCase
     }
 
     /**
+     *
      */
     public function getStoryTest()
     {
         $response = $this
-            ->withoutExceptionHandling()
-            ->actingAs(User::findOrFail(1))
-            ->getJson('/api/story/get/1')
+            ->actingAs($this->admin)
+            ->getJson('/api/stories/1')
         ;
-
+	
+	    $this->getResultFromResponse($response);
         $response->assertStatus(200);
     }
 
     /**
+     *
      */
     public function getStoriesTest()
     {
         $response = $this
-            ->withoutExceptionHandling()
-            ->actingAs(User::findOrFail(1))
-            ->getJson('/api/story/all')
+            ->actingAs($this->admin)
+            ->getJson('/api/stories')
         ;
-
+	
+	    $this->getResultFromResponse($response);
         $response->assertStatus(200);
     }
-
-    /**
-     */
-    public function saveStoryTest()
+	
+	/**
+	 *
+	 */
+    public function storeStoryTest()
     {
         $response = $this
-            ->withoutExceptionHandling()
-            ->actingAs(User::findOrFail(1))
-            ->postJson('/api/story/save', StoryFixture::storyFeature2)
+            ->actingAs($this->admin)
+            ->postJson('/api/stories', StoryFixture::getFixture($this->faker))
         ;
-
-        $response->assertStatus(200);
+	
+	    $this->getResultFromResponse($response);
+        $response->assertStatus(201);
     }
+	
+	/**
+	 *
+	 */
+	public function updateStoryTest()
+	{
+		$response = $this
+			->actingAs($this->admin)
+			->putJson('/api/stories/1', StoryFixture::getFixture($this->faker, ['descriptions']))
+		;
+		
+		$this->getResultFromResponse($response);
+		$response->assertStatus(201);
+	}
 	
 	/**
 	 */
@@ -163,6 +215,19 @@ class ApiTest extends TestCase
 			->withoutExceptionHandling()
 			->actingAs(User::findOrFail(1))
 			->postJson('/api/composition/save', CompositionFixture::feature1)
+		;
+		
+		$response->assertStatus(200);
+	}
+	
+	/**
+	 * @test
+	 */
+	public function likeContentTest()
+	{
+		$response = $this
+			->actingAs($this->admin)
+			->getJson('/api/like?content_id=1&content_type=story')
 		;
 		
 		$response->assertStatus(200);

@@ -3,6 +3,9 @@
 
 namespace App\Http\Filters;
 
+use App\Models\LoreItem;
+use App\Models\Notion;
+use App\Models\Story;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Str;
@@ -20,10 +23,23 @@ class AbstractFilter
 	private $request;
 	
 	/**
+	 * @var array
+	 */
+	protected $models = [
+		'story'    => Story::class,
+		'notion'   => Notion::class,
+		'loreItem' => LoreItem::class,
+	];
+	
+	/**
 	 * @var Builder
 	 */
 	protected $query;
 	
+	/**
+	 * AbstractFilter constructor.
+	 * @param Request $request
+	 */
 	public function __construct(Request $request)
 	{
 		$this->request = $request;

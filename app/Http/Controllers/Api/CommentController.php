@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Http\Filters\CommentFilter;
+use App\Http\Requests\CommentRequest;
 use App\Http\Resources\CommentResource;
 use App\Models\Comment;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
  * Class StoryController
@@ -12,29 +15,59 @@ use App\Models\Comment;
  *
  * @property mixed $input
  */
-class CommentController extends CrudController
+class CommentController extends Controller
 {
-    /**
-     * @return string
-     */
-    protected function getModelClass(): string
-    {
-        return Comment::class;
-    }
-    
-    /**
-     * @return string
-     */
-    protected function getResourceClass()
-    {
-        return CommentResource::class;
-    }
-    
-    /**
-     * @return CommentFilter
-     */
-    protected function getFilter()
-    {
-        return new CommentFilter;
-    }
+	/**
+	 * @param CommentFilter $filter
+	 * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+	 */
+	public function index(CommentFilter $filter)
+	{
+		return CommentResource::collection(
+			Comment::filter($filter)
+				->onlyParents()
+				->with(['user', 'children'])
+				->get()
+		);
+	}
+	
+	/**
+	 * @param CommentRequest $request
+	 * @return \Illuminate\Http\JsonResponse
+	 */
+	public function store(CommentRequest $request)
+	{
+		$comment = Comment::create($request->all());
+		
+		return (new CommentResource($comment))
+			->response()
+			->setStatusCode(201);
+	}
+	
+	/**
+	 * @param CommentRequest $request
+	 * @param int $id
+	 * @return \Illuminate\Http\JsonResponse
+	 */
+	public function update(CommentRequest $request, int $id)
+	{
+		$comment = Comment::findOrFail($id)->update($request->all());
+		
+		return (new CommentResource($comment))
+			->response()
+			->setStatusCode(201);
+	}
+	
+	/**
+	 * @param int $id
+	 * @return \Illuminate\Http\JsonResponse
+	 * @throws \Exception
+	 */
+	public function destroy(int $id)
+	{
+		Comment::findOrFail($id)->delete();
+		return (new JsonResource(collect($id)))
+			->response()
+			->setStatusCode(200);
+	}
 }

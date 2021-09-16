@@ -20,7 +20,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property array  $tags
  *
  * @method static Model|Builder filter(AbstractFilter $filters) Apply filter
- * @method static void syncTags(array $ids)
+ * @method static Builder|AbstractModel syncTags(array $ids)
+ * @method static Builder|AbstractModel syncDescriptions(array $descriptions)
+ * @method static Builder|Comment onlyParents()
+ * @method static Builder|AbstractModel ids(bool $toArray = true)
  *
  * @mixin \Eloquent
  */

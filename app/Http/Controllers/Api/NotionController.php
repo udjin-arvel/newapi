@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Filters\NotionFilter;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\NotionPostRequest;
+use App\Http\Requests\NotionRequest;
 use App\Http\Resources\NotionResource;
 use App\Models\Notion;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -42,10 +42,10 @@ class NotionController extends Controller
 	}
 	
 	/**
-	 * @param NotionPostRequest $request
+	 * @param NotionRequest $request
 	 * @return \Illuminate\Http\JsonResponse
 	 */
-	public function store(NotionPostRequest $request)
+	public function store(NotionRequest $request)
 	{
 		$notion = Notion::create($request->all());
 		
@@ -59,11 +59,11 @@ class NotionController extends Controller
 	}
 	
 	/**
-	 * @param NotionPostRequest $request
+	 * @param NotionRequest $request
 	 * @param int $id
 	 * @return \Illuminate\Http\JsonResponse
 	 */
-	public function update(NotionPostRequest $request, int $id)
+	public function update(NotionRequest $request, int $id)
 	{
 		$notion = Notion::findOrFail($id)->update($request->all());
 		

@@ -63,6 +63,53 @@ class TBError extends Exception
     const WRONG_IMAGE_MIME      = 'wrong-image-mime';
     const REPOSITORY_ERROR      = 'repository-error';
     const MODEL_ERROR           = 'model-error';
+    const LIKE_ERROR            = 'like-error';
+	
+	/**
+	 * Получить все сообщения по ошибкам
+	 * @return array
+	 */
+	public static function getErrorsMessages()
+	{
+		return [
+			self::SERVER_ERROR          => 'Ошибка сервера',
+			self::USER_NOT_CONFIRMED    => 'Акаунт не активирован. Подтвердите почту',
+			self::NOT_AUTHORIZED        => 'Сперва авторизуйтесь',
+			self::USER_NOT_FOUND        => 'Пользователь не найден',
+			self::PASSWORD_INCORRECT    => 'Неверный пароль',
+			self::USER_AUTH_FAILED      => 'Неверный логин или пароль',
+			self::USER_HAS_BEEN_BANNED  => 'Пользователь забанен',
+			self::USER_HAS_BEEN_DELETED => 'Пользователь удален',
+			self::EDIT_PROFILE_FAILED   => 'Не удалось изменить профиль',
+			self::STORY_NOT_FOUND       => 'История не найдена',
+			self::NOTE_NOT_FOUND        => 'Заметка не найдена',
+			self::DIALOG_NOT_FOUND      => 'Диалог не найден',
+			self::NOTION_NOT_FOUND      => 'Понятие не найдено',
+			self::BOOK_NOT_FOUND        => 'Книга не найдена',
+			self::CHOICE_SIDE_FAILED    => 'Не удалось выбрать сторону',
+			self::CREATE_DIALOG_FAILED  => 'Не удалось создать диалог',
+			self::REMOVE_DIALOG_FAILED  => 'Не удалось удалить диалог',
+			self::STORY_SAVE_FAILED     => 'Не удалось сохранить историю',
+			self::BOOK_SAVE_FAILED      => 'Не удалось сохранить книгу',
+			self::NOTION_SAVE_FAILED    => 'Не удалось сохранить понятие',
+			self::DATA_NOT_FOUND        => 'Некорректные данные',
+			self::CONTENT_NOT_FOUND     => 'Контент не найден',
+			self::METHOD_NOT_EXIST      => 'Метод не существует',
+			self::SAVE_ERROR            => 'Возникла ошибка при сохранении',
+			self::DELETE_ERROR          => 'Возникла ошибка при удалении',
+			self::PERMISSIONS_ERROR     => 'Ошибка доступа',
+			self::SAME_PERSON_SUBSCRIBE => 'Нельзя подписаться на себя же',
+			self::SUBSCRIPTION_EXIST    => 'Вы уже подписаны',
+			self::NOT_ENOUGH_RESOURCES  => 'Недостаточно средств',
+			self::IMPOSSIBLE_OPERATION  => 'Невозможная операция',
+			self::MASS_SAVING_ERROR     => 'Ошибка массового сохранения',
+			self::BIG_FILE              => 'Файл слишком тяжелый',
+			self::WRONG_IMAGE_MIME      => 'Нечитаемый формат изображения',
+			self::REPOSITORY_ERROR      => 'Ошибка репозитория',
+			self::MODEL_ERROR           => 'Ошибка модели',
+			self::LIKE_ERROR            => 'Ошибка в работе лайков/дизлайков',
+		];
+	}
     
     /**
      * Текущая ошибка
@@ -124,50 +171,5 @@ class TBError extends Exception
     public static function getErrorMessageByName(string $name): string
     {
         return (new TBError($name))->getErrorMessage();
-    }
-    
-    /**
-     * Получить все сообщения по ошибкам
-     * @return array
-     */
-    public static function getErrorsMessages()
-    {
-        return [
-            self::SERVER_ERROR          => 'Ошибка сервера',
-            self::USER_NOT_CONFIRMED    => 'Акаунт не активирован. Подтвердите почту',
-            self::NOT_AUTHORIZED        => 'Сперва авторизуйтесь',
-            self::USER_NOT_FOUND        => 'Пользователь не найден',
-            self::PASSWORD_INCORRECT    => 'Неверный пароль',
-            self::USER_AUTH_FAILED      => 'Неверный логин или пароль',
-            self::USER_HAS_BEEN_BANNED  => 'Пользователь забанен',
-            self::USER_HAS_BEEN_DELETED => 'Пользователь удален',
-            self::EDIT_PROFILE_FAILED   => 'Не удалось изменить профиль',
-            self::STORY_NOT_FOUND       => 'История не найдена',
-            self::NOTE_NOT_FOUND        => 'Заметка не найдена',
-            self::DIALOG_NOT_FOUND      => 'Диалог не найден',
-            self::NOTION_NOT_FOUND      => 'Понятие не найдено',
-            self::BOOK_NOT_FOUND        => 'Книга не найдена',
-            self::CHOICE_SIDE_FAILED    => 'Не удалось выбрать сторону',
-            self::CREATE_DIALOG_FAILED  => 'Не удалось создать диалог',
-            self::REMOVE_DIALOG_FAILED  => 'Не удалось удалить диалог',
-            self::STORY_SAVE_FAILED     => 'Не удалось сохранить историю',
-            self::BOOK_SAVE_FAILED      => 'Не удалось сохранить книгу',
-            self::NOTION_SAVE_FAILED    => 'Не удалось сохранить понятие',
-            self::DATA_NOT_FOUND        => 'Некорректные данные',
-            self::CONTENT_NOT_FOUND     => 'Контент не найден',
-            self::METHOD_NOT_EXIST      => 'Метод не существует',
-            self::SAVE_ERROR            => 'Возникла ошибка при сохранении',
-            self::DELETE_ERROR          => 'Возникла ошибка при удалении',
-            self::PERMISSIONS_ERROR     => 'Ошибка доступа',
-            self::SAME_PERSON_SUBSCRIBE => 'Нельзя подписаться на себя же',
-            self::SUBSCRIPTION_EXIST    => 'Вы уже подписаны',
-            self::NOT_ENOUGH_RESOURCES  => 'Недостаточно средств',
-            self::IMPOSSIBLE_OPERATION  => 'Невозможная операция',
-            self::MASS_SAVING_ERROR     => 'Ошибка массового сохранения',
-            self::BIG_FILE              => 'Файл слишком тяжелый',
-            self::WRONG_IMAGE_MIME      => 'Нечитаемый формат изображения',
-            self::REPOSITORY_ERROR      => 'Ошибка репозитория',
-            self::MODEL_ERROR           => 'Ошибка модели',
-        ];
     }
 }

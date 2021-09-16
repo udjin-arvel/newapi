@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use App\Contracts\RewardContract;
 use App\Models\Traits\UserRelation;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * Class Comment
@@ -34,11 +34,21 @@ class Comment extends AbstractModel
         'content_id',
         'content_type',
     ];
-    
-    /**
-     * @var array
-     */
-    protected $contracts = [
-        RewardContract::class,
-    ];
+	
+	/**
+	 * @param Builder $query
+	 * @return Builder
+	 */
+    public function scopeOnlyParents(Builder $query)
+    {
+	    return $query->where('parent_id', null);
+    }
+	
+	/**
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 */
+	public function children()
+	{
+		return $this->hasMany(self::class, 'parent_id');
+	}
 }

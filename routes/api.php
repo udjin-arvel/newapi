@@ -19,13 +19,10 @@ Route::get('confirm', 'Api\SiteController@confirmMail');
 Route::group(['middleware' => 'auth:api'], function() {
     
     // ------------------------ Basic routes ------------------------ //
-    Route::get('getBasicData', 'Api\BaseController@getBasicData');
+    Route::get('getBasicData', 'Api\SiteController@getBasicData');
     
     // ------------------------ Story routes ------------------------ //
-    Route::get('story/get/{id}', 'Api\StoryController@one');
-    Route::get('story/all', 'Api\StoryController@all');
-    Route::post('story/save', 'Api\StoryController@save');
-    Route::delete('story/delete/{id}', 'Api\StoryController@delete');
+	Route::resource('stories', 'Api\StoryController');
     
     // ------------------------ Notes routes ------------------------ //
     Route::get('note/all', 'Api\NoteController@all');
@@ -42,19 +39,25 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::get('composition/all', 'Api\CompositionController@all');
     Route::post('composition/save', 'Api\CompositionController@save');
     Route::delete('composition/delete/{id}', 'Api\CompositionController@delete');
+	
+	// ------------------------ Comment routes ------------------------ //
+	Route::resource('comments', 'Api\CommentController');
     
     // ------------------------ Notion routes ------------------------ //
 	Route::resource('notions', 'Api\NotionController');
+	
+	// ------------------------ Description routes ------------------------ //
+	Route::resource('descriptions', 'Api\DescriptionController');
     
     // ------------------------ Tag routes ------------------------ //
     Route::get('tag/all', 'Api\TagController@all');
     Route::post('tag/save', 'Api\TagController@save');
     Route::delete('tag/delete/{id}', 'Api\TagController@delete');
-    
-    
-    // ------------------------ Comment routes ------------------------ //
-    Route::get('comment/all', 'Api\CommentController@all');
-    Route::post('comment/save', 'Api\CommentController@save');
-    Route::delete('comment/delete/{id}', 'Api\CommentController@delete');
-    
+	
+	// ------------------------ Like routes ------------------------ //
+	Route::group(['middleware' => 'like.check'], function() {
+		Route::get('like', 'Api\LikeController@like');
+		Route::get('dislike', 'Api\LikeController@dislike');
+		Route::get('likeToggle', 'Api\LikeController@likeToggle');
+	});
 });

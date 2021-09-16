@@ -19,11 +19,11 @@ class CreateFragmentsTable extends Migration
             $table->text('text');
             $table->unsignedInteger('order');
     
-            $table->unsignedBigInteger('story_id');
-            $table->foreign('story_id')->references('id')->on('stories')->onDelete('cascade');
+            $table->unsignedBigInteger('content_id');
+	        $table->string('content_type');
     
             $table->softDeletes();
-            $table->timestamps();
+            $table->timestamp('updated_at');
         });
     }
 

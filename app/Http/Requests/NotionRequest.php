@@ -2,20 +2,8 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
-
-class NotionPostRequest extends FormRequest
+class NotionRequest extends AbstractRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return \Auth::check();
-    }
-
     /**
      * Get the validation rules that apply to the request.
      *

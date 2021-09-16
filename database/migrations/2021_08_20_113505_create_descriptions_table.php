@@ -23,7 +23,7 @@ class CreateDescriptionsTable extends Migration
 	        $table->unsignedBigInteger('content_id')->nullable();
 	        $table->string('content_type')->nullable();
 	
-	        $table->unsignedBigInteger('user_id');
+	        $table->unsignedBigInteger('user_id')->nullable();
 	        $table->foreign('user_id')->references('id')->on('users');
 	        
 	        $table->unsignedSmallInteger('importance')->default(1);
