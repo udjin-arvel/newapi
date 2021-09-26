@@ -55,15 +55,6 @@ class Subscription extends AbstractModel
 	}
 	
 	/**
-	 * Проверить является ли подписка общей, то есть, например, для любых новых понятий
-	 * @return bool
-	 */
-	private function isCommon(): bool
-	{
-		return empty($this->content_id);
-	}
-	
-	/**
 	 * Получить текст подписки
 	 * @return string
 	 */

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Facades\Enum;
 use App\Models\Traits\Contentable;
 use App\Models\Traits\UserRelation;
 use App\Scopes\UserIdScope;
@@ -51,5 +52,26 @@ class Notification extends AbstractModel
 	public function subscription()
 	{
 		return $this->belongsTo(Subscription::class);
+	}
+	
+	/**
+	 * Получить текст подписки
+	 *
+	 * @param $content
+	 * @param $user
+	 * @return string
+	 */
+	public static function getNotificationText($content, $user): string
+	{
+		$text = "Пользователь «{$user->name}» добавил ";
+		
+		switch (get_class($content)) {
+			case Notion::class:   $text .= "понятие"; break;
+			case Short::class:    $text .= "краткий сюжет"; break;
+			case LoreItem::class: $text .= "элемент лора"; break;
+			case Story::class:    $text .= "историю"; break;
+		}
+		
+		return $text . " «{$content->title}».";
 	}
 }

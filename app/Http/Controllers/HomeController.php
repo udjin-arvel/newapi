@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Console\Commands\ActualizeNotifications;
 use App\Models\Subscription;
 use Illuminate\Contracts\Support\Renderable;
 
@@ -37,11 +38,6 @@ class HomeController extends Controller
      */
     public function run()
     {
-    	
-    	$d = Subscription::find(1);
-	    
-	    dd($d->getSubscriptionText());
-	    
         exit;
     }
 }

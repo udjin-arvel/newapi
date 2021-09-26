@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Contracts\NewsContract;
 use App\Contracts\ViewContract;
+use App\Models\Scopes\PublicScope;
 use App\Models\Traits\Commentable;
 use App\Models\Traits\Descriptionable;
 use App\Models\Traits\ScopeOwn;
@@ -25,7 +26,8 @@ use Cog\Likeable\Traits\Likeable;
  * @method static Builder|Story published()
  * @method static Builder|Story compositionExist()
  * @method static Builder|Story own()
- * @method static Builder|Story byCompositionId(int $compositionId)
+ * @method static Builder|Story byCompositionId($compositionId)
+ * @method static Builder|Story byUserId($userId)
  * @method static Builder|Story uniqueUsers()
  *
  * @property string $title
@@ -52,7 +54,8 @@ class Story extends AbstractModel implements LikeableContract
         Likeable,
         Taggable,
         Commentable,
-	    Descriptionable;
+	    Descriptionable,
+	    PublicScope;
 	
 	/**
 	 * @var array
@@ -91,16 +94,32 @@ class Story extends AbstractModel implements LikeableContract
     }
 
     /**
-     * Выбрать истории, относящиеся к определенной серии или книге
+     * Выбрать истории, относящиеся к определенной серии или книге или нескольким
      *
      * @param Builder $query
-     * @param int $compositionId
+     * @param int|array $compositionIds
      * @return Builder
      */
-    public function scopeByCompositionId(Builder $query, int $compositionId)
+    public function scopeByCompositionId(Builder $query, $compositionIds)
     {
-        return $query->where('composition_id', $compositionId);
+    	return is_array($compositionIds)
+		    ? $query->whereIn('composition_id', $compositionIds)
+		    : $query->where('composition_id', $compositionIds);
     }
+	
+	/**
+	 * Выбрать истории определенного юзера/юзеров
+	 *
+	 * @param Builder $query
+	 * @param int|array $userIds
+	 * @return Builder
+	 */
+	public function scopeByUserId(Builder $query, $userIds)
+	{
+		return is_array($userIds)
+			? $query->whereIn('user_id', $userIds)
+			: $query->where('user_id', $userIds);
+	}
     
     /**
      * Выбрать истории с композицией

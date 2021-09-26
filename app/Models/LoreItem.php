@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Scopes\PublicScope;
 use App\Models\Traits\Taggable;
 use App\Models\Traits\UserRelation;
 
@@ -18,7 +19,7 @@ use App\Models\Traits\UserRelation;
  */
 class LoreItem extends AbstractModel
 {
-    use UserRelation, Taggable;
+    use UserRelation, Taggable, PublicScope;
 	
 	/**
 	 * @var array

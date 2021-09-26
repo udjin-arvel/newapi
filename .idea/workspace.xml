@@ -20,47 +20,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="24e9da2f-bf30-4a2c-9f19-81b68f84e4d5" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Enums/CompositionType.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Enums/CorrectionStatus.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Enums/DescriptionType.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Enums/NotionType.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Enums/StoryType.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Enums/SubscriptionType.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Enums/UserStatus.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Facades/Enum.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/SubscriptionController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Filters/SubscriptionFilter.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Filters/TagFilter.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Requests/SubscriptionRequest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Requests/TagRequest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Resources/NotificationResource.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Resources/SubscriptionResource.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/Scopes/PublicScope.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Enums/Enum.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Enums/Enum.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/CompositionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/CompositionController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/SiteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/SiteController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/TagController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/TagController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Console/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Kernel.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/CheckLikeTarget.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/CheckApiRequestData.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/BaseResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/BaseResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/NotionResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/NotionResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Blank.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Composition.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Composition.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Correction.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Correction.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Interfaces/PosterableInterface.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/LoreItem.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/LoreItem.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Notification.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Notification.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Notion.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Notion.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Short.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Short.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Story.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Story.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Subscription.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Subscription.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/RouteServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/RouteServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_02_10_002604_create_subscriptions_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_02_10_002604_create_subscriptions_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_02_10_002654_create_notifications_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_02_10_002654_create_notifications_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_08_30_081751_create_blanks_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/ApiTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/ApiTest.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -249,11 +219,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\OSPanel\domains\arvelov.com\app\Models\Scopes" />
       <recent name="C:\OSPanel\domains\arvelov.com\app\Enums\Interfaces" />
       <recent name="C:\OSPanel\domains\arvelov.com\app\Http" />
       <recent name="C:\OSPanel\domains\arvelov.com\resources\views\admin" />
       <recent name="C:\OSPanel\domains\arvelov.com\app\Http\Controllers\Api" />
-      <recent name="C:\OSPanel\domains\arvelov.com\app\Services\Contractor" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\OSPanel\domains\arvelov.com\app\Http\Resources" />
@@ -626,7 +596,7 @@
       <workItem from="1631708272569" duration="54710000" />
       <workItem from="1631801108048" duration="4484000" />
       <workItem from="1632600818298" duration="10587000" />
-      <workItem from="1632611686433" duration="7160000" />
+      <workItem from="1632611686433" duration="18183000" />
     </task>
     <servers />
   </component>
