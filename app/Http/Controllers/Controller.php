@@ -25,8 +25,9 @@ class Controller extends BaseController
 	 * @param mixed $data
 	 * @return \Illuminate\Http\JsonResponse
 	 */
-	public function sendSuccess($data = null)
+	public function sendSuccess($data)
 	{
+		
 		return response()->json(['success' => true, 'result' => $data], 200);
 	}
 }

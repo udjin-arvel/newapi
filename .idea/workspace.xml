@@ -20,67 +20,46 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="24e9da2f-bf30-4a2c-9f19-81b68f84e4d5" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Resources/LikeResource.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/Traits/Commentable.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/Traits/Contentable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/arvelov.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/arvelov.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Enums/CompositionType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Enums/CorrectionStatus.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Enums/DescriptionType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Enums/NotionType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Enums/StoryType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Enums/SubscriptionType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Enums/UserStatus.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Facades/Enum.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/SubscriptionController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Filters/SubscriptionFilter.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Filters/TagFilter.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Requests/SubscriptionRequest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Requests/TagRequest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Resources/NotificationResource.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Resources/SubscriptionResource.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Contracts/AbstractContract.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Contracts/NewsContract.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Contracts/NotificationContract.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Contracts/RewardContract.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Contracts/ViewContract.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Enums/Enum.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Enums/Enum.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/CompositionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/CompositionController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/LikeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/LikeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/NotionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/NotionController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/StoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/StoryController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/SiteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/SiteController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/TagController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/TagController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/CheckLikeTarget.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/CheckLikeTarget.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/AbstractRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/AbstractRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/LikeRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/LikeRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/CheckLikeTarget.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/CheckApiRequestData.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Resources/BaseResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/BaseResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/StoryResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/StoryResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Listeners/Crud/Create.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Listeners/Crud/Delete.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Listeners/Crud/One.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Listeners/Crud/Update.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/AbstractModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/AbstractModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Achievement.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Achievement.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Blank.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Blank.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Comment.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Comment.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/NotionResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/NotionResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Blank.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Composition.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Composition.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Correction.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Correction.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Description.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Description.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Fragment.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Fragment.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Image.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Image.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/LoreItem.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/LoreItem.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/News.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/News.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Note.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Note.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Notification.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Notification.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Reward.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Reward.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Short.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Short.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Story.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Story.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Subscription.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Subscription.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Tag.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Tag.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Traits/Descriptionable.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Traits/Descriptionable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Traits/Taggable.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Traits/Taggable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/View.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/View.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Policies/StoryPolicy.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/EventServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/EventServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_02_09_233712_create_books_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_02_09_233712_create_books_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_02_09_235006_create_tags_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_02_09_235006_create_tags_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_02_09_235923_create_lore_items_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_02_09_235923_create_lore_items_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_02_09_235945_create_notes_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_02_09_235945_create_notes_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_02_10_000003_create_images_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_02_10_000003_create_images_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_02_10_002102_create_user_views_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_02_10_002102_create_user_views_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/RouteServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/RouteServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/migrations/2021_02_10_002604_create_subscriptions_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_02_10_002604_create_subscriptions_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/migrations/2021_02_10_002654_create_notifications_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_02_10_002654_create_notifications_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_07_07_133155_create_achievements_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_07_07_133155_create_achievements_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_07_14_110658_create_news_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_07_14_110658_create_news_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_08_30_081751_create_blanks_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/Feature/ApiTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/ApiTest.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -260,7 +239,7 @@
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="last.edited.regexp" value=".php&#10;." />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Http/Resources" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -275,6 +254,9 @@
       <recent name="C:\OSPanel\domains\arvelov.com\resources\views\admin" />
       <recent name="C:\OSPanel\domains\arvelov.com\app\Http\Controllers\Api" />
       <recent name="C:\OSPanel\domains\arvelov.com\app\Services\Contractor" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\OSPanel\domains\arvelov.com\app\Http\Resources" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -642,6 +624,9 @@
       <workItem from="1631279327700" duration="855000" />
       <workItem from="1631351089490" duration="5396000" />
       <workItem from="1631708272569" duration="54710000" />
+      <workItem from="1631801108048" duration="4484000" />
+      <workItem from="1632600818298" duration="10587000" />
+      <workItem from="1632611686433" duration="7160000" />
     </task>
     <servers />
   </component>
@@ -749,6 +734,21 @@
           <line>142</line>
           <option name="timeStamp" value="63" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/tests/Feature/ApiTest.php</url>
+          <line>53</line>
+          <option name="timeStamp" value="65" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Http/Resources/Json/JsonResource.php</url>
+          <line>187</line>
+          <option name="timeStamp" value="74" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Http/Resources/Json/JsonResource.php</url>
+          <line>113</line>
+          <option name="timeStamp" value="78" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
@@ -756,8 +756,7 @@
         <watch expression="$user-&gt;email" language="PHP" />
       </configuration>
       <configuration name="PHPUnitRunConfigurationType">
-        <watch expression="$request-&gt;all()" language="PHP" />
-        <watch expression="$request-&gt;get('tags')" language="PHP" />
+        <watch expression="Enum::SUBSCRIPTION" language="PHP" />
       </configuration>
     </watches-manager>
   </component>

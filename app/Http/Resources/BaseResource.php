@@ -10,6 +10,12 @@ use Illuminate\Http\Resources\Json\JsonResource;
  */
 class BaseResource extends JsonResource
 {
+	/**
+	 * Дополнительные поля в ответе фронтенду
+	 * @var array
+	 */
+	public $additional = ['success' => true];
+	
     /**
      * Transform the resource into an array.
      *
@@ -18,8 +24,6 @@ class BaseResource extends JsonResource
      */
     public function toArray($request)
     {
-        return [
-	        'id' => $this->id,
-        ];
+        return ['id' => $this->id];
     }
 }

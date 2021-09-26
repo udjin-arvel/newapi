@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\Connection;
-use App\Models\Description;
-use App\Models\Enums\Targets;
+use App\Facades\Enum;
 use App\Http\Controllers\Controller;
-use App\Models\Notion;
+use App\Http\Resources\NotificationResource;
+use App\Models\Notification;
 
 /**
  * Class BookController
@@ -15,21 +14,15 @@ use App\Models\Notion;
 class SiteController extends Controller
 {
     /**
-     * Получить базовые данные для TheBook
+     * Получить базовые данные (кофиги)
      */
-    public function getBasicData()
+    public function getPresetData()
     {
         return $this->sendSuccess([
-	        'types' => [
-		        'notion'      => Notion::TYPES,
-		        'description' => Description::TYPES,
-	        ],
-            'targets' => [
-	            'content' => Targets::LIST,
-            ],
-            'statuses' => [
-                'connection' => Connection::STATUSES,
-            ],
+	        'aliases'       => Enum::aliases(),
+	        'types'         => Enum::types(),
+	        'statuses'      => Enum::statuses(),
+	        'notifications' => NotificationResource::collection(Notification::with('user')->get()),
         ]);
     }
 }

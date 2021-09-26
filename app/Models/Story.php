@@ -53,17 +53,6 @@ class Story extends AbstractModel implements LikeableContract
         Taggable,
         Commentable,
 	    Descriptionable;
-    
-	/**
-	 * Типы историй
-	 */
-    const TYPE_STORY    = 'type-story';
-	const TYPE_ANNOUNCE = 'type-announce';
-	
-	const TYPES = [
-		self::TYPE_STORY    => 'История',
-		self::TYPE_ANNOUNCE => 'Анонс',
-	];
 	
 	/**
 	 * @var array

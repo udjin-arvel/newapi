@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Filters\CompositionFilter;
-use App\Http\Requests\CompositionPostRequest;
 use App\Http\Requests\CompositionRequest;
 use App\Http\Resources\CompositionResource;
 use App\Models\Composition;

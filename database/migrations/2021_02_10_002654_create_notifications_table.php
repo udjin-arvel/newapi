@@ -20,7 +20,10 @@ class CreateNotificationsTable extends Migration
             $table->string('content_type');
             
             $table->string('message')->nullable();
-    
+	
+	        $table->unsignedBigInteger('subscription_id');
+	        $table->foreign('subscription_id')->references('id')->on('subscriptions')->onDelete('cascade');
+            
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 	

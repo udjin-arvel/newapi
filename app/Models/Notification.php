@@ -13,18 +13,12 @@ use App\Scopes\UserIdScope;
  * @property int     $content_id
  * @property string  $content_type
  * @property string  $message
+ * @property int     $subscription_id
  * @property int     $user_id
  */
 class Notification extends AbstractModel
 {
     use UserRelation, Contentable;
-    
-    const TYPES = [
-        'story'    => Story::class,
-        'notion'   => Notion::class,
-        'loreitem' => LoreItem::class,
-        'user'     => User::class,
-    ];
 	
 	/**
 	 * @var array
@@ -33,6 +27,7 @@ class Notification extends AbstractModel
         'content_id',
         'content_type',
         'message',
+        'subscription_id',
         'user_id',
     ];
 	
@@ -49,4 +44,12 @@ class Notification extends AbstractModel
         parent::boot();
         static::addGlobalScope(new UserIdScope);
     }
+	
+	/**
+	 * Подписка, на которую создано уведомление
+	 */
+	public function subscription()
+	{
+		return $this->belongsTo(Subscription::class);
+	}
 }

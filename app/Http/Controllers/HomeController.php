@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Subscription;
 use Illuminate\Contracts\Support\Renderable;
 
 class HomeController extends Controller
@@ -36,9 +37,10 @@ class HomeController extends Controller
      */
     public function run()
     {
-	    $routes = app()->get('enum')->all(true);
+    	
+    	$d = Subscription::find(1);
 	    
-	    dd($routes);
+	    dd($d->getSubscriptionText());
 	    
         exit;
     }

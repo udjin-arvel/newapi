@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Contracts\RewardContract;
+use App\Models\Traits\Contentable;
 use App\Models\Traits\UserRelation;
 
 /**
@@ -17,29 +17,5 @@ use App\Models\Traits\UserRelation;
  */
 class Correction extends AbstractModel
 {
-    use UserRelation;
-    
-    /**
-     * Статусы исправлений
-     */
-    const STATUSES = [
-        'pending'   => 'На рассмотрении',
-        'canceled'  => 'Отменено',
-        'accepted'  => 'Принято',
-    ];
-    
-    protected $fillable = [
-        'old_variant',
-        'new_variant',
-        'content_id',
-        'content_type',
-        'user_id',
-    ];
-    
-    /**
-     * @var array
-     */
-    protected $contracts = [
-        RewardContract::class,
-    ];
+    use UserRelation, Contentable;
 }

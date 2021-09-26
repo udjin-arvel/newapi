@@ -2,9 +2,6 @@
 
 namespace App\Models;
 
-use App\Contracts\NewsContract;
-use App\Contracts\RewardContract;
-use App\Models\Interfaces\PosterableInterface;
 use App\Models\Traits\Commentable;
 use App\Models\Traits\Taggable;
 use App\Models\Traits\UserRelation;
@@ -32,24 +29,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static Builder|Composition books()
  * @method static Builder|Composition series()
  */
-class Composition extends AbstractModel implements PosterableInterface, LikeableContract
+class Composition extends AbstractModel implements LikeableContract
 {
     use SoftDeletes,
 	    Likeable,
         UserRelation,
 	    Commentable,
         Taggable;
-	
-	/**
-	 * Типы композиций
-	 */
-    const TYPE_BOOK   = 'type-book';
-    const TYPE_SERIES = 'type-series';
-	
-	const TYPES = [
-		self::TYPE_BOOK   => 'Книга',
-		self::TYPE_SERIES => 'Серия',
-	];
 	
 	/**
 	 * @var array
@@ -100,21 +86,5 @@ class Composition extends AbstractModel implements PosterableInterface, Likeable
 		}
 		
 		return $query->where('parent_id', $parentId);
-	}
-	
-	/**
-	 * @return mixed
-	 */
-	public function storePoster()
-	{
-		// TODO: Implement storePoster() method.
-	}
-	
-	/**
-	 * @return mixed
-	 */
-	public function deletePoster()
-	{
-		// TODO: Implement deletePoster() method.
 	}
 }

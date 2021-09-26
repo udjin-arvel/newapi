@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\Facades\Enum;
 use App\Models\Traits\UserRelation;
+use App\Scopes\UserIdScope;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
@@ -11,8 +13,8 @@ use Illuminate\Database\Eloquent\Builder;
  *
  * @property int    $id
  * @property int    $user_id
- * @property int    $subscription_id
- * @property string $subscription_type
+ * @property int    $content_id
+ * @property string $content_type
  *
  * @method static Builder|Subscription byUserId($userId)
  * @method static Builder|Subscription byType($types)
@@ -20,33 +22,56 @@ use Illuminate\Database\Eloquent\Builder;
 class Subscription extends AbstractModel
 {
     use UserRelation;
-    
-    /**
-     * Типы подписок
-     */
-	const TYPE_USER        = 'type-user';
-	const TYPE_COMPOSITION = 'type-composition';
-	const TYPE_NOTION      = 'type-notion';
-	const TYPE_LORE_ITEM   = 'type-lore-item';
 	
-	const TYPES = [
-		self::TYPE_USER        => 'на пользователя',
-		self::TYPE_COMPOSITION => 'на композицию',
-		self::TYPE_NOTION      => 'на понятия',
-		self::TYPE_LORE_ITEM   => 'на элементы лора',
+	/**
+	 * @var array
+	 */
+	protected $fillable = [
+		'content_id',
+		'content_type',
+		'user_id',
 	];
-	
+ 
 	/**
 	 * @var array
 	 */
 	public $timestamps = ['updated_at'];
 	
 	/**
-	 * Подписка на
-	 * @return \Illuminate\Database\Eloquent\Relations\MorphTo
+	 * @return void
 	 */
-	public function subscription()
+	protected static function boot()
 	{
-		return $this->morphTo();
+		parent::boot();
+		static::addGlobalScope(new UserIdScope);
+	}
+	
+	/**
+	 * Уведомления подписки
+	 */
+	public function notifications()
+	{
+		return $this->hasMany(Notification::class);
+	}
+	
+	/**
+	 * Проверить является ли подписка общей, то есть, например, для любых новых понятий
+	 * @return bool
+	 */
+	private function isCommon(): bool
+	{
+		return empty($this->content_id);
+	}
+	
+	/**
+	 * Получить текст подписки
+	 * @return string
+	 */
+	public function getSubscriptionText(): string
+	{
+		$typeText = Enum::getTypeByModelsTypeAndAlias(self::class, $this->content_type);
+		return null !== $typeText
+			? "Вы подписаны {$typeText}."
+			: 'Неизвестная подписка. Обратитесь к администратору с проблемой.';
 	}
 }

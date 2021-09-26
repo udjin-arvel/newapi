@@ -1,63 +1,43 @@
 <?php
 
-use Illuminate\Http\Request;
-
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
+use App\Http\Controllers\Api;
 
 Route::post('authorize', 'Api\UserController@auth');
 Route::get('confirm', 'Api\SiteController@confirmMail');
 
 Route::group(['middleware' => 'auth:api'], function() {
-    
     // ------------------------ Basic routes ------------------------ //
-    Route::get('getBasicData', 'Api\SiteController@getBasicData');
+    Route::get('presets', [Api\SiteController::class, 'getPresetData']);
     
     // ------------------------ Story routes ------------------------ //
-	Route::resource('stories', 'Api\StoryController');
+	Route::resource('stories', Api\StoryController::class);
     
     // ------------------------ Notes routes ------------------------ //
-    Route::get('note/all', 'Api\NoteController@all');
-    Route::post('note/save', 'Api\NoteController@save');
-    Route::delete('note/delete/{id}', 'Api\NoteController@delete');
-    
+	Route::resource('notes', Api\NoteController::class);
+	
     // ------------------------ Loreitems routes ------------------------ //
-    Route::get('loreitem/all', 'Api\LoreitemController@all');
-    Route::post('loreitem/save', 'Api\LoreitemController@save');
-    Route::delete('loreitem/delete/{id}', 'Api\LoreitemController@delete');
+	Route::resource('loreitems', Api\LoreItemController::class);
     
     // ------------------------ Composition routes ------------------------ //
-    Route::get('composition/get/{id}', 'Api\CompositionController@one');
-    Route::get('composition/all', 'Api\CompositionController@all');
-    Route::post('composition/save', 'Api\CompositionController@save');
-    Route::delete('composition/delete/{id}', 'Api\CompositionController@delete');
+	Route::resource('compositions', Api\CompositionController::class);
 	
 	// ------------------------ Comment routes ------------------------ //
-	Route::resource('comments', 'Api\CommentController');
+	Route::resource('comments', Api\CommentController::class);
     
     // ------------------------ Notion routes ------------------------ //
-	Route::resource('notions', 'Api\NotionController');
+	Route::resource('notions', Api\NotionController::class);
 	
 	// ------------------------ Description routes ------------------------ //
-	Route::resource('descriptions', 'Api\DescriptionController');
+	Route::resource('descriptions', Api\DescriptionController::class);
     
     // ------------------------ Tag routes ------------------------ //
-    Route::get('tag/all', 'Api\TagController@all');
-    Route::post('tag/save', 'Api\TagController@save');
-    Route::delete('tag/delete/{id}', 'Api\TagController@delete');
+	Route::resource('tags', Api\TagController::class);
+	
+	// ------------------------ Subscription routes ------------------------ //
+	Route::resource('subscriptions', Api\SubscriptionController::class);
 	
 	// ------------------------ Like routes ------------------------ //
-	Route::group(['middleware' => 'like.check'], function() {
-		Route::get('like', 'Api\LikeController@like');
-		Route::get('dislike', 'Api\LikeController@dislike');
-		Route::get('likeToggle', 'Api\LikeController@likeToggle');
-	});
+	Route::get('like', [Api\LikeController::class, 'like']);
+	Route::get('dislike', [Api\LikeController::class, 'dislike']);
+	Route::get('likeToggle', [Api\LikeController::class, 'likeToggle']);
 });

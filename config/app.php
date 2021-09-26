@@ -182,6 +182,7 @@ return [
      */
 
     App\Providers\BookHelperServiceProvider::class,
+    App\Providers\EnumServiceProvider::class,
 
 ],
 
@@ -233,6 +234,7 @@ return [
     'URL' => Illuminate\Support\Facades\URL::class,
     'Validator' => Illuminate\Support\Facades\Validator::class,
     'View' => Illuminate\Support\Facades\View::class,
+	'Enum' => App\Facades\Enum::class,
 
 ],
 

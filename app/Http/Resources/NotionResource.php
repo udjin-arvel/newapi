@@ -18,7 +18,7 @@ class NotionResource extends BaseResource
      */
     public function toArray($request)
     {
-	    return array_merge(parent::toArray($request), [
+    	$data = [
 		    'title'      => $this->title,
 		    'text'       => $this->text,
 		    'is_public'  => (bool) $this->is_public,
@@ -27,6 +27,8 @@ class NotionResource extends BaseResource
 		    'user'       => new UserResource($this->user),
 		    'tags'       => TagResource::collection($this->tags),
 		    'created_at' => optional($this->created_at)->format('d.m.Y H:i'),
-	    ]);
+	    ];
+    	
+	    return array_merge(parent::toArray($request), $data);
     }
 }

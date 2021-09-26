@@ -111,15 +111,16 @@ class ApiTest extends TestCase
     }
     
     /**
+     * 
      */
     public function getNotionsTest()
     {
         $response = $this
-            ->withoutExceptionHandling()
-            ->actingAs(User::findOrFail(1))
+            ->actingAs($this->admin)
             ->getJson('/api/notions')
         ;
 	
+	    $this->getResultFromResponse($response);
         $response->assertStatus(200);
     }
 	
@@ -150,7 +151,21 @@ class ApiTest extends TestCase
         
         $response->assertStatus(201);
     }
-
+	
+	/**
+	 *
+	 */
+	public function getTagsTest()
+	{
+		$response = $this
+			->actingAs($this->admin)
+			->getJson('/api/tags?used=1')
+		;
+		
+		$this->getResultFromResponse($response);
+		$response->assertStatus(200);
+    }
+    
     /**
      *
      */
@@ -180,7 +195,7 @@ class ApiTest extends TestCase
     }
 	
 	/**
-	 * @test
+	 *
 	 */
     public function storeStoryTest()
     {
@@ -228,6 +243,34 @@ class ApiTest extends TestCase
 		$response = $this
 			->actingAs($this->admin)
 			->getJson('/api/like?content_id=2&content_type=story&type=like')
+		;
+		
+		$this->getResultFromResponse($response);
+		$response->assertStatus(200);
+	}
+
+	/**
+	 *
+	 */
+	public function getConfigsTest()
+	{
+		$response = $this
+			->actingAs($this->admin)
+			->getJson('/api/presets')
+		;
+		
+		$this->getResultFromResponse($response);
+		$response->assertStatus(200);
+	}
+	
+	/**
+	 * @test
+	 */
+	public function getSubscriptionsTest()
+	{
+		$response = $this
+			->actingAs($this->admin)
+			->getJson('/api/subscriptions')
 		;
 		
 		$this->getResultFromResponse($response);

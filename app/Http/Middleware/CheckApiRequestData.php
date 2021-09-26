@@ -2,12 +2,11 @@
 
 namespace App\Http\Middleware;
 
-use App\Exceptions\TBError;
+use App\Facades\Enum;
 use Closure;
-use Cog\Likeable\Contracts\Likeable as LikeableContract;
 use Illuminate\Http\Request;
 
-class CheckLikeTarget
+class CheckApiRequestData
 {
     /**
      * Handle an incoming request.
@@ -19,14 +18,14 @@ class CheckLikeTarget
     public function handle(Request $request, Closure $next)
     {
     	if ($request->get('content_type')) {
-	        $className = app()->get('enum')->path('aliases.' . strtolower($request->get('content_type')));
-		
-	        if (app($className) instanceof LikeableContract) {
+		    $alias     = strtolower($request->get('content_type'));
+		    $className = Enum::modelByAlias($alias);
+		    
+		    if ($className) {
 			    $request->request->add(['content_type' => $className]);
-			    return $next($request);
 		    }
 	    }
-    	
-        return response()->json(TBError::getErrorMessageByName(TBError::LIKE_ERROR), 400);
+	
+	    return $next($request);
     }
 }
