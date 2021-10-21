@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 /**
- * Class LoreItemFilter
+ * Class ShortFilter
  * @package App\Http\Filters
  */
-class LoreItemFilter extends AbstractFilter
+class ShortFilter extends AbstractFilter
 {
 	/**
 	 * @var array

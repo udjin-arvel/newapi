@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-class NotionRequest extends AbstractRequest
+class NotionRequest extends BaseRequest
 {
     /**
      * Get the validation rules that apply to the request.

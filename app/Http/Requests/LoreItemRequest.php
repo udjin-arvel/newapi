@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-class LoreItemRequest extends AbstractRequest
+class LoreItemRequest extends BaseRequest
 {
 	/**
 	 * Get the validation rules that apply to the request.

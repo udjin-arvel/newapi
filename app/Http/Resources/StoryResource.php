@@ -18,24 +18,24 @@ class StoryResource extends BaseResource
      */
     public function toArray($request)
     {
-    	// $this->when(Auth::user()->isAdmin(), 'secret-value')
     	$data = [
 		    'title'          => $this->title,
 		    'chapter'        => $this->chapter,
 		    'epigraph'       => $this->epigraph,
 		    'type'           => $this->type,
-		    'likes'          => LikeResource::collection($this->likesAndDislikes),
+		    'likes'          => LikeResource::collection($this->whenLoaded('likesAndDislikes')),
 		    'liked'          => $this->liked,
 		    'is_public'      => (bool) $this->is_public,
-		    'composition'    => CompositionResource::make($this->composition),
-		    'fragments'      => FragmentResource::collection($this->fragments),
-		    'user'           => UserResource::make($this->user),
-		    'tags'           => TagResource::collection($this->tags),
+		    'created_at'     => optional($this->created_at)->format('d.m.Y H:i'),
+		    'composition'    => CompositionResource::make($this->whenLoaded('composition')),
+		    'fragments'      => FragmentResource::collection($this->whenLoaded('fragments')),
+		    'user'           => UserResource::make($this->whenLoaded('user')),
+		    'tags'           => TagResource::collection($this->whenLoaded('tags')),
+		    'comments'       => CommentResource::collection($this->whenLoaded('comments')),
+		    'descriptions'   => $this->when(optional($this->user)->canRedact($this), function () {
+			    return DescriptionResource::collection($this->whenLoaded('descriptions'));
+		    }),
 	    ];
-    	
-    	if ($this->user->canRedact($this)) {
-		    $data['descriptions'] = DescriptionResource::collection($this->descriptions);
-	    }
     	
         return array_merge(parent::toArray($request), $data);
     }

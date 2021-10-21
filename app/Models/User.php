@@ -106,35 +106,7 @@ class User extends Authenticatable
 	{
 		return $this->hasMany(Subscription::class);
 	}
-
-    /**
-     * @return array
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
-     */
-    public function getAuthResponse(): array
-    {
-        return [
-            'user' => $this->getDataForJson(),
-            'token' => $this->createToken(env('APP_NAME', 'accessToken')),
-        ];
-    }
-
-	/**
-     * Получить доступную по API информацию о пользователе
-	 * @return array
-	 */
-	public function getDataForJson()
-	{
-	    $data = [
-            'id'         => $this->id,
-            'name'       => $this->name,
-            'email'      => $this->email,
-            'created_at' => $this->created_at,
-        ];
-
-        return $data;
-	}
-
+    
     /**
      * Сменить пароль
      *

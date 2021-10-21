@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Enums\DescriptionType;
 use App\Models\Description;
 use Illuminate\Http\Request;
 
@@ -21,11 +22,14 @@ class DescriptionResource extends BaseResource
 		return array_merge(parent::toArray($request), [
 			'title'        => $this->title,
 			'text'         => $this->text,
-			'type'         => $this->type,
+			'type'         => DescriptionType::TYPES[$this->type] ?? '',
 			'content_id'   => $this->content_id,
 			'content_type' => $this->content_type,
 			'importance'   => (int) $this->importance,
 			'is_public'    => (bool) $this->is_public,
+			'user'         => UserResource::make($this->whenLoaded('user')),
+			'tags'         => TagResource::collection($this->whenLoaded('tags')),
+			'created_at'   => optional($this->created_at)->format('d.m.Y H:i'),
 			'realized_at'  => optional($this->realized_at)->format('d.m.Y H:i'),
 		]);
 	}

@@ -20,17 +20,45 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="24e9da2f-bf30-4a2c-9f19-81b68f84e4d5" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Models/Scopes/PublicScope.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/ShortController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Filters/ShortFilter.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Requests/ShortRequest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Resources/ShortResource.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Console/Commands/ActualizeNotifications.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Commands/ActualizeNotifications.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Console/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Kernel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Interfaces/PosterableInterface.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/LoreItem.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/LoreItem.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Notification.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Notification.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Notion.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Notion.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Exceptions/Handler.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exceptions/Handler.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Exceptions/TBError.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exceptions/TBError.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/DescriptionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/DescriptionController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/LoreitemController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/LoreitemController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/StoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/StoryController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Filters/LoreItemFilter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Filters/LoreItemFilter.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/Authenticate.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/Authenticate.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/CheckApiRequestData.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/CheckApiRequestData.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/AbstractRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/BaseRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/CommentRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/CommentRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/CompositionRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/CompositionRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/DescriptionRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/DescriptionRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/LikeRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/LikeRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/LoreItemRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/LoreItemRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/NoteRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/NoteRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/NotionRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/NotionRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/StoryRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/StoryRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/SubscriptionRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/SubscriptionRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/TagRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/TagRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/BaseResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/BaseResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/DescriptionResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/DescriptionResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/LoreItemResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/LoreItemResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/NotionResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/NotionResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/StoryResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/StoryResource.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Short.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Short.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Story.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Story.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Subscription.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Subscription.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/ApiTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/ApiTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Fixtures/BaseFixture.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Fixtures/BaseFixture.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Fixtures/CompositionFixture.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Fixtures/CompositionFixture.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -209,7 +237,7 @@
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="last.edited.regexp" value=".php&#10;." />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Http/Resources" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -226,6 +254,7 @@
       <recent name="C:\OSPanel\domains\arvelov.com\app\Http\Controllers\Api" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\OSPanel\domains\arvelov.com\app\Console\Commands" />
       <recent name="C:\OSPanel\domains\arvelov.com\app\Http\Resources" />
     </key>
   </component>
@@ -596,7 +625,13 @@
       <workItem from="1631708272569" duration="54710000" />
       <workItem from="1631801108048" duration="4484000" />
       <workItem from="1632600818298" duration="10587000" />
-      <workItem from="1632611686433" duration="18183000" />
+      <workItem from="1632611686433" duration="18436000" />
+      <workItem from="1632654135232" duration="1302000" />
+      <workItem from="1632849836876" duration="57000" />
+      <workItem from="1632849975136" duration="2955000" />
+      <workItem from="1633248903217" duration="4110000" />
+      <workItem from="1634335195978" duration="7496000" />
+      <workItem from="1634747613442" duration="18647000" />
     </task>
     <servers />
   </component>
@@ -695,18 +730,8 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/app/Http/Resources/StoryResource.php</url>
-          <line>21</line>
-          <option name="timeStamp" value="25" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/app/Exceptions/TBError.php</url>
-          <line>142</line>
-          <option name="timeStamp" value="63" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/tests/Feature/ApiTest.php</url>
-          <line>53</line>
+          <line>52</line>
           <option name="timeStamp" value="65" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
@@ -719,6 +744,11 @@
           <line>113</line>
           <option name="timeStamp" value="78" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Http/Resources/Json/JsonResource.php</url>
+          <line>141</line>
+          <option name="timeStamp" value="79" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
@@ -726,7 +756,7 @@
         <watch expression="$user-&gt;email" language="PHP" />
       </configuration>
       <configuration name="PHPUnitRunConfigurationType">
-        <watch expression="Enum::SUBSCRIPTION" language="PHP" />
+        <watch expression="$request-&gt;all()" language="PHP" />
       </configuration>
     </watches-manager>
   </component>

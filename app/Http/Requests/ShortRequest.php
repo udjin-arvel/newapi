@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-class NoteRequest extends BaseRequest
+class ShortRequest extends BaseRequest
 {
 	/**
 	 * Get the validation rules that apply to the request.

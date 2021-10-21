@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-class CommentRequest extends AbstractRequest
+class CommentRequest extends BaseRequest
 {
     /**
      * Get the validation rules that apply to the request.

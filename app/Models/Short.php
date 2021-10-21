@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Scopes\PublicScope;
+use App\Models\Traits\Taggable;
 use App\Models\Traits\UserRelation;
 
 /**
@@ -18,5 +19,5 @@ use App\Models\Traits\UserRelation;
  */
 class Short extends AbstractModel
 {
-    use UserRelation, PublicScope;
+    use UserRelation, PublicScope, Taggable;
 }

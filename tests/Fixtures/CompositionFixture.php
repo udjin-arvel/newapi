@@ -6,7 +6,7 @@ use App\Models\Composition;
 
 class CompositionFixture
 {
-	public const feature1 = [
+	const feature1 = [
 		'id'             => null,
 		'title'          => 'Новая комп',
 		'description'    => 'Только новинки, подобранные по вашим предпочтениям Только новинки, подобранные по вашим предпочтениям Только новинки, подобранные по вашим предпочтениям',

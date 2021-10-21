@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-class DescriptionRequest extends AbstractRequest
+class DescriptionRequest extends BaseRequest
 {
 	/**
 	 * Get the validation rules that apply to the request.

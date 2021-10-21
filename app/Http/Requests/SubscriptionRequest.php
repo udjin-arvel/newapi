@@ -6,7 +6,7 @@ namespace App\Http\Requests;
  * Class SubscriptionRequest
  * @package App\Http\Requests
  */
-class SubscriptionRequest extends AbstractRequest
+class SubscriptionRequest extends BaseRequest
 {
 	/**
 	 * Get the validation rules that apply to the request.

@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-class StoryRequest extends AbstractRequest
+class StoryRequest extends BaseRequest
 {
 	/**
 	 * Get the validation rules that apply to the request.

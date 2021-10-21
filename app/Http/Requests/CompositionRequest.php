@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-class CompositionRequest extends AbstractRequest
+class CompositionRequest extends BaseRequest
 {
 	/**
 	 * Get the validation rules that apply to the request.

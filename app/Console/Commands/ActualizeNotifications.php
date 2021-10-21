@@ -13,6 +13,8 @@ use App\Models\User;
 use App\Scopes\UserIdScope;
 use DB;
 use Illuminate\Console\Command;
+use Log;
+use Mockery\Exception;
 
 class ActualizeNotifications extends Command
 {
@@ -47,38 +49,44 @@ class ActualizeNotifications extends Command
      */
     public function handle()
     {
-        $query = Subscription::withoutGlobalScope(UserIdScope::class);
-	    $subs = (clone $query)->whereNotNull('content_type')->get();
-	    
-	    if (0 === $subs->count()) {
-	    	return true;
-	    }
-	    
-	    $updatedModels = $subs->map(function ($sub) {
-		    /**
-		     * @var Subscription $sub
-		     */
-	    	switch ($sub->content_type) {
-			    case Composition::class:
-				    $contentQuery = Story::isPublic()->byCompositionId($sub->content_id)->where('updated_at', '>', $sub->updated_at); break;
-			    case User::class:
-				    $contentQuery = Story::isPublic()->byUserId($sub->content_id)->where('updated_at', '>', $sub->updated_at); break;
-			    default:
-				    $contentQuery = $sub->content_type::isPublic()->where('updated_at', '>', $sub->updated_at);
+    	try {
+	        $query = Subscription::withoutGlobalScope(UserIdScope::class);
+		    $subs = (clone $query)->whereNotNull('content_type')->get();
+		    
+		    if (0 === $subs->count()) {
+		        return true;
 		    }
-		
-		    return $contentQuery->with('user')->get()->map(function ($content) use ($sub) {
-			    return [
-				    'message'      => Notification::getNotificationText($content, $content->user),
-				    'content_id'   => $content->id,
-				    'content_type' => $sub->content_type,
-				    'user_id'      => $sub->user_id,
-			    ];
-		    });
-	    })->flatten(1)->toArray();
-	    
-	    DB::table('notifications')->insertOrIgnore($updatedModels);
-	    $query->update(['updated_at' => now()]);
+		    
+		    $updatedModels = $subs->map(function ($sub) {
+			    /**
+			     * @var Subscription $sub
+			     */
+		        switch ($sub->content_type) {
+				    case Composition::class:
+					    $contentQuery = Story::isPublic()->byCompositionId($sub->content_id)->where('updated_at', '>', $sub->updated_at); break;
+				    case User::class:
+					    $contentQuery = Story::isPublic()->byUserId($sub->content_id)->where('updated_at', '>', $sub->updated_at); break;
+				    default:
+					    $contentQuery = $sub->content_type::isPublic()->where('updated_at', '>', $sub->updated_at);
+			    }
+			
+			    return $contentQuery->with('user')->get()->map(function ($content) use ($sub) {
+				    return [
+					    'message'      => Notification::getNotificationText($content, $content->user),
+					    'content_id'   => $content->id,
+					    'content_type' => $sub->content_type,
+					    'user_id'      => $sub->user_id,
+				    ];
+			    });
+		    })->flatten(1)->toArray();
+		    
+		    DB::table('notifications')->insertOrIgnore($updatedModels);
+		    $query->update(['updated_at' => now()]);
+		    
+	    } catch (Exception $e) {
+    		Log::error('Возникла ошибка при актуализации уведомлений. Текст ошибки: ' . $e->getMessage());
+		    return false;
+	    }
 	    
 	    return true;
     }

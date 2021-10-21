@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Exceptions\TBError;
 use App\Http\Controllers\Controller;
 use App\Http\Filters\CompositionFilter;
 use App\Http\Filters\DescriptionFilter;

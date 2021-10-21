@@ -2,12 +2,10 @@
 
 namespace App\Http\Requests;
 
-use App\Exceptions\TBError;
-use HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 
-class AbstractRequest extends FormRequest
+class BaseRequest extends FormRequest
 {
 	/**
 	 * Determine if the user is authorized to make this request.

@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-class TagRequest extends AbstractRequest
+class TagRequest extends BaseRequest
 {
 	/**
 	 * Get the validation rules that apply to the request.

@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-class LikeRequest extends AbstractRequest
+class LikeRequest extends BaseRequest
 {
 	
 	public function authorize()

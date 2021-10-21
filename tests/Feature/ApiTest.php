@@ -12,8 +12,7 @@ use Tests\TestCase;
 
 class ApiTest extends TestCase
 {
-    use WithFaker;
-	    //WithoutMiddleware;
+    use WithFaker; //, WithoutMiddleware;
     
 	/**
 	 * @var User
@@ -195,9 +194,9 @@ class ApiTest extends TestCase
     }
 	
 	/**
-	 *
+	 * @test
 	 */
-    public function storeStoryTest()
+    public function saveStoryTest()
     {
         $response = $this
             ->actingAs($this->admin)
@@ -264,7 +263,7 @@ class ApiTest extends TestCase
 	}
 	
 	/**
-	 * @test
+	 *
 	 */
 	public function getSubscriptionsTest()
 	{

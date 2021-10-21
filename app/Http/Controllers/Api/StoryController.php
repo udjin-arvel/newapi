@@ -11,6 +11,7 @@ use App\Http\Requests\StoryRequest;
 use App\Http\Resources\StoryResource;
 use App\Models\News;
 use App\Models\Story;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
@@ -22,6 +23,11 @@ use Illuminate\Http\Resources\Json\JsonResource;
 class StoryController extends Controller
 {
 	/**
+	 * Историй на страницу
+	 */
+	const STORIES_PER_PAGE = 8;
+	
+	/**
 	 * @param StoryFilter $filter
 	 * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
 	 */
@@ -29,12 +35,10 @@ class StoryController extends Controller
 	{
 		return StoryResource::collection(
 			Story::filter($filter)
-				->with(['user', 'tags', 'fragments', 'composition', 'likes'])
-				->get()
-				->map(function ($story) {
-					$story->fragments = $story->fragments->slice(0, 3);
-					return $story;
-				})
+				->with(['user', 'tags', 'composition', 'likes', 'fragments' => function(HasMany $query) {
+					return $query->take(3);
+				}])
+				->paginate(self::STORIES_PER_PAGE)
 		);
 	}
 	
@@ -44,9 +48,17 @@ class StoryController extends Controller
 	 */
 	public function show(int $id)
 	{
-		$story = Story::findOrFail($id)->load(['user', 'tags', 'fragments', 'composition', 'descriptions']);
-		event(new ViewProcessed($story));
+		$story = Story::findOrFail($id)->load([
+			'user',
+			'tags',
+			'fragments',
+			'composition',
+			'descriptions',
+			'comments',
+			'likesAndDislikes',
+		]);
 		
+		event(new ViewProcessed($story));
 		return new StoryResource($story);
 	}
 	
@@ -74,7 +86,7 @@ class StoryController extends Controller
 		event(new NewsProcessed($story, News::ACTION_CREATE));
 		event(new RewardProcessed($story));
 		
-		return (new StoryResource($story))
+		return (new StoryResource($story->load(['user', 'tags', 'composition', 'fragments'])))
 			->response()
 			->setStatusCode(201);
 	}

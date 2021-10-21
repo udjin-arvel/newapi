@@ -4,27 +4,31 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Filters\LoreItemFilter;
+use App\Http\Filters\ShortFilter;
 use App\Http\Requests\LoreItemRequest;
+use App\Http\Requests\ShortRequest;
 use App\Http\Resources\LoreItemResource;
+use App\Http\Resources\ShortResource;
 use App\Models\LoreItem;
+use App\Models\Short;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
- * Class LoreItemController
+ * Class ShortController
  * @package App\Http\Controllers\Api
  *
  * @property mixed $input
  */
-class LoreItemController extends Controller
+class ShortController extends Controller
 {
 	/**
-	 * @param LoreItemFilter $filter
+	 * @param ShortFilter $filter
 	 * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
 	 */
-	public function index(LoreItemFilter $filter)
+	public function index(ShortFilter $filter)
 	{
-		return LoreItemResource::collection(
-			LoreItem::filter($filter)
+		return ShortResource::collection(
+			Short::filter($filter)
 				->with(['user', 'tags'])
 				->get()
 		);
@@ -32,46 +36,46 @@ class LoreItemController extends Controller
 	
 	/**
 	 * @param int $id
-	 * @return LoreItemResource
+	 * @return ShortResource
 	 */
 	public function show(int $id)
 	{
-		return new LoreItemResource(
-			LoreItem::findOrFail($id)->load(['user', 'tags'])
+		return new ShortResource(
+			Short::findOrFail($id)->load(['user', 'tags'])
 		);
 	}
 	
 	/**
-	 * @param LoreItemRequest $request
+	 * @param ShortRequest $request
 	 * @return \Illuminate\Http\JsonResponse
 	 */
-	public function store(LoreItemRequest $request)
+	public function store(ShortRequest $request)
 	{
-		$loreItem = LoreItem::create($request->all());
+		$short = Short::create($request->all());
 		
 		if ($request->has('tags')) {
-			$loreItem->tags()->attach($request->get('tags'));
+			$short->tags()->attach($request->get('tags'));
 		}
 		
-		return (new LoreItemResource($loreItem))
+		return (new ShortResource($short))
 			->response()
 			->setStatusCode(201);
 	}
 	
 	/**
-	 * @param LoreItemRequest $request
+	 * @param ShortRequest $request
 	 * @param int $id
 	 * @return \Illuminate\Http\JsonResponse
 	 */
-	public function update(LoreItemRequest $request, int $id)
+	public function update(ShortRequest $request, int $id)
 	{
-		$loreItem = LoreItem::findOrFail($id)->update($request->all());
+		$short = Short::findOrFail($id)->update($request->all());
 		
 		if ($request->has('tags')) {
-			$loreItem->syncTags($request->get('tags'));
+			$short->syncTags($request->get('tags'));
 		}
 		
-		return (new LoreItemResource($loreItem))
+		return (new ShortResource($short))
 			->response()
 			->setStatusCode(201);
 	}
@@ -83,7 +87,7 @@ class LoreItemController extends Controller
 	 */
 	public function destroy(int $id)
 	{
-		LoreItem::findOrFail($id)->delete();
+		Short::findOrFail($id)->delete();
 		return (new JsonResource(collect($id)))
 			->response()
 			->setStatusCode(200);

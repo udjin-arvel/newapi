@@ -24,9 +24,9 @@ class NotionResource extends BaseResource
 		    'is_public'  => (bool) $this->is_public,
 		    'type'       => $this->type,
 		    'level'      => $this->level,
-		    'user'       => new UserResource($this->user),
-		    'tags'       => TagResource::collection($this->tags),
 		    'created_at' => optional($this->created_at)->format('d.m.Y H:i'),
+		    'user'       => UserResource::make($this->whenLoaded('user')),
+		    'tags'       => TagResource::collection($this->whenLoaded('tags')),
 	    ];
     	
 	    return array_merge(parent::toArray($request), $data);

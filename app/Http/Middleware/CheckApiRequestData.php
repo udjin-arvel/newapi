@@ -25,6 +25,10 @@ class CheckApiRequestData
 			    $request->request->add(['content_type' => $className]);
 		    }
 	    }
+    	
+    	if ($request->get('user_id')) {
+		    $request->request->add(['user_id' => \Auth::id()]);
+	    }
 	
 	    return $next($request);
     }

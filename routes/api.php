@@ -2,8 +2,7 @@
 
 use App\Http\Controllers\Api;
 
-Route::post('authorize', 'Api\UserController@auth');
-Route::get('confirm', 'Api\SiteController@confirmMail');
+Route::post('authorize', [Api\UserController::class, 'auth']);
 
 Route::group(['middleware' => 'auth:api'], function() {
     // ------------------------ Basic routes ------------------------ //
@@ -29,6 +28,9 @@ Route::group(['middleware' => 'auth:api'], function() {
 	
 	// ------------------------ Description routes ------------------------ //
 	Route::resource('descriptions', Api\DescriptionController::class);
+	
+	// ------------------------ Short routes ------------------------ //
+	Route::resource('shorts', Api\ShortController::class);
     
     // ------------------------ Tag routes ------------------------ //
 	Route::resource('tags', Api\TagController::class);
