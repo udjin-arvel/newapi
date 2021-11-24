@@ -16,7 +16,6 @@ class NotionRequest extends BaseRequest
 		    'text'      => 'required',
 		    'type'      => 'required',
 		    'user_id'   => 'required|exists:users,id',
-		    'poster'    => 'required|max:255',
 		    'level'     => 'max:20',
 		    'is_public' => 'boolean',
 		    'tags'      => 'array',

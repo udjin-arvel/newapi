@@ -20,45 +20,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="24e9da2f-bf30-4a2c-9f19-81b68f84e4d5" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/ShortController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Filters/ShortFilter.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Requests/ShortRequest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Resources/ShortResource.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Filters/ImageFilter.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Resources/ImageResource.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/Traits/Imageable.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Console/Commands/ActualizeNotifications.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Commands/ActualizeNotifications.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Console/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Kernel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Exceptions/Handler.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exceptions/Handler.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Exceptions/TBError.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exceptions/TBError.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Enums/DescriptionType.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Enums/DescriptionType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Enums/Enum.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Enums/Enum.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/CompositionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/CompositionController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/DescriptionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/DescriptionController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/LoreitemController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/LoreitemController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/StoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/StoryController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Filters/LoreItemFilter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Filters/LoreItemFilter.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/Authenticate.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/Authenticate.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/CheckApiRequestData.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/CheckApiRequestData.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/AbstractRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/BaseRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/CommentRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/CommentRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/CompositionRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/CompositionRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Filters/AbstractFilter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Filters/AbstractFilter.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Filters/CompositionFilter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Filters/CompositionFilter.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/CheckApiRequestData.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Requests/DescriptionRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/DescriptionRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/LikeRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/LikeRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/LoreItemRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/LoreItemRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/NoteRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/NoteRequest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Requests/NotionRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/NotionRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/StoryRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/StoryRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/SubscriptionRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/SubscriptionRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/TagRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/TagRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/BaseResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/BaseResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/DescriptionResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/DescriptionResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/CompositionResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/CompositionResource.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Resources/LoreItemResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/LoreItemResource.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Resources/NotionResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/NotionResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/StoryResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/StoryResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Short.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Short.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Composition.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Composition.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Image.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Image.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/LoreItem.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/LoreItem.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_08_20_113505_create_descriptions_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_08_20_113505_create_descriptions_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/Feature/ApiTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/ApiTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Fixtures/BaseFixture.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Fixtures/BaseFixture.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Fixtures/CompositionFixture.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Fixtures/CompositionFixture.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -233,11 +219,12 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="ToolWindowDebug.ShowToolbar" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="last.edited.regexp" value=".php&#10;." />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../newbook" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -631,7 +618,17 @@
       <workItem from="1632849975136" duration="2955000" />
       <workItem from="1633248903217" duration="4110000" />
       <workItem from="1634335195978" duration="7496000" />
-      <workItem from="1634747613442" duration="18647000" />
+      <workItem from="1634747613442" duration="18716000" />
+      <workItem from="1635859878032" duration="1301000" />
+      <workItem from="1635941753630" duration="3914000" />
+      <workItem from="1636726950910" duration="1769000" />
+      <workItem from="1636833997307" duration="617000" />
+      <workItem from="1636960482413" duration="610000" />
+      <workItem from="1637078005888" duration="2507000" />
+      <workItem from="1637178935104" duration="1562000" />
+      <workItem from="1637497719812" duration="1421000" />
+      <workItem from="1637643161923" duration="2039000" />
+      <workItem from="1637691439700" duration="11050000" />
     </task>
     <servers />
   </component>
@@ -730,11 +727,6 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/tests/Feature/ApiTest.php</url>
-          <line>52</line>
-          <option name="timeStamp" value="65" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Http/Resources/Json/JsonResource.php</url>
           <line>187</line>
           <option name="timeStamp" value="74" />
@@ -754,9 +746,6 @@
     <watches-manager>
       <configuration name="index.php">
         <watch expression="$user-&gt;email" language="PHP" />
-      </configuration>
-      <configuration name="PHPUnitRunConfigurationType">
-        <watch expression="$request-&gt;all()" language="PHP" />
       </configuration>
     </watches-manager>
   </component>

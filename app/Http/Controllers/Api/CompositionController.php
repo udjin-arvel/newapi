@@ -37,7 +37,7 @@ class CompositionController extends Controller
 	public function show(int $id)
 	{
 		return new CompositionResource(
-			Composition::findOrFail($id)->load(['user', 'tags'])
+			Composition::findOrFail($id)->load(['stories', 'user', 'tags', 'likes'])
 		);
 	}
 	
@@ -47,13 +47,13 @@ class CompositionController extends Controller
 	 */
 	public function store(CompositionRequest $request)
 	{
-		$loreItem = Composition::create($request->all());
+		$composition = Composition::create($request->all());
 		
 		if ($request->has('tags')) {
-			$loreItem->tags()->attach($request->get('tags'));
+			$composition->tags()->attach($request->get('tags'));
 		}
 		
-		return (new CompositionResource($loreItem))
+		return (new CompositionResource($composition))
 			->response()
 			->setStatusCode(201);
 	}
@@ -65,13 +65,13 @@ class CompositionController extends Controller
 	 */
 	public function update(CompositionRequest $request, int $id)
 	{
-		$notion = Composition::findOrFail($id)->update($request->all());
+		$composition = Composition::findOrFail($id)->update($request->all());
 		
 		if ($request->has('tags')) {
-			$notion->syncTags($request->get('tags'));
+			$composition->syncTags($request->get('tags'));
 		}
 		
-		return (new CompositionResource($notion))
+		return (new CompositionResource($composition))
 			->response()
 			->setStatusCode(201);
 	}

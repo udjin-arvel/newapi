@@ -41,7 +41,6 @@ class Kernel extends HttpKernel
         'api' => [
             'throttle:60,1',
             'bindings',
-	        'api.check.request',
         ],
     ];
 
@@ -62,7 +61,6 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        'api.check.request' => \App\Http\Middleware\CheckApiRequestData::class,
     ];
 
     /**

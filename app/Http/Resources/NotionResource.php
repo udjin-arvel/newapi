@@ -24,7 +24,8 @@ class NotionResource extends BaseResource
 		    'is_public'  => (bool) $this->is_public,
 		    'type'       => $this->type,
 		    'level'      => $this->level,
-		    'created_at' => optional($this->created_at)->format('d.m.Y H:i'),
+		    'poster'     => $this->poster,
+		    'created_at' => optional($this->created_at)->format('d.m.Y'),
 		    'user'       => UserResource::make($this->whenLoaded('user')),
 		    'tags'       => TagResource::collection($this->whenLoaded('tags')),
 	    ];

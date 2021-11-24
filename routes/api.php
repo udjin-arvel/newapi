@@ -2,10 +2,11 @@
 
 use App\Http\Controllers\Api;
 
-Route::post('authorize', [Api\UserController::class, 'auth']);
+Route::post('login', [Api\UserController::class, 'login']);
+Route::post('register', [Api\UserController::class, 'register']);
 
 Route::group(['middleware' => 'auth:api'], function() {
-    // ------------------------ Basic routes ------------------------ //
+    // ------------------------ Special routes ------------------------ //
     Route::get('presets', [Api\SiteController::class, 'getPresetData']);
     
     // ------------------------ Story routes ------------------------ //

@@ -17,17 +17,8 @@ use App\Models\Traits\UserRelation;
  */
 class Image extends AbstractModel
 {
-    use UserRelation, Contentable;
-    
-    /**
-     * Контект, которому можно добавлять картинки
-     */
-    const TYPES = [
-        'notion'      => Notion::class,
-        'loreitem'    => LoreItem::class,
-        'composition' => Composition::class,
-        'fragment'    => Fragment::class,
-    ];
+    use UserRelation,
+	    Contentable;
 	
 	/**
 	 * @var array

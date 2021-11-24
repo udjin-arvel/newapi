@@ -25,7 +25,7 @@ class LoreItemController extends Controller
 	{
 		return LoreItemResource::collection(
 			LoreItem::filter($filter)
-				->with(['user', 'tags'])
+				->with(['user', 'tags', 'images'])
 				->get()
 		);
 	}

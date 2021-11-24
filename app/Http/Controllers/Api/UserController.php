@@ -13,20 +13,6 @@ use App\Models\User;
 class UserController extends Controller
 {
     /**
-     * Авторизация через соцсети
-     * @throws TBError
-     * @throws BindingResolutionException
-     */
-	public function auth()
-    {
-        if (User::where('email', '=', request()->get('email'))->first()) {
-            return $this->login();
-        } else {
-            return $this->register();
-        }
-    }
-    
-    /**
      * Авторизация
      *
      * @return JsonResponse

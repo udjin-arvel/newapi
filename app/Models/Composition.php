@@ -8,6 +8,7 @@ use App\Models\Traits\UserRelation;
 use Cog\Likeable\Contracts\Likeable as LikeableContract;
 use Cog\Likeable\Traits\Likeable;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -25,9 +26,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $type
  * @property string $description
  * @property string $poster
- *
- * @method static Builder|Composition books()
- * @method static Builder|Composition series()
  */
 class Composition extends AbstractModel implements LikeableContract
 {
@@ -56,21 +54,12 @@ class Composition extends AbstractModel implements LikeableContract
 	public $timestamps = ['updated_at'];
 	
 	/**
-	 * @param Builder $query
-	 * @return Builder
+	 * Истории, принадлежащие композиции.
+	 * @return HasMany
 	 */
-	public function scopeBooks(Builder $query)
+	public function stories()
 	{
-		return $query->where('type', self::TYPE_BOOK);
-	}
-	
-	/**
-	 * @param Builder $query
-	 * @return Builder
-	 */
-	public function scopeSeries(Builder $query)
-	{
-		return $query->where('type', self::TYPE_SERIES);
+		return $this->hasMany(Story::class)->orderBy('chapter', 'desc');
 	}
 	
 	/**

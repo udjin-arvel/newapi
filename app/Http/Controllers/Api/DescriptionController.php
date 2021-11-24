@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Exceptions\TBError;
 use App\Http\Controllers\Controller;
 use App\Http\Filters\CompositionFilter;
 use App\Http\Filters\DescriptionFilter;
@@ -49,13 +48,13 @@ class DescriptionController extends Controller
 	 */
 	public function store(DescriptionRequest $request)
 	{
-		$loreItem = Description::create($request->all());
+		$description = Description::create($request->all());
 		
 		if ($request->has('tags')) {
-			$loreItem->tags()->attach($request->get('tags'));
+			$description->tags()->attach($request->get('tags'));
 		}
 		
-		return (new DescriptionResource($loreItem))
+		return (new DescriptionResource($description))
 			->response()
 			->setStatusCode(201);
 	}
@@ -67,13 +66,13 @@ class DescriptionController extends Controller
 	 */
 	public function update(DescriptionRequest $request, int $id)
 	{
-		$notion = Description::findOrFail($id)->update($request->all());
+		$description = Description::findOrFail($id)->update($request->all());
 		
 		if ($request->has('tags')) {
-			$notion->syncTags($request->get('tags'));
+			$description->syncTags($request->get('tags'));
 		}
 		
-		return (new DescriptionResource($notion))
+		return (new DescriptionResource($description))
 			->response()
 			->setStatusCode(201);
 	}

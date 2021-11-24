@@ -1,16 +1,17 @@
 <?php
 
-
 namespace App\Http\Filters;
 
+use App\Facades\Enum;
 use App\Models\LoreItem;
 use App\Models\Notion;
 use App\Models\Story;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Log;
 use Str;
 
-class AbstractFilter
+abstract class AbstractFilter
 {
 	/**
 	 * @var array
@@ -42,7 +43,7 @@ class AbstractFilter
 	 */
 	public function __construct(Request $request)
 	{
-		$this->request = $request;
+		$this->request = $this->prepareRequestData($request);
 	}
 	
 	/**
@@ -63,5 +64,33 @@ class AbstractFilter
 		}
 		
 		return $this->query;
+	}
+	
+	/**
+	 * Подготовка данных для контроллера: тип в виде строки, content_type в виде App\Models\Some и т.п.
+	 * @param Request $request
+	 * @return Request
+	 */
+	protected function prepareRequestData(Request $request): Request
+	{
+		if ($request->exists('content_type')) {
+			$contentType = Enum::modelByAlias(
+				strtolower(
+					$request->get('content_type')
+				)
+			);
+			
+			if (empty($contentType)) {
+				Log::error("Не найден alias для content_type={$request->get('content_type')}");
+			}
+			
+			$request->request->add(['content_type' => $contentType]);
+		}
+		
+		if (\in_array($request->getMethod(), ['POST', 'PUT'], true)) {
+			$request->request->add(['user_id' => \Auth::id()]);
+		}
+		
+		return $request;
 	}
 }

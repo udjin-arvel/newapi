@@ -12,7 +12,7 @@ use Tests\TestCase;
 
 class ApiTest extends TestCase
 {
-    use WithFaker; //, WithoutMiddleware;
+    use WithFaker, WithoutMiddleware;
     
 	/**
 	 * @var User
@@ -164,6 +164,20 @@ class ApiTest extends TestCase
 		$this->getResultFromResponse($response);
 		$response->assertStatus(200);
     }
+	
+	/**
+	 * @test
+	 */
+	public function getCompositionTest()
+	{
+		$response = $this
+			->actingAs($this->admin)
+			->getJson('/api/compositions/1')
+		;
+		
+		$this->getResultFromResponse($response);
+		$response->assertStatus(200);
+	}
     
     /**
      *
@@ -194,7 +208,7 @@ class ApiTest extends TestCase
     }
 	
 	/**
-	 * @test
+	 *
 	 */
     public function saveStoryTest()
     {
@@ -270,6 +284,20 @@ class ApiTest extends TestCase
 		$response = $this
 			->actingAs($this->admin)
 			->getJson('/api/subscriptions')
+		;
+		
+		$this->getResultFromResponse($response);
+		$response->assertStatus(200);
+	}
+	
+	/**
+	 *
+	 */
+	public function getGalleryTest()
+	{
+		$response = $this
+			->actingAs($this->admin)
+			->getJson('/api/loreitems?content_id=1&content_type=Loreitem')
 		;
 		
 		$this->getResultFromResponse($response);

@@ -24,7 +24,7 @@ class Enum
 	 */
 	const STORY        = 'story';
 	const NOTION       = 'notion';
-	const LORE_ITEM    = 'loreItem';
+	const LORE_ITEM    = 'loreitem';
 	const NOTE         = 'note';
 	const DESCRIPTION  = 'description';
 	const COMPOSITION  = 'composition';

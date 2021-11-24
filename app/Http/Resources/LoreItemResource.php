@@ -19,9 +19,15 @@ class LoreItemResource extends BaseResource
     public function toArray($request)
     {
 	    return array_merge(parent::toArray($request), [
-		    'title'     => $this->title,
-		    'text'      => $this->text,
-		    'is_public' => $this->is_public,
+		    'title'      => $this->title,
+		    'text'       => $this->text,
+		    'level'      => $this->level,
+		    'is_public'  => (bool) $this->is_public,
+		    'poster'     => $this->poster,
+		    'user'       => UserResource::make($this->whenLoaded('user')),
+		    'tags'       => TagResource::collection($this->whenLoaded('tags')),
+		    'images'     => ImageResource::collection($this->whenLoaded('images')),
+		    'created_at' => optional($this->created_at)->format('d.m.Y H:i'),
 	    ]);
     }
 }

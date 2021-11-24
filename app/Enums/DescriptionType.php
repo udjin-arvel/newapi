@@ -11,6 +11,7 @@ final class DescriptionType
 	/**
 	 * Типы описаний
 	 */
+	const THING     = 'thing';
 	const PLOT      = 'plot';
 	const PLACE     = 'place';
 	const CHARACTER = 'character';
@@ -20,7 +21,8 @@ final class DescriptionType
 	 */
 	const TYPES = [
 		self::PLOT      => 'Описание сюжета',
-		self::PLACE     => 'Описание места',
 		self::CHARACTER => 'Описание персонажа',
+		self::PLACE     => 'Описание места',
+		self::THING     => 'Описание предмета',
 	];
 }

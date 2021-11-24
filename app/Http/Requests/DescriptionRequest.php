@@ -12,8 +12,8 @@ class DescriptionRequest extends BaseRequest
 	public function rules()
 	{
 		return [
-			'title'     => 'required|max:255',
-			'text'      => 'required',
+			'title' => 'required|max:255',
+			'text'  => 'required',
 		];
 	}
 }

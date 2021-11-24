@@ -2,24 +2,25 @@
 
 namespace App\Http\Filters;
 
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
-class CompositionFilter extends AbstractFilter
+class ImageFilter extends AbstractFilter
 {
 	/**
 	 * @var array
 	 */
 	protected $filtered = [
 		'title',
-		'type',
+		'content_id',
+		'content_type',
 	];
 	
 	public function __construct(Request $request)
 	{
 		$request->validate([
-			'title' => 'string',
-			'type'  => 'string',
+			'title'        => 'string',
+			'content_id'   => 'int',
+			'content_type' => 'string',
 		]);
 		
 		parent::__construct($request);

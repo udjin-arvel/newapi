@@ -16,7 +16,7 @@ class CreateDescriptionsTable extends Migration
         Schema::create('descriptions', function (Blueprint $table) {
 	        $table->bigIncrements('id');
 	
-	        $table->string('type', 64);
+	        $table->string('type', 64)->default('');
 	        $table->string('title')->nullable();
 	        $table->text('text');
 	
