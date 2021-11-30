@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Builder;
  * @property int     $user_id
  * @property int     $content_id
  * @property string  $content_type
+ * @property string  $type
  * @property int     $importance
  *
  * @method static Builder|Note attached()

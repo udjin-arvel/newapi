@@ -8,6 +8,7 @@ Route::post('register', [Api\UserController::class, 'register']);
 Route::group(['middleware' => 'auth:api'], function() {
     // ------------------------ Special routes ------------------------ //
     Route::get('presets', [Api\SiteController::class, 'getPresetData']);
+    Route::get('homeContent', [Api\SiteController::class, 'getHomeContent']);
     
     // ------------------------ Story routes ------------------------ //
 	Route::resource('stories', Api\StoryController::class);

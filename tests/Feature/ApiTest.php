@@ -166,7 +166,7 @@ class ApiTest extends TestCase
     }
 	
 	/**
-	 * @test
+	 *
 	 */
 	public function getCompositionTest()
 	{
@@ -298,6 +298,20 @@ class ApiTest extends TestCase
 		$response = $this
 			->actingAs($this->admin)
 			->getJson('/api/loreitems?content_id=1&content_type=Loreitem')
+		;
+		
+		$this->getResultFromResponse($response);
+		$response->assertStatus(200);
+	}
+	
+	/**
+	 * @test
+	 */
+	public function getHomeContentTest()
+	{
+		$response = $this
+			->actingAs($this->admin)
+			->getJson('/api/homeContent')
 		;
 		
 		$this->getResultFromResponse($response);

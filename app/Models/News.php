@@ -12,6 +12,7 @@ use App\Models\Traits\Contentable;
  * @property string  $content_type
  * @property string  $text
  * @property string  $title
+ * @property string  $action
  */
 class News extends AbstractModel
 {

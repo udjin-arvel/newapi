@@ -99,9 +99,13 @@ class Enum
 	 * @param string $className
 	 * @return string|null
 	 */
-	public function aliasByModel(string $className): ?string
+	public function aliasByModel(?string $className): ?string
 	{
-		return array_flip(self::ALIASES)[$className] ?? null;
+		if ($className) {
+			return array_flip(self::ALIASES)[$className] ?? null;
+		}
+		
+		return null;
 	}
 	
 	/**
