@@ -15,6 +15,7 @@ use App\Models\News;
 use App\Models\Notification;
 use App\Models\Notion;
 use App\Models\Story;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class BookController
@@ -26,7 +27,6 @@ class SiteController extends Controller
 	 *
 	 */
 	const HOME_CONTENT_AMOUNT_LIMIT = 10;
-	
 	
     /**
      * Получить базовые данные (кофиги)
@@ -46,18 +46,20 @@ class SiteController extends Controller
 	 */
     public function getHomeContent()
     {
-	    $stories      = Story::orderBy('created_at', 'desc')->limit(self::HOME_CONTENT_AMOUNT_LIMIT)->get();
-	    $news         = News::orderBy('created_at', 'desc')->limit(self::HOME_CONTENT_AMOUNT_LIMIT)->get();
-	    $compositions = Composition::orderBy('created_at', 'desc')->limit(self::HOME_CONTENT_AMOUNT_LIMIT)->get();
-	    $notions      = Notion::orderBy('created_at', 'desc')->limit(self::HOME_CONTENT_AMOUNT_LIMIT)->get();
-	    $loreItems    = LoreItem::orderBy('created_at', 'desc')->limit(self::HOME_CONTENT_AMOUNT_LIMIT)->get();
+	    $stories = Story::orderBy('created_at', 'desc')
+		    ->with(['fragments' => function(HasMany $query) {
+			    return $query->take(3);
+		    }])
+		    ->limit(self::HOME_CONTENT_AMOUNT_LIMIT)
+		    ->get();
+	    
+	    $news = News::orderBy('created_at', 'desc')
+		    ->limit(self::HOME_CONTENT_AMOUNT_LIMIT)
+		    ->get();
 	    
 	    return $this->sendSuccess([
-		    'stories'      => StoryResource::collection($stories),
-		    'news'         => NewsResource::collection($news),
-		    'compositions' => CompositionResource::collection($compositions),
-		    'notions'      => NotificationResource::collection($notions),
-		    'loreItems'    => LoreItemResource::collection($loreItems),
+		    'stories' => StoryResource::collection($stories),
+		    'news'    => NewsResource::collection($news),
 	    ]);
     }
 }

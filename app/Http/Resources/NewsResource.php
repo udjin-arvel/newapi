@@ -22,8 +22,9 @@ class NewsResource extends BaseResource
 			'title'        => $this->title,
 			'text'         => $this->text,
 			'content_id'   => $this->content_id,
-			'content_type' => $this->content_type,
+			'content_type' => $this->getContentType(),
 			'action'       => $this->action,
+			'created_at'   => optional($this->created_at)->format('d.m.Y H:i'),
 		]);
 	}
 }

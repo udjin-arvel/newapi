@@ -20,15 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="24e9da2f-bf30-4a2c-9f19-81b68f84e4d5" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Resources/NewsResource.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Enums/Enum.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Enums/Enum.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/SiteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/SiteController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/NotificationResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/NotificationResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/News.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/News.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Note.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Note.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/ApiTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/ApiTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/NewsResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/NewsResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Traits/Contentable.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Traits/Contentable.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -615,6 +610,10 @@
       <workItem from="1637691439700" duration="11051000" />
       <workItem from="1638226231471" duration="1352000" />
       <workItem from="1638252791971" duration="2617000" />
+      <workItem from="1638273719887" duration="599000" />
+      <workItem from="1638285112896" duration="1921000" />
+      <workItem from="1638295604388" duration="686000" />
+      <workItem from="1638611610160" duration="2062000" />
     </task>
     <servers />
   </component>

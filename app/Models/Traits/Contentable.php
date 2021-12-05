@@ -18,5 +18,19 @@ trait Contentable
 	{
 		return $this->morphTo();
 	}
+	
+	/**
+	 * Вернуть только значащую строку от типа контента
+	 * @return string
+	 */
+	public function getContentType(): string
+	{
+		if ($this->content_type) {
+			$namespaced = explode('\\', $this->content_type);
+			return $namespaced[count($namespaced) - 1];
+		}
+		
+		return '';
+	}
 }
 
