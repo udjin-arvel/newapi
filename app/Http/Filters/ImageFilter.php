@@ -4,7 +4,7 @@ namespace App\Http\Filters;
 
 use Illuminate\Http\Request;
 
-class ImageFilter extends AbstractFilter
+class ImageFilter extends BaseFilter
 {
 	/**
 	 * @var array

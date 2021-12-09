@@ -5,7 +5,7 @@ namespace App\Http\Filters;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
-class NotionFilter extends AbstractFilter
+class NotionFilter extends BaseFilter
 {
 	/**
 	 * @var array

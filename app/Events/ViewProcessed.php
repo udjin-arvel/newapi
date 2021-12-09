@@ -2,7 +2,7 @@
 
 namespace App\Events;
 
-use App\Models\AbstractModel;
+use App\Models\BaseModel;
 use App\Models\User;
 use App\Models\View;
 use Illuminate\Queue\SerializesModels;
@@ -26,10 +26,10 @@ class ViewProcessed
 	/**
 	 * Create a new event instance.
 	 *
-	 * @param AbstractModel $content
+	 * @param BaseModel $content
 	 * @return void
 	 */
-	public function __construct(AbstractModel $content)
+	public function __construct(BaseModel $content)
 	{
 		$this->content = $content;
 		$this->user    = \Auth::user();

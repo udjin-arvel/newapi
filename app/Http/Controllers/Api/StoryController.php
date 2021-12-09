@@ -23,11 +23,6 @@ use Illuminate\Http\Resources\Json\JsonResource;
 class StoryController extends Controller
 {
 	/**
-	 * Историй на страницу
-	 */
-	const STORIES_PER_PAGE = 8;
-	
-	/**
 	 * @param StoryFilter $filter
 	 * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
 	 */
@@ -35,10 +30,12 @@ class StoryController extends Controller
 	{
 		return StoryResource::collection(
 			Story::filter($filter)
+				->isPublic()
 				->with(['user', 'tags', 'composition', 'likes', 'fragments' => function(HasMany $query) {
 					return $query->take(3);
 				}])
-				->paginate(self::STORIES_PER_PAGE)
+				->orderBy('created_at', 'desc')
+				->paginate(request()->get('perPage', config('tb.pageSize.middle')))
 		);
 	}
 	

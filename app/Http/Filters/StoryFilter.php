@@ -5,7 +5,7 @@ namespace App\Http\Filters;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
-class StoryFilter extends AbstractFilter
+class StoryFilter extends BaseFilter
 {
 	/**
 	 * @var array

@@ -17,7 +17,7 @@ use App\Models\Traits\UserRelation;
  * @property int    $user_id
  * @property bool   $is_public
  */
-class Short extends AbstractModel
+class Short extends BaseModel
 {
     use UserRelation, PublicScope, Taggable;
 }

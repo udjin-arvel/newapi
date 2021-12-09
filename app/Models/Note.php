@@ -24,9 +24,11 @@ use Illuminate\Database\Eloquent\Builder;
  * @method static Builder|Note attached()
  * @method static Builder|Note notAttached()
  */
-class Note extends AbstractModel
+class Note extends BaseModel
 {
-    use UserRelation, Taggable, Contentable;
+    use UserRelation,
+	    Taggable,
+	    Contentable;
 	
 	/**
 	 * @var array
@@ -41,26 +43,4 @@ class Note extends AbstractModel
         parent::boot();
         static::addGlobalScope(new UserIdScope);
     }
-	
-	/**
-	 * Выбрать прикрепленные заметки
-	 *
-	 * @param Builder $query
-	 * @return Builder
-	 */
-	public function scopeAttached(Builder $query)
-	{
-		return $query->where('content_id', '!=', null);
-	}
-	
-	/**
-	 * Выбрать неприкрепленные заметки
-	 *
-	 * @param Builder $query
-	 * @return Builder
-	 */
-	public function scopeNotAttached(Builder $query)
-	{
-		return $query->where('content_id', '=', null);
-	}
 }

@@ -18,7 +18,7 @@ use App\Models\Traits\Imageable;
  * @property int    $user_id
  * @property bool   $is_public
  */
-class LoreItem extends AbstractModel
+class LoreItem extends BaseModel
 {
     use UserRelation,
 	    Taggable,

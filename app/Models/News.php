@@ -14,20 +14,9 @@ use App\Models\Traits\Contentable;
  * @property string  $title
  * @property string  $action
  */
-class News extends AbstractModel
+class News extends BaseModel
 {
 	use Contentable;
-	
-    /**
-     * Контект, который имеет комментарии
-     */
-    const TYPES = [
-        'story'       => Story::class,
-        'notion'      => Notion::class,
-        'loreitem'    => LoreItem::class,
-        'composition' => Composition::class,
-        'user'        => User::class,
-    ];
 	
 	/**
 	 * Вариации новостей
@@ -43,13 +32,12 @@ class News extends AbstractModel
       'content_type',
       'text',
       'action',
-      'updated_at',
     ];
 	
 	/**
 	 * @var array
 	 */
-	public $timestamps = ['updated_at'];
+	public $timestamps = ['created_at'];
 	
 	/**
 	 * Получить текст новости

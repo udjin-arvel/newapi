@@ -32,22 +32,20 @@ use Illuminate\Database\Eloquent\Model;
  * @method static Builder|Description characters()
  * @method static Builder|Description places()
  */
-class Description extends AbstractModel
+class Description extends BaseModel
 {
-	use UserRelation, Taggable, Contentable;
+	use UserRelation,
+		Taggable,
+		Contentable;
 	
     /**
-     * Типы сюжетов
+     * Типы описаний
      */
-    const TYPE_PLOT      = 'type-plot';
-	const TYPE_PLACE     = 'type-place';
-	const TYPE_CHARACTER = 'type-character';
-	
-	const TYPES = [
-		self::TYPE_PLOT      => 'Описание сюжета',
-		self::TYPE_PLACE     => 'Описание места',
-		self::TYPE_CHARACTER => 'Описание персонажа',
-	];
+    const TYPE_SUBJECT   = 'subject';
+    const TYPE_PLOT      = 'plot';
+	const TYPE_PLACE     = 'place';
+	const TYPE_CHARACTER = 'character';
+	const TYPE_EVENT     = 'event';
 	
 	/**
 	 * @var array

@@ -2,7 +2,7 @@
 
 namespace App\Models\Traits;
 
-use App\Models\AbstractModel;
+use App\Models\BaseModel;
 use App\Models\Description;
 
 /**
@@ -26,7 +26,7 @@ trait Descriptionable
 	 * Синхронизировать описания модели с указанными описаниями
 	 *
 	 * @param array|null $descriptions
-	 * @return Descriptionable|AbstractModel
+	 * @return Descriptionable|BaseModel
 	 */
 	public function syncDescriptions(?array $descriptions)
 	{

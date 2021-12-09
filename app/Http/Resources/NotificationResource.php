@@ -21,7 +21,7 @@ class NotificationResource extends BaseResource
 	{
 		$data = [
 			'content_id'   => $this->content_id,
-			'content_type' => $this->content_type ? Enum::aliasByModel($this->content_type) : '',
+			'content_type' => $this->content_type,
 			'message'      => $this->message,
 			'user'         => new UserResource($this->user),
 			'updated_at'   => optional($this->updated_at)->format('d.m.Y H:i'),

@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Log;
 
 class Handler extends ExceptionHandler
 {
@@ -47,10 +48,14 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        if ($exception instanceof TBError)  {
-            return $exception->render();
+        if (! ($exception instanceof TBError))  {
+	        Log::error('Необработанное исключение: ' . $exception->getMessage());
+	        
+	        if (!env('APP_DEBUG')) {
+	            $exception = new TBError(TBError::SERVER_ERROR);
+	        }
         }
-    
-        return parent::render($request, $exception);
+	
+	    return $exception->render();
     }
 }

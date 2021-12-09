@@ -15,7 +15,7 @@ use App\Models\Traits\UserRelation;
  * @property int    $user_id
  * @property string $content_type
  */
-class Image extends AbstractModel
+class Image extends BaseModel
 {
     use UserRelation,
 	    Contentable;

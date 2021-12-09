@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Builder;
  * @property int    $user_id
  * @property int    $parent_id
  */
-class Comment extends AbstractModel
+class Comment extends BaseModel
 {
     use UserRelation, Contentable;
     

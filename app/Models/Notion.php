@@ -21,9 +21,22 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int    $type
  * @property bool   $is_public
  */
-class Notion extends AbstractModel implements LikeableContract
+class Notion extends BaseModel implements LikeableContract
 {
-    use SoftDeletes, UserRelation, Likeable, Taggable, PublicScope;
+    use SoftDeletes,
+	    UserRelation,
+	    Likeable,
+	    Taggable,
+	    PublicScope;
+	
+	/**
+	 * Типы понятий
+	 */
+	const TYPE_DEFINITION = 'definition';
+	const TYPE_CHARACTER  = 'character';
+	const TYPE_PLACE      = 'place';
+	const TYPE_ENTITY     = 'entity';
+	const TYPE_EVENT      = 'event';
 	
 	protected $fillable = [
 		'title',

@@ -182,7 +182,6 @@ return [
      */
 
     App\Providers\BookHelperServiceProvider::class,
-    App\Providers\EnumServiceProvider::class,
 
 ],
 

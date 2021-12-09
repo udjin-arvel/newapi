@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
  * Class SubscriptionFilter
  * @package App\Http\Filters
  */
-class SubscriptionFilter extends AbstractFilter
+class SubscriptionFilter extends BaseFilter
 {
 	/**
 	 * @var array

@@ -27,13 +27,19 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $description
  * @property string $poster
  */
-class Composition extends AbstractModel implements LikeableContract
+class Composition extends BaseModel implements LikeableContract
 {
     use SoftDeletes,
 	    Likeable,
         UserRelation,
 	    Commentable,
         Taggable;
+	
+	/**
+	 * Типы произведений
+	 */
+	const TYPE_BOOK   = 'book';
+	const TYPE_SERIES = 'series';
 	
 	/**
 	 * @var array

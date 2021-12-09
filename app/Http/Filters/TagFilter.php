@@ -6,7 +6,7 @@ use DB;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
-class TagFilter extends AbstractFilter
+class TagFilter extends BaseFilter
 {
 	/**
 	 * @var array

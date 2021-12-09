@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources;
 
-use App\Enums\DescriptionType;
+use App\Capacitors\DescriptionType;
 use App\Models\Description;
 use Illuminate\Http\Request;
 

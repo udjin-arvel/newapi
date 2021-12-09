@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
  * Class ShortFilter
  * @package App\Http\Filters
  */
-class ShortFilter extends AbstractFilter
+class ShortFilter extends BaseFilter
 {
 	/**
 	 * @var array

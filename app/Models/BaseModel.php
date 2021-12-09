@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
-use App\Http\Filters\AbstractFilter;
+use App\Http\Filters\BaseFilter;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class AModel
+ * Class BaseModel
  * @package App\Models
  *
  * @property int    $id
@@ -20,21 +20,21 @@ use Illuminate\Database\Eloquent\Model;
  * @property User   $user
  * @property array  $tags
  *
- * @method static Model|Builder filter(AbstractFilter $filters) Apply filter
- * @method static Builder|AbstractModel syncTags(array $ids)
- * @method static Builder|AbstractModel syncDescriptions(array $descriptions)
- * @method static Builder|Comment onlyParents()
- * @method static Builder|AbstractModel ids(bool $toArray = true)
+ * @method static self|Builder filter(BaseFilter $filters) Apply filter
+ * @method static self|Builder syncTags(array $ids)
+ * @method static self|Builder syncDescriptions(array $descriptions)
+ * @method static self|Builder onlyParents()
+ * @method static self|Builder ids(bool $toArray = true)
  *
  * @mixin \Eloquent
  */
-class AbstractModel extends Model {
+class BaseModel extends Model {
 	/**
 	 * @param Builder $query
-	 * @param AbstractFilter $filter
+	 * @param BaseFilter $filter
 	 * @return Builder
 	 */
-	public function scopeFilter(Builder $query, AbstractFilter $filter)
+	public function scopeFilter(Builder $query, BaseFilter $filter)
 	{
 		return $filter->apply($query);
 	}
@@ -42,9 +42,9 @@ class AbstractModel extends Model {
 	/**
 	 * @param array $attributes
 	 * @param array $options
-	 * @return AbstractModel
+	 * @return BaseModel
 	 */
-	public function update(array $attributes = [], array $options = []): AbstractModel
+	public function update(array $attributes = [], array $options = []): BaseModel
 	{
 		$this->fill($attributes)->save($options);
 		return $this;

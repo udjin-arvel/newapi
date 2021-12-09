@@ -15,7 +15,14 @@ use App\Models\Traits\UserRelation;
  * @property string $old_variant
  * @property string $new_variant
  */
-class Correction extends AbstractModel
+class Correction extends BaseModel
 {
     use UserRelation, Contentable;
+	
+	/**
+	 * Статусы исправления
+	 */
+	const STATUS_PENDING  = 'pending';
+	const STATUS_CANCELED = 'canceled';
+	const STATUS_ACCEPTED = 'accepted';
 }

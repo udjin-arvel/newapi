@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
  * Class LoreItemFilter
  * @package App\Http\Filters
  */
-class LoreItemFilter extends AbstractFilter
+class LoreItemFilter extends BaseFilter
 {
 	/**
 	 * @var array

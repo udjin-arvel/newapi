@@ -47,7 +47,7 @@ use Cog\Likeable\Traits\Likeable;
  * @property array $descriptions
  * @property Composition $composition
  */
-class Story extends AbstractModel implements LikeableContract
+class Story extends BaseModel implements LikeableContract
 {
     use SoftDeletes,
         UserRelation,
@@ -56,6 +56,12 @@ class Story extends AbstractModel implements LikeableContract
         Commentable,
 	    Descriptionable,
 	    PublicScope;
+	
+	/**
+	 * Типы историй
+	 */
+	const TYPE_STORY    = 'story';
+	const TYPE_ANNOUNCE = 'announce';
 	
 	/**
 	 * @var array

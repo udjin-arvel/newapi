@@ -2,6 +2,8 @@
 
 namespace App\Models\Traits;
 
+use App\Capacitors\AliasCapacitor;
+
 /**
  * Trait Contentable
  *
@@ -20,17 +22,12 @@ trait Contentable
 	}
 	
 	/**
-	 * Вернуть только значащую строку от типа контента
+	 * @param $value
 	 * @return string
 	 */
-	public function getContentType(): string
+	public function getContentTypeAttribute($value): string
 	{
-		if ($this->content_type) {
-			$namespaced = explode('\\', $this->content_type);
-			return $namespaced[count($namespaced) - 1];
-		}
-		
-		return '';
+		return ucfirst(AliasCapacitor::getAliasByClass($value));
 	}
 }
 

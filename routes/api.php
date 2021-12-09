@@ -6,9 +6,16 @@ Route::post('login', [Api\UserController::class, 'login']);
 Route::post('register', [Api\UserController::class, 'register']);
 
 Route::group(['middleware' => 'auth:api'], function() {
-    // ------------------------ Special routes ------------------------ //
-    Route::get('presets', [Api\SiteController::class, 'getPresetData']);
-    Route::get('homeContent', [Api\SiteController::class, 'getHomeContent']);
+    // ------------------------ Start routes ------------------------ //
+    Route::get('notifications', [Api\SiteController::class, 'notifications']);
+    Route::get('news', [Api\SiteController::class, 'news']);
+    Route::get('types/{alias}', [Api\SiteController::class, 'types']);
+    Route::get('statuses/{alias}', [Api\SiteController::class, 'statuses']);
+	
+	// ------------------------ Like routes ------------------------ //
+	Route::get('like', [Api\LikeController::class, 'like']);
+	Route::get('dislike', [Api\LikeController::class, 'dislike']);
+	Route::get('likeToggle', [Api\LikeController::class, 'likeToggle']);
     
     // ------------------------ Story routes ------------------------ //
 	Route::resource('stories', Api\StoryController::class);
@@ -39,9 +46,4 @@ Route::group(['middleware' => 'auth:api'], function() {
 	
 	// ------------------------ Subscription routes ------------------------ //
 	Route::resource('subscriptions', Api\SubscriptionController::class);
-	
-	// ------------------------ Like routes ------------------------ //
-	Route::get('like', [Api\LikeController::class, 'like']);
-	Route::get('dislike', [Api\LikeController::class, 'dislike']);
-	Route::get('likeToggle', [Api\LikeController::class, 'likeToggle']);
 });

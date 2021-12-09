@@ -16,7 +16,7 @@ use Cog\Likeable\Models\Like;
  * @property string $content_type
  * @property string $type
  */
-class Reward extends AbstractModel
+class Reward extends BaseModel
 {
     use UserRelation, Contentable;
     

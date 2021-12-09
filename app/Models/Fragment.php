@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int    $order
  * @property string $text
  */
-class Fragment extends AbstractModel
+class Fragment extends BaseModel
 {
     use SoftDeletes, Contentable;
 

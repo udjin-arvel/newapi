@@ -2,24 +2,29 @@
 
 namespace App\Models;
 
-use App\Facades\Enum;
 use App\Models\Traits\Contentable;
 use App\Models\Traits\UserRelation;
 use App\Scopes\UserIdScope;
 
 /**
- * Class Note
+ * Class Notification
  * @package App\Models
  *
  * @property int     $content_id
  * @property string  $content_type
  * @property string  $message
- * @property int     $subscription_id
  * @property int     $user_id
  */
-class Notification extends AbstractModel
+class Notification extends BaseModel
 {
-    use UserRelation, Contentable;
+    use UserRelation,
+	    Contentable;
+	
+    
+    public function __construct(array $attributes = [])
+    {
+	    parent::__construct($attributes);
+    }
 	
 	/**
 	 * @var array
@@ -28,7 +33,6 @@ class Notification extends AbstractModel
         'content_id',
         'content_type',
         'message',
-        'subscription_id',
         'user_id',
     ];
 	
@@ -38,21 +42,13 @@ class Notification extends AbstractModel
 	public $timestamps = ['updated_at'];
     
     /**
-     * @return void
+     * Подключить хуки к модели
      */
     protected static function boot()
     {
         parent::boot();
         static::addGlobalScope(new UserIdScope);
     }
-	
-	/**
-	 * Подписка, на которую создано уведомление
-	 */
-	public function subscription()
-	{
-		return $this->belongsTo(Subscription::class);
-	}
 	
 	/**
 	 * Получить текст подписки

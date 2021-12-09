@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use App\Enums\Enum;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 

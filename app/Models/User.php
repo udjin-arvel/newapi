@@ -35,11 +35,11 @@ class User extends Authenticatable
     /**
      * Статус пользователя
      */
-    const STATUS_READER    = 'reader';
-    const STATUS_WRITER    = 'writer';
-    const STATUS_CORRECTOR = 'corrector';
-    const STATUS_MODERATOR = 'moderator';
-    const STATUS_ADMIN     = 'admin';
+	const STATUS_ADMIN     = 'admin';
+	const STATUS_MODERATOR = 'moderator';
+	const STATUS_CORRECTOR = 'corrector';
+	const STATUS_WRITER    = 'writer';
+	const STATUS_READER    = 'reader';
 
     /**
      * The attributes that are mass assignable.

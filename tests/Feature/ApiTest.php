@@ -194,13 +194,13 @@ class ApiTest extends TestCase
     }
 
     /**
-     *
+     * @test
      */
     public function getStoriesTest()
     {
         $response = $this
             ->actingAs($this->admin)
-            ->getJson('/api/stories')
+            ->getJson('/api/stories?perPage=20')
         ;
 	
 	    $this->getResultFromResponse($response);
@@ -305,13 +305,27 @@ class ApiTest extends TestCase
 	}
 	
 	/**
-	 * @test
+	 *
 	 */
 	public function getHomeContentTest()
 	{
 		$response = $this
 			->actingAs($this->admin)
 			->getJson('/api/homeContent')
+		;
+		
+		$this->getResultFromResponse($response);
+		$response->assertStatus(200);
+	}
+	
+	/**
+	 *
+	 */
+	public function getNotificationsTest()
+	{
+		$response = $this
+			->actingAs($this->admin)
+			->getJson('/api/notifications')
 		;
 		
 		$this->getResultFromResponse($response);

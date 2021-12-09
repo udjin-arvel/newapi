@@ -2,11 +2,11 @@
 
 namespace App\Http\Resources;
 
-use App\Models\AbstractModel;
+use App\Models\BaseModel;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
- * @mixin AbstractModel
+ * @mixin BaseModel
  */
 class BaseResource extends JsonResource
 {

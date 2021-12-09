@@ -2,7 +2,6 @@
 
 namespace App\Http\Filters;
 
-use App\Facades\Enum;
 use App\Models\LoreItem;
 use App\Models\Notion;
 use App\Models\Story;
@@ -11,7 +10,11 @@ use Illuminate\Http\Request;
 use Log;
 use Str;
 
-abstract class AbstractFilter
+/**
+ * Class BaseFilter
+ * @package App\Http\Filters
+ */
+abstract class BaseFilter
 {
 	/**
 	 * @var array
@@ -74,20 +77,15 @@ abstract class AbstractFilter
 	protected function prepareRequestData(Request $request): Request
 	{
 		if ($request->exists('content_type')) {
-			$contentType = Enum::modelByAlias(
-				strtolower(
-					$request->get('content_type')
-				)
-			);
+			$contentType = config("tb.alias_model.{$request->get('content_type')}", '');
+			$request->request->add(['content_type' => $contentType]);
 			
 			if (empty($contentType)) {
 				Log::error("Не найден alias для content_type={$request->get('content_type')}");
 			}
-			
-			$request->request->add(['content_type' => $contentType]);
 		}
 		
-		if (\in_array($request->getMethod(), ['POST', 'PUT'], true)) {
+		if (in_array($request->getMethod(), ['POST', 'PUT'])) {
 			$request->request->add(['user_id' => \Auth::id()]);
 		}
 		

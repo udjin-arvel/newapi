@@ -2,7 +2,7 @@
 
 namespace App\Events;
 
-use App\Models\AbstractModel;
+use App\Models\BaseModel;
 use App\Models\User;
 use App\Models\View;
 use Illuminate\Queue\SerializesModels;
@@ -31,10 +31,10 @@ class NewsProcessed
 	/**
 	 * Create a new event instance.
 	 *
-	 * @param AbstractModel $content
+	 * @param BaseModel $content
 	 * @param string $action
 	 */
-	public function __construct(AbstractModel $content, string $action)
+	public function __construct(BaseModel $content, string $action)
 	{
 		$this->content = $content;
 		$this->action  = $action;

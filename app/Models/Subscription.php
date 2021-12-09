@@ -19,9 +19,18 @@ use Illuminate\Database\Eloquent\Builder;
  * @method static Builder|Subscription byUserId($userId)
  * @method static Builder|Subscription byType($types)
  */
-class Subscription extends AbstractModel
+class Subscription extends BaseModel
 {
     use UserRelation;
+	
+	/**
+	 * Типы подписок
+	 */
+	const TYPE_USER        = 'user';
+	const TYPE_COMPOSITION = 'composition';
+	const TYPE_NOTION      = 'notion';
+	const TYPE_SHORT       = 'short';
+	const TYPE_LORE_ITEM   = 'loreitem';
 	
 	/**
 	 * @var array
@@ -60,9 +69,16 @@ class Subscription extends AbstractModel
 	 */
 	public function getSubscriptionText(): string
 	{
-		$typeText = Enum::getTypeByModelsTypeAndAlias(self::class, $this->content_type);
-		return null !== $typeText
-			? "Вы подписаны {$typeText}."
-			: 'Неизвестная подписка. Обратитесь к администратору с проблемой.';
+		$text = 'Вы подписаны на ';
+		
+		switch ($this->content_type) {
+			case User::class:        $text .= 'контент автора'; break;
+			case Composition::class: $text .= 'главы композиции'; break;
+			case Notion::class:      $text .= 'новые понятия'; break;
+			case Short::class:       $text .= 'короткие заметки об основном сюжете'; break;
+			case LoreItem::class:    $text .= 'свежие записи о механике вселенной'; break;
+		}
+		
+		return $text;
 	}
 }

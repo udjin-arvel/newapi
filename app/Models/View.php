@@ -13,7 +13,7 @@ use App\Models\Traits\UserRelation;
  * @property int    $content_id
  * @property string $content_type
  */
-class View extends AbstractModel
+class View extends BaseModel
 {
     use UserRelation, Contentable;
     

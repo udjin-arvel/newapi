@@ -3,7 +3,7 @@
 namespace App\Managers;
 
 use App\Contracts\AbstractContract;
-use App\Models\AbstractModel;
+use App\Models\BaseModel;
 
 class ContractManager {
 	/**
@@ -23,9 +23,9 @@ class ContractManager {
 	}
 	
 	/**
-	 * @param AbstractModel $model
+	 * @param BaseModel $model
 	 */
-	public function viewed(AbstractModel $model)
+	public function viewed(BaseModel $model)
 	{
 		$this->contracts->each(function ($contract) use ($model) {
 			/**
@@ -39,25 +39,25 @@ class ContractManager {
 	}
 	
 	/**
-	 * @param AbstractModel $model
+	 * @param BaseModel $model
 	 */
-	public function created(AbstractModel $model)
+	public function created(BaseModel $model)
 	{
 	
 	}
 	
 	/**
-	 * @param AbstractModel $model
+	 * @param BaseModel $model
 	 */
-	public function updated(AbstractModel $model)
+	public function updated(BaseModel $model)
 	{
 	
 	}
 	
 	/**
-	 * @param AbstractModel $model
+	 * @param BaseModel $model
 	 */
-	public function deleted(AbstractModel $model)
+	public function deleted(BaseModel $model)
 	{
 	
 	}

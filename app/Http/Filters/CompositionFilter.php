@@ -5,7 +5,7 @@ namespace App\Http\Filters;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
-class CompositionFilter extends AbstractFilter
+class CompositionFilter extends BaseFilter
 {
 	/**
 	 * @var array
