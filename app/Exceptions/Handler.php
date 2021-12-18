@@ -48,14 +48,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        if (! ($exception instanceof TBError))  {
-	        Log::error('Необработанное исключение: ' . $exception->getMessage());
-	        
-	        if (!env('APP_DEBUG')) {
-	            $exception = new TBError(TBError::SERVER_ERROR);
-	        }
-        }
+	    if ($exception instanceof TBError)  {
+		    return $exception->render();
+	    }
 	
-	    return $exception->render();
+	    return parent::render($request, $exception);
     }
 }

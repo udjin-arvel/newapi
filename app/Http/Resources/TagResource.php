@@ -19,7 +19,7 @@ class TagResource extends BaseResource
     public function toArray($request)
     {
         return array_merge(parent::toArray($request), [
-            'name' => $this->name,
+            'label' => $this->name,
         ]);
     }
 }

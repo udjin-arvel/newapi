@@ -8,8 +8,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Filters\NotificationFilter;
 use App\Http\Resources\NewsResource;
 use App\Http\Resources\NotificationResource;
+use App\Http\Resources\TagResource;
 use App\Models\News;
 use App\Models\Notification;
+use App\Models\Tag;
 
 /**
  * Class SiteController
@@ -26,6 +28,14 @@ class SiteController extends Controller
 			News::orderBy('created_at', 'desc')
 				->paginate(request()->get('perPage', config('tb.pageSize.large')))
 		);
+	}
+	
+	/**
+	 * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+	 */
+	public function tags()
+	{
+		return TagResource::collection(Tag::orderBy('name')->get());
 	}
 	
 	/**

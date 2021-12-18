@@ -9,6 +9,7 @@ Route::group(['middleware' => 'auth:api'], function() {
     // ------------------------ Start routes ------------------------ //
     Route::get('notifications', [Api\SiteController::class, 'notifications']);
     Route::get('news', [Api\SiteController::class, 'news']);
+    Route::get('tags', [Api\SiteController::class, 'tags']);
     Route::get('types/{alias}', [Api\SiteController::class, 'types']);
     Route::get('statuses/{alias}', [Api\SiteController::class, 'statuses']);
 	
@@ -40,9 +41,6 @@ Route::group(['middleware' => 'auth:api'], function() {
 	
 	// ------------------------ Short routes ------------------------ //
 	Route::resource('shorts', Api\ShortController::class);
-    
-    // ------------------------ Tag routes ------------------------ //
-	Route::resource('tags', Api\TagController::class);
 	
 	// ------------------------ Subscription routes ------------------------ //
 	Route::resource('subscriptions', Api\SubscriptionController::class);

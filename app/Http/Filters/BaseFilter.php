@@ -46,7 +46,7 @@ abstract class BaseFilter
 	 */
 	public function __construct(Request $request)
 	{
-		$this->request = $this->prepareRequestData($request);
+		$this->request = $request;
 	}
 	
 	/**
@@ -67,28 +67,5 @@ abstract class BaseFilter
 		}
 		
 		return $this->query;
-	}
-	
-	/**
-	 * Подготовка данных для контроллера: тип в виде строки, content_type в виде App\Models\Some и т.п.
-	 * @param Request $request
-	 * @return Request
-	 */
-	protected function prepareRequestData(Request $request): Request
-	{
-		if ($request->exists('content_type')) {
-			$contentType = config("tb.alias_model.{$request->get('content_type')}", '');
-			$request->request->add(['content_type' => $contentType]);
-			
-			if (empty($contentType)) {
-				Log::error("Не найден alias для content_type={$request->get('content_type')}");
-			}
-		}
-		
-		if (in_array($request->getMethod(), ['POST', 'PUT'])) {
-			$request->request->add(['user_id' => \Auth::id()]);
-		}
-		
-		return $request;
 	}
 }

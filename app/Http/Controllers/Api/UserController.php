@@ -21,7 +21,12 @@ class UserController extends Controller
      */
 	public function login()
 	{
-		if (! \Auth::attempt(request()->input())) {
+		$credentials = [
+			'email' => request()->get('email'),
+			'password' => request()->get('password'),
+		];
+		
+		if (! \Auth::attempt($credentials)) {
 			throw new TBError(TBError::USER_AUTH_FAILED);
 		}
 		
