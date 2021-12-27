@@ -26,7 +26,7 @@ trait Descriptionable
 	 * Синхронизировать описания модели с указанными описаниями
 	 *
 	 * @param array|null $descriptions
-	 * @return Descriptionable|BaseModel
+	 * @return Descriptionable|static
 	 */
 	public function syncDescriptions(?array $descriptions)
 	{
@@ -42,7 +42,7 @@ trait Descriptionable
 			
 			$collection->each(function ($description) {
 				$model = Description::findOrNew($description['id'] ?? null);
-				$model->fill($description)->save();
+				$model->update($description);
 			});
 		} else {
 			$this->descriptions()->update(['content_id' => null, 'content_type' => null]);

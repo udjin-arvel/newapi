@@ -9,6 +9,7 @@ use App\Http\Resources\NotionResource;
 use App\Models\Notion;
 use App\Models\User;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Log;
 
 /**
  * Class StoryController
@@ -48,6 +49,9 @@ class NotionController extends Controller
 	 */
 	public function store(NotionRequest $request)
 	{
+		/**
+		 * @var Notion $notion
+		 */
 		$notion = Notion::create($request->all());
 		
 		if ($request->has('tags')) {

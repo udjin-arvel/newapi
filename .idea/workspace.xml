@@ -20,17 +20,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="24e9da2f-bf30-4a2c-9f19-81b68f84e4d5" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Models/Traits/Fragmentable.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Exceptions/Handler.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exceptions/Handler.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/SiteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/SiteController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/TagController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Filters/BaseFilter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Filters/BaseFilter.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Filters/TagFilter.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/TagRequest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/TagResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/TagResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Facades/Enum.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/NotionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/NotionController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/StoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/StoryController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/DescriptionResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/DescriptionResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/BaseModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/BaseModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Story.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Story.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Traits/Contentable.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Traits/Contentable.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Traits/Descriptionable.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Traits/Descriptionable.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Traits/Taggable.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Traits/Taggable.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -623,7 +623,9 @@
       <workItem from="1638611610160" duration="2062000" />
       <workItem from="1638999586605" duration="14810000" />
       <workItem from="1639057683182" duration="616000" />
-      <workItem from="1639829841617" duration="4925000" />
+      <workItem from="1639829841617" duration="5024000" />
+      <workItem from="1640507190809" duration="3505000" />
+      <workItem from="1640628510354" duration="2625000" />
     </task>
     <servers />
   </component>

@@ -7,6 +7,7 @@ use App\Contracts\ViewContract;
 use App\Models\Scopes\PublicScope;
 use App\Models\Traits\Commentable;
 use App\Models\Traits\Descriptionable;
+use App\Models\Traits\Fragmentable;
 use App\Models\Traits\ScopeOwn;
 use App\Models\Traits\ScopePublished;
 use App\Models\Traits\Taggable;
@@ -52,6 +53,7 @@ class Story extends BaseModel implements LikeableContract
     use SoftDeletes,
         UserRelation,
         Likeable,
+	    Fragmentable,
         Taggable,
         Commentable,
 	    Descriptionable,
@@ -88,15 +90,6 @@ class Story extends BaseModel implements LikeableContract
     public function composition()
     {
         return $this->belongsTo(Composition::class);
-    }
-    
-    /**
-     * Фрагменты, принадлежащие истории.
-     * @return HasMany
-     */
-    public function fragments()
-    {
-        return $this->hasMany(Fragment::class)->orderBy('order', 'desc');
     }
 
     /**

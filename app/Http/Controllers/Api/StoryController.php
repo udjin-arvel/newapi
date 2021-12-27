@@ -13,6 +13,7 @@ use App\Models\News;
 use App\Models\Story;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Log;
 
 /**
  * Class StoryController
@@ -99,8 +100,9 @@ class StoryController extends Controller
 		 * @var Story $story
 		 */
 		$story = Story::findOrFail($id)
-			->with(['tags', 'descriptions'])
+			->with(['tags', 'descriptions', 'fragments'])
 			->first()
+			->syncFragments($request->get('fragments'))
 			->syncTags($request->get('tags'))
 			->syncDescriptions($request->get('descriptions'))
 			->update($request->all());

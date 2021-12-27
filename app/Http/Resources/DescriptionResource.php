@@ -22,7 +22,7 @@ class DescriptionResource extends BaseResource
 		return array_merge(parent::toArray($request), [
 			'title'        => $this->title,
 			'text'         => $this->text,
-			'type'         => DescriptionType::TYPES[$this->type] ?? '',
+			'type'         => $this->type,
 			'content_id'   => $this->content_id,
 			'content_type' => $this->content_type,
 			'importance'   => (int) $this->importance,

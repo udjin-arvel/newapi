@@ -21,8 +21,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property array  $tags
  *
  * @method static self|Builder filter(BaseFilter $filters) Apply filter
- * @method static self|Builder syncTags(array $ids)
- * @method static self|Builder syncDescriptions(array $descriptions)
  * @method static self|Builder onlyParents()
  * @method static self|Builder ids(bool $toArray = true)
  *
