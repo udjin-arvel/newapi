@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Models\Scopes\PublicScope;
+use App\Models\Traits\Imageable;
+use App\Models\Traits\Posterable;
 use App\Models\Traits\Taggable;
 use App\Models\Traits\UserRelation;
 use Cog\Likeable\Contracts\Likeable as LikeableContract;
@@ -26,7 +28,9 @@ class Notion extends BaseModel implements LikeableContract
     use SoftDeletes,
 	    UserRelation,
 	    Likeable,
+	    Imageable,
 	    Taggable,
+	    Posterable,
 	    PublicScope;
 	
 	/**

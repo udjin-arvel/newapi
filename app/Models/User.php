@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Exceptions\TBError;
+use App\Models\Traits\Posterable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -30,7 +31,9 @@ use Laravel\Passport\HasApiTokens;
  */
 class User extends Authenticatable
 {
-	use HasApiTokens, Notifiable;
+	use HasApiTokens,
+		Posterable,
+		Notifiable;
 
     /**
      * Статус пользователя

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Traits\Commentable;
+use App\Models\Traits\Posterable;
 use App\Models\Traits\Taggable;
 use App\Models\Traits\UserRelation;
 use Cog\Likeable\Contracts\Likeable as LikeableContract;
@@ -33,6 +34,7 @@ class Composition extends BaseModel implements LikeableContract
 	    Likeable,
         UserRelation,
 	    Commentable,
+	    Posterable,
         Taggable;
 	
 	/**

@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Capacitors\AliasCapacitor;
 use Closure;
 use Log;
 
@@ -21,7 +22,7 @@ class PrepareApiData
     public function handle($request, Closure $next)
     {
 	    if ($request->exists('content_type')) {
-		    $contentType = config("tb.alias_model.{$request->get('content_type')}", '');
+		    $contentType = AliasCapacitor::getClassByAlias($request->get('content_type'));
 		    $request->request->add(['content_type' => $contentType]);
 		
 		    if (empty($contentType)) {

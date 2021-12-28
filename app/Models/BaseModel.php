@@ -40,7 +40,7 @@ class BaseModel extends Model {
 	/**
 	 * @param array $attributes
 	 * @param array $options
-	 * @return BaseModel
+	 * @return BaseModel|static
 	 */
 	public function update(array $attributes = [], array $options = []): BaseModel
 	{

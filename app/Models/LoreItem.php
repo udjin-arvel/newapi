@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Scopes\PublicScope;
+use App\Models\Traits\Posterable;
 use App\Models\Traits\Taggable;
 use App\Models\Traits\UserRelation;
 use App\Models\Traits\Imageable;
@@ -23,6 +24,7 @@ class LoreItem extends BaseModel
     use UserRelation,
 	    Taggable,
 	    Imageable,
+	    Posterable,
 	    PublicScope;
 	
 	/**

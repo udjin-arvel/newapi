@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Helpers\ImageHelper;
 use App\Models\User;
 
 /**
@@ -21,6 +22,7 @@ class UserResource extends BaseResource
 		    'name'   => $this->name,
 		    'login'  => $this->login,
 		    'status' => $this->status,
+		    'poster' => ImageHelper::getPosterUrl($this->poster),
 	    ]);
     }
 }

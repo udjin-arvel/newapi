@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Default Filesystem Disk
@@ -42,6 +41,8 @@ return [
     */
 
     'disks' => [
+    	// Дефолтный диск для работы с файловой системой
+    	'default' => 'public',
 
         'local' => [
             'driver' => 'local',
@@ -70,7 +71,5 @@ return [
             'visibility' => 'public',
             'url' => env('APP_URL').'/uploads',
         ],
-
     ],
-
 ];

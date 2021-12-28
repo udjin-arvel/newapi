@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Console\Commands\ActualizeNotifications;
+use App\Models\Composition;
 use App\Models\Subscription;
 use Illuminate\Contracts\Support\Renderable;
 

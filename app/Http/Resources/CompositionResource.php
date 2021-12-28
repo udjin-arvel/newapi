@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Helpers\ImageHelper;
 use App\Models\Composition;
 use Illuminate\Http\Request;
 
@@ -21,7 +22,7 @@ class CompositionResource extends BaseResource
 	    return array_merge(parent::toArray($request), [
 		    'title'       => $this->title,
 		    'description' => $this->description,
-		    'poster'      => $this->poster,
+		    'poster'      => ImageHelper::getPosterUrl($this->poster),
 		    'era'         => $this->era,
 		    'parent_id'   => $this->parent_id,
 		    'type'        => $this->type,

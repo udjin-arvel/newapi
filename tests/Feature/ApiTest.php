@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Composition;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\Fixtures\CompositionFixture;
 use Tests\Fixtures\NotionFixture;
@@ -194,7 +195,7 @@ class ApiTest extends TestCase
     }
 
     /**
-     * @test
+     *
      */
     public function getStoriesTest()
     {
@@ -236,16 +237,31 @@ class ApiTest extends TestCase
 	}
 	
 	/**
+	 * @test
 	 */
 	public function saveCompositionTest()
 	{
 		$response = $this
 			->withoutExceptionHandling()
 			->actingAs(User::findOrFail(1))
-			->postJson('/api/composition/save', CompositionFixture::feature1)
+			->postJson('/api/compositions', CompositionFixture::feature1)
 		;
 		
-		$response->assertStatus(200);
+		$response->assertStatus(201);
+	}
+	
+	/**
+	 *
+	 */
+	public function editCompositionTest()
+	{
+		$response = $this
+			->withoutExceptionHandling()
+			->actingAs(User::findOrFail(1))
+			->putJson('/api/compositions/20', CompositionFixture::feature3)
+		;
+		
+		$response->assertStatus(201);
 	}
 	
 	/**

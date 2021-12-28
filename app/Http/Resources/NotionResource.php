@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Helpers\ImageHelper;
 use App\Models\Notion;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,7 @@ class NotionResource extends BaseResource
 		    'is_public'  => (bool) $this->is_public,
 		    'type'       => $this->type,
 		    'level'      => $this->level,
-		    'poster'     => $this->poster,
+		    'poster'     => ImageHelper::getPosterUrl($this->poster),
 		    'created_at' => optional($this->created_at)->format('d.m.Y'),
 		    'user'       => UserResource::make($this->whenLoaded('user')),
 		    'tags'       => TagResource::collection($this->whenLoaded('tags')),

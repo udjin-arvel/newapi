@@ -2,7 +2,6 @@
 
 namespace App\Models\Traits;
 
-use App\Models\BaseModel;
 use App\Models\Tag;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
@@ -25,7 +24,7 @@ trait Taggable {
 	/**
 	 * Синхронизировать теги модели с указанными тегами
 	 * @param array|null $ids
-	 * @return static|Taggable
+	 * @return static
 	 */
 	public function syncTags(?array $ids)
 	{

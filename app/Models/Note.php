@@ -33,6 +33,18 @@ class Note extends BaseModel
 	/**
 	 * @var array
 	 */
+	protected $fillable = [
+		'title',
+		'text',
+		'content_id',
+		'content_type',
+		'importance',
+		'user_id',
+	];
+ 
+	/**
+	 * @var array
+	 */
 	public $timestamps = ['updated_at'];
     
     /**
