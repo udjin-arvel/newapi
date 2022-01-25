@@ -53,6 +53,15 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'login',
+        'status',
+        'poster',
+        'age',
+        'sex',
+        'city',
+        'info',
+        'level',
+        'experience',
     ];
 
     /**
@@ -122,7 +131,7 @@ class User extends Authenticatable
             empty($data['new_password']) ||
             !Hash::check($data['password'], $this->password)
         ) {
-            throw new TBError(TBError::PASSWORD_INCORRECT);
+            throw new TBError(TBError::INCORRECT_DATA);
         }
 
         $this->password = Hash::make($data['new_password']);

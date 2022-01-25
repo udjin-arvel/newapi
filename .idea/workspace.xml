@@ -20,30 +20,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="24e9da2f-bf30-4a2c-9f19-81b68f84e4d5" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Models/Traits/Posterable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/admin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/admin.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Admin/Controllers/TagController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Helpers/ImageHelper.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Helpers/ImageHelper.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/PrepareApiData.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/PrepareApiData.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/CompositionResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/CompositionResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/LoreItemResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/LoreItemResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/NoteResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/NoteResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/NotionResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/NotionResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/UserResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/UserResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Libraries/Portraitist.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Libraries/Tools.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/BaseModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/BaseModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Composition.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Composition.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/LoreItem.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/LoreItem.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Note.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Note.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Notion.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Notion.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Traits/Taggable.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Traits/Taggable.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Admin/Services/Statistics.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Services/Statistics.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Admin/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/routes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Capacitors/AliasCapacitor.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Capacitors/AliasCapacitor.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/DescriptionResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/DescriptionResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/TagResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/TagResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Description.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Description.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/filesystems.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/filesystems.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/ApiTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/ApiTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Fixtures/CompositionFixture.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Fixtures/CompositionFixture.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_02_09_235923_create_lore_items_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_02_09_235923_create_lore_items_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -223,7 +212,7 @@
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="last.edited.regexp" value=".php&#10;." />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../newbook" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -639,7 +628,15 @@
       <workItem from="1639829841617" duration="5024000" />
       <workItem from="1640507190809" duration="3505000" />
       <workItem from="1640628510354" duration="2626000" />
-      <workItem from="1640636043266" duration="14876000" />
+      <workItem from="1640636043266" duration="14877000" />
+      <workItem from="1640761186520" duration="223000" />
+      <workItem from="1640768207901" duration="1263000" />
+      <workItem from="1641729281100" duration="2409000" />
+      <workItem from="1642062229168" duration="2200000" />
+      <workItem from="1642504197548" duration="613000" />
+      <workItem from="1642595815437" duration="3243000" />
+      <workItem from="1643023317807" duration="3764000" />
+      <workItem from="1643124815794" duration="1430000" />
     </task>
     <servers />
   </component>

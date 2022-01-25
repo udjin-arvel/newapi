@@ -18,7 +18,7 @@ class CreateLoreItemsTable extends Migration
     
             $table->string('title');
             $table->text('text');
-            $table->string('poster');
+            $table->string('poster')->nullable();
             $table->boolean('is_public')->default(false);
             $table->unsignedSmallInteger('level')->default(1);
             

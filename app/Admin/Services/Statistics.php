@@ -35,13 +35,11 @@ class Statistics
         Notion::class       => 'Понятия',
         View::class         => 'Просмотры',
         Comment::class      => 'Комментарии',
-        Like::class         => 'Лайки/дизлайки',
         Composition::class  => 'Композиции',
         LoreItem::class     => 'Элементы лора',
         Short::class        => 'Элементы краткой истории',
         Correction::class   => 'Исправления',
         Subscription::class => 'Подписки',
-        Connection::class   => 'Соединения историй',
         Note::class         => 'Заметки',
         Tag::class          => 'Теги',
         Reward::class       => 'Награды',
@@ -71,8 +69,6 @@ class Statistics
     
         $data[] = self::getStoryStatistics();
         
-        dd($data);
-    
         return $data;
     }
     
@@ -106,9 +102,9 @@ class Statistics
         
 	    $data = [
 		    'Всего'                => $query->count(),
-		    'Опубликованных'       => $query->published()->count(),
-		    'С композицией'        => $query->withComposition()->count(),
-		    'Уникальных писателей' => $query->uniqueUsers()->count(),
+		    'Опубликованных'       => $query->count(),
+		    'С композицией'        => $query->count(),
+		    'Уникальных писателей' => $query->count(),
 	    ];
         
         return $data;

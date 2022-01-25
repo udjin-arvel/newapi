@@ -50,18 +50,17 @@ class UserController extends Controller
 	 */
 	public function register()
 	{
-        $messages = [
-            'required' => 'Поле :attribute обязательно для заполнения',
-            'email' => 'Поле :attribute должно быть вида: example@email.com',
-            'unique' => 'Поле :attribute должно быть уникальным',
-            'min' => 'Минимальное количество символов: 4',
-        ];
-        
-        $validator = \Validator::make(request()->input(), [
-            'name' => 'required|min:4|unique:users',
-            'email' => 'required|email|unique:users',
-            'password' => 'required',
-        ], $messages);
+		$messages = [
+			'required' => 'Поле :attribute обязательно для заполнения',
+			'email'    => 'Поле :attribute должно быть вида: example@email.com',
+			'unique'   => 'Поле :attribute должно быть уникальным',
+			'min'      => 'Минимальное количество символов: :min',
+		];
+		$validator = \Validator::make(request()->input(), [
+			'name'     => 'required|min:4|unique:users',
+			'email'    => 'required|email|unique:users',
+			'password' => 'required',
+		], $messages);
         
         if ($validator->fails()) {
         	throw new TBError($validator->errors());
@@ -81,22 +80,34 @@ class UserController extends Controller
         ]);
 	}
 	
-    /**
-     * Полная информация о пользователе
-     * @return JsonResponse
-     */
-	public function details()
-	{
-        return $this->sendSuccess(\Auth::user());
-	}
+	/**
+	 * Изменение данных профиля
+	 *
+	 * @param Request $request
+	 * @return JsonResponse
+	 * @throws TBError
+	 */
+    public function editProfile(Request $request)
+    {
+	    if (! $request->exists(['age', 'sex', 'city', 'info'])) {
+		    return $this->sendSuccess(\Auth::user());
+	    }
+	    
+	    $user = \Auth::user();
+	    $user->update($request->input());
+	    
+	    return $this->sendSuccess($user);
+    }
 	
-    /**
-     * Сменить пароль пользователя
-     *
-     * @param Request $request
-     * @return JsonResponse
-     */
-    public function changePassword(Request $request) {
+	/**
+	 * Сменить пароль пользователя
+	 *
+	 * @param Request $request
+	 * @return JsonResponse
+	 * @throws TBError
+	 */
+    public function changePassword(Request $request)
+    {
         $user = \Auth::user();
         return $this->sendSuccess($user->changePassword($request->toArray()));
     }

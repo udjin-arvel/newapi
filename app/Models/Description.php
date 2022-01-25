@@ -46,6 +46,7 @@ class Description extends BaseModel
 	const TYPE_PLACE     = 'place';
 	const TYPE_CHARACTER = 'character';
 	const TYPE_EVENT     = 'event';
+	const TYPE_QUOTE     = 'quote';
 	
 	/**
 	 * @var array

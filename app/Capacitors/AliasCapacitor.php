@@ -95,6 +95,7 @@ final class AliasCapacitor
 			Description::TYPE_PLACE     => 'Место',
 			Description::TYPE_CHARACTER => 'Персонаж',
 			Description::TYPE_EVENT     => 'Событие',
+			Description::TYPE_QUOTE     => 'Цитата',
 		],
 		self::SUBSCRIPTION => [
 			Subscription::TYPE_USER        => 'на истории пользователя',
@@ -147,5 +148,22 @@ final class AliasCapacitor
 	public static function getStatusesByAlias(string $alias): array
 	{
 		return self::ALIAS_STATUSES[strtolower($alias)] ?? [];
+	}
+	
+	/**
+	 * Получить имя типа по алиасу и идентификатору
+	 *
+	 * @param string|null $alias
+	 * @param string|null $type
+	 * @return string
+	 */
+	public static function getTypeNameByAliasAndType($alias, $type): string
+	{
+		if ($alias) {
+			$types = self::getTypesByAlias($alias);
+			return $types[$type] ?? '';
+		}
+		
+		return '';
 	}
 }

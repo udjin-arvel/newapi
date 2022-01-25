@@ -12,6 +12,7 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::get('tags', [Api\SiteController::class, 'tags']);
     Route::get('types/{alias}', [Api\SiteController::class, 'types']);
     Route::get('statuses/{alias}', [Api\SiteController::class, 'statuses']);
+    Route::post('editProfile', [Api\UserController::class, 'editProfile']);
 	
 	// ------------------------ Like routes ------------------------ //
 	Route::get('like', [Api\LikeController::class, 'like']);

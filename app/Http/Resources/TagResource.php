@@ -20,6 +20,7 @@ class TagResource extends BaseResource
     {
         return array_merge(parent::toArray($request), [
             'label' => $this->name,
+            'stem'  => $this->stem,
         ]);
     }
 }
