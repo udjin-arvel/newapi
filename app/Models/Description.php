@@ -41,12 +41,12 @@ class Description extends BaseModel
     /**
      * Типы описаний
      */
-    const TYPE_SUBJECT   = 'subject';
-    const TYPE_PLOT      = 'plot';
-	const TYPE_PLACE     = 'place';
-	const TYPE_CHARACTER = 'character';
-	const TYPE_EVENT     = 'event';
-	const TYPE_QUOTE     = 'quote';
+	const TYPE_SUBJECT    = 'subject';
+	const TYPE_PLOT       = 'plot';
+	const TYPE_PLACE      = 'place';
+	const TYPE_CHARACTER  = 'character';
+	const TYPE_EVENT      = 'event';
+	const TYPE_PHENOMENON = 'phenomenon';
 	
 	/**
 	 * @var array

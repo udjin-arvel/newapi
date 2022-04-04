@@ -12,7 +12,7 @@ return [
     |
     */
 
-    'default' => env('FILESYSTEM_DRIVER', 'local'),
+    'default' => env('FILESYSTEM_DRIVER', 'public'),
 
     /*
     |--------------------------------------------------------------------------
@@ -41,20 +41,19 @@ return [
     */
 
     'disks' => [
-    	// Дефолтный диск для работы с файловой системой
-    	'default' => 'public',
-
-        'local' => [
-            'driver' => 'local',
-            'root' => storage_path('app'),
-        ],
-
         'public' => [
             'driver' => 'local',
             'root' => public_path('storage'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
+	
+	    'thebook' => [
+		    'driver' => 'local',
+		    'root' => storage_path('app/tb'),
+		    'url' => env('APP_URL').'/storage',
+		    'visibility' => 'public',
+	    ],
 
         's3' => [
             'driver' => 's3',

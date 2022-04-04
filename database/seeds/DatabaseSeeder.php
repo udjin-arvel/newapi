@@ -11,18 +11,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-	    $this->call(RoleTableSeeder::class);
-	    $this->call(PermissionTableSeeder::class);
-	    $this->call(UsersTableSeeder::class);
-//        $this->call(UsersTableSeeder::class);
-//        $this->call(BooksTableSeeder::class);
-//        $this->call(StoriesTableSeeder::class);
-//        $this->call(FragmentsTableSeeder::class);
-//        $this->call(TagsTableSeeder::class);
-//        $this->call(NotionsTableSeeder::class);
-//        $this->call(NotesTableSeeder::class);
-//        $this->call(LoreItemsTableSeeder::class);
-//        $this->call(SubscriptionsTableSeeder::class);
-//        $this->call(DescriptionSeeder::class);
+	    // $this->call(RoleTableSeeder::class);
+	    // $this->call(PermissionTableSeeder::class);
+        $this->call(UsersTableSeeder::class);
+        // $this->call(BooksTableSeeder::class);
+        // $this->call(StoriesTableSeeder::class);
+        // $this->call(FragmentsTableSeeder::class);
+        // $this->call(TagsTableSeeder::class);
+        // $this->call(NotionsTableSeeder::class);
+        // $this->call(NotesTableSeeder::class);
+        // $this->call(LoreItemsTableSeeder::class);
+        // $this->call(SubscriptionsTableSeeder::class);
+        // $this->call(DescriptionSeeder::class);
     }
 }

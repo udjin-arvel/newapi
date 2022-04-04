@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use App\Helpers\ImageHelper;
 use App\Http\Filters\BaseFilter;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Storage;
 
 /**
  * Class BaseModel
@@ -27,6 +29,19 @@ use Illuminate\Database\Eloquent\Model;
  * @mixin \Eloquent
  */
 class BaseModel extends Model {
+	/**
+	 * Booting model
+	 * @return void
+	 */
+	protected static function boot()
+	{
+		parent::boot();
+		
+		static::deleting(function (self $model) {
+			ImageHelper::deleteImageWithThumbnails($model->poster);
+		});
+	}
+	
 	/**
 	 * @param Builder $query
 	 * @param BaseFilter $filter

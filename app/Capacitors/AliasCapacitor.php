@@ -90,12 +90,12 @@ final class AliasCapacitor
 			Composition::TYPE_SERIES => 'Серия',
 		],
 		self::DESCRIPTION => [
-			Description::TYPE_SUBJECT   => 'Объект',
-			Description::TYPE_PLOT      => 'Сюжет',
-			Description::TYPE_PLACE     => 'Место',
-			Description::TYPE_CHARACTER => 'Персонаж',
-			Description::TYPE_EVENT     => 'Событие',
-			Description::TYPE_QUOTE     => 'Цитата',
+			Description::TYPE_SUBJECT    => 'Объект',
+			Description::TYPE_PLOT       => 'Сюжет',
+			Description::TYPE_PLACE      => 'Место',
+			Description::TYPE_CHARACTER  => 'Персонаж',
+			Description::TYPE_EVENT      => 'Событие',
+			Description::TYPE_PHENOMENON => 'Явление',
 		],
 		self::SUBSCRIPTION => [
 			Subscription::TYPE_USER        => 'на истории пользователя',

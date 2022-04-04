@@ -16,35 +16,30 @@ use Illuminate\Foundation\Bus\Dispatchable;
 class ImageResize implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-    
-	/**
-	 * @var string
-	 */
-	protected $directory;
 	
 	/**
 	 * @var string
 	 */
 	protected $filename;
-    
-    /**
-     * Create a new job instance.
-     *
-     * @return void
-     */
-    public function __construct(string $filename, string $directory)
+	
+	/**
+	 * Create a new job instance.
+	 *
+	 * @param string $filename
+	 */
+    public function __construct(string $filename)
     {
 	    $this->filename = $filename;
-	    $this->directory = $directory;
     }
-
-    /**
-     * Execute the job.
-     *
-     * @return void
-     */
+	
+	/**
+	 * Execute the job.
+	 *
+	 * @return void
+	 * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+	 */
     public function handle()
     {
-	    ImageHelper::previewResize($this->filename, $this->directory);
+	    ImageHelper::previewResize($this->filename);
     }
 }

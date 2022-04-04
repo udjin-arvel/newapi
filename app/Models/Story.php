@@ -2,19 +2,12 @@
 
 namespace App\Models;
 
-use App\Contracts\NewsContract;
-use App\Contracts\ViewContract;
 use App\Models\Scopes\PublicScope;
 use App\Models\Traits\Commentable;
 use App\Models\Traits\Descriptionable;
 use App\Models\Traits\Fragmentable;
-use App\Models\Traits\ScopeOwn;
-use App\Models\Traits\ScopePublished;
 use App\Models\Traits\Taggable;
 use App\Models\Traits\UserRelation;
-use App\Contracts\NotificationContract;
-use App\Contracts\RewardContract;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Builder;
 use Cog\Likeable\Contracts\Likeable as LikeableContract;
@@ -39,6 +32,7 @@ use Cog\Likeable\Traits\Likeable;
  * @property string $type
  * @property bool   $is_public
  * @property bool   $liked
+ * @property bool   $disliked
  * @property int    $user_id
  * @property int    $composition_id
  * @property array  $likesAndDislikes

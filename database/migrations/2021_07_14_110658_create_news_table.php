@@ -21,7 +21,7 @@ class CreateNewsTable extends Migration
             $table->string('text');
             $table->string('action', 64);
 	
-	        $table->timestamp('updated_at');
+	        $table->timestamps();
         });
     }
 

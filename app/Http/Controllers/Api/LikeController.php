@@ -15,6 +15,7 @@ class LikeController extends Controller
 {
 	/**
 	 * @param LikeRequest $request
+	 * @return \Illuminate\Http\JsonResponse
 	 * @throws \Cog\Likeable\Exceptions\LikerNotDefinedException
 	 */
 	public function like(LikeRequest $request)
@@ -29,11 +30,12 @@ class LikeController extends Controller
 			? $model->like(\Auth::id())
 			: $model->dislike(\Auth::id());
 		
-		$this->sendSuccess(['likesCount' => $model->likes()]);
+		return $this->sendSuccess(['likesCount' => $model->likes()]);
 	}
 	
 	/**
 	 * @param LikeRequest $request
+	 * @return \Illuminate\Http\JsonResponse
 	 * @throws \Cog\Likeable\Exceptions\LikerNotDefinedException
 	 */
 	public function likeToggle(LikeRequest $request)
@@ -46,6 +48,6 @@ class LikeController extends Controller
 		$model = app($contentType)->findOrFail($contentId);
 		$model->likeToggle(\Auth::id());
 		
-		$this->sendSuccess(['likesCount' => $model->likes()]);
+		return $this->sendSuccess(['likesCount' => $model->likes()]);
 	}
 }

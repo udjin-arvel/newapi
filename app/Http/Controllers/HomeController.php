@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Console\Commands\ActualizeNotifications;
-use App\Models\Composition;
-use App\Models\Subscription;
 use Illuminate\Contracts\Support\Renderable;
+use Storage;
+use Response;
 
 class HomeController extends Controller
 {
@@ -19,7 +18,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
     
 
@@ -32,13 +31,27 @@ class HomeController extends Controller
     {
         return view('home');
     }
-    
+	
+	/**
+	 * Получить изображение из storage
+	 *
+	 * @param string $filename
+	 * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+	 */
+    public function file($filename)
+    {
+    	if (! Storage::exists($filename)) {
+		    return Response::file(public_path('img/noimage.gif'));
+	    }
+    	
+    	return Response::file(storage_path('app/tb/' . $filename));
+    }
     
     /**
      * Run custom code.
      */
     public function run()
     {
-        exit;
+	    dd(1);
     }
 }

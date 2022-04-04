@@ -1,7 +1,6 @@
 <?php
 
 use App\Models\Fragment;
-use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 
 $factory->define(Fragment::class, function (Faker $faker) {

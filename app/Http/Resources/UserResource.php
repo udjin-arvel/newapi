@@ -22,7 +22,7 @@ class UserResource extends BaseResource
 		    'name'   => $this->name,
 		    'login'  => $this->login,
 		    'status' => $this->status,
-		    'poster' => ImageHelper::getPosterUrl($this->poster),
+		    'poster' => $this->poster,
 	    ]);
     }
 }

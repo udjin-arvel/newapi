@@ -22,7 +22,7 @@ class CompositionResource extends BaseResource
 	    return array_merge(parent::toArray($request), [
 		    'title'       => $this->title,
 		    'description' => $this->description,
-		    'poster'      => ImageHelper::getPosterUrl($this->poster),
+		    'poster'      => $this->poster,
 		    'era'         => $this->era,
 		    'parent_id'   => $this->parent_id,
 		    'type'        => $this->type,

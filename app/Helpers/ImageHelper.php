@@ -17,103 +17,86 @@ class ImageHelper
 	 * Максимальные размеры превью
 	 */
 	const PREVIEW_SIZES = [
-		'small'  => 420,
-		'medium' => 960,
-		'large'  => 1440,
+		'small'  => 320,
+		'medium' => 720,
 	];
 	
 	/**
 	 * Качество превьюшек
 	 */
 	const PREVIEW_QUALITY = [
-		'small'  => 75,
-		'medium' => 85,
-		'large'  => 100,
+		'small'  => 80,
+		'medium' => 90,
 	];
 	
 	/**
-	 * Допустимые расширения изображений
+	 * Допустимые mime-type изображений
 	 */
-	const ALLOWED_IMAGE_EXTENSIONS = [
-		'jpg',
-		'jpeg',
-		'png',
-		'gif',
-		'webp',
+	const ALLOWED_MIMES = [
+		'image/jpeg',
+		'image/png',
+		'image/gif',
+		'image/webp',
 	];
 	
 	/**
 	 * Сделать превьюшки изображения
 	 *
-	 * @param $directory $path
 	 * @param string $filename
 	 * @return bool
+	 * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
 	 */
-	public static function previewResize(string $filename, string $directory): bool
+	public static function previewResize(string $filename): bool
 	{
-		$directory     = $directory ? $directory . DIRECTORY_SEPARATOR : '';
-		$path          = 'storage' . DIRECTORY_SEPARATOR . $directory;
-		$imageOriginal = public_path($path . $filename);
-		$pathInfo      = pathinfo($imageOriginal);
+		$mimeType = Storage::mimeType($filename);
 		
-		if (!in_array($pathInfo['extension'], self::ALLOWED_IMAGE_EXTENSIONS)) {
+		if (!in_array($mimeType, self::ALLOWED_MIMES)) {
 			return false;
 		}
 		
-		$image = Image::make($imageOriginal);
+		$image = Image::make(Storage::get($filename));
 		
 		foreach (self::PREVIEW_SIZES as $size => $width) {
-			// Путь к превьюшке
-			$thumbnailPath = public_path($path . $size . '.' . $filename);
-			$image->resize($width, null, function ($constraint) {
+			$previewPath = storage_path('app/tb/' . $size . '_' . $filename);
+			$image
+				->resize($width, null, function ($constraint) {
 					optional($constraint)->aspectRatio();
 					optional($constraint)->upsize();
 				})
-				->save($thumbnailPath, self::PREVIEW_QUALITY[$size]);
+				->save($previewPath, self::PREVIEW_QUALITY[$size]);
 		}
 		
 		return true;
 	}
 	
-	/**
-	 * Получить полный путь до постера
-	 *
-	 * @param string|null $path
-	 * @return string
-	 */
-	public static function getPosterUrl(?string $path)
-	{
-		if (is_null($path)) {
-			return null;
-		}
-		
-		if (isset($_SERVER['REQUEST_SCHEME'], $_SERVER['HTTP_HOST'])) {
-			return "{$_SERVER['REQUEST_SCHEME']}://{$_SERVER['HTTP_HOST']}/storage/{$path}";
-		}
-		
-		return env('APP_URL');
-	}
+//	/**
+//	 * Получить полный путь до постера
+//	 *
+//	 * @param string|null $filename
+//	 * @return string
+//	 */
+//	public static function getImageUrl($filename)
+//	{
+//		return $filename ? request()->root() . '/file/' . $filename : '';
+//	}
 	
 	/**
 	 * Сохранить изображение из base64 строки
 	 *
-	 * @param {string} $base64_string
-	 * @param string $directory
+	 * @param string $base64
 	 * @return string
 	 */
-	public static function saveFromBase64($base64, $directory = ''): string
+	public static function saveImageFromBase64(string $base64): string
 	{
 		$imageBody = explode(',', $base64);
 		
 		if (isset($imageBody[1])) {
-			$content   = base64_decode($imageBody[1]);
-			$filename  = uniqid() . '.' . explode('/', mime_content_type($base64))[1];
-			$directory = $directory ? $directory . DIRECTORY_SEPARATOR : '';
-			$path      = $directory . $filename;
+			$filename = uniqid() . '.' . explode('/', mime_content_type($base64))[1];
+			$content  = base64_decode($imageBody[1]);
 			
-			if (Storage::disk(config('filesystems.disks.default'))->put($path, $content)) {
-				dispatch((new ImageResize($filename, $directory)));
-				return $path;
+			if (Storage::put($filename, $content)) {
+				dispatch((new ImageResize($filename)));
+				return $filename;
 			}
 		}
 		
@@ -122,13 +105,22 @@ class ImageHelper
 	}
 	
 	/**
-	 * Удалить изображение
+	 * Удалить все связанные изображения
 	 *
-	 * @param string $path
+	 * @param string $filename
 	 * @return bool
 	 */
-	public static function removeFile($path)
+	public static function deleteImageWithThumbnails($filename): bool
 	{
-		return Storage::disk(config('filesystems.disks.default'))->delete($path);
+		if (! $filename) {
+			return true;
+		}
+		
+		$files = [$filename];
+		foreach (array_keys(self::PREVIEW_SIZES) as $size) {
+			$files[] = "{$size}_{$filename}";
+		}
+		
+		return Storage::delete($files);
 	}
 }

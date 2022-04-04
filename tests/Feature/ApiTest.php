@@ -237,7 +237,7 @@ class ApiTest extends TestCase
 	}
 	
 	/**
-	 * @test
+	 *
 	 */
 	public function saveCompositionTest()
 	{
@@ -271,7 +271,7 @@ class ApiTest extends TestCase
 	{
 		$response = $this
 			->actingAs($this->admin)
-			->getJson('/api/like?content_id=2&content_type=story&type=like')
+			->getJson('/api/like?content_id=1&content_type=story&type=like')
 		;
 		
 		$this->getResultFromResponse($response);

@@ -24,7 +24,7 @@ class LoreItemResource extends BaseResource
 		    'text'       => $this->text,
 		    'level'      => $this->level,
 		    'is_public'  => (bool) $this->is_public,
-		    'poster'     => ImageHelper::getPosterUrl($this->poster),
+		    'poster'     => $this->poster,
 		    'user'       => UserResource::make($this->whenLoaded('user')),
 		    'tags'       => TagResource::collection($this->whenLoaded('tags')),
 		    'images'     => ImageResource::collection($this->whenLoaded('images')),

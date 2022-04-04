@@ -23,7 +23,7 @@ trait Posterable {
 		}
 		
 		if ($this->poster) {
-			ImageHelper::removeFile($this->poster);
+			app(ImageHelper::class)->deleteImageWithThumbnails($this->poster);
 		}
 		
 		if (false == strripos($value, 'base64')) {
@@ -32,7 +32,7 @@ trait Posterable {
 		}
 		
 		$alias = AliasCapacitor::getAliasByClass(self::class);
-		$path = ImageHelper::saveFromBase64($value, $alias);
+		$path = app(ImageHelper::class)->saveImageFromBase64($value, $alias);
 		$this->attributes['poster'] = $path;
 	}
 }

@@ -9,8 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * Class Fragment
  * @package App\Models
  *
- * @property int    $content_id
- * @property string $content_type
+ * @property int    $story_id
  * @property int    $order
  * @property string $text
  */
@@ -21,7 +20,6 @@ class Fragment extends BaseModel
     protected $fillable = [
       'text',
       'order',
-      'content_id',
-      'content_type',
+      'story_id',
     ];
 }
