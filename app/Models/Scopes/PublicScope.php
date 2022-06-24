@@ -21,7 +21,7 @@ trait PublicScope
 	 * @param bool $value
 	 * @return Builder
 	 */
-	public function scopeIsPublic(Builder $query, $value = true)
+	public function scopeIsPublic(Builder $query, bool $value = true)
 	{
 		return $query->where('is_public', $value);
 	}

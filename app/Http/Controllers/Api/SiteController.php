@@ -9,6 +9,7 @@ use App\Http\Filters\NotificationFilter;
 use App\Http\Resources\NewsResource;
 use App\Http\Resources\NotificationResource;
 use App\Http\Resources\TagResource;
+use App\Models\Interfaces\Publishable;
 use App\Models\News;
 use App\Models\Notification;
 use App\Models\Tag;
@@ -49,6 +50,33 @@ class SiteController extends Controller
 				->with('user')
 				->get()
 		);
+	}
+	
+	/**
+	 * @param string $type
+	 * @return \Illuminate\Http\JsonResponse
+	 */
+	public function listByContentType(string $type)
+	{
+		$instance = app(AliasCapacitor::getClassByAlias($type));
+		
+		if ($instance instanceof Publishable) {
+			return $this->sendSuccess(app(AliasCapacitor::getClassByAlias($type))
+				->select(['id', 'title'])
+				->isPublic(true)
+				->orderBy('title')
+				->get()
+				->map(function ($item) {
+					return [
+						'id' => $item->id,
+						'label' => $item->title,
+					];
+				})
+				->toArray()
+			);
+		}
+		
+		return $this->sendSuccess([]);
 	}
 	
 	/**

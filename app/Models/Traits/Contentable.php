@@ -25,9 +25,9 @@ trait Contentable
 	 * @param $value
 	 * @return string
 	 */
-	public function getContentTypeAttribute($value): string
+	public function getContentType(): string
 	{
-		return $value ? ucfirst(AliasCapacitor::getAliasByClass($value)) : '';
+		return $this->content_type ? AliasCapacitor::getAliasByClass($this->content_type) : '';
 	}
 }
 

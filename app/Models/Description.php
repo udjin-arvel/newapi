@@ -22,6 +22,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int    $importance
  * @property bool   $is_public
  * @property string $realized_at
+ * @property BaseModel $content
  *
  * @method static Builder|Description realized()
  * @method static Builder|Description unrealized()

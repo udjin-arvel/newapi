@@ -114,6 +114,14 @@ class User extends Authenticatable
 	/**
 	 * @return HasMany
 	 */
+	public function bookmarks()
+	{
+		return $this->hasMany(Bookmark::class);
+	}
+	
+	/**
+	 * @return HasMany
+	 */
 	public function subscriptions()
 	{
 		return $this->hasMany(Subscription::class);

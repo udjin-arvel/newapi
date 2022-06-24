@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-class NoteRequest extends BaseRequest
+class NameRequest extends BaseRequest
 {
 	/**
 	 * Get the validation rules that apply to the request.
@@ -12,8 +12,7 @@ class NoteRequest extends BaseRequest
 	public function rules()
 	{
 		return [
-			'title' => 'required|max:255',
-			'text'  => 'required',
+			'name' => 'required|unique:names|max:255',
 		];
 	}
 }

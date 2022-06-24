@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Interfaces\Publishable as PublishableInterface;
 use App\Models\Scopes\PublicScope;
 use App\Models\Traits\Taggable;
 use App\Models\Traits\UserRelation;
@@ -17,7 +18,9 @@ use App\Models\Traits\UserRelation;
  * @property int    $user_id
  * @property bool   $is_public
  */
-class Short extends BaseModel
+class Short extends BaseModel implements PublishableInterface
 {
-    use UserRelation, PublicScope, Taggable;
+    use UserRelation,
+	    PublicScope,
+	    Taggable;
 }

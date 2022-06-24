@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Interfaces\Publishable as PublishableInterface;
 use App\Models\Scopes\PublicScope;
 use App\Models\Traits\Posterable;
 use App\Models\Traits\Taggable;
@@ -19,7 +20,7 @@ use App\Models\Traits\Imageable;
  * @property int    $user_id
  * @property bool   $is_public
  */
-class LoreItem extends BaseModel
+class LoreItem extends BaseModel implements PublishableInterface
 {
     use UserRelation,
 	    Taggable,

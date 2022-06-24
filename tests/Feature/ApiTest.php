@@ -347,4 +347,18 @@ class ApiTest extends TestCase
 		$this->getResultFromResponse($response);
 		$response->assertStatus(200);
 	}
+	
+	/**
+	 * @test
+	 */
+	public function getListByContentTypeTest()
+	{
+		$response = $this
+			->withoutExceptionHandling()
+			->actingAs(User::findOrFail(1))
+			->getJson('/api/listByContentType/story')
+		;
+		
+		$response->assertStatus(200);
+	}
 }

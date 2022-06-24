@@ -10,7 +10,7 @@ use App\Models\Note;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
- * Class StoryController
+ * Class NoteController
  * @package App\Http\Controllers\Api
  *
  * @property mixed $input
@@ -65,13 +65,13 @@ class NoteController extends Controller
 	 */
 	public function update(NoteRequest $request, int $id)
 	{
-		$notion = Note::findOrFail($id)->update($request->all());
+		$note = Note::findOrFail($id)->update($request->all());
 		
 		if ($request->has('tags')) {
-			$notion->syncTags($request->get('tags'));
+			$note->syncTags($request->get('tags'));
 		}
 		
-		return (new NoteResource($notion))
+		return (new NoteResource($note))
 			->response()
 			->setStatusCode(201);
 	}

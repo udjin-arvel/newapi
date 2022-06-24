@@ -3,7 +3,6 @@
 namespace App\Http\Resources;
 
 use App\Capacitors\AliasCapacitor;
-use App\Capacitors\DescriptionType;
 use App\Models\Description;
 use Illuminate\Http\Request;
 
@@ -23,9 +22,10 @@ class DescriptionResource extends BaseResource
 		return array_merge(parent::toArray($request), [
 			'title'        => $this->title,
 			'text'         => $this->text,
-			'type'         => AliasCapacitor::getTypeNameByAliasAndType(AliasCapacitor::DESCRIPTION, $this->type),
+			'type'         => $this->type,
 			'content_id'   => $this->content_id,
-			'content_type' => $this->content_type,
+			'content_type' => $this->getContentType(),
+			'content'      => $this->content ? ['id' => $this->content->id, 'title' => $this->content->title] : null,
 			'importance'   => (int) $this->importance,
 			'is_public'    => (bool) $this->is_public,
 			'user'         => UserResource::make($this->whenLoaded('user')),

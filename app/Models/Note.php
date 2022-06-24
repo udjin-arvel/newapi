@@ -29,23 +29,30 @@ class Note extends BaseModel
     use UserRelation,
 	    Taggable,
 	    Contentable;
-	
+    
+	/**
+	 * Типы заметок
+	 */
+    const TYPE_NOTE  = 'note';
+    const TYPE_QUOTE = 'quote';
+    
+    const TYPES = [
+    	self::TYPE_NOTE  => 'Заметка',
+    	self::TYPE_QUOTE => 'Цитата',
+    ];
+    
 	/**
 	 * @var array
 	 */
 	protected $fillable = [
 		'title',
 		'text',
+		'type',
 		'content_id',
 		'content_type',
 		'importance',
 		'user_id',
 	];
- 
-	/**
-	 * @var array
-	 */
-	public $timestamps = ['updated_at'];
     
     /**
      * @return void

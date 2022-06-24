@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Interfaces\Publishable as PublishableInterface;
 use App\Models\Scopes\PublicScope;
 use App\Models\Traits\Imageable;
 use App\Models\Traits\Posterable;
@@ -23,7 +24,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int    $type
  * @property bool   $is_public
  */
-class Notion extends BaseModel implements LikeableContract
+class Notion extends BaseModel implements LikeableContract, PublishableInterface
 {
     use SoftDeletes,
 	    UserRelation,

@@ -12,6 +12,8 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::get('tags', [Api\SiteController::class, 'tags']);
     Route::get('types/{alias}', [Api\SiteController::class, 'types']);
     Route::get('statuses/{alias}', [Api\SiteController::class, 'statuses']);
+    Route::get('listByContentType/{type}', [Api\SiteController::class, 'listByContentType']);
+    Route::get('useName/{id}', [Api\NameController::class, 'useName']);
     Route::post('editProfile', [Api\UserController::class, 'editProfile']);
 	
 	// ------------------------ Like routes ------------------------ //
@@ -45,4 +47,7 @@ Route::group(['middleware' => 'auth:api'], function() {
 	
 	// ------------------------ Subscription routes ------------------------ //
 	Route::resource('subscriptions', Api\SubscriptionController::class);
+	
+	// ------------------------ Name routes ------------------------ //
+	Route::resource('names', Api\NameController::class);
 });

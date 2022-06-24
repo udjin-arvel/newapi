@@ -38,7 +38,7 @@ class DescriptionController extends Controller
 	public function show(int $id)
 	{
 		return new DescriptionResource(
-			Description::findOrFail($id)->load(['user', 'tags'])
+			Description::findOrFail($id)->load(['user', 'tags', 'content'])
 		);
 	}
 	

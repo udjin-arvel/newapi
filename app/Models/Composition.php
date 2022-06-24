@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Interfaces\Publishable as PublishableInterface;
+use App\Models\Scopes\PublicScope;
 use App\Models\Traits\Commentable;
 use App\Models\Traits\Posterable;
 use App\Models\Traits\Taggable;
@@ -28,9 +30,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $description
  * @property string $poster
  */
-class Composition extends BaseModel implements LikeableContract
+class Composition extends BaseModel implements LikeableContract, PublishableInterface
 {
     use SoftDeletes,
+	    PublicScope,
 	    Likeable,
         UserRelation,
 	    Commentable,

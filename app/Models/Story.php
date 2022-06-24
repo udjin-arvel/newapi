@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Interfaces\Publishable as PublishableInterface;
 use App\Models\Scopes\PublicScope;
 use App\Models\Traits\Commentable;
 use App\Models\Traits\Descriptionable;
 use App\Models\Traits\Fragmentable;
 use App\Models\Traits\Taggable;
 use App\Models\Traits\UserRelation;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Builder;
 use Cog\Likeable\Contracts\Likeable as LikeableContract;
@@ -42,7 +44,7 @@ use Cog\Likeable\Traits\Likeable;
  * @property array $descriptions
  * @property Composition $composition
  */
-class Story extends BaseModel implements LikeableContract
+class Story extends BaseModel implements LikeableContract, PublishableInterface
 {
     use SoftDeletes,
         UserRelation,
@@ -135,4 +137,12 @@ class Story extends BaseModel implements LikeableContract
     {
         return $query->select('user_id')->distinct();
     }
+	
+	/**
+	 * @return HasMany
+	 */
+	public function bookmarks()
+	{
+		return $this->hasMany(Bookmark::class)->where('user_id', \auth()->id());
+	}
 }

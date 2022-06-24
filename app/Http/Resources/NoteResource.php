@@ -26,7 +26,6 @@ class NoteResource extends BaseResource
             'importance'   => $this->importance,
             'created_at'   => optional($this->created_at)->format('d.m.Y H:i'),
             'tags'         => TagResource::collection($this->whenLoaded('tags')),
-            'user'         => UserResource::make($this->whenLoaded('user')),
         ]);
     }
 }
