@@ -7,7 +7,6 @@ use App\Models\Traits\Taggable;
 use App\Models\Traits\UserRelation;
 use App\Scopes\UserIdScope;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Description
@@ -65,11 +64,12 @@ class Description extends BaseModel
 	];
 	
 	/**
-	 * @return \Illuminate\Database\Eloquent\Relations\MorphTo
+	 * @return void
 	 */
-	public function content()
+	protected static function boot()
 	{
-		return $this->morphTo();
+		parent::boot();
+		static::addGlobalScope(new UserIdScope);
 	}
 	
 	/**

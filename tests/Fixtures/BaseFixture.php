@@ -2,7 +2,6 @@
 
 namespace Tests\Fixtures;
 
-use App\Facades\Enum;
 use App\Models\Composition;
 use App\Models\Description;
 use App\Models\Story;
@@ -182,7 +181,7 @@ class BaseFixture
 				if (!isset($rules['class']) || !isset($this->models[$rules['class']])) return '';
 				
 				$modelClass = $this->models[$rules['class']];
-				$ids = $modelClass::all()->pluck('id')->toArray();
+				$ids = \DB::table(app($modelClass)->getTable())->pluck('id')->toArray();
 				
 				if (empty($ids)) return '';
 				
@@ -201,8 +200,8 @@ class BaseFixture
 				if (isset($this->models[$rules['class']])) {
 					$modelClass = $this->models[$rules['class']];
 					
-					if (!empty(Enum::typesByModel($modelClass))) {
-						return $this->faker->randomElement(array_keys(Enum::typesByModel($modelClass)));
+					if (defined("{$modelClass}::TYPES")) {
+						return $this->faker->randomElement(array_keys($modelClass::TYPES));
 					}
 				}
 		}

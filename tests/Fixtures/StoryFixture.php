@@ -22,14 +22,6 @@ class StoryFixture extends BaseFixture
 			'order' => 'number|20',
 		],
 		
-		'descriptions|1:5' => [
-			'title'        => 'string',
-			'type'         => 'type|description',
-			'text'         => 'text|200',
-			'content_id'   => 'id|story',
-			'content_type' => 'class|story',
-			'user_id'      => 'id|user',
-			'is_public'    => 'boolean',
-		],
+		'descriptions' => 'ids|description|1',
 	];
 }

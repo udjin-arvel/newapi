@@ -75,7 +75,7 @@ class StoryController extends Controller
 			$story->fragments()->createMany($request->get('fragments'));
 		}
 		if ($request->has('descriptions')) {
-			$story->descriptions()->createMany($request->get('descriptions'));
+			$story->syncDescriptions($request->get('descriptions'));
 		}
 		if ($request->has('tags')) {
 			$story->tags()->attach($request->get('tags'));
@@ -121,14 +121,11 @@ class StoryController extends Controller
 	 */
 	public function destroy(int $id)
 	{
-		Story::findOrFail($id)
-			->with(['tags', 'descriptions'])
-			->syncDescriptions(null)
-			->syncTags(null)
-			->delete();
+		$model = Story::findOrFail($id);
+		$model->syncDescriptions(null)->syncTags(null)->delete();
 		
 		return (new JsonResource(collect($id)))
 			->response()
-			->setStatusCode(204);
+			->setStatusCode(200);
 	}
 }

@@ -61,6 +61,11 @@ class Story extends BaseModel implements LikeableContract, PublishableInterface
 	const TYPE_STORY    = 'story';
 	const TYPE_ANNOUNCE = 'announce';
 	
+	const TYPES = [
+		self::TYPE_STORY    => 'История',
+		self::TYPE_ANNOUNCE => 'Анонс',
+	];
+	
 	/**
 	 * @var array
 	 */

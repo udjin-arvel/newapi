@@ -25,25 +25,22 @@ trait Descriptionable
 	/**
 	 * Синхронизировать описания модели с указанными описаниями
 	 *
-	 * @param array|null $descriptions
+	 * @param array|null $ids
 	 * @return Descriptionable|static
 	 */
-	public function syncDescriptions(?array $descriptions)
+	public function syncDescriptions(?array $ids)
 	{
-		if ($descriptions) {
-			$collection = collect($descriptions);
-			$keptIds = $collection->pluck('id')->filter()->toArray();
+		if (is_array($ids)) {
+			$this->descriptions()
+				->whereNotIn('id', $ids)
+				->update(['content_id' => null, 'content_type' => null]);
 			
-			if ($keptIds) {
-				$this->descriptions()
-					->whereNotIn('id', $keptIds)
-					->update(['content_id' => null, 'content_type' => null]);
+			foreach ($ids as $descriptionId) {
+				$model = Description::findOrFail($descriptionId);
+				$model->content_id = $this->id;
+				$model->content_type = get_class($this);
+				$model->save();
 			}
-			
-			$collection->each(function ($description) {
-				$model = Description::findOrNew($description['id'] ?? null);
-				$model->update($description);
-			});
 		} else {
 			$this->descriptions()->update(['content_id' => null, 'content_type' => null]);
 		}

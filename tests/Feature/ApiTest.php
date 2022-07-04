@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Models\Composition;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\Fixtures\CompositionFixture;
 use Tests\Fixtures\NotionFixture;
@@ -209,7 +208,7 @@ class ApiTest extends TestCase
     }
 	
 	/**
-	 *
+	 * @test
 	 */
     public function saveStoryTest()
     {
@@ -349,7 +348,7 @@ class ApiTest extends TestCase
 	}
 	
 	/**
-	 * @test
+	 *
 	 */
 	public function getListByContentTypeTest()
 	{
