@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Exceptions\TBError;
+use App\Helpers\ImageHelper;
 use App\Http\Resources\UserResource;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Http\JsonResponse;
@@ -36,7 +37,7 @@ class UserController extends Controller
 		$user = \Auth::user();
 		
 		return $this->sendSuccess([
-			'user'  => $user,
+			'user'  => UserResource::make($user),
 			'token' => $user->createToken(env('APP_NAME', 'accessToken')),
 		]);
 	}
@@ -75,7 +76,7 @@ class UserController extends Controller
 		$user = User::create($input);
         
         return $this->sendSuccess([
-	        'user'  => new UserResource($user),
+	        'user'  => UserResource::make($user),
 	        'token' => $user->createToken(env('APP_NAME', 'accessToken')),
         ]);
 	}
@@ -85,18 +86,29 @@ class UserController extends Controller
 	 *
 	 * @param Request $request
 	 * @return JsonResponse
-	 * @throws TBError
+	 * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
 	 */
     public function editProfile(Request $request)
     {
-	    if (! $request->exists(['age', 'sex', 'city', 'info'])) {
-		    return $this->sendSuccess(\Auth::user());
+	    /**
+	     * @var User $user
+	     */
+	    $user = \Auth::user();
+	    $user->fill($request->input());
+	
+	    if ($request->hasfile('poster')) {
+	    	if ($user->poster) {
+	    		ImageHelper::deleteImageWithThumbnails($user->poster);
+		    }
+		
+		    $user->poster = ImageHelper::saveFileAndResize($request->file('poster'));
 	    }
 	    
-	    $user = \Auth::user();
-	    $user->update($request->input());
+	    if (! $user->save()) {
+	    	\Log::error('Не удалось обновить данные пользователя: ' . $user->id);
+	    }
 	    
-	    return $this->sendSuccess($user);
+	    return $this->sendSuccess(UserResource::make($user));
     }
 	
 	/**

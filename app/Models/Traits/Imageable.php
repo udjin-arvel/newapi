@@ -8,6 +8,9 @@ use App\Models\Image;
  * Trait Imageable
  *
  * @package App\Models\Traits
+ *
+ * @property array<Image> $images
+ *
  * @mixin \Eloquent
  */
 trait Imageable

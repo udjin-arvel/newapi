@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Capacitors\AliasCapacitor;
 use App\Helpers\ImageHelper;
 use App\Models\Composition;
 use Illuminate\Http\Request;
@@ -25,7 +26,6 @@ class CompositionResource extends BaseResource
 		    'poster'      => $this->poster,
 		    'era'         => $this->era,
 		    'parent_id'   => $this->parent_id,
-		    'type'        => $this->type,
 		    'is_public'   => $this->is_public,
 		    'level'       => $this->level,
 		    'chapter'     => $this->chapter,
@@ -33,6 +33,10 @@ class CompositionResource extends BaseResource
 		    'user'        => UserResource::make($this->whenLoaded('user')),
 		    'tags'        => TagResource::collection($this->whenLoaded('tags')),
 		    'created_at'  => optional($this->created_at)->format('d.m.Y H:i'),
+		    'type'        => [
+			    'id'    => $this->type,
+			    'label' => AliasCapacitor::getTypeNameByAliasAndType(AliasCapacitor::COMPOSITION, $this->type),
+		    ],
 	    ]);
     }
 }

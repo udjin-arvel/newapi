@@ -50,7 +50,7 @@ return [
 	
 	    'thebook' => [
 		    'driver' => 'local',
-		    'root' => storage_path('app/tb'),
+		    'root' => storage_path('app\tb'),
 		    'url' => env('APP_URL').'/storage',
 		    'visibility' => 'public',
 	    ],

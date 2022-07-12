@@ -30,7 +30,7 @@ trait Descriptionable
 	 */
 	public function syncDescriptions(?array $ids)
 	{
-		if (is_array($ids)) {
+		if (is_array($ids) && count($ids) > 0) {
 			$this->descriptions()
 				->whereNotIn('id', $ids)
 				->update(['content_id' => null, 'content_type' => null]);

@@ -99,7 +99,7 @@ class StoryController extends Controller
 		/**
 		 * @var Story $story
 		 */
-		$story = Story::findOrFail($id)
+		$story = Story::where('id', $id)
 			->with(['tags', 'descriptions', 'fragments'])
 			->first()
 			->syncFragments($request->get('fragments'))

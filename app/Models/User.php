@@ -22,6 +22,7 @@ use Laravel\Passport\HasApiTokens;
  * @property int    $status
  * @property string $poster
  * @property string $info
+ * @property string $social
  * @property string $email
  * @property string $created_at
  * @property mixed  $subscriptions
@@ -32,7 +33,6 @@ use Laravel\Passport\HasApiTokens;
 class User extends Authenticatable
 {
 	use HasApiTokens,
-		Posterable,
 		Notifiable;
 
     /**
@@ -56,12 +56,10 @@ class User extends Authenticatable
         'login',
         'status',
         'poster',
-        'age',
-        'sex',
-        'city',
         'info',
         'level',
         'experience',
+        'social',
     ];
 
     /**

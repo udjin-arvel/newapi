@@ -26,6 +26,7 @@ class DescriptionController extends Controller
 	{
 		return DescriptionResource::collection(
 			Description::filter($filter)
+				->byUser()
 				->with(['user', 'tags'])
 				->get()
 		);

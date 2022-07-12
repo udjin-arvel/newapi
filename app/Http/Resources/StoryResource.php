@@ -19,25 +19,28 @@ class StoryResource extends BaseResource
      */
     public function toArray($request)
     {
-    	$data = [
-		    'title'          => $this->title,
-		    'chapter'        => $this->chapter,
-		    'epigraph'       => $this->epigraph,
-		    'type'           => AliasCapacitor::getTypeNameByAliasAndType(AliasCapacitor::STORY, $this->type),
-		    'is_public'      => (bool) $this->is_public,
-		    'created_at'     => optional($this->created_at)->format('d.m.Y H:i'),
-		    'composition'    => CompositionResource::make($this->whenLoaded('composition')),
-		    'fragments'      => FragmentResource::collection($this->whenLoaded('fragments')),
-		    'user'           => UserResource::make($this->whenLoaded('user')),
-		    'tags'           => TagResource::collection($this->whenLoaded('tags')),
-		    'comments'       => CommentResource::collection($this->whenLoaded('comments')),
-		    'descriptions'   => $this->when(optional($this->user)->canRedact($this), function () {
+	    $data = [
+		    'title'        => $this->title,
+		    'chapter'      => $this->chapter,
+		    'epigraph'     => $this->epigraph,
+		    'is_public'    => (bool) $this->is_public,
+		    'created_at'   => optional($this->created_at)->format('d.m.Y H:i'),
+		    'composition'  => CompositionResource::make($this->whenLoaded('composition')),
+		    'fragments'    => FragmentResource::collection($this->whenLoaded('fragments')),
+		    'user'         => UserResource::make($this->whenLoaded('user')),
+		    'tags'         => TagResource::collection($this->whenLoaded('tags')),
+		    'comments'     => CommentResource::collection($this->whenLoaded('comments')),
+		    'descriptions' => $this->when(optional($this->user)->canRedact($this), function () {
 			    return DescriptionResource::collection($this->whenLoaded('descriptions'));
 		    }),
-		    'likeData'       => [
+		    'likeData' => [
 			    'likes'    => LikeResource::collection($this->whenLoaded('likesAndDislikes')),
 			    'liked'    => $this->liked,
 			    'disliked' => $this->disliked,
+		    ],
+		    'type' => [
+			    'id'    => $this->type,
+			    'label' => AliasCapacitor::getTypeNameByAliasAndType(AliasCapacitor::STORY, $this->type),
 		    ],
 	    ];
     	

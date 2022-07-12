@@ -109,45 +109,69 @@ final class AliasCapacitor
 	/**
 	 * Получить класс по алиасу
 	 *
-	 * @param string $alias
+	 * @param string|null $alias
 	 * @return string
 	 */
-	public static function getClassByAlias(string $alias): string
+	public static function getClassByAlias($alias)
 	{
-		return self::ALIAS_CLASS[strtolower($alias)] ?? '';
+		$alias = strtolower($alias);
+		
+		if (isset(self::ALIAS_CLASS[$alias])) {
+			return self::ALIAS_CLASS[$alias];
+		}
+		
+		return null;
 	}
 	
 	/**
 	 * Вернуть алиас оп классу
 	 *
-	 * @param string $class
+	 * @param string|null $class
 	 * @return string
 	 */
-	public static function getAliasByClass(string $class): string
+	public static function getAliasByClass($class)
 	{
-		return array_flip(self::ALIAS_CLASS)[$class] ?? '';
+		$list = array_flip(self::ALIAS_CLASS);
+		
+		if (isset($list[$class])) {
+			return $list[$class];
+		}
+		
+		return null;
 	}
 	
 	/**
 	 * Вернуть типы по алиасу
 	 *
-	 * @param string $alias
+	 * @param string|null $alias
 	 * @return array
 	 */
-	public static function getTypesByAlias(string $alias): array
+	public static function getTypesByAlias($alias)
 	{
-		return self::ALIAS_TYPES[strtolower($alias)] ?? [];
+		$alias = strtolower($alias);
+		
+		if (isset(self::ALIAS_TYPES[$alias])) {
+			return self::ALIAS_TYPES[$alias];
+		}
+		
+		return [];
 	}
 	
 	/**
 	 * Вернуть статусы по алиасу
 	 *
-	 * @param string $alias
+	 * @param string|null $alias
 	 * @return array
 	 */
-	public static function getStatusesByAlias(string $alias): array
+	public static function getStatusesByAlias($alias)
 	{
-		return self::ALIAS_STATUSES[strtolower($alias)] ?? [];
+		$alias = strtolower($alias);
+		
+		if (isset(self::ALIAS_STATUSES[$alias])) {
+			return self::ALIAS_STATUSES[$alias];
+		}
+		
+		return [];
 	}
 	
 	/**
@@ -157,7 +181,7 @@ final class AliasCapacitor
 	 * @param string|null $type
 	 * @return string
 	 */
-	public static function getTypeNameByAliasAndType($alias, $type): string
+	public static function getTypeNameByAliasAndType($alias, $type)
 	{
 		if ($alias) {
 			$types = self::getTypesByAlias($alias);

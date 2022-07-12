@@ -22,12 +22,19 @@ trait Contentable
 	}
 	
 	/**
-	 * @param $value
-	 * @return string
+	 * @return string|null
 	 */
-	public function getContentType(): string
+	public function getContentType()
 	{
-		return $this->content_type ? AliasCapacitor::getAliasByClass($this->content_type) : '';
+		return AliasCapacitor::getAliasByClass($this->content_type);
+	}
+	
+	/**
+	 * @param $value
+	 */
+	public function setContentTypeAttribute($value)
+	{
+		$this->attributes['content_type'] = AliasCapacitor::getClassByAlias($value);
 	}
 }
 

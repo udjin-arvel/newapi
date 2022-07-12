@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Description;
 use Illuminate\Contracts\Support\Renderable;
 use Storage;
 use Response;
@@ -36,15 +37,19 @@ class HomeController extends Controller
 	 * Получить изображение из storage
 	 *
 	 * @param string $filename
+	 * @param string $directory
+	 *
 	 * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
 	 */
-    public function file($filename)
+    public function file(string $filename, string $directory = DIRECTORY_SEPARATOR)
     {
-    	if (! Storage::exists($filename)) {
+    	$path = $directory ? $directory . DIRECTORY_SEPARATOR . $filename : $filename;
+    	
+    	if (! Storage::exists($path)) {
 		    return Response::file(public_path('img/noimage.gif'));
 	    }
     	
-    	return Response::file(storage_path('app/tb/' . $filename));
+    	return Response::file(Storage::path($path));
     }
     
     /**
@@ -52,6 +57,12 @@ class HomeController extends Controller
      */
     public function run()
     {
+//    	$s = Story::where('id', 9)
+//		    ->with('descriptions')
+//	        ->first();
+//	    $s->syncDescriptions([]);
+//
+//	    dd($s->descriptions()->count());
 	    dd(1);
     }
 }

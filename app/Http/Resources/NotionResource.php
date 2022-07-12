@@ -29,6 +29,7 @@ class NotionResource extends BaseResource
 		    'created_at' => optional($this->created_at)->format('d.m.Y'),
 		    'user'       => UserResource::make($this->whenLoaded('user')),
 		    'tags'       => TagResource::collection($this->whenLoaded('tags')),
+		    'gallery'    => ImageResource::collection($this->whenLoaded('images')),
 	    ];
     	
 	    return array_merge(parent::toArray($request), $data);

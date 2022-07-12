@@ -3,6 +3,7 @@
 namespace App\Helpers;
 
 use App\Jobs\ImageResize;
+use Illuminate\Http\UploadedFile;
 use Image;
 use Storage;
 use Log;
@@ -43,21 +44,30 @@ class ImageHelper
 	 * Сделать превьюшки изображения
 	 *
 	 * @param string $filename
+	 * @param string $directory
+	 *
 	 * @return bool
 	 * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
 	 */
-	public static function previewResize(string $filename): bool
+	public static function previewResize(string $filename, string $directory = ''): bool
 	{
-		$mimeType = Storage::mimeType($filename);
+		$fullPath = $directory ? $directory . DIRECTORY_SEPARATOR .  $filename : $filename;
+		
+		if (! Storage::exists($fullPath)) {
+			return false;
+		}
+		
+		$mimeType = Storage::mimeType($fullPath);
 		
 		if (!in_array($mimeType, self::ALLOWED_MIMES)) {
 			return false;
 		}
 		
-		$image = Image::make(Storage::get($filename));
+		$path = Storage::path($directory);
+		$image = Image::make(Storage::get($fullPath));
 		
 		foreach (self::PREVIEW_SIZES as $size => $width) {
-			$previewPath = storage_path('app/tb/' . $size . '_' . $filename);
+			$previewPath = $path . $size . '_' . $filename;
 			$image
 				->resize($width, null, function ($constraint) {
 					optional($constraint)->aspectRatio();
@@ -69,16 +79,26 @@ class ImageHelper
 		return true;
 	}
 	
-//	/**
-//	 * Получить полный путь до постера
-//	 *
-//	 * @param string|null $filename
-//	 * @return string
-//	 */
-//	public static function getImageUrl($filename)
-//	{
-//		return $filename ? request()->root() . '/file/' . $filename : '';
-//	}
+	/**
+	 * Сохранить и отресайзить файл
+	 *
+	 * @param UploadedFile $file
+	 * @param string $directory
+	 *
+	 * @return string
+	 * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+	 */
+	public static function saveFileAndResize(UploadedFile $file, string $directory = ''): string
+	{
+		$directory = $directory ? $directory . DIRECTORY_SEPARATOR : '';
+		$filename = uniqid() . '.' . $file->getClientOriginalExtension();
+		
+		$file->storeAs($directory, $filename);
+		self::previewResize($filename, $directory);
+		// dispatch((new ImageResize($filename)));
+		
+		return $filename;
+	}
 	
 	/**
 	 * Сохранить изображение из base64 строки
@@ -108,17 +128,21 @@ class ImageHelper
 	 * Удалить все связанные изображения
 	 *
 	 * @param string $filename
+	 * @param string $directory
+	 *
 	 * @return bool
 	 */
-	public static function deleteImageWithThumbnails($filename): bool
+	public static function deleteImageWithThumbnails($filename, $directory = ''): bool
 	{
 		if (! $filename) {
 			return true;
 		}
 		
-		$files = [$filename];
+		$directory = $directory ? $directory . DIRECTORY_SEPARATOR : '';
+		$files = [$directory . $filename];
+		
 		foreach (array_keys(self::PREVIEW_SIZES) as $size) {
-			$files[] = "{$size}_{$filename}";
+			$files[] = "{$directory}{$size}_{$filename}";
 		}
 		
 		return Storage::delete($files);

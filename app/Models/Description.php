@@ -5,7 +5,6 @@ namespace App\Models;
 use App\Models\Traits\Contentable;
 use App\Models\Traits\Taggable;
 use App\Models\Traits\UserRelation;
-use App\Scopes\UserIdScope;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
@@ -31,6 +30,7 @@ use Illuminate\Database\Eloquent\Builder;
  * @method static Builder|Description plots()
  * @method static Builder|Description characters()
  * @method static Builder|Description places()
+ * @method static Builder|Description byUser()
  */
 class Description extends BaseModel
 {
@@ -48,6 +48,15 @@ class Description extends BaseModel
 	const TYPE_EVENT      = 'event';
 	const TYPE_PHENOMENON = 'phenomenon';
 	
+	const TYPES = [
+		self::TYPE_SUBJECT    => 'Объект',
+		self::TYPE_PLOT       => 'Сюжет',
+		self::TYPE_PLACE      => 'Место',
+		self::TYPE_CHARACTER  => 'Персонаж',
+		self::TYPE_EVENT      => 'Событие',
+		self::TYPE_PHENOMENON => 'Феномен',
+	];
+	
 	/**
 	 * @var array
 	 */
@@ -64,12 +73,14 @@ class Description extends BaseModel
 	];
 	
 	/**
-	 * @return void
+	 * Выбрать реализованные сюжеты
+	 *
+	 * @param Builder $query
+	 * @return Builder
 	 */
-	protected static function boot()
+	public function scopeByUser(Builder $query)
 	{
-		parent::boot();
-		static::addGlobalScope(new UserIdScope);
+		return $query->where('user_id', \auth()->id());
 	}
 	
 	/**

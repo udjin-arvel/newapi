@@ -9,7 +9,8 @@ use App\Models\Traits\UserRelation;
  * Class Image
  * @package App\Models
  *
- * @property string $path
+ * @property string $filename
+ * @property string $directory
  * @property string $title
  * @property int    $content_id
  * @property int    $user_id
@@ -24,7 +25,8 @@ class Image extends BaseModel
 	 * @var array
 	 */
     protected $fillable = [
-        'path',
+        'filename',
+        'directory',
         'title',
         'content_id',
         'content_type',

@@ -208,7 +208,7 @@ class ApiTest extends TestCase
     }
 	
 	/**
-	 * @test
+	 *
 	 */
     public function saveStoryTest()
     {
@@ -222,13 +222,13 @@ class ApiTest extends TestCase
     }
 	
 	/**
-	 *
+	 * @test
 	 */
 	public function updateStoryTest()
 	{
 		$response = $this
 			->actingAs($this->admin)
-			->putJson('/api/stories/1', StoryFixture::getFixture($this->faker, ['tags', 'fragments', 'descriptions']))
+			->putJson('/api/stories/9', StoryFixture::getFixture($this->faker, ['tags', 'fragments']))
 		;
 		
 		$this->getResultFromResponse($response);

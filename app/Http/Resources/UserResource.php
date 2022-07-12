@@ -19,10 +19,15 @@ class UserResource extends BaseResource
     public function toArray($request)
     {
 	    return array_merge(parent::toArray($request), [
-		    'name'   => $this->name,
-		    'login'  => $this->login,
-		    'status' => $this->status,
-		    'poster' => $this->poster,
+		    'name'       => $this->name,
+		    'status'     => $this->status,
+		    'level'      => $this->level,
+		    'experience' => $this->experience,
+		    'poster'     => $this->poster,
+		    'social'     => $this->social,
+		    'email'      => $this->email,
+		    'info'       => $this->info,
+		    'created_at' => optional($this->created_at)->format('d.m.Y H:i'),
 	    ]);
     }
 }
