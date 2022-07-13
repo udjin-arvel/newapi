@@ -16,6 +16,7 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::get('useName/{id}', [Api\NameController::class, 'useName']);
     Route::post('editProfile', [Api\UserController::class, 'editProfile']);
     Route::post('saveNotionGallery', [Api\NotionController::class, 'saveGallery']);
+    Route::post('saveLoreGallery', [Api\LoreItemController::class, 'saveGallery']);
 	
 	// ------------------------ Like routes ------------------------ //
 	Route::get('like', [Api\LikeController::class, 'like']);

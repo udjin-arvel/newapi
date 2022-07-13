@@ -114,7 +114,9 @@ final class AliasCapacitor
 	 */
 	public static function getClassByAlias($alias)
 	{
-		$alias = strtolower($alias);
+		if (in_array($alias, self::ALIAS_CLASS)) {
+			return $alias;
+		}
 		
 		if (isset(self::ALIAS_CLASS[$alias])) {
 			return self::ALIAS_CLASS[$alias];

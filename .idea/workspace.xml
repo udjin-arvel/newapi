@@ -22,31 +22,9 @@
     <list default="true" id="24e9da2f-bf30-4a2c-9f19-81b68f84e4d5" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Capacitors/AliasCapacitor.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Capacitors/AliasCapacitor.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Helpers/ImageHelper.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Helpers/ImageHelper.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/DescriptionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/DescriptionController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/NotionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/NotionController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/StoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/StoryController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/PrepareApiData.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/PrepareApiData.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/CompositionResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/CompositionResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/DescriptionResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/DescriptionResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/ImageResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/ImageResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/NotionResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/NotionResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/StoryResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/StoryResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/UserResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/UserResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Description.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Description.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Image.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Image.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Traits/Contentable.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Traits/Contentable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Traits/Descriptionable.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Traits/Descriptionable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Traits/Imageable.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Traits/Imageable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/filesystems.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/filesystems.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_02_10_000003_create_images_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_02_10_000003_create_images_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/LoreitemController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/LoreitemController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/LoreItemResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/LoreItemResource.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/ApiTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/ApiTest.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -686,7 +664,8 @@
       <workItem from="1657207006111" duration="6907000" />
       <workItem from="1657360939263" duration="1001000" />
       <workItem from="1657457638460" duration="1211000" />
-      <workItem from="1657565965526" duration="18927000" />
+      <workItem from="1657565965526" duration="18928000" />
+      <workItem from="1657715662330" duration="2177000" />
     </task>
     <servers />
   </component>

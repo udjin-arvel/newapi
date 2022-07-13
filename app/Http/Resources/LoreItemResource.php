@@ -27,7 +27,7 @@ class LoreItemResource extends BaseResource
 		    'poster'     => $this->poster,
 		    'user'       => UserResource::make($this->whenLoaded('user')),
 		    'tags'       => TagResource::collection($this->whenLoaded('tags')),
-		    'images'     => ImageResource::collection($this->whenLoaded('images')),
+		    'gallery'    => ImageResource::collection($this->whenLoaded('images')),
 		    'created_at' => optional($this->created_at)->format('d.m.Y H:i'),
 	    ]);
     }
