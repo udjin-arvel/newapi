@@ -20,11 +20,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="24e9da2f-bf30-4a2c-9f19-81b68f84e4d5" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Traits/GalleryUploadTrait.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/deploy.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker/nginx/api.conf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Capacitors/AliasCapacitor.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Capacitors/AliasCapacitor.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/LoreitemController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/LoreitemController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/LoreItemResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/LoreItemResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/NameController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/NameController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/NotionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/NotionController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/nginx/app.conf" beforeDir="false" afterPath="$PROJECT_DIR$/docker/nginx/app.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/php/bin/dusk" beforeDir="false" afterPath="$PROJECT_DIR$/docker/php/bin/dusk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/php/bin/fix" beforeDir="false" afterPath="$PROJECT_DIR$/docker/php/bin/fix" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/php/bin/permissions" beforeDir="false" afterPath="$PROJECT_DIR$/docker/php/bin/permissions" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/php/bin/setup" beforeDir="false" afterPath="$PROJECT_DIR$/docker/php/bin/setup" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/php/bin/startup" beforeDir="false" afterPath="$PROJECT_DIR$/docker/php/bin/startup" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/php/bin/super_fix" beforeDir="false" afterPath="$PROJECT_DIR$/docker/php/bin/super_fix" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/php/bin/unit" beforeDir="false" afterPath="$PROJECT_DIR$/docker/php/bin/unit" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/php/bin/update" beforeDir="false" afterPath="$PROJECT_DIR$/docker/php/bin/update" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -221,6 +233,7 @@
       <recent name="C:\OSPanel\domains\arvelov.com\app\Http\Controllers\Api" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\OSPanel\domains\arvelov.com\docker\nginx" />
       <recent name="C:\OSPanel\domains\arvelov.com\app\Console\Commands" />
       <recent name="C:\OSPanel\domains\arvelov.com\app\Http\Resources" />
     </key>
@@ -666,6 +679,13 @@
       <workItem from="1657457638460" duration="1211000" />
       <workItem from="1657565965526" duration="18928000" />
       <workItem from="1657715662330" duration="2177000" />
+      <workItem from="1657722232097" duration="1052000" />
+      <workItem from="1657772389343" duration="2334000" />
+      <workItem from="1658080073665" duration="603000" />
+      <workItem from="1658149524187" duration="605000" />
+      <workItem from="1658330462092" duration="6080000" />
+      <workItem from="1659084918946" duration="915000" />
+      <workItem from="1659779618560" duration="1210000" />
     </task>
     <servers />
   </component>

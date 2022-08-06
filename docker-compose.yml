@@ -7,13 +7,13 @@ services:
       context: docker/php
       dockerfile: Dockerfile
     container_name: arvelov-app
-    image: jjuanrivvera99/laravel:mysql-alpine
+#    image: jjuanrivvera99/laravel:mysql-alpine
     restart: always
-    depends_on:
-      - redis
+#    depends_on:
+#      - redis
     volumes:
-      - ./:/var/www
-      - ./docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
+      - ./mw/:/var/www
+      - ./mw/docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
     networks:
       - app-network
 
@@ -27,34 +27,35 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - ./:/var/www
-      - ./docker/nginx/:/etc/nginx/conf.d/
+      - ./mw/:/var/www
+      - ./js/:/var/www
+      - ./mw/docker/nginx/:/etc/nginx/conf.d/
     networks:
       - app-network
 
   queue:
     container_name: arvelov-queue
     restart: always
-    depends_on:
-      - redis
+#    depends_on:
+#      - redis
     image: jjuanrivvera99/laravel:mysql-alpine
     environment:
       CONTAINER_ROLE: "queue"
     volumes:
-      - "./:/var/www/"
+      - ./mw/:/var/www/
     networks:
       - app-network
 
   scheduler:
     container_name: arvelov-scheduler
     restart: always
-    depends_on:
-      - redis
+#    depends_on:
+#      - redis
     image: jjuanrivvera99/laravel:mysql-alpine
     environment:
       CONTAINER_ROLE: "scheduler"
     volumes:
-      - "./:/var/www/"
+      - ./mw/:/var/www/
     networks:
       - app-network
 
@@ -66,33 +67,33 @@ services:
       dockerfile: Dockerfile
     container_name: arvelov-node
     volumes:
-      - ./:/var/www
+      - ./js/:/var/www
 
   mysql:
     container_name: arvelov-mysql
     image: mysql:5.7.22
     restart: always
-    ports:
-      - "3306:3306"
+#    ports:
+#      - "3306:3306"
     environment:
       MYSQL_DATABASE: dashboard
       MYSQL_ROOT_PASSWORD: root
     volumes:
       - mysql-data:/var/lib/mysql/
-      - ./docker/mysql/my.cnf:/etc/mysql/my.cnf
+      - ./mw/docker/mysql/my.cnf:/etc/mysql/my.cnf
     networks:
       - app-network
 
-  redis:
-    container_name: arvelov-redis
-    image: redis
-    restart: always
-    ports:
-      - 6379:6379
-    volumes:
-      - redis-data:/data
-    networks:
-      - app-network
+#  redis:
+#    container_name: arvelov-redis
+#    image: redis
+#    restart: always
+#    ports:
+#      - 6379:6379
+#    volumes:
+#      - redis-data:/data
+#    networks:
+#      - app-network
 
 networks:
   app-network:
@@ -102,5 +103,5 @@ volumes:
   mysql-data:
     driver: local
 
-  redis-data:
-    driver: local
+#  redis-data:
+#    driver: local

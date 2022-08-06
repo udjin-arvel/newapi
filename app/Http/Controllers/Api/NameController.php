@@ -21,7 +21,7 @@ class NameController extends Controller
 	 */
 	public function index()
 	{
-		return NameResource::collection(Name::all());
+		return NameResource::collection(Name::orderBy('created_at', 'desc')->get());
 	}
 	
 	/**
