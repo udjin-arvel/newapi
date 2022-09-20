@@ -21,7 +21,7 @@
         "laravel/tinker": "^1.0",
         "lcobucci/jwt": "3.3.3",
         "ext-http": "*",
-      "ext-fileinfo": "*"
+        "ext-fileinfo": "*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",

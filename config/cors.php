@@ -33,8 +33,8 @@ return [
      */
     'allowed_origins' => [
         'http://localhost:8080',
-        'http://book.arvelov.ru',
-        'https://book.arvelov.ru',
+        'http://thebook.arvelov.space',
+        'https://thebook.arvelov.space',
     ],
 
     /*

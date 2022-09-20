@@ -73,8 +73,8 @@ services:
     container_name: arvelov-mysql
     image: mysql:5.7.22
     restart: always
-#    ports:
-#      - "3306:3306"
+    ports:
+      - "3306:3306"
     environment:
       MYSQL_DATABASE: dashboard
       MYSQL_ROOT_PASSWORD: root
