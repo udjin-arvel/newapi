@@ -18,7 +18,6 @@ class UsersTableSeeder extends Seeder
 	
 	    $user->name = 'Arvelov';
 	    $user->email = 'udjin.arvel@gmail.com';
-	    $user->email_verified_at = now();
 	    $user->password = Hash::make('derder923');
 	    $user->remember_token = Str::random(10);
 	    $user->status = User::STATUS_ADMIN;
@@ -31,7 +30,6 @@ class UsersTableSeeder extends Seeder
 	
 	    $user->name = 'Moderator';
 	    $user->email = 'moderator@arvelov.space';
-	    $user->email_verified_at = now();
 	    $user->password = Hash::make('YhD5kXxCowjiI0B');
 	    $user->remember_token = Str::random(10);
 	    $user->status = User::STATUS_MODERATOR;
@@ -44,7 +42,6 @@ class UsersTableSeeder extends Seeder
 	
 	    $user->name = 'Corrector';
 	    $user->email = 'corrector@arvelov.space';
-	    $user->email_verified_at = now();
 	    $user->password = Hash::make('YhD5kXxCowjiI0B');
 	    $user->remember_token = Str::random(10);
 	    $user->status = User::STATUS_CORRECTOR;
@@ -57,7 +54,6 @@ class UsersTableSeeder extends Seeder
 	
 	    $user->name = 'Writer';
 	    $user->email = 'writer@arvelov.space';
-	    $user->email_verified_at = now();
 	    $user->password = Hash::make('YhD5kXxCowjiI0B');
 	    $user->remember_token = Str::random(10);
 	    $user->status = User::STATUS_WRITER;
@@ -70,7 +66,6 @@ class UsersTableSeeder extends Seeder
 	
 	    $user->name = 'Reader';
 	    $user->email = 'reader@arvelov.space';
-	    $user->email_verified_at = now();
 	    $user->password = Hash::make('YhD5kXxCowjiI0B');
 	    $user->remember_token = Str::random(10);
 	    $user->status = User::STATUS_READER;

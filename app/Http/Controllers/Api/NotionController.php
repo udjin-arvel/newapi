@@ -45,6 +45,17 @@ class NotionController extends Controller
 	}
 	
 	/**
+	 * @param int $id
+	 * @return NotionResource
+	 */
+	public function show(int $id)
+	{
+		return new NotionResource(
+			Notion::findOrFail($id)->load(['user', 'tags', 'images'])
+		);
+	}
+	
+	/**
 	 * @param NotionRequest $request
 	 * @return \Illuminate\Http\JsonResponse
 	 */

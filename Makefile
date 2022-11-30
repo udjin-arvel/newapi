@@ -7,6 +7,9 @@ stop:
 ash:
 	docker exec -it arvelov-app ash
 
+db:
+	docker exec -it arvelov-mysql bash -l
+
 ps:
 	docker-compose ps
 
