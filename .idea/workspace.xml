@@ -21,9 +21,10 @@
   <component name="ChangeListManager">
     <list default="true" id="24e9da2f-bf30-4a2c-9f19-81b68f84e4d5" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/NotionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/NotionController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/UsersTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/UsersTableSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Traits/Fragmentable.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Traits/Fragmentable.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/TagsTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/TagsTableSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -680,6 +681,12 @@
       <workItem from="1663640183762" duration="2225000" />
       <workItem from="1665158603607" duration="2721000" />
       <workItem from="1669814925618" duration="1835000" />
+      <workItem from="1670165687140" duration="630000" />
+      <workItem from="1670172514458" duration="601000" />
+      <workItem from="1670238947635" duration="1217000" />
+      <workItem from="1670357863351" duration="714000" />
+      <workItem from="1670661381145" duration="3225000" />
+      <workItem from="1670681781362" duration="3207000" />
     </task>
     <servers />
   </component>
