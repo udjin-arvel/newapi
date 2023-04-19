@@ -1,8 +1,11 @@
 ## Arvelov.com - middleware
 
+DB Commands
 ```bash
 php artisan migrate --seed
 php artisan passport:install
+
+php artisan db:seed --class=TagsTableSeeder
 ```
 
 

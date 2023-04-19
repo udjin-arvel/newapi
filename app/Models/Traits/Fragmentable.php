@@ -21,7 +21,7 @@ trait Fragmentable
 	 */
 	public function fragments()
 	{
-		return $this->hasMany(Fragment::class)->orderBy('order', 'desc');
+		return $this->hasMany(Fragment::class)->orderBy('order');
 	}
 	
 	/**
