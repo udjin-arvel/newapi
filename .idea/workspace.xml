@@ -20,12 +20,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="24e9da2f-bf30-4a2c-9f19-81b68f84e4d5" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Http/Resources/NotionParamResource.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/NotionParam.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/arvelov.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/arvelov.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.phpstorm.meta.php" beforeDir="false" afterPath="$PROJECT_DIR$/.phpstorm.meta.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_ide_helper.php" beforeDir="false" afterPath="$PROJECT_DIR$/_ide_helper.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Exceptions/Handler.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exceptions/Handler.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/NotionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/NotionController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/UsersTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/UsersTableSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/BaseRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/BaseRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/LikeRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/LikeRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/NotionRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/NotionRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/NotionResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/NotionResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Notion.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Notion.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Traits/Taggable.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Traits/Taggable.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -33,9 +48,7 @@
   </component>
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
-    <execution>
-      <executable />
-    </execution>
+    <execution />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -56,6 +69,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="PhpDebugGeneral" listening_started="true" />
   <component name="PhpServers">
@@ -188,6 +209,7 @@
       <path value="$PROJECT_DIR$/vendor/cybercog/laravel-likeable" />
       <path value="$PROJECT_DIR$/vendor/symfony/contracts" />
       <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-cors" />
+      <path value="$PROJECT_DIR$/vendor/phpstan/phpdoc-parser" />
     </include_path>
   </component>
   <component name="ProjectId" id="1OwkCioKJPfBvxqquO72AuzexsO" />
@@ -197,13 +219,15 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="ToolWindowDebug.ShowToolbar" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="last.edited.regexp" value=".php&#10;." />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../newbook" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -212,6 +236,11 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\OSPanel\domains\arvelov.com\docker\nginx" />
+      <recent name="C:\OSPanel\domains\arvelov.com\app\Console\Commands" />
+      <recent name="C:\OSPanel\domains\arvelov.com\app\Http\Resources" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\OSPanel\domains\arvelov.com\app\Models\Scopes" />
       <recent name="C:\OSPanel\domains\arvelov.com\app\Enums\Interfaces" />
@@ -219,23 +248,6 @@
       <recent name="C:\OSPanel\domains\arvelov.com\resources\views\admin" />
       <recent name="C:\OSPanel\domains\arvelov.com\app\Http\Controllers\Api" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\OSPanel\domains\arvelov.com\docker\nginx" />
-      <recent name="C:\OSPanel\domains\arvelov.com\app\Console\Commands" />
-      <recent name="C:\OSPanel\domains\arvelov.com\app\Http\Resources" />
-    </key>
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
   <component name="RunManager" selected="PHPUnit.LocalUnitTest">
     <configuration name="ImageHelper.php" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/arvelov.com/Helpers/ImageHelper.php" useBuiltInWebServerPort="true">
@@ -261,6 +273,7 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="project-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -680,6 +693,23 @@
       <workItem from="1663640183762" duration="2225000" />
       <workItem from="1665158603607" duration="2721000" />
       <workItem from="1669814925618" duration="1835000" />
+      <workItem from="1670165687140" duration="630000" />
+      <workItem from="1670172514458" duration="601000" />
+      <workItem from="1670238947635" duration="1217000" />
+      <workItem from="1670357863351" duration="714000" />
+      <workItem from="1670661381145" duration="3225000" />
+      <workItem from="1671013083565" duration="750000" />
+      <workItem from="1671094725622" duration="25000" />
+      <workItem from="1675661861265" duration="715000" />
+      <workItem from="1679219656804" duration="1575000" />
+      <workItem from="1679303557449" duration="766000" />
+      <workItem from="1679472659739" duration="83000" />
+      <workItem from="1680082821988" duration="2287000" />
+      <workItem from="1680259004631" duration="1034000" />
+      <workItem from="1681235985324" duration="3545000" />
+      <workItem from="1681475553490" duration="28000" />
+      <workItem from="1681843620855" duration="11000" />
+      <workItem from="1681843646791" duration="12347000" />
     </task>
     <servers />
   </component>
@@ -693,86 +723,19 @@
     </todo-panel>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="2467" y="180" key="#CLI_Interpreters" timestamp="1625724264107">
-      <screen x="1920" y="0" width="1920" height="1080" />
-    </state>
-    <state x="2467" y="180" key="#CLI_Interpreters/1920.0.1920.1080/0.0.1920.1044@1920.0.1920.1080" timestamp="1625724264107" />
-    <state x="2344" y="180" width="1071" height="721" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1625724223006">
-      <screen x="1920" y="0" width="1920" height="1080" />
-    </state>
-    <state x="2344" y="180" width="1071" height="721" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.0.1920.1080/0.0.1920.1044@1920.0.1920.1080" timestamp="1625724223006" />
-    <state x="2576" y="217" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1625731786664">
-      <screen x="1920" y="0" width="1920" height="1080" />
-    </state>
-    <state x="2576" y="217" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/1920.0.1920.1080/0.0.1920.1044@1920.0.1920.1080" timestamp="1625731786664" />
-    <state x="2618" y="280" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1625733879672">
-      <screen x="1920" y="0" width="1920" height="1080" />
-    </state>
-    <state x="2618" y="280" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/1920.0.1920.1080/0.0.1920.1044@1920.0.1920.1080" timestamp="1625733879672" />
-    <state width="1874" height="330" key="GridCell.Tab.0.bottom" timestamp="1625735213250">
-      <screen x="1920" y="0" width="1920" height="1080" />
-    </state>
-    <state width="1874" height="330" key="GridCell.Tab.0.bottom/1920.0.1920.1080/0.0.1920.1044@1920.0.1920.1080" timestamp="1625735213250" />
-    <state width="1874" height="330" key="GridCell.Tab.0.center" timestamp="1625735213250">
-      <screen x="1920" y="0" width="1920" height="1080" />
-    </state>
-    <state width="1874" height="330" key="GridCell.Tab.0.center/1920.0.1920.1080/0.0.1920.1044@1920.0.1920.1080" timestamp="1625735213250" />
-    <state width="1874" height="330" key="GridCell.Tab.0.left" timestamp="1625735213250">
-      <screen x="1920" y="0" width="1920" height="1080" />
-    </state>
-    <state width="1874" height="330" key="GridCell.Tab.0.left/1920.0.1920.1080/0.0.1920.1044@1920.0.1920.1080" timestamp="1625735213250" />
-    <state width="1874" height="330" key="GridCell.Tab.0.right" timestamp="1625735213250">
-      <screen x="1920" y="0" width="1920" height="1080" />
-    </state>
-    <state width="1874" height="330" key="GridCell.Tab.0.right/1920.0.1920.1080/0.0.1920.1044@1920.0.1920.1080" timestamp="1625735213250" />
-    <state width="1874" height="330" key="GridCell.Tab.1.bottom" timestamp="1625735213689">
-      <screen x="1920" y="0" width="1920" height="1080" />
-    </state>
-    <state width="1874" height="330" key="GridCell.Tab.1.bottom/1920.0.1920.1080/0.0.1920.1044@1920.0.1920.1080" timestamp="1625735213689" />
-    <state width="1874" height="330" key="GridCell.Tab.1.center" timestamp="1625735213689">
-      <screen x="1920" y="0" width="1920" height="1080" />
-    </state>
-    <state width="1874" height="330" key="GridCell.Tab.1.center/1920.0.1920.1080/0.0.1920.1044@1920.0.1920.1080" timestamp="1625735213689" />
-    <state width="1874" height="330" key="GridCell.Tab.1.left" timestamp="1625735213689">
-      <screen x="1920" y="0" width="1920" height="1080" />
-    </state>
-    <state width="1874" height="330" key="GridCell.Tab.1.left/1920.0.1920.1080/0.0.1920.1044@1920.0.1920.1080" timestamp="1625735213689" />
-    <state width="1874" height="330" key="GridCell.Tab.1.right" timestamp="1625735213689">
-      <screen x="1920" y="0" width="1920" height="1080" />
-    </state>
-    <state width="1874" height="330" key="GridCell.Tab.1.right/1920.0.1920.1080/0.0.1920.1044@1920.0.1920.1080" timestamp="1625735213689" />
-    <state x="2702" y="448" key="NewPhpFileDialog" timestamp="1625731803721">
-      <screen x="1920" y="0" width="1920" height="1080" />
-    </state>
-    <state x="2702" y="448" key="NewPhpFileDialog/1920.0.1920.1080/0.0.1920.1044@1920.0.1920.1080" timestamp="1625731803721" />
-    <state x="2381" y="157" key="SettingsEditor" timestamp="1625734413237">
-      <screen x="1920" y="0" width="1920" height="1080" />
-    </state>
-    <state x="2381" y="157" key="SettingsEditor/1920.0.1920.1080/0.0.1920.1044@1920.0.1920.1080" timestamp="1625734413237" />
-    <state x="2584" y="261" width="592" height="522" key="find.popup" timestamp="1625733447972">
-      <screen x="1920" y="0" width="1920" height="1080" />
-    </state>
-    <state x="2584" y="261" width="592" height="522" key="find.popup/1920.0.1920.1080/0.0.1920.1044@1920.0.1920.1080" timestamp="1625733447972" />
-    <state x="2543" y="230" width="672" height="678" key="search.everywhere.popup" timestamp="1625733454904">
-      <screen x="1920" y="0" width="1920" height="1080" />
-    </state>
-    <state x="2543" y="230" width="672" height="678" key="search.everywhere.popup/1920.0.1920.1080/0.0.1920.1044@1920.0.1920.1080" timestamp="1625733454904" />
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

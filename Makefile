@@ -1,3 +1,6 @@
+backup_db:
+	mysqldump --user=root --databases prod > ./backup/backup.sql
+
 start:
 	docker-compose up -d
 

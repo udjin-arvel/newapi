@@ -11,6 +11,7 @@ use App\Models\Traits\UserRelation;
 use Cog\Likeable\Contracts\Likeable as LikeableContract;
 use Cog\Likeable\Traits\Likeable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class Notion
@@ -23,6 +24,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $poster
  * @property int    $type
  * @property bool   $is_public
+ *
+ * @property array $parameters
  */
 class Notion extends BaseModel implements LikeableContract, PublishableInterface
 {
@@ -33,7 +36,7 @@ class Notion extends BaseModel implements LikeableContract, PublishableInterface
 	    Taggable,
 	    Posterable,
 	    PublicScope;
-	
+
 	/**
 	 * Типы понятий
 	 */
@@ -42,7 +45,7 @@ class Notion extends BaseModel implements LikeableContract, PublishableInterface
 	const TYPE_PLACE      = 'place';
 	const TYPE_ENTITY     = 'entity';
 	const TYPE_EVENT      = 'event';
-	
+
 	const TYPES = [
 		self::TYPE_DEFINITION => 'Определение',
 		self::TYPE_CHARACTER  => 'Персонаж',
@@ -50,7 +53,7 @@ class Notion extends BaseModel implements LikeableContract, PublishableInterface
 		self::TYPE_ENTITY     => 'Сущность',
 		self::TYPE_EVENT      => 'Событие',
 	];
-	
+
 	protected $fillable = [
 		'title',
 		'text',
@@ -60,4 +63,13 @@ class Notion extends BaseModel implements LikeableContract, PublishableInterface
 		'user_id',
 		'is_public',
 	];
+
+    /**
+     * Фрагменты, принадлежащие истории.
+     * @return HasMany
+     */
+    public function params(): HasMany
+    {
+        return $this->hasMany(NotionParam::class)->orderBy('order', 'desc');
+    }
 }

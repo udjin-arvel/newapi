@@ -8,7 +8,7 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.1.3",
+        "php": "^7.4.0",
         "ext-json": "*",
         "cybercog/laravel-likeable": "^3.1",
         "doctrine/dbal": "^2.9",

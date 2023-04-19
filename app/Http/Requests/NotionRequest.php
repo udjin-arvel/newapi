@@ -11,14 +11,19 @@ class NotionRequest extends BaseRequest
      */
     public function rules()
     {
-	    return [
-		    'title'     => 'required|max:255',
-		    'text'      => 'required',
-		    'type'      => 'required',
-		    'user_id'   => 'required|exists:users,id',
-		    'level'     => 'max:20',
-		    'is_public' => 'boolean',
-		    'tags'      => 'array',
-	    ];
+        return [
+            'title'          => 'required|min:2|max:255',
+            'text'           => 'required|min:20',
+            'type'           => 'required',
+            'user_id'        => 'required|exists:users,id',
+            'level'          => 'integer|max:20',
+            'is_public'      => 'boolean',
+            'tags'           => 'sometimes|array',
+            'tags.*.name'    => ['required', 'string', 'max:255'],
+            'params'         => 'sometimes|array',
+            'params.*.title' => ['required', 'string', 'max:255'],
+            'params.*.value' => ['required', 'string', 'max:255'],
+            'params.*.order' => ['present', 'integer', 'nullable', 'max:255'],
+        ];
     }
 }

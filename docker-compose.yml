@@ -7,10 +7,7 @@ services:
       context: docker/php
       dockerfile: Dockerfile
     container_name: arvelov-app
-#    image: jjuanrivvera99/laravel:mysql-alpine
     restart: always
-#    depends_on:
-#      - redis
     volumes:
       - ./mw/:/var/www
       - ./mw/docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
@@ -36,8 +33,6 @@ services:
   queue:
     container_name: arvelov-queue
     restart: always
-#    depends_on:
-#      - redis
     image: jjuanrivvera99/laravel:mysql-alpine
     environment:
       CONTAINER_ROLE: "queue"
@@ -49,8 +44,6 @@ services:
   scheduler:
     container_name: arvelov-scheduler
     restart: always
-#    depends_on:
-#      - redis
     image: jjuanrivvera99/laravel:mysql-alpine
     environment:
       CONTAINER_ROLE: "scheduler"
@@ -84,17 +77,6 @@ services:
     networks:
       - app-network
 
-#  redis:
-#    container_name: arvelov-redis
-#    image: redis
-#    restart: always
-#    ports:
-#      - 6379:6379
-#    volumes:
-#      - redis-data:/data
-#    networks:
-#      - app-network
-
 networks:
   app-network:
     driver: bridge
@@ -102,6 +84,3 @@ networks:
 volumes:
   mysql-data:
     driver: local
-
-#  redis-data:
-#    driver: local
