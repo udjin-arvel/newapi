@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Interfaces\Publishable as PublishableInterface;
 use App\Models\Scopes\PublicScope;
 use App\Models\Traits\Commentable;
+use App\Models\Traits\Imageable;
 use App\Models\Traits\Posterable;
 use App\Models\Traits\Taggable;
 use App\Models\Traits\UserRelation;
@@ -38,6 +39,7 @@ class Composition extends BaseModel implements LikeableContract, PublishableInte
         UserRelation,
 	    Commentable,
 	    Posterable,
+        Imageable,
         Taggable;
 	
 	/**

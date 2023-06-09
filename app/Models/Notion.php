@@ -25,7 +25,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property int    $type
  * @property bool   $is_public
  *
- * @property array $parameters
+ * @property array<NotionParam> $parameters
  */
 class Notion extends BaseModel implements LikeableContract, PublishableInterface
 {

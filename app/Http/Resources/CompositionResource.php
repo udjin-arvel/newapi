@@ -32,6 +32,7 @@ class CompositionResource extends BaseResource
 		    'stories'     => StoryResource::collection($this->whenLoaded('stories')),
 		    'user'        => UserResource::make($this->whenLoaded('user')),
 		    'tags'        => TagResource::collection($this->whenLoaded('tags')),
+            'gallery'     => ImageResource::collection($this->whenLoaded('images')),
 		    'created_at'  => optional($this->created_at)->format('d.m.Y H:i'),
 		    'type'        => [
 			    'id'    => $this->type,

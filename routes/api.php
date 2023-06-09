@@ -15,8 +15,11 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::get('listByContentType/{type}', [Api\SiteController::class, 'listByContentType']);
     Route::get('useName/{id}', [Api\NameController::class, 'useName']);
     Route::post('editProfile', [Api\UserController::class, 'editProfile']);
+    
+    // ------------------------ Gallery routes ------------------------ //
     Route::post('saveNotionGallery', [Api\NotionController::class, 'saveGallery']);
     Route::post('saveLoreGallery', [Api\LoreItemController::class, 'saveGallery']);
+    Route::post('saveCompositionGallery', [Api\CompositionController::class, 'saveGallery']);
 	
 	// ------------------------ Like routes ------------------------ //
 	Route::get('like', [Api\LikeController::class, 'like']);

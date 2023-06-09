@@ -50,7 +50,7 @@ class LoreItemController extends Controller
 	public function show(int $id)
 	{
 		return new LoreItemResource(
-			LoreItem::findOrFail($id)->load(['user', 'tags'])
+			LoreItem::findOrFail($id)->load(['user', 'tags', 'images'])
 		);
 	}
 	

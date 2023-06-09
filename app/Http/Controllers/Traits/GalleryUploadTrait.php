@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Traits;
 
 use App\Helpers\ImageHelper;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\GalleryRequest;
 use App\Http\Resources\ImageResource;
 use App\Models\Image;
-use Illuminate\Http\Request;
 use Log;
 
 /**
@@ -18,17 +18,17 @@ use Log;
 trait GalleryUploadTrait
 {
 	/**
-	 * @param Request $request
+	 * @param GalleryRequest $request
 	 * @return \Illuminate\Http\JsonResponse
 	 * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
 	 */
-	public function saveGallery(Request $request)
+	public function saveGallery(GalleryRequest $request)
 	{
 		if (empty($this->model)) {
 			return $this->sendSuccess([]);
 		}
 		
-		$model = $this->model::findOrFail($request->get('id'));
+		$model = $this->model::findOrFail($request->get('contentId'));
 		$directory = $this->directory ?? '';
 		
 		if ($request->hasfile('gallery')) {
@@ -40,7 +40,7 @@ trait GalleryUploadTrait
 					'filename'     => $filename,
 					'directory'    => $directory,
 					'content_id'   => $model->id,
-					'content_type' => get_class($this->model),
+					'content_type' => get_class($model),
 					'user_id'      => \Auth::id(),
 				]);
 				
