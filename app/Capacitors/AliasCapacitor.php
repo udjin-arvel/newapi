@@ -82,6 +82,7 @@ final class AliasCapacitor
 			Notion::TYPE_DEFINITION => 'Определение',
 			Notion::TYPE_CHARACTER  => 'Персонаж',
 			Notion::TYPE_PLACE      => 'Место',
+			Notion::TYPE_OBJECT     => 'Объект',
 			Notion::TYPE_ENTITY     => 'Сущность',
 			Notion::TYPE_EVENT      => 'Событие',
 		],

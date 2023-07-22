@@ -15,7 +15,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Fragment extends BaseModel
 {
-    use SoftDeletes, Contentable;
+    use SoftDeletes,
+        Contentable;
 
     protected $fillable = [
       'text',

@@ -36,7 +36,7 @@ trait GalleryUploadTrait
 				$filename = ImageHelper::saveFileAndResize($file, $directory);
 				
 				$image = new Image([
-					'title'        => ($model->title ?? 'Gallery').' pic#'.($key + 1),
+					'title'        => ($model->title ?? 'Gallery') . uniqid(' pic#'),
 					'filename'     => $filename,
 					'directory'    => $directory,
 					'content_id'   => $model->id,

@@ -43,6 +43,7 @@ class Notion extends BaseModel implements LikeableContract, PublishableInterface
 	const TYPE_DEFINITION = 'definition';
 	const TYPE_CHARACTER  = 'character';
 	const TYPE_PLACE      = 'place';
+	const TYPE_OBJECT     = 'object';
 	const TYPE_ENTITY     = 'entity';
 	const TYPE_EVENT      = 'event';
 
@@ -50,6 +51,7 @@ class Notion extends BaseModel implements LikeableContract, PublishableInterface
 		self::TYPE_DEFINITION => 'Определение',
 		self::TYPE_CHARACTER  => 'Персонаж',
 		self::TYPE_PLACE      => 'Место',
+		self::TYPE_OBJECT     => 'Объект',
 		self::TYPE_ENTITY     => 'Сущность',
 		self::TYPE_EVENT      => 'Событие',
 	];
