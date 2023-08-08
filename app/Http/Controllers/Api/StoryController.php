@@ -35,7 +35,8 @@ class StoryController extends Controller
 				->with(['user', 'tags', 'composition', 'likes', 'fragments' => function(HasMany $query) {
 					return $query->take(3);
 				}])
-				->orderBy('created_at', 'desc')
+				->orderByDesc('chapter')
+				->orderByDesc('created_at')
 				->paginate(request()->get('perPage', config('tb.pageSize.middle')))
 		);
 	}
@@ -70,7 +71,10 @@ class StoryController extends Controller
 		 * @var Story $story
 		 */
 		$story = Story::create($request->all());
-		
+        
+		if ($request->has('composition')) {
+		    $story->assignComposition($request->get('composition'));
+        }
 		if ($request->has('fragments')) {
 			$story->fragments()->createMany($request->get('fragments'));
 		}
@@ -102,6 +106,7 @@ class StoryController extends Controller
 		$story = Story::where('id', $id)
 			->with(['tags', 'descriptions', 'fragments'])
 			->first()
+			->assignComposition($request->get('composition'))
 			->syncFragments($request->get('fragments'))
 			->syncTags($request->get('tags'))
 			->syncDescriptions($request->get('descriptions'))

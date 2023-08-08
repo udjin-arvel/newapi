@@ -92,6 +92,15 @@ class Story extends BaseModel implements LikeableContract, PublishableInterface
     {
         return $this->belongsTo(Composition::class);
     }
+    
+    /**
+     * Назначение истори композиции.
+     */
+    public function assignComposition($data): Story
+    {
+        $this->composition_id = $data['id'] ?? null;
+        return $this;
+    }
 
     /**
      * Выбрать истории, относящиеся к определенной серии или книге или нескольким
