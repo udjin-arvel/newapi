@@ -29,6 +29,9 @@ Route::group(['middleware' => 'auth:api'], function() {
     // ------------------------ Story routes ------------------------ //
 	Route::resource('stories', Api\StoryController::class);
     
+    // ------------------------ Fragment routes ------------------------ //
+    Route::resource('fragments', Api\FragmentController::class);
+    
     // ------------------------ Notes routes ------------------------ //
 	Route::resource('notes', Api\NoteController::class);
 	

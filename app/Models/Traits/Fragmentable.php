@@ -42,6 +42,7 @@ trait Fragmentable
 			
 			$collection->each(function ($item) {
 				$model = Fragment::findOrNew($item['id'] ?? null);
+				$model->story_id = $this->id;
 				$model->update($item);
 			});
 		} else {
