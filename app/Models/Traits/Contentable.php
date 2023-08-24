@@ -24,8 +24,8 @@ trait Contentable
 	/**
 	 * @return string|null
 	 */
-	public function getContentType()
-	{
+	public function getContentType(): ?string
+    {
 		return AliasCapacitor::getAliasByClass($this->content_type);
 	}
 	
@@ -34,7 +34,13 @@ trait Contentable
 	 */
 	public function setContentTypeAttribute($value)
 	{
-		$this->attributes['content_type'] = AliasCapacitor::getClassByAlias($value);
+	    $contentType = AliasCapacitor::getClassByAlias($value);
+	    
+	    if (empty($contentType)) {
+	        \Log::error("Не указан alias для модели: $value");
+        }
+	    
+		$this->attributes['content_type'] = $contentType;
 	}
 }
 

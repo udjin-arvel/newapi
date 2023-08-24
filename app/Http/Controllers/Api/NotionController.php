@@ -11,7 +11,7 @@ use App\Models\Notion;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
- * Class StoryController
+ * Class NotionController
  * @package App\Http\Controllers\Api
  *
  * @property mixed $input
@@ -106,7 +106,13 @@ class NotionController extends Controller
 	 */
 	public function destroy(int $id)
 	{
-		Notion::findOrFail($id)->delete();
+        $model = Notion::findOrFail($id)
+            ->with('images')
+            ->first();
+        
+        $this->removeContentGallery($model);
+        $model->delete();
+        
 		return (new JsonResource(collect($id)))
 			->response()
 			->setStatusCode(200);

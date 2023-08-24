@@ -6,6 +6,7 @@ use App\Helpers\ImageHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\GalleryRequest;
 use App\Http\Resources\ImageResource;
+use App\Models\BaseModel;
 use App\Models\Image;
 use Log;
 
@@ -22,7 +23,7 @@ trait GalleryUploadTrait
 	 * @return \Illuminate\Http\JsonResponse
 	 * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
 	 */
-	public function saveGallery(GalleryRequest $request)
+	protected function saveGallery(GalleryRequest $request)
 	{
 		if (empty($this->model)) {
 			return $this->sendSuccess([]);
@@ -55,5 +56,26 @@ trait GalleryUploadTrait
 			->response()
 			->setStatusCode(200);
 	}
+    
+    /**
+     * @param $model
+     * @return bool
+     */
+	protected function removeContentGallery($model): bool
+    {
+        if (empty($this->model)) {
+            return false;
+        }
+    
+        $directory = $this->directory ?? '';
+        $removed = ImageHelper::deleteImageWithThumbnails($model->poster);
+    
+        $model->images->each(function ($image) use ($directory, &$removed) {
+            Log::info($image->filename . '-' . $directory);
+            $removed = ImageHelper::deleteImageWithThumbnails($image->filename, $directory) || $removed;
+        });
+        
+        return $removed;
+    }
 }
 

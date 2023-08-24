@@ -56,7 +56,7 @@ class StoryController extends Controller
 			'comments',
 			'likesAndDislikes',
 		]);
-		
+        
 		event(new ViewProcessed($story));
 		return new StoryResource($story);
 	}

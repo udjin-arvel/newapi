@@ -97,7 +97,13 @@ class CompositionController extends Controller
 	 */
 	public function destroy(int $id)
 	{
-		Composition::findOrFail($id)->delete();
+        $model = Composition::findOrFail($id)
+            ->with('images')
+            ->first();;
+        
+        $this->removeContentGallery($model);
+        $model->delete();
+        
 		return (new JsonResource(collect($id)))
 			->response()
 			->setStatusCode(200);
