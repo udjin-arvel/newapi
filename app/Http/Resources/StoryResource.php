@@ -24,6 +24,7 @@ class StoryResource extends BaseResource
 		    'chapter'      => $this->chapter,
 		    'epigraph'     => $this->epigraph,
 		    'is_public'    => (bool) $this->is_public,
+            'names'        => json_decode($this->names),
 		    'created_at'   => optional($this->created_at)->format('d.m.Y H:i'),
 		    'composition'  => CompositionResource::make($this->whenLoaded('composition')),
 		    'fragments'    => FragmentResource::collection($this->whenLoaded('fragments')),

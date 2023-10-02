@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Models\Traits\Contentable;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -26,12 +25,4 @@ class Fragment extends BaseModel
       'order',
       'story_id',
     ];
-    
-    /**
-     * Get the phone associated with the user.
-     */
-    public function footnote(): HasOne
-    {
-        return $this->hasOne(Footnote::class);
-    }
 }

@@ -38,6 +38,7 @@ use Cog\Likeable\Traits\Likeable;
  * @property int    $user_id
  * @property int    $composition_id
  * @property array  $likesAndDislikes
+ * @property string $names
  *
  * @property User $user
  * @property array $fragments
@@ -66,9 +67,6 @@ class Story extends BaseModel implements LikeableContract, PublishableInterface
 		self::TYPE_ANNOUNCE => 'Анонс',
 	];
 	
-	/**
-	 * @var array
-	 */
 	protected $fillable = [
 		'title',
 		'type',
@@ -78,7 +76,12 @@ class Story extends BaseModel implements LikeableContract, PublishableInterface
 		'is_public',
 		'composition_id',
 		'user_id',
+        'names',
 	];
+    
+    protected $casts = [
+        'names' => 'array',
+    ];
 	
 	/**
 	 * @var array

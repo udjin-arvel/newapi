@@ -23,23 +23,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="24e9da2f-bf30-4a2c-9f19-81b68f84e4d5" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/CharacterController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Filters/CharacterFilter.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Requests/CharacterRequest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Resources/CharacterResource.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/Character.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Capacitors/AliasCapacitor.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Capacitors/AliasCapacitor.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/CompositionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/CompositionController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/LoreitemController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/LoreitemController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/NotionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/NotionController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/StoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/StoryController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Traits/GalleryUploadTrait.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Traits/GalleryUploadTrait.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/FragmentResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/FragmentResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/StoryRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/StoryRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/StoryResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/StoryResource.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Fragment.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Fragment.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Traits/Contentable.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Traits/Contentable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/ApiTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/ApiTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Story.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Story.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -227,7 +216,7 @@
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="last.edited.regexp" value=".php&#10;." />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../modules/php/PHP_7.4/php.exe" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../cam.orionit" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -726,7 +715,11 @@
       <workItem from="1691481663612" duration="3070000" />
       <workItem from="1691736932203" duration="3687000" />
       <workItem from="1692263989706" duration="20000" />
-      <workItem from="1692794759627" duration="21458000" />
+      <workItem from="1692794759627" duration="22059000" />
+      <workItem from="1692868946906" duration="38000" />
+      <workItem from="1693402567969" duration="1896000" />
+      <workItem from="1696085171817" duration="1488000" />
+      <workItem from="1696250543004" duration="380000" />
     </task>
     <servers />
   </component>

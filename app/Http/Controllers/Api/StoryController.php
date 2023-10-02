@@ -32,9 +32,7 @@ class StoryController extends Controller
 		return StoryResource::collection(
 			Story::filter($filter)
 				->isPublic()
-				->with(['user', 'tags', 'composition', 'likes', 'fragments' => function(HasMany $query) {
-					return $query->take(3);
-				}])
+				->with(['user', 'tags', 'composition', 'likes', 'fragments'])
 				->orderByDesc('chapter')
 				->orderByDesc('created_at')
 				->paginate(request()->get('perPage', config('tb.pageSize.middle')))
