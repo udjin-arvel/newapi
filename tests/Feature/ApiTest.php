@@ -180,7 +180,6 @@ class ApiTest extends TestCase
 	}
     
     /**
-     * @test
      */
     public function getStoryTest()
     {
@@ -189,9 +188,21 @@ class ApiTest extends TestCase
             ->getJson('/api/stories/1')
         ;
         
-        dd($response);
-	
 	    $this->getResultFromResponse($response);
+        $response->assertStatus(200);
+    }
+    
+    /**
+     * @test
+     */
+    public function getAdjacentChapters()
+    {
+        $response = $this
+            ->actingAs($this->admin)
+            ->getJson('/api/getAdjacentChapters/1/3')
+        ;
+        
+        $this->getResultFromResponse($response);
         $response->assertStatus(200);
     }
 

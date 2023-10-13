@@ -23,12 +23,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="24e9da2f-bf30-4a2c-9f19-81b68f84e4d5" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Models/Reminder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/StoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/StoryController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/StoryRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/StoryRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/StoryResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/StoryResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Fragment.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Fragment.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Composition.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Composition.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Story.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Story.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Traits/Fragmentable.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Traits/Fragmentable.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/ApiTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/ApiTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -216,7 +218,7 @@
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="last.edited.regexp" value=".php&#10;." />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../cam.orionit" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../arvelov" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -238,8 +240,12 @@
       <recent name="C:\OSPanel\domains\arvelov.com\app\Http\Controllers\Api" />
     </key>
   </component>
-  <component name="RunManager" selected="PHPUnit.ApiTest.getStoryTest">
+  <component name="RunManager" selected="PHPUnit.ApiTest.getAdjacentChapters">
     <configuration name="ImageHelper.php" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/arvelov.com/Helpers/ImageHelper.php" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="ApiTest.getAdjacentChapters" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\ApiTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/ApiTest.php" method="getAdjacentChapters" scope="Method" />
       <method v="2" />
     </configuration>
     <configuration name="ApiTest.getListByContentTypeTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
@@ -260,6 +266,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="PHPUnit.ApiTest.getAdjacentChapters" />
         <item itemvalue="PHPUnit.ApiTest.getStoryTest" />
         <item itemvalue="PHPUnit.ApiTest.getListByContentTypeTest" />
         <item itemvalue="JavaScript Debug.ImageHelper.php" />
@@ -720,6 +727,12 @@
       <workItem from="1693402567969" duration="1896000" />
       <workItem from="1696085171817" duration="1488000" />
       <workItem from="1696250543004" duration="380000" />
+      <workItem from="1696251173669" duration="639000" />
+      <workItem from="1696425487314" duration="10000" />
+      <workItem from="1696685876982" duration="1955000" />
+      <workItem from="1696704081037" duration="1525000" />
+      <workItem from="1697142262961" duration="18000" />
+      <workItem from="1697159261875" duration="9215000" />
     </task>
     <servers />
   </component>

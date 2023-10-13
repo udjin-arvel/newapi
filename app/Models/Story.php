@@ -42,6 +42,7 @@ use Cog\Likeable\Traits\Likeable;
  *
  * @property User $user
  * @property array $fragments
+ * @property array $reminders
  * @property array $descriptions
  * @property Composition $composition
  */
@@ -94,6 +95,15 @@ class Story extends BaseModel implements LikeableContract, PublishableInterface
     public function composition()
     {
         return $this->belongsTo(Composition::class);
+    }
+    
+    /**
+     * Комментарии-замечания, принадлежащие истории.
+     * @return HasMany
+     */
+    public function reminders()
+    {
+        return $this->hasMany(Reminder::class)->orderBy('order');
     }
     
     /**

@@ -30,6 +30,7 @@ Route::group(['middleware' => 'auth:api'], function() {
     
     // ------------------------ Story routes ------------------------ //
 	Route::resource('stories', Api\StoryController::class);
+    Route::get('getAdjacentChapters/{compositionId}/{storyId}', [Api\StoryController::class, 'getAdjacentChapters']);
     
     // ------------------------ Fragment routes ------------------------ //
     Route::resource('fragments', Api\FragmentController::class);

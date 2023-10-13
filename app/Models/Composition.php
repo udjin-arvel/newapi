@@ -72,7 +72,7 @@ class Composition extends BaseModel implements LikeableContract, PublishableInte
 	 */
 	public function stories()
 	{
-		return $this->hasMany(Story::class)->orderBy('chapter', 'desc');
+		return $this->hasMany(Story::class)->orderBy('chapter');
 	}
 	
 	/**
