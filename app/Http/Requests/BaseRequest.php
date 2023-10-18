@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 /**
  * Class BaseRequest
@@ -27,6 +28,9 @@ class BaseRequest extends FormRequest
 	 * @return \Illuminate\Http\JsonResponse
 	 */
 	protected function failedValidation(Validator $validator) {
-		return response()->json($validator->errors(), 422);
+        throw new HttpResponseException(response()->json([
+            'error' => $validator->errors(),
+            'code'  => 422,
+        ], 200));
 	}
 }

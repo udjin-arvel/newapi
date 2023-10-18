@@ -18,9 +18,10 @@ class FragmentResource extends BaseResource
 	 */
 	public function toArray($request)
 	{
-		return array_merge(parent::toArray($request), [
-			'text'  => $this->text,
-			'order' => $this->order,
-		]);
+        return array_merge(parent::toArray($request), [
+            'text'     => $this->text,
+            'footnote' => $this->footnote,
+            'order'    => $this->order,
+        ]);
 	}
 }

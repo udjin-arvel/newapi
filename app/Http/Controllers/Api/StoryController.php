@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Filters\StoryFilter;
 use App\Http\Requests\StoryRequest;
 use App\Http\Resources\StoryResource;
+use App\Models\Composition;
 use App\Models\News;
 use App\Models\Story;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -32,10 +33,9 @@ class StoryController extends Controller
 		return StoryResource::collection(
 			Story::filter($filter)
 				->isPublic()
-				->with(['user', 'tags', 'composition', 'likes', 'fragments' => function(HasMany $query) {
-					return $query->take(3);
-				}])
-				->orderBy('created_at', 'desc')
+				->with(['user', 'tags', 'composition', 'likes', 'fragments'])
+				->orderByDesc('chapter')
+				->orderByDesc('created_at')
 				->paginate(request()->get('perPage', config('tb.pageSize.middle')))
 		);
 	}
@@ -53,9 +53,9 @@ class StoryController extends Controller
 			'composition',
 			'descriptions',
 			'comments',
-			'likesAndDislikes',
+			'reminders',
 		]);
-		
+        
 		event(new ViewProcessed($story));
 		return new StoryResource($story);
 	}
@@ -70,16 +70,20 @@ class StoryController extends Controller
 		 * @var Story $story
 		 */
 		$story = Story::create($request->all());
-		
-		if ($request->has('fragments')) {
-			$story->fragments()->createMany($request->get('fragments'));
-		}
+        $story->fragments()->createMany($request->get('fragments'));
+        
+		if ($request->has('composition')) {
+		    $story->assignComposition($request->get('composition'));
+        }
 		if ($request->has('descriptions')) {
 			$story->syncDescriptions($request->get('descriptions'));
 		}
 		if ($request->has('tags')) {
 			$story->tags()->attach($request->get('tags'));
 		}
+        if ($request->has('reminders')) {
+            $story->reminders()->createMany($request->get('reminders'));
+        }
 		
 		event(new NewsProcessed($story, News::ACTION_CREATE));
 		event(new RewardProcessed($story));
@@ -102,6 +106,7 @@ class StoryController extends Controller
 		$story = Story::where('id', $id)
 			->with(['tags', 'descriptions', 'fragments'])
 			->first()
+			->assignComposition($request->get('composition'))
 			->syncFragments($request->get('fragments'))
 			->syncTags($request->get('tags'))
 			->syncDescriptions($request->get('descriptions'))
@@ -128,4 +133,48 @@ class StoryController extends Controller
 			->response()
 			->setStatusCode(200);
 	}
+    
+    /**
+     * @param int $id
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
+     */
+	public function getAdjacentChapters(int $compositionId, int $storyId)
+    {
+        $composition = Composition::findOrFail($compositionId)
+            ->with('stories')
+            ->first();
+    
+        $prev = $next = [];
+        $stories = $composition->stories()->orderBy('chapter')->get()->toArray();
+        
+        foreach ($stories as $key => $story) {
+            if ($story['id'] === $storyId) {
+                if (isset($stories[$key - 1])) {
+                    $prev = [
+                        'id' => $stories[$key - 1]['id'],
+                        'title' => $stories[$key - 1]['title'],
+                        'chapter' => $stories[$key - 1]['chapter'],
+                    ];
+                }
+                
+                if (isset($stories[$key + 1])) {
+                    $next = [
+                        'id' => $stories[$key + 1]['id'],
+                        'title' => $stories[$key + 1]['title'],
+                        'chapter' => $stories[$key - 1]['chapter'],
+                    ];
+                }
+                
+                break;
+            }
+        }
+        
+        return (new JsonResource([
+            'prev' => $prev,
+            'next' => $next,
+        ]))
+            ->response()
+            ->setStatusCode(200);
+    }
 }

@@ -16,7 +16,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *
  * @property mixed $input
  */
-class LoreItemController extends Controller
+class LoreitemController extends Controller
 {
 	use GalleryUploadTrait;
 	
@@ -50,7 +50,7 @@ class LoreItemController extends Controller
 	public function show(int $id)
 	{
 		return new LoreItemResource(
-			LoreItem::findOrFail($id)->load(['user', 'tags'])
+			LoreItem::findOrFail($id)->load(['user', 'tags', 'images'])
 		);
 	}
 	
@@ -96,7 +96,13 @@ class LoreItemController extends Controller
 	 */
 	public function destroy(int $id)
 	{
-		LoreItem::findOrFail($id)->delete();
+        $model = LoreItem::findOrFail($id)
+            ->with('images')
+            ->first();
+        
+        $this->removeContentGallery($model);
+        $model->delete();
+        
 		return (new JsonResource(collect($id)))
 			->response()
 			->setStatusCode(200);

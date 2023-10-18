@@ -11,7 +11,7 @@ use App\Models\Notion;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
- * Class StoryController
+ * Class NotionController
  * @package App\Http\Controllers\Api
  *
  * @property mixed $input
@@ -19,18 +19,18 @@ use Illuminate\Http\Resources\Json\JsonResource;
 class NotionController extends Controller
 {
 	use GalleryUploadTrait;
-	
+
 	/**
 	 * @var string
 	 */
 	protected $directory = 'notions';
-	
+
 	/**
 	 * @var string
 	 */
 	protected $model = Notion::class;
-	
-	
+
+
 	/**
 	 * @param NotionFilter $filter
 	 * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
@@ -39,11 +39,11 @@ class NotionController extends Controller
 	{
 		return NotionResource::collection(
 			Notion::filter($filter)
-				->with(['user', 'tags', 'images'])
+				->with(['user', 'tags', 'images', 'params'])
 				->get()
 		);
 	}
-	
+
 	/**
 	 * @param int $id
 	 * @return NotionResource
@@ -51,10 +51,10 @@ class NotionController extends Controller
 	public function show(int $id)
 	{
 		return new NotionResource(
-			Notion::findOrFail($id)->load(['user', 'tags', 'images'])
+			Notion::findOrFail($id)->load(['user', 'tags', 'images', 'params'])
 		);
 	}
-	
+
 	/**
 	 * @param NotionRequest $request
 	 * @return \Illuminate\Http\JsonResponse
@@ -65,16 +65,19 @@ class NotionController extends Controller
 		 * @var Notion $notion
 		 */
 		$notion = Notion::create($request->all());
-		
+
 		if ($request->has('tags')) {
 			$notion->tags()->attach($request->get('tags'));
 		}
-		
+        if ($request->has('parameters')) {
+            $notion->params()->createMany($request->get('params'));
+        }
+
 		return (new NotionResource($notion))
 			->response()
 			->setStatusCode(201);
 	}
-	
+
 	/**
 	 * @param NotionRequest $request
 	 * @param int $id
@@ -83,16 +86,19 @@ class NotionController extends Controller
 	public function update(NotionRequest $request, int $id)
 	{
 		$notion = Notion::findOrFail($id)->update($request->all());
-		
+
 		if ($request->has('tags')) {
 			$notion->syncTags($request->get('tags'));
 		}
-		
+        if ($request->has('parameters')) {
+            $notion->params()->updateMany($request->get('params'));
+        }
+
 		return (new NotionResource($notion))
 			->response()
 			->setStatusCode(201);
 	}
-	
+
 	/**
 	 * @param int $id
 	 * @return \Illuminate\Http\JsonResponse
@@ -100,7 +106,13 @@ class NotionController extends Controller
 	 */
 	public function destroy(int $id)
 	{
-		Notion::findOrFail($id)->delete();
+        $model = Notion::findOrFail($id)
+            ->with('images')
+            ->first();
+        
+        $this->removeContentGallery($model);
+        $model->delete();
+        
 		return (new JsonResource(collect($id)))
 			->response()
 			->setStatusCode(200);

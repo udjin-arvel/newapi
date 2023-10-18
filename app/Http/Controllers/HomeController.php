@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Description;
+use App\Models\Fragment;
 use Illuminate\Contracts\Support\Renderable;
 use Storage;
 use Response;
@@ -57,12 +58,7 @@ class HomeController extends Controller
      */
     public function run()
     {
-//    	$s = Story::where('id', 9)
-//		    ->with('descriptions')
-//	        ->first();
-//	    $s->syncDescriptions([]);
-//
-//	    dd($s->descriptions()->count());
-	    dd(1);
+	    $f = Fragment::factory()->create();
+	    dd($f);
     }
 }

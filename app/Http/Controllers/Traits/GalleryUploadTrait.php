@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Traits;
 
 use App\Helpers\ImageHelper;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\GalleryRequest;
 use App\Http\Resources\ImageResource;
+use App\Models\BaseModel;
 use App\Models\Image;
-use Illuminate\Http\Request;
 use Log;
 
 /**
@@ -18,17 +19,17 @@ use Log;
 trait GalleryUploadTrait
 {
 	/**
-	 * @param Request $request
+	 * @param GalleryRequest $request
 	 * @return \Illuminate\Http\JsonResponse
 	 * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
 	 */
-	public function saveGallery(Request $request)
+	protected function saveGallery(GalleryRequest $request)
 	{
 		if (empty($this->model)) {
 			return $this->sendSuccess([]);
 		}
 		
-		$model = $this->model::findOrFail($request->get('id'));
+		$model = $this->model::findOrFail($request->get('contentId'));
 		$directory = $this->directory ?? '';
 		
 		if ($request->hasfile('gallery')) {
@@ -36,11 +37,11 @@ trait GalleryUploadTrait
 				$filename = ImageHelper::saveFileAndResize($file, $directory);
 				
 				$image = new Image([
-					'title'        => ($model->title ?? 'Gallery').' pic#'.($key + 1),
+					'title'        => ($model->title ?? 'Gallery') . uniqid(' pic#'),
 					'filename'     => $filename,
 					'directory'    => $directory,
 					'content_id'   => $model->id,
-					'content_type' => get_class($this->model),
+					'content_type' => get_class($model),
 					'user_id'      => \Auth::id(),
 				]);
 				
@@ -55,5 +56,26 @@ trait GalleryUploadTrait
 			->response()
 			->setStatusCode(200);
 	}
+    
+    /**
+     * @param $model
+     * @return bool
+     */
+	protected function removeContentGallery($model): bool
+    {
+        if (empty($this->model)) {
+            return false;
+        }
+    
+        $directory = $this->directory ?? '';
+        $removed = ImageHelper::deleteImageWithThumbnails($model->poster);
+    
+        $model->images->each(function ($image) use ($directory, &$removed) {
+            Log::info($image->filename . '-' . $directory);
+            $removed = ImageHelper::deleteImageWithThumbnails($image->filename, $directory) || $removed;
+        });
+        
+        return $removed;
+    }
 }
 

@@ -15,6 +15,7 @@ class StoryRequest extends BaseRequest
 			'title'        => 'required|max:255',
 			'fragments'    => 'required|array',
 			'descriptions' => 'array',
+			'names'        => 'json',
 		];
 	}
 }

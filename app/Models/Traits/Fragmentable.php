@@ -21,16 +21,16 @@ trait Fragmentable
 	 */
 	public function fragments()
 	{
-		return $this->hasMany(Fragment::class)->orderBy('order', 'desc');
+		return $this->hasMany(Fragment::class)->orderBy('order');
 	}
 	
 	/**
 	 * Синхронизировать описания модели с указанными фрагментами
 	 *
-	 * @param array|null $items
+	 * @param array $items
 	 * @return static|BaseModel
 	 */
-	public function syncFragments(?array $items)
+	public function syncFragments(array $items)
 	{
 		if ($items) {
 			$collection = collect($items);
@@ -44,8 +44,6 @@ trait Fragmentable
 				$model = Fragment::findOrNew($item['id'] ?? null);
 				$model->update($item);
 			});
-		} else {
-			$this->fragments()->delete();
 		}
 		
 		return $this;

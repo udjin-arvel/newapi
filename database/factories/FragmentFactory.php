@@ -1,12 +1,30 @@
 <?php
 
-use App\Models\Fragment;
-use Faker\Generator as Faker;
+namespace Database\Factories;
 
-$factory->define(Fragment::class, function (Faker $faker) {
-    return [
-        'text'     => $faker->realText(1000),
-        'order'    => random_int(0, 50),
-        'story_id' => random_int(1, 20),
-    ];
-});
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Fragment>
+ */
+class FragmentFactory extends Factory
+{
+    /**
+     * Define the model's default state.
+     *
+     * @return array<string, mixed>
+     */
+    public function definition(): array
+    {
+        $storyId = \App\Models\Story::first()->id;
+        
+        return [
+            'text' => fake()->text(),
+            'order' => 0,
+            'story_id' => $storyId,
+            'deleted_at' => now(),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ];
+    }
+}

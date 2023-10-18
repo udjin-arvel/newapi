@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api;
+use Illuminate\Support\Facades\Route;
 
 Route::post('login', [Api\UserController::class, 'login']);
 Route::post('register', [Api\UserController::class, 'register']);
@@ -15,8 +16,13 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::get('listByContentType/{type}', [Api\SiteController::class, 'listByContentType']);
     Route::get('useName/{id}', [Api\NameController::class, 'useName']);
     Route::post('editProfile', [Api\UserController::class, 'editProfile']);
+    Route::get('getCharacterTraits', [Api\CharacterController::class, 'getCharacterTraits']);
+    
+    // ------------------------ Gallery routes ------------------------ //
     Route::post('saveNotionGallery', [Api\NotionController::class, 'saveGallery']);
     Route::post('saveLoreGallery', [Api\LoreItemController::class, 'saveGallery']);
+    Route::post('saveCompositionGallery', [Api\CompositionController::class, 'saveGallery']);
+    Route::post('saveCharacterGallery', [Api\CharacterController::class, 'saveGallery']);
 	
 	// ------------------------ Like routes ------------------------ //
 	Route::get('like', [Api\LikeController::class, 'like']);
@@ -25,12 +31,16 @@ Route::group(['middleware' => 'auth:api'], function() {
     
     // ------------------------ Story routes ------------------------ //
 	Route::resource('stories', Api\StoryController::class);
+    Route::get('getAdjacentChapters/{compositionId}/{storyId}', [Api\StoryController::class, 'getAdjacentChapters']);
+    
+    // ------------------------ Fragment routes ------------------------ //
+    Route::resource('fragments', Api\FragmentController::class);
     
     // ------------------------ Notes routes ------------------------ //
 	Route::resource('notes', Api\NoteController::class);
 	
     // ------------------------ Loreitems routes ------------------------ //
-	Route::resource('loreitems', Api\LoreItemController::class);
+	Route::resource('loreitems', Api\LoreitemController::class);
     
     // ------------------------ Composition routes ------------------------ //
 	Route::resource('compositions', Api\CompositionController::class);
@@ -52,4 +62,7 @@ Route::group(['middleware' => 'auth:api'], function() {
 	
 	// ------------------------ Name routes ------------------------ //
 	Route::resource('names', Api\NameController::class);
+    
+    // ------------------------ Character routes ------------------------ //
+    Route::resource('characters', Api\CharacterController::class);
 });

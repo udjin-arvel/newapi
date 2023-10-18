@@ -9,11 +9,10 @@ use App\Models\Traits\Descriptionable;
 use App\Models\Traits\Fragmentable;
 use App\Models\Traits\Taggable;
 use App\Models\Traits\UserRelation;
+use Conner\Likeable\Likeable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Builder;
-use Cog\Likeable\Contracts\Likeable as LikeableContract;
-use Cog\Likeable\Traits\Likeable;
 
 /**
  * Class Story
@@ -38,13 +37,15 @@ use Cog\Likeable\Traits\Likeable;
  * @property int    $user_id
  * @property int    $composition_id
  * @property array  $likesAndDislikes
+ * @property string $names
  *
  * @property User $user
  * @property array $fragments
+ * @property array $reminders
  * @property array $descriptions
  * @property Composition $composition
  */
-class Story extends BaseModel implements LikeableContract, PublishableInterface
+class Story extends BaseModel implements PublishableInterface
 {
     use SoftDeletes,
         UserRelation,
@@ -66,9 +67,6 @@ class Story extends BaseModel implements LikeableContract, PublishableInterface
 		self::TYPE_ANNOUNCE => 'Анонс',
 	];
 	
-	/**
-	 * @var array
-	 */
 	protected $fillable = [
 		'title',
 		'type',
@@ -78,7 +76,12 @@ class Story extends BaseModel implements LikeableContract, PublishableInterface
 		'is_public',
 		'composition_id',
 		'user_id',
+        'names',
 	];
+    
+    protected $casts = [
+        'names' => 'array',
+    ];
 	
 	/**
 	 * @var array
@@ -91,6 +94,24 @@ class Story extends BaseModel implements LikeableContract, PublishableInterface
     public function composition()
     {
         return $this->belongsTo(Composition::class);
+    }
+    
+    /**
+     * Комментарии-замечания, принадлежащие истории.
+     * @return HasMany
+     */
+    public function reminders()
+    {
+        return $this->hasMany(Reminder::class)->orderBy('order');
+    }
+    
+    /**
+     * Назначение истори композиции.
+     */
+    public function assignComposition($data): Story
+    {
+        $this->composition_id = $data['id'] ?? null;
+        return $this;
     }
 
     /**

@@ -1,5 +1,0 @@
-#!/bin/sh
-
-chown 1000:www -R /var/www
-chmod 775 -R /var/www/storage
-echo "Permissions refreshed"

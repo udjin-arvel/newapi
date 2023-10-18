@@ -5,11 +5,11 @@ namespace App\Models;
 use App\Models\Interfaces\Publishable as PublishableInterface;
 use App\Models\Scopes\PublicScope;
 use App\Models\Traits\Commentable;
+use App\Models\Traits\Imageable;
 use App\Models\Traits\Posterable;
 use App\Models\Traits\Taggable;
 use App\Models\Traits\UserRelation;
-use Cog\Likeable\Contracts\Likeable as LikeableContract;
-use Cog\Likeable\Traits\Likeable;
+use Conner\Likeable\Likeable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -30,7 +30,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $description
  * @property string $poster
  */
-class Composition extends BaseModel implements LikeableContract, PublishableInterface
+class Composition extends BaseModel implements PublishableInterface
 {
     use SoftDeletes,
 	    PublicScope,
@@ -38,6 +38,7 @@ class Composition extends BaseModel implements LikeableContract, PublishableInte
         UserRelation,
 	    Commentable,
 	    Posterable,
+        Imageable,
         Taggable;
 	
 	/**
@@ -70,7 +71,7 @@ class Composition extends BaseModel implements LikeableContract, PublishableInte
 	 */
 	public function stories()
 	{
-		return $this->hasMany(Story::class)->orderBy('chapter', 'desc');
+		return $this->hasMany(Story::class)->orderBy('chapter');
 	}
 	
 	/**

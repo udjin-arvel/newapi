@@ -2,6 +2,7 @@
 
 namespace App\Capacitors;
 
+use App\Models\Character;
 use App\Models\Composition;
 use App\Models\Correction;
 use App\Models\Description;
@@ -32,6 +33,7 @@ final class AliasCapacitor
 	const NOTIFICATION = 'notification';
 	const USER         = 'user';
 	const CORRECTION   = 'correction';
+	const CHARACTERS   = 'characters';
 	
 	/**
 	 * Связь алиаса с моделью
@@ -48,6 +50,7 @@ final class AliasCapacitor
 		self::NOTIFICATION => Notification::class,
 		self::USER         => User::class,
 		self::CORRECTION   => Correction::class,
+		self::CHARACTERS   => Character::class,
 	];
 	
 	/**
@@ -82,6 +85,7 @@ final class AliasCapacitor
 			Notion::TYPE_DEFINITION => 'Определение',
 			Notion::TYPE_CHARACTER  => 'Персонаж',
 			Notion::TYPE_PLACE      => 'Место',
+			Notion::TYPE_OBJECT     => 'Объект',
 			Notion::TYPE_ENTITY     => 'Сущность',
 			Notion::TYPE_EVENT      => 'Событие',
 		],

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Traits\Contentable;
 use App\Models\Traits\UserRelation;
+use Conner\Likeable\Likeable;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
@@ -18,7 +19,7 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class Comment extends BaseModel
 {
-    use UserRelation, Contentable;
+    use UserRelation, Contentable, Likeable;
     
     protected $fillable = [
         'text',

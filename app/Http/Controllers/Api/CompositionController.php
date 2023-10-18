@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Traits\GalleryUploadTrait;
 use App\Http\Filters\CompositionFilter;
 use App\Http\Requests\CompositionRequest;
 use App\Http\Resources\CompositionResource;
@@ -17,6 +18,19 @@ use Illuminate\Http\Resources\Json\JsonResource;
  */
 class CompositionController extends Controller
 {
+    use GalleryUploadTrait;
+    
+    /**
+     * @var string
+     */
+    protected $directory = 'compositions';
+    
+    /**
+     * @var string
+     */
+    protected $model = Composition::class;
+    
+    
 	/**
 	 * @param CompositionFilter $filter
 	 * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
@@ -25,7 +39,7 @@ class CompositionController extends Controller
 	{
 		return CompositionResource::collection(
 			Composition::filter($filter)
-				->with(['user', 'tags', 'likes'])
+				->with(['stories', 'user', 'tags', 'likes', 'images'])
 				->get()
 		);
 	}
@@ -37,7 +51,7 @@ class CompositionController extends Controller
 	public function show(int $id)
 	{
 		return new CompositionResource(
-			Composition::findOrFail($id)->load(['stories', 'user', 'tags', 'likes'])
+			Composition::findOrFail($id)->load(['stories', 'user', 'tags', 'likes', 'images'])
 		);
 	}
 	
@@ -83,7 +97,13 @@ class CompositionController extends Controller
 	 */
 	public function destroy(int $id)
 	{
-		Composition::findOrFail($id)->delete();
+        $model = Composition::findOrFail($id)
+            ->with('images')
+            ->first();;
+        
+        $this->removeContentGallery($model);
+        $model->delete();
+        
 		return (new JsonResource(collect($id)))
 			->response()
 			->setStatusCode(200);

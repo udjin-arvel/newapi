@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Models\Traits\Contentable;
 use App\Models\Traits\UserRelation;
-use Cog\Likeable\Models\Like;
+use Conner\Likeable\Like;
 
 /**
  * Class Reward
@@ -70,7 +70,6 @@ class Reward extends BaseModel
 		'subscription' => Subscription::class,
 		'short'        => Short::class,
 		'description'  => Description::class,
-		'blank'        => Blank::class,
 		'fragment'     => Fragment::class,
 	];
     
@@ -92,7 +91,6 @@ class Reward extends BaseModel
 		'subscription' => 20,
 		'short'        => 1000,
 		'description'  => 100,
-		'blank'        => 50,
 		'fragment'     => 10,
 	];
 	
