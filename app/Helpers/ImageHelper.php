@@ -4,9 +4,9 @@ namespace App\Helpers;
 
 use App\Jobs\ImageResize;
 use Illuminate\Http\UploadedFile;
-use Image;
-use Storage;
-use Log;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
+use Nette\Utils\Image;
 
 /**
  * Class Helpers
@@ -64,15 +64,12 @@ class ImageHelper
 		}
 		
 		$path = Storage::path($directory);
-		$image = Image::make(Storage::get($fullPath));
+		$image = Image::fromString(Storage::get($fullPath));
 		
 		foreach (self::PREVIEW_SIZES as $size => $width) {
 			$previewPath = $path . $size . '_' . $filename;
 			$image
-				->resize($width, null, function ($constraint) {
-					optional($constraint)->aspectRatio();
-					optional($constraint)->upsize();
-				})
+				->resize($width, null)
 				->save($previewPath, self::PREVIEW_QUALITY[$size]);
 		}
 		

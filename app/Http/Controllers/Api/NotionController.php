@@ -39,7 +39,7 @@ class NotionController extends Controller
 	{
 		return NotionResource::collection(
 			Notion::filter($filter)
-				->with(['user', 'tags', 'images', 'params'])
+				->with(['user', 'tags', 'images', 'params', 'leveledContents'])
 				->get()
 		);
 	}
@@ -51,7 +51,7 @@ class NotionController extends Controller
 	public function show(int $id)
 	{
 		return new NotionResource(
-			Notion::findOrFail($id)->load(['user', 'tags', 'images', 'params'])
+			Notion::findOrFail($id)->load(['user', 'tags', 'images', 'params', 'leveledContents'])
 		);
 	}
 
@@ -72,6 +72,9 @@ class NotionController extends Controller
         if ($request->has('parameters')) {
             $notion->params()->createMany($request->get('params'));
         }
+        if ($request->has('leveledContents')) {
+            $notion->leveledContents()->createMany($request->get('leveledContents'));
+        }
 
 		return (new NotionResource($notion))
 			->response()
@@ -91,7 +94,11 @@ class NotionController extends Controller
 			$notion->syncTags($request->get('tags'));
 		}
         if ($request->has('parameters')) {
-            $notion->params()->updateMany($request->get('params'));
+            $notion->params()->saveMany($request->get('params'));
+        }
+        if ($request->has('leveledContents')) {
+            $notion->leveledContents()->delete();
+            $notion->leveledContents()->createMany($request->get('leveledContents'));
         }
 
 		return (new NotionResource($notion))

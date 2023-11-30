@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Interfaces\Publishable as PublishableInterface;
 use App\Models\Scopes\PublicScope;
 use App\Models\Traits\Imageable;
+use App\Models\Traits\LeveledContentable;
 use App\Models\Traits\Posterable;
 use App\Models\Traits\Taggable;
 use App\Models\Traits\UserRelation;
@@ -34,6 +35,7 @@ class Notion extends BaseModel implements PublishableInterface
 	    Imageable,
 	    Taggable,
 	    Posterable,
+        LeveledContentable,
 	    PublicScope;
 
 	/**

@@ -26,6 +26,7 @@ class Comment extends BaseModel
         'parent_id',
         'content_id',
         'content_type',
+        'user_id',
     ];
 	
 	/**
