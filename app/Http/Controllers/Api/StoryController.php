@@ -33,9 +33,11 @@ class StoryController extends Controller
 		return StoryResource::collection(
 			Story::filter($filter)
 				->isPublic()
-				->with(['user', 'tags', 'composition', 'likes', 'fragments'])
+				->with(['user', 'tags', 'composition', 'fragments' => function ($query) {
+				    $query->latest()->limit(2);
+                }])
+                ->orderByDesc('created_at')
 				->orderByDesc('chapter')
-				->orderByDesc('created_at')
 				->paginate(request()->get('perPage', config('tb.pageSize.middle')))
 		);
 	}
@@ -49,12 +51,20 @@ class StoryController extends Controller
 		$story = Story::findOrFail($id)->load([
 			'user',
 			'tags',
+			'likes',
 			'fragments',
 			'composition',
 			'descriptions',
-			'comments',
 			'reminders',
-		]);
+            'comments' => [
+                'user',
+                'likes',
+                'children' => [
+                    'user',
+                    'likes',
+                ],
+            ],
+        ]);
         
 		event(new ViewProcessed($story));
 		return new StoryResource($story);

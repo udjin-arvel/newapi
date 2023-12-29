@@ -18,7 +18,7 @@ trait Commentable
 	 */
 	public function comments()
 	{
-		return $this->morphMany(Comment::class, 'content');
+		return $this->morphMany(Comment::class, 'content')->onlyParents()->orderBy('created_at', 'desc');
 	}
 }
 

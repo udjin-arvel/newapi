@@ -3,7 +3,6 @@
 namespace App\Http\Resources;
 
 use App\Models\Comment;
-use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
  * Class CommentResource
@@ -11,7 +10,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *
  * @mixin Comment
  */
-class CommentResource extends JsonResource
+class CommentResource extends BaseResource
 {
     /**
      * Transform the resource into an array.
@@ -21,14 +20,11 @@ class CommentResource extends JsonResource
      */
     public function toArray($request)
     {
-        return [
-            'id'           => $this->id,
-            'text'         => $this->text,
-            'parent_id'    => $this->parent_id,
-            'content_id'   => $this->content_id,
-            'content_type' => $this->content_type,
-            'children'     => CommentResource::collection($this->children),
-	        'user'         => new UserResource($this->user),
-        ];
+        return array_merge(parent::toArray($request), [
+            'text'      => $this->text,
+            'parent_id' => $this->parent_id,
+            'children'  => CommentResource::collection($this->whenLoaded('children')),
+            'user'      => optional(UserResource::make($this->whenLoaded('user')))->enableSkimpyMode(),
+        ]);
     }
 }

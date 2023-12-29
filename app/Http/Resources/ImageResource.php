@@ -18,15 +18,11 @@ class ImageResource extends BaseResource
 	 */
 	public function toArray($request)
 	{
-		$data = [
-			'id'         => $this->id,
-			'directory'  => $this->directory,
-			'filename'   => $this->filename,
-			'title'      => $this->title,
-			'user'       => UserResource::make($this->whenLoaded('user')),
-			'created_at' => optional($this->created_at)->format('d.m.Y'),
-		];
-		
-		return array_merge(parent::toArray($request), $data);
+		return array_merge(parent::toArray($request), [
+            'id'        => $this->id,
+            'directory' => $this->directory,
+            'filename'  => $this->filename,
+            'title'     => $this->title,
+        ]);
 	}
 }

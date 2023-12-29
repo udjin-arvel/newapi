@@ -11,7 +11,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *
  * @mixin Character
  */
-class CharacterResource extends JsonResource
+class CharacterResource extends BaseResource
 {
     /**
      * Transform the resource into an array.
@@ -21,8 +21,7 @@ class CharacterResource extends JsonResource
      */
     public function toArray($request)
     {
-        return [
-            'id'           => $this->id,
+        return array_merge(parent::toArray($request), [
             'name'         => $this->name,
             'description'  => $this->description,
             'character'    => $this->character,
@@ -33,10 +32,8 @@ class CharacterResource extends JsonResource
             'birthday_eon' => $this->birthday_eon,
             'power_level'  => $this->power_level,
             'is_public'    => $this->is_public,
-            'created_at'   => optional($this->created_at)->format('d.m.Y H:i'),
-            'user'         => new UserResource($this->user),
             'gallery'      => ImageResource::collection($this->whenLoaded('images')),
             'tags'         => TagResource::collection($this->whenLoaded('tags')),
-        ];
+        ]);
     }
 }

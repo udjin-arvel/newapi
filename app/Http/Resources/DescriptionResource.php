@@ -28,9 +28,7 @@ class DescriptionResource extends BaseResource
 			'content_title' => optional($this->content)->title,
 			'importance'    => (int) $this->importance,
 			'is_public'     => (bool) $this->is_public,
-			'user'          => UserResource::make($this->whenLoaded('user')),
 			'tags'          => TagResource::collection($this->whenLoaded('tags')),
-			'created_at'    => optional($this->created_at)->format('d.m.Y H:i'),
 			'realized_at'   => optional($this->realized_at)->format('d.m.Y H:i'),
 		]);
 	}

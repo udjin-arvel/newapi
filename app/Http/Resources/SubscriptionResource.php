@@ -22,8 +22,6 @@ class SubscriptionResource extends BaseResource
 			'text'         => $this->getSubscriptionText(),
 			'content_id'   => $this->content_id,
 			'content_type' => $this->content_type,
-			'user'         => new UserResource($this->user),
-			'updated_at'   => optional($this->updated_at)->format('d.m.Y H:i'),
 		]);
 	}
 }

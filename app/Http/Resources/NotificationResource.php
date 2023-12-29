@@ -19,14 +19,11 @@ class NotificationResource extends BaseResource
 	 */
 	public function toArray($request)
 	{
-		$data = [
-			'content_id'   => $this->content_id,
-			'content_type' => $this->content_type,
-			'message'      => $this->message,
-			'user'         => new UserResource($this->user),
-			'updated_at'   => optional($this->updated_at)->format('d.m.Y H:i'),
-		];
-		
-		return array_merge(parent::toArray($request), $data);
+		return array_merge(parent::toArray($request), [
+            'content_id'   => $this->content_id,
+            'content_type' => $this->content_type,
+            'message'      => $this->message,
+            'updated_at'   => optional($this->updated_at)->format('d.m.Y H:i'),
+        ]);
 	}
 }

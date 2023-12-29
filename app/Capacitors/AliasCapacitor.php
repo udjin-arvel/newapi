@@ -12,7 +12,8 @@ use App\Models\Notion;
 use App\Models\Story;
 use App\Models\Subscription;
 use App\Models\User;
-use Notification;
+use App\Models\Notification;
+use App\Models\Comment;
 
 /**
  * Class AliasCapacitor
@@ -34,6 +35,7 @@ final class AliasCapacitor
 	const USER         = 'user';
 	const CORRECTION   = 'correction';
 	const CHARACTERS   = 'characters';
+	const COMMENT      = 'comment';
 	
 	/**
 	 * Связь алиаса с моделью
@@ -51,6 +53,7 @@ final class AliasCapacitor
 		self::USER         => User::class,
 		self::CORRECTION   => Correction::class,
 		self::CHARACTERS   => Character::class,
+		self::COMMENT      => Comment::class,
 	];
 	
 	/**

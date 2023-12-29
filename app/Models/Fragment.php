@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Traits\Contentable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Staudenmeir\EloquentEagerLimit\HasEagerLimit;
 
 /**
  * Class Fragment
@@ -17,7 +18,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Fragment extends BaseModel
 {
-    use SoftDeletes, Contentable, HasFactory;
+    use SoftDeletes,
+        Contentable,
+        HasEagerLimit,
+        HasFactory;
 
     protected $fillable = [
       'text',

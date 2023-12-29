@@ -2,7 +2,6 @@
 
 namespace App\Http\Middleware;
 
-use App\Capacitors\AliasCapacitor;
 use Closure;
 use Log;
 

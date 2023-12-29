@@ -38,8 +38,7 @@ class CommentController extends Controller
 	public function store(CommentRequest $request)
 	{
 		$comment = Comment::create($request->all());
-		
-		return (new CommentResource($comment))
+		return (new CommentResource($comment->load(['user', 'children'])))
 			->response()
 			->setStatusCode(201);
 	}
@@ -52,8 +51,7 @@ class CommentController extends Controller
 	public function update(CommentRequest $request, int $id)
 	{
 		$comment = Comment::findOrFail($id)->update($request->all());
-		
-		return (new CommentResource($comment))
+		return (new CommentResource($comment->load(['user', 'children'])))
 			->response()
 			->setStatusCode(201);
 	}
@@ -65,8 +63,13 @@ class CommentController extends Controller
 	 */
 	public function destroy(int $id)
 	{
-		Comment::findOrFail($id)->delete();
-		return (new JsonResource(collect($id)))
+	    $model = Comment::findOrFail($id);
+	    
+	    if ($model->delete()) {
+            Comment::where('parent_id', $id)->delete();
+        }
+	    
+		return (new JsonResource($model))
 			->response()
 			->setStatusCode(200);
 	}

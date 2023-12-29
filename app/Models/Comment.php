@@ -16,10 +16,14 @@ use Illuminate\Database\Eloquent\Builder;
  * @property string $content_type
  * @property int    $user_id
  * @property int    $parent_id
+ *
+ * @method static self|Builder onlyParents()
  */
 class Comment extends BaseModel
 {
-    use UserRelation, Contentable, Likeable;
+    use UserRelation,
+        Contentable,
+        Likeable;
     
     protected $fillable = [
         'text',
@@ -43,6 +47,6 @@ class Comment extends BaseModel
 	 */
 	public function children()
 	{
-		return $this->hasMany(self::class, 'parent_id');
+		return $this->hasMany(self::class, 'parent_id')->orderBy('created_at', 'desc');
 	}
 }

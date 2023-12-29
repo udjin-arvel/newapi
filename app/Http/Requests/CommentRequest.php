@@ -12,11 +12,10 @@ class CommentRequest extends BaseRequest
     public function rules()
     {
 	    return [
-		    'text'         => 'required|max:2048',
-		    'parent_id'    => 'integer',
+		    'text'         => 'required|min:15|max:2048',
+		    'parent_id'    => 'nullable|integer',
 		    'content_id'   => 'required|integer',
 		    'content_type' => 'required|string',
-		    'user_id'      => 'required|integer',
 	    ];
     }
 }

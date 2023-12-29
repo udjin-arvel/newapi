@@ -22,7 +22,6 @@ class NameResource extends BaseResource
 			'name'       => $this->name,
 			'is_used'    => $this->is_used,
 			'user'       => ['id' => $this->user_id],
-			'created_at' => optional($this->created_at)->format('d.m.Y H:i'),
 		]);
 	}
 }

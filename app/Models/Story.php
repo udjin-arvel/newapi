@@ -13,6 +13,7 @@ use Conner\Likeable\Likeable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Builder;
+use Staudenmeir\EloquentEagerLimit\HasEagerLimit;
 
 /**
  * Class Story
@@ -54,6 +55,7 @@ class Story extends BaseModel implements PublishableInterface
         Taggable,
         Commentable,
 	    Descriptionable,
+        HasEagerLimit,
 	    PublicScope;
 	
 	/**
