@@ -16,8 +16,7 @@ use Illuminate\Database\Eloquent\Builder;
  * @property string  $title
  * @property string  $text
  * @property int     $user_id
- * @property int     $content_id
- * @property string  $content_type
+ * @property bool    $is_additional_content
  * @property string  $type
  * @property int     $importance
  *
@@ -48,8 +47,7 @@ class Note extends BaseModel
 		'title',
 		'text',
 		'type',
-		'content_id',
-		'content_type',
+		'is_additional_content',
 		'importance',
 		'user_id',
 	];

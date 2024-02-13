@@ -49,6 +49,7 @@ class BaseResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'user' => UserResource::make($this->whenLoaded('user')),
             'created_at' => optional($this->created_at)->format('d.m.Y H:i'),
         ];
     }

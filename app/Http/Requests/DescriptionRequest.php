@@ -14,6 +14,7 @@ class DescriptionRequest extends BaseRequest
 		return [
 			'title' => 'required|max:255',
 			'text'  => 'required',
+			'type'  => 'required',
 		];
 	}
 }

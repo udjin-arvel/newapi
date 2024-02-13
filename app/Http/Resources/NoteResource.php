@@ -19,12 +19,11 @@ class NoteResource extends BaseResource
     public function toArray($request)
     {
         return array_merge(parent::toArray($request), [
-            'title'        => $this->title,
-            'text'         => $this->text,
-            'content_id'   => $this->content_id,
-            'content_type' => $this->content_type,
-            'importance'   => $this->importance,
-            'tags'         => TagResource::collection($this->whenLoaded('tags')),
+            'title'                 => $this->title,
+            'text'                  => $this->text,
+            'importance'            => $this->importance,
+            'is_additional_content' => $this->is_additional_content,
+            'tags'                  => TagResource::collection($this->whenLoaded('tags')),
         ]);
     }
 }
