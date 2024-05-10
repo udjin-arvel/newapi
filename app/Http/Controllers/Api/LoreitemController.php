@@ -66,7 +66,7 @@ class LoreitemController extends Controller
 			$loreItem->tags()->attach($request->get('tags'));
 		}
 		
-		return (new LoreItemResource($loreItem))
+		return (new LoreItemResource($loreItem->load(['user', 'tags'])))
 			->response()
 			->setStatusCode(201);
 	}
@@ -84,7 +84,7 @@ class LoreitemController extends Controller
 			$loreItem->syncTags($request->get('tags'));
 		}
 		
-		return (new LoreItemResource($loreItem))
+		return (new LoreItemResource($loreItem->load(['user', 'tags'])))
 			->response()
 			->setStatusCode(201);
 	}

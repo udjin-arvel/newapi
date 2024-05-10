@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Exceptions\TBError;
-use App\Models\Traits\Posterable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -79,6 +78,32 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+    ];
+    
+    /**
+     * @var int[]
+     */
+    protected $levelLimits = [
+      1 => 0,
+      2 => 500,
+      3 => 1500,
+      4 => 3750,
+      5 => 7875,
+      6 => 14175,
+      7 => 22680,
+      8 => 32886,
+      9 => 44396,
+      10 => 57715,
+      11 => 72144,
+      12 => 90180,
+      13 => 112725,
+      14 => 140906,
+      15 => 176132,
+      16 => 220165,
+      17 => 275207,
+      18 => 344008,
+      19 => 430010,
+      20 => 537513,
     ];
 	
 	/**
@@ -178,6 +203,14 @@ class User extends Authenticatable
     public function updateExpAmount(int $amount): bool
     {
     	$this->experience += $amount;
+    	
+    	foreach ($this->levelLimits as $level => $experience) {
+    	    if ($this->experience < $experience) {
+    	        $this->level = $level - 1;
+    	        break;
+            }
+        }
+    	
     	return $this->save();
     }
     
