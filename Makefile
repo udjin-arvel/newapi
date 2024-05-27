@@ -1,5 +1,6 @@
 export_db:
-	docker exec -i arvelov-mysql-1 mysqldump --user=sail --password=password --databases --no-tablespaces thebook > ./dump/backup.sql
+	docker exec -i arvelov-mysql-1 mysqldump --user=sail --password=password --databases --no-tablespaces thebook > "./dump/backup__$$(date +"%Y-%m-%-d__%H-%M-%S").sql"
+	docker exec -i arvelov-mysql-1 mysqldump --user=sail --password=password --databases --no-tablespaces thebook > "./dump/backup.sql"
 
 import_db:
 	docker exec -i arvelov-mysql-1 mysql -usail -ppassword thebook < ./dump/backup.sql

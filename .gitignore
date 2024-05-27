@@ -3,7 +3,7 @@
 /public/storage
 /storage/*.key
 /vendor
-/dump
+/dump/backup__*
 .env
 .htaccess
 .phpunit.result.cache
