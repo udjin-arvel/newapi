@@ -1,85 +1,55 @@
-version: '2.26.1'
-
 services:
-  app:
-    build:
-      context: docker/php
-      dockerfile: Dockerfile
-    container_name: arvelov-app
-    restart: always
-    working_dir: /var/www/app
-    volumes:
-      - .:/var/www/app:delegated
-      - ./docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
-    networks:
-      - app-network
-
-  web:
-    container_name: arvelov-nginx
-    image: nginx:alpine
-    restart: always
-    depends_on:
-      - app
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./public:/var/www/app/public:delegated
-      - ./docker/nginx/:/etc/nginx/conf.d/
-    networks:
-      - app-network
-
-  queue:
-    container_name: arvelov-queue
-    restart: always
-    image: jjuanrivvera99/laravel:mysql-alpine
-    environment:
-      CONTAINER_ROLE: "queue"
-    volumes:
-      - ./:/var/www
-    networks:
-      - app-network
-
-  scheduler:
-    container_name: arvelov-scheduler
-    restart: always
-    image: jjuanrivvera99/laravel:mysql-alpine
-    environment:
-      CONTAINER_ROLE: "scheduler"
-    volumes:
-      - ./:/var/www/app
-    networks:
-      - app-network
-
-  node:
-    image: jjuanrivvera99/node:alpine
-    restart: always
-    build:
-      context: docker/node
-      dockerfile: Dockerfile
-    container_name: arvelov-node
-    volumes:
-      - ./js:/var/www/app/js:delegated
-
-  mysql:
-    container_name: arvelov-mysql
-    image: mysql:5.7.22
-    restart: always
-    ports:
-      - "3306:3306"
-    environment:
-      MYSQL_DATABASE: dashboard
-      MYSQL_ROOT_PASSWORD: root
-    volumes:
-      - mysql-data:/var/lib/mysql/
-      - ./docker/mysql/my.cnf:/etc/mysql/my.cnf
-    networks:
-      - app-network
-
+    app:
+        build:
+            context: ./vendor/laravel/sail/runtimes/8.2
+            dockerfile: Dockerfile
+            args:
+                WWWGROUP: '${WWWGROUP}'
+        image: sail-8.2/app
+        extra_hosts:
+            - 'host.docker.internal:host-gateway'
+        ports:
+            - '${APP_PORT:-80}:80'
+            - '${VITE_PORT:-5173}:${VITE_PORT:-5173}'
+        environment:
+            WWWUSER: '${WWWUSER}'
+            LARAVEL_SAIL: 1
+            XDEBUG_MODE: '${SAIL_XDEBUG_MODE:-off}'
+            XDEBUG_CONFIG: '${SAIL_XDEBUG_CONFIG:-client_host=host.docker.internal}'
+            IGNITION_LOCAL_SITES_PATH: '${PWD}'
+        volumes:
+            - '.:/var/www/html'
+        networks:
+            - sail
+        depends_on:
+            - mysql
+    mysql:
+        image: 'mysql/mysql-server:8.0'
+        ports:
+            - '${FORWARD_DB_PORT:-3306}:3306'
+        environment:
+            MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+            MYSQL_ROOT_HOST: '%'
+            MYSQL_DATABASE: '${DB_DATABASE}'
+            MYSQL_USER: '${DB_USERNAME}'
+            MYSQL_PASSWORD: '${DB_PASSWORD}'
+            MYSQL_ALLOW_EMPTY_PASSWORD: 1
+        volumes:
+            - 'sail-mysql:/var/lib/mysql'
+            - './vendor/laravel/sail/database/mysql/create-testing-database.sh:/docker-entrypoint-initdb.d/10-create-testing-database.sh'
+        networks:
+            - sail
+        healthcheck:
+            test:
+                - CMD
+                - mysqladmin
+                - ping
+                - '-p${DB_PASSWORD}'
+            retries: 3
+            timeout: 5s
 networks:
-  app-network:
-    driver: bridge
-
+    sail:
+        driver: bridge
 volumes:
-  mysql-data:
-    driver: local
+    sail-mysql:
+        driver: local

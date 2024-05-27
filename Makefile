@@ -1,5 +1,8 @@
-backup_db:
-	mysqldump --user=root --databases prod > ./backup/backup.sql
+export_db:
+	docker exec -i arvelov-mysql-1 mysqldump --user=sail --password=password --databases --no-tablespaces thebook > ./dump/backup.sql
+
+import_db:
+	docker exec -i arvelov-mysql-1 mysql -usail -ppassword thebook < ./dump/backup.sql
 
 start:
 	docker-compose up -d
@@ -7,11 +10,11 @@ start:
 stop:
 	docker-compose stop
 
-ash:
-	docker exec -it arvelov-app ash
+bash:
+	docker exec -it arvelov-app-1 bash
 
 db:
-	docker exec -it arvelov-mysql bash -l
+	docker exec -it arvelov-mysql-1 bash -l
 
 ps:
 	docker-compose ps

@@ -27,12 +27,7 @@ class LoreItem extends BaseModel implements PublishableInterface
 	    Imageable,
 	    Posterable,
 	    PublicScope;
-    
-    /**
-     * @var string
-     */
-    protected $table = 'loreitems';
-    
+
 	/**
 	 * @var array
 	 */
@@ -44,7 +39,7 @@ class LoreItem extends BaseModel implements PublishableInterface
         'level',
         'user_id',
     ];
-	
+
 	/**
 	 * @var array
 	 */

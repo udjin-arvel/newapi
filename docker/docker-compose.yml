@@ -1,0 +1,79 @@
+version: '3.7'
+services:
+    app:
+        build:
+            context: docker/php
+            dockerfile: Dockerfile
+        container_name: arvelov-app
+        restart: always
+        working_dir: /var/www/app
+        volumes:
+            - '.:/var/www/app:delegated'
+            - './docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini'
+        networks:
+            - app-network
+    web:
+        container_name: arvelov-nginx
+        image: 'nginx:alpine'
+        restart: always
+        depends_on:
+            - app
+        ports:
+            - '80:80'
+            - '443:443'
+        volumes:
+            - './public:/var/www/app/public:delegated'
+            - './docker/nginx/:/etc/nginx/conf.d/'
+        networks:
+            - app-network
+    queue:
+        container_name: arvelov-queue
+        restart: always
+        image: 'jjuanrivvera99/laravel:mysql-alpine'
+        environment:
+            CONTAINER_ROLE: queue
+        volumes:
+            - './:/var/www'
+        networks:
+            - app-network
+    scheduler:
+        container_name: arvelov-scheduler
+        restart: always
+        image: 'jjuanrivvera99/laravel:mysql-alpine'
+        environment:
+            CONTAINER_ROLE: scheduler
+        volumes:
+            - './:/var/www/app'
+        networks:
+            - app-network
+    node:
+        image: 'jjuanrivvera99/node:alpine'
+        restart: always
+        build:
+            context: docker/node
+            dockerfile: Dockerfile
+        container_name: arvelov-node
+        volumes:
+            - './js:/var/www/app/js:delegated'
+    mysql:
+        container_name: arvelov-mysql
+        image: 'mysql:5.7.22'
+        restart: always
+        ports:
+            - '3306:3306'
+        environment:
+            MYSQL_DATABASE: dashboard
+            MYSQL_ROOT_PASSWORD: root
+        volumes:
+            - 'mysql-data:/var/lib/mysql/'
+            - './docker/mysql/my.cnf:/etc/mysql/my.cnf'
+        networks:
+            - app-network
+networks:
+    app-network:
+        driver: bridge
+volumes:
+    mysql-data:
+        driver: local
+    sail-mysql:
+        driver: local

@@ -79,7 +79,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    
+
     /**
      * @var int[]
      */
@@ -105,7 +105,7 @@ class User extends Authenticatable
       19 => 430010,
       20 => 537513,
     ];
-	
+
 	/**
 	 * Проверка может ли пользователь редактировать данный контент
 	 *
@@ -117,7 +117,7 @@ class User extends Authenticatable
     	return !empty($content->user_id)
 		    && ($content->user_id === $this->id || in_array($this->status, [self::STATUS_ADMIN, self::STATUS_MODERATOR]));
     }
-    
+
 	/**
 	 * @return HasMany
 	 */
@@ -125,7 +125,7 @@ class User extends Authenticatable
 	{
 		return $this->hasMany(View::class);
 	}
-	
+
 	/**
 	 * @return HasMany
 	 */
@@ -133,7 +133,7 @@ class User extends Authenticatable
 	{
 		return $this->hasMany(Reward::class);
 	}
-	
+
 	/**
 	 * @return HasMany
 	 */
@@ -141,7 +141,7 @@ class User extends Authenticatable
 	{
 		return $this->hasMany(Bookmark::class);
 	}
-	
+
 	/**
 	 * @return HasMany
 	 */
@@ -149,7 +149,7 @@ class User extends Authenticatable
 	{
 		return $this->hasMany(Subscription::class);
 	}
-    
+
     /**
      * Сменить пароль
      *
@@ -193,7 +193,7 @@ class User extends Authenticatable
 
         return $http . $host . '/confirm?email='. $this->email . '&hash=' . $hash;
     }
-	
+
 	/**
 	 * Обновить опыт пользователю
 	 *
@@ -203,17 +203,17 @@ class User extends Authenticatable
     public function updateExpAmount(int $amount): bool
     {
     	$this->experience += $amount;
-    	
+
     	foreach ($this->levelLimits as $level => $experience) {
     	    if ($this->experience < $experience) {
     	        $this->level = $level - 1;
     	        break;
             }
         }
-    	
+
     	return $this->save();
     }
-    
+
 	/**
 	 * @return bool
 	 */

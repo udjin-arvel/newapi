@@ -38,6 +38,7 @@ use Staudenmeir\EloquentEagerLimit\HasEagerLimit;
  * @property int    $user_id
  * @property int    $composition_id
  * @property array  $likesAndDislikes
+ * @property string  $fast_notes
  * @property string $names
  *
  * @property User $user
@@ -57,18 +58,18 @@ class Story extends BaseModel implements PublishableInterface
 	    Descriptionable,
         HasEagerLimit,
 	    PublicScope;
-	
+
 	/**
 	 * Типы историй
 	 */
 	const TYPE_STORY    = 'story';
 	const TYPE_ANNOUNCE = 'announce';
-	
+
 	const TYPES = [
 		self::TYPE_STORY    => 'История',
 		self::TYPE_ANNOUNCE => 'Анонс',
 	];
-	
+
 	protected $fillable = [
 		'title',
 		'type',
@@ -80,16 +81,17 @@ class Story extends BaseModel implements PublishableInterface
 		'user_id',
         'names',
 	];
-    
+
     protected $casts = [
         'names' => 'array',
+        'fast_notes' => 'array',
     ];
-	
+
 	/**
 	 * @var array
 	 */
 	public $timestamps = ['updated_at'];
-	
+
 	/**
      * Композиция, которой принадлежит история.
      */
@@ -97,7 +99,7 @@ class Story extends BaseModel implements PublishableInterface
     {
         return $this->belongsTo(Composition::class);
     }
-    
+
     /**
      * Комментарии-замечания, принадлежащие истории.
      * @return HasMany
@@ -106,7 +108,7 @@ class Story extends BaseModel implements PublishableInterface
     {
         return $this->hasMany(Reminder::class)->orderBy('order');
     }
-    
+
     /**
      * Назначение истори композиции.
      */
@@ -129,7 +131,7 @@ class Story extends BaseModel implements PublishableInterface
 		    ? $query->whereIn('composition_id', $compositionIds)
 		    : $query->where('composition_id', $compositionIds);
     }
-	
+
 	/**
 	 * Выбрать истории определенного юзера/юзеров
 	 *
@@ -143,7 +145,7 @@ class Story extends BaseModel implements PublishableInterface
 			? $query->whereIn('user_id', $userIds)
 			: $query->where('user_id', $userIds);
 	}
-    
+
     /**
      * Выбрать истории с композицией
      *
@@ -154,7 +156,7 @@ class Story extends BaseModel implements PublishableInterface
     {
         return $query->where('composition_id', '!=', null);
     }
-    
+
     /**
      * Вернуть количество уникальных писателей историй
      *
@@ -165,7 +167,7 @@ class Story extends BaseModel implements PublishableInterface
     {
         return $query->select('user_id')->distinct();
     }
-	
+
 	/**
 	 * @return HasMany
 	 */
