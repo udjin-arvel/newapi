@@ -13,20 +13,20 @@ return new class extends Migration
     {
         Schema::create('fragments', function (Blueprint $table) {
             $table->id();
-            
+
             $table->text('text');
             $table->unsignedInteger('order');
             $table->string('image')->nullable();
             $table->text('footnote')->nullable()->comment('Сноска-примечание для фрагмента');
-            
+
             $table->unsignedBigInteger('story_id');
             $table->foreign('story_id')->references('id')->on('stories');
-            
+
             $table->softDeletes();
             $table->timestamps();
         });
     }
-    
+
     /**
      * Reverse the migrations.
      */

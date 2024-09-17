@@ -8,6 +8,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Support\Facades\Log;
 
 /**
  * Class ImageResize
@@ -16,12 +17,12 @@ use Illuminate\Foundation\Bus\Dispatchable;
 class ImageResize implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-	
+
 	/**
 	 * @var string
 	 */
 	protected $filename;
-	
+
 	/**
 	 * Create a new job instance.
 	 *
@@ -31,7 +32,7 @@ class ImageResize implements ShouldQueue
     {
 	    $this->filename = $filename;
     }
-	
+
 	/**
 	 * Execute the job.
 	 *

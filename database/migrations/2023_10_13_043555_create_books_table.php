@@ -1,5 +1,5 @@
 <?php
-    
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('compositions', function (Blueprint $table) {
             $table->id();
-    
+
             $table->string('title');
             $table->text('description');
             $table->string('poster')->nullable();
@@ -23,15 +23,15 @@ return new class extends Migration
             $table->boolean('is_public')->default(false);
             $table->unsignedSmallInteger('level')->default(1);
             $table->unsignedSmallInteger('chapter')->nullable();
-    
+
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-    
+
             $table->softDeletes();
             $table->timestamps();
         });
     }
-    
+
     /**
      * Reverse the migrations.
      */

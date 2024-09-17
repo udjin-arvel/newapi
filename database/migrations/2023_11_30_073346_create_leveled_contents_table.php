@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('leveled_contents', function (Blueprint $table) {
             $table->id();
-    
+
             $table->text('text');
             $table->unsignedSmallInteger('level')->nullable();
             $table->morphs('content');
-    
+
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            
+
             $table->timestamps();
         });
     }

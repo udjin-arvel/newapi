@@ -13,15 +13,15 @@ return new class extends Migration
     {
         Schema::create('news', function (Blueprint $table) {
             $table->id();
-            
+
             $table->morphs('content');
             $table->string('text');
             $table->string('action', 64);
-            
+
             $table->timestamps();
         });
     }
-    
+
     /**
      * Reverse the migrations.
      */

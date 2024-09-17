@@ -13,15 +13,15 @@ return new class extends Migration
     {
         Schema::create('notion_params', function (Blueprint $table) {
             $table->id();
-    
+
             $table->unsignedBigInteger('notion_id');
             $table->foreign('notion_id')->references('id')->on('notions');
-    
+
             $table->string('title');
             $table->string('value');
-    
+
             $table->unsignedInteger('order')->default(0);
-            
+
             $table->timestamps();
         });
     }

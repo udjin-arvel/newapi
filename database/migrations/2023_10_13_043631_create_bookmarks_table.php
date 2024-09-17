@@ -13,20 +13,20 @@ return new class extends Migration
     {
         Schema::create('bookmarks', function (Blueprint $table) {
             $table->id();
-            
+
             $table->unsignedBigInteger('story_id');
             $table->foreign('story_id')->references('id')->on('stories')->onDelete('cascade');
-            
+
             $table->unsignedBigInteger('fragment_id');
             $table->foreign('fragment_id')->references('id')->on('fragments')->onDelete('cascade');
-            
+
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            
+
             $table->timestamps();
         });
     }
-    
+
     /**
      * Reverse the migrations.
      */

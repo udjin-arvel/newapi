@@ -13,19 +13,19 @@ return new class extends Migration
     {
         Schema::create('images', function (Blueprint $table) {
             $table->id();
-            
+
             $table->string('filename', 128);
             $table->string('directory', 64)->default('');
             $table->string('title')->nullable();
             $table->morphs('content');
-            
+
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            
+
             $table->timestamps();
         });
     }
-    
+
     /**
      * Reverse the migrations.
      */

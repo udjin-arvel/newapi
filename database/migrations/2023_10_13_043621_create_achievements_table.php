@@ -13,16 +13,16 @@ return new class extends Migration
     {
         Schema::create('achievements', function (Blueprint $table) {
             $table->id();
-            
+
             $table->string('achievement', 64);
-            
+
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            
+
             $table->timestamps();
         });
     }
-    
+
     /**
      * Reverse the migrations.
      */

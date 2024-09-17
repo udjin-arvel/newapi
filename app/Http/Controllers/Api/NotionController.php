@@ -76,7 +76,7 @@ class NotionController extends Controller
             $notion->leveledContents()->createMany($request->get('leveledContents'));
         }
 
-		return (new NotionResource($notion))
+		return (new NotionResource($notion->load(['user', 'images'])))
 			->response()
 			->setStatusCode(201);
 	}
@@ -101,7 +101,7 @@ class NotionController extends Controller
             $notion->leveledContents()->createMany($request->get('leveledContents'));
         }
 
-		return (new NotionResource($notion))
+		return (new NotionResource($notion->load(['user', 'images'])))
 			->response()
 			->setStatusCode(201);
 	}
@@ -116,10 +116,10 @@ class NotionController extends Controller
         $model = Notion::findOrFail($id)
             ->with('images')
             ->first();
-        
+
         $this->removeContentGallery($model);
         $model->delete();
-        
+
 		return (new JsonResource(collect($id)))
 			->response()
 			->setStatusCode(200);

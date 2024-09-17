@@ -41,7 +41,7 @@ class StoryController extends Controller
 				->paginate(request()->get('perPage', config('tb.pageSize.middle')))
 		);
 	}
-	
+
 	/**
 	 * @param int $id
 	 * @return StoryResource
@@ -65,11 +65,11 @@ class StoryController extends Controller
                 ],
             ],
         ]);
-        
+
 		event(new ViewProcessed($story));
 		return new StoryResource($story);
 	}
-	
+
 	/**
 	 * @param StoryRequest $request
 	 * @return \Illuminate\Http\JsonResponse
@@ -81,7 +81,7 @@ class StoryController extends Controller
 		 */
 		$story = Story::create($request->all());
         $story->fragments()->createMany($request->get('fragments'));
-        
+
 		if ($request->has('composition')) {
 		    $story->assignComposition($request->get('composition'));
         }
@@ -94,15 +94,15 @@ class StoryController extends Controller
         if ($request->has('reminders')) {
             $story->reminders()->createMany($request->get('reminders'));
         }
-		
+
 		event(new NewsProcessed($story, News::ACTION_CREATE));
 		event(new RewardProcessed($story));
-		
+
 		return (new StoryResource($story->load(['user', 'tags', 'composition', 'fragments'])))
 			->response()
 			->setStatusCode(201);
 	}
-	
+
 	/**
 	 * @param StoryRequest $request
 	 * @param int $id
@@ -121,14 +121,14 @@ class StoryController extends Controller
 			->syncTags($request->get('tags'))
 			->syncDescriptions($request->get('descriptions'))
 			->update($request->all());
-		
+
 		event(new NewsProcessed($story, News::ACTION_UPDATE));
-		
+
 		return (new StoryResource($story))
 			->response()
 			->setStatusCode(201);
 	}
-	
+
 	/**
 	 * @param int $id
 	 * @return \Illuminate\Http\JsonResponse
@@ -138,12 +138,12 @@ class StoryController extends Controller
 	{
 		$model = Story::findOrFail($id);
 		$model->syncDescriptions(null)->syncTags(null)->delete();
-		
+
 		return (new JsonResource(collect($id)))
 			->response()
 			->setStatusCode(200);
 	}
-    
+
     /**
      * @param int $id
      * @return \Illuminate\Http\JsonResponse
@@ -154,10 +154,10 @@ class StoryController extends Controller
         $composition = Composition::findOrFail($compositionId)
             ->with('stories')
             ->first();
-    
+
         $prev = $next = [];
         $stories = $composition->stories()->orderBy('chapter')->get()->toArray();
-        
+
         foreach ($stories as $key => $story) {
             if ($story['id'] === $storyId) {
                 if (isset($stories[$key - 1])) {
@@ -167,7 +167,7 @@ class StoryController extends Controller
                         'chapter' => $stories[$key - 1]['chapter'],
                     ];
                 }
-                
+
                 if (isset($stories[$key + 1])) {
                     $next = [
                         'id' => $stories[$key + 1]['id'],
@@ -175,11 +175,11 @@ class StoryController extends Controller
                         'chapter' => $stories[$key - 1]['chapter'],
                     ];
                 }
-                
+
                 break;
             }
         }
-        
+
         return (new JsonResource([
             'prev' => $prev,
             'next' => $next,

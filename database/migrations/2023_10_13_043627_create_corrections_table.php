@@ -13,19 +13,19 @@ return new class extends Migration
     {
         Schema::create('corrections', function (Blueprint $table) {
             $table->id();
-            
+
             $table->text('old_variant');
             $table->text('new_variant');
             $table->morphs('content');
             $table->string('status', 64);
-            
+
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            
+
             $table->timestamps();
         });
     }
-    
+
     /**
      * Reverse the migrations.
      */

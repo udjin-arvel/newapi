@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('stories', function (Blueprint $table) {
             $table->id();
-    
+
             $table->string('title');
             $table->text('epigraph')->nullable();
             $table->unsignedTinyInteger('eon')->nullable();
@@ -23,18 +23,18 @@ return new class extends Migration
             $table->unsignedSmallInteger('level')->default(1);
             $table->unsignedSmallInteger('chapter')->nullable();
             $table->json('names')->nullable();
-    
+
             $table->unsignedBigInteger('composition_id')->nullable();
             $table->foreign('composition_id')->references('id')->on('compositions');
-    
+
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-    
+
             $table->softDeletes();
             $table->timestamps();
         });
     }
-    
+
     /**
      * Reverse the migrations.
      */

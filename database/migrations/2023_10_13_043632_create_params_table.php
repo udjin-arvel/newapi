@@ -13,18 +13,18 @@ return new class extends Migration
     {
         Schema::create('params', function (Blueprint $table) {
             $table->id();
-            
+
             $table->string('title');
             $table->string('value');
             $table->unsignedSmallInteger('order')->default(0);
-            
+
             $table->unsignedBigInteger('notion_id');
             $table->foreign('notion_id')->references('id')->on('notions');
-            
+
             $table->timestamps();
         });
     }
-    
+
     /**
      * Reverse the migrations.
      */

@@ -14,20 +14,20 @@ return new class extends Migration
     {
         Schema::create('notes', function (Blueprint $table) {
             $table->id();
-            
+
             $table->string('title');
             $table->text('text');
             $table->nullableMorphs('content');
             // $table->string('type')->default(Note::TYPE_NOTE);
             $table->unsignedTinyInteger('importance')->default(1);
-            
+
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            
+
             $table->timestamps();
         });
     }
-    
+
     /**
      * Reverse the migrations.
      */

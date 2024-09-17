@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('characters', function (Blueprint $table) {
             $table->id();
-            
+
             $table->string('name');
             $table->text('description');
             $table->string('character')->nullable();
@@ -23,14 +23,14 @@ return new class extends Migration
             $table->float('birthday_eon')->nullable(); // макс. 21
             $table->float('power_level')->default(1); // макс. 21
             $table->boolean('is_public')->default(true);
-            
+
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            
+
             $table->timestamps();
         });
     }
-    
+
     /**
      * Reverse the migrations.
      */

@@ -13,21 +13,21 @@ return new class extends Migration
     {
         Schema::create('loreitems', function (Blueprint $table) {
             $table->id();
-            
+
             $table->string('title');
             $table->text('text');
             $table->string('poster')->nullable();
             $table->boolean('is_public')->default(false);
             $table->unsignedSmallInteger('level')->default(1);
-            
+
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            
+
             $table->softDeletes();
             $table->timestamps();
         });
     }
-    
+
     /**
      * Reverse the migrations.
      */

@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Description;
-use App\Models\Fragment;
+use App\Jobs\TestJob;
 use Illuminate\Contracts\Support\Renderable;
 use Storage;
 use Response;
@@ -11,8 +10,8 @@ use Response;
 class HomeController extends Controller
 {
     public $successStatus = 200;
-    
-    
+
+
     /**
      * Create a new controller instance.
      *
@@ -22,7 +21,7 @@ class HomeController extends Controller
     {
         // $this->middleware('auth');
     }
-    
+
 
     /**
      * Show the application dashboard.
@@ -33,7 +32,7 @@ class HomeController extends Controller
     {
         return view('home');
     }
-	
+
 	/**
 	 * Получить изображение из storage
 	 *
@@ -45,20 +44,20 @@ class HomeController extends Controller
     public function file(string $filename, string $directory = DIRECTORY_SEPARATOR)
     {
     	$path = $directory ? $directory . DIRECTORY_SEPARATOR . $filename : $filename;
-    	
+
     	if (! Storage::exists($path)) {
 		    return Response::file(public_path('img/noimage.gif'));
 	    }
-    	
+
     	return Response::file(Storage::path($path));
     }
-    
+
     /**
      * Run custom code.
      */
     public function run()
     {
-	    $f = Fragment::factory()->create();
-	    dd($f);
+        dispatch(new TestJob);
+	    dd(1);
     }
 }
