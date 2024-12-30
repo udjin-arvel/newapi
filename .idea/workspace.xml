@@ -6,35 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="7ad24375-b5a6-455e-b3f2-95ba1730cd38" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Helpers/ImageHelper.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Helpers/ImageHelper.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/NotionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/NotionController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/StoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/StoryController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Jobs/ImageResize.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/ImageResize.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2023_10_13_043555_create_books_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2023_10_13_043555_create_books_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2023_10_13_043558_create_stories_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2023_10_13_043558_create_stories_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2023_10_13_043601_create_fragments_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2023_10_13_043601_create_fragments_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2023_10_13_043603_create_notions_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2023_10_13_043603_create_notions_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2023_10_13_043605_create_tags_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2023_10_13_043605_create_tags_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2023_10_13_043607_create_loreitems_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2023_10_13_043607_create_loreitems_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2023_10_13_043609_create_notes_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2023_10_13_043609_create_notes_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2023_10_13_043611_create_images_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2023_10_13_043611_create_images_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2023_10_13_043613_create_views_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2023_10_13_043613_create_views_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2023_10_13_043616_create_subscriptions_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2023_10_13_043616_create_subscriptions_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2023_10_13_043619_create_notifications_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2023_10_13_043619_create_notifications_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2023_10_13_043621_create_achievements_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2023_10_13_043621_create_achievements_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2023_10_13_043623_create_rewards_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2023_10_13_043623_create_rewards_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2023_10_13_043625_create_comments_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2023_10_13_043625_create_comments_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2023_10_13_043627_create_corrections_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2023_10_13_043627_create_corrections_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2023_10_13_043629_create_news_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2023_10_13_043629_create_news_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2023_10_13_043631_create_bookmarks_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2023_10_13_043631_create_bookmarks_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2023_10_13_043632_create_params_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2023_10_13_043632_create_params_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2023_10_13_043634_create_characters_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2023_10_13_043634_create_characters_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2023_10_13_043635_create_reminders_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2023_10_13_043635_create_reminders_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2023_10_13_070727_create_descriptions_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2023_10_13_070727_create_descriptions_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2023_11_05_143537_create_notion_params_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2023_11_05_143537_create_notion_params_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2023_11_30_073346_create_leveled_contents_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2023_11_30_073346_create_leveled_contents_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/StoryRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/StoryRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +41,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "E:/OSPanel/domains/arvelov",
+    "last_opened_file_path": "C:/OSPanel/domains/thebook",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -80,8 +53,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-PS-241.14494.237" />
-        <option value="bundled-php-predefined-ba97393d7c68-8f0632a2a215-com.jetbrains.php.sharedIndexes-PS-241.14494.237" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-PS-241.19416.23" />
+        <option value="bundled-php-predefined-ba97393d7c68-48a1a656d44e-com.jetbrains.php.sharedIndexes-PS-241.19416.23" />
       </set>
     </attachedChunks>
   </component>
@@ -127,12 +100,26 @@
       <workItem from="1725007977262" duration="4405000" />
       <workItem from="1725868939863" duration="2830000" />
       <workItem from="1726051125614" duration="2896000" />
-      <workItem from="1726575969561" duration="2955000" />
+      <workItem from="1726575969561" duration="2956000" />
+      <workItem from="1726581888945" duration="360000" />
+      <workItem from="1727974372308" duration="2678000" />
+      <workItem from="1735479952440" duration="1831000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
