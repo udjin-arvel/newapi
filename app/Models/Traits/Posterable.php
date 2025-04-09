@@ -2,7 +2,6 @@
 
 namespace App\Models\Traits;
 
-use App\Capacitors\AliasCapacitor;
 use App\Helpers\ImageHelper;
 
 /**
@@ -21,18 +20,17 @@ trait Posterable {
 		if ($value === $this->poster) {
 			return;
 		}
-		
+
 		if ($this->poster) {
 			app(ImageHelper::class)->deleteImageWithThumbnails($this->poster);
 		}
-		
+
 		if (false == strripos($value, 'base64')) {
 			$this->attributes['poster'] = null;
 			return;
 		}
-		
-		$alias = AliasCapacitor::getAliasByClass(self::class);
-		$path = app(ImageHelper::class)->saveImageFromBase64($value, $alias);
+
+		$path = app(ImageHelper::class)->saveImageFromBase64($value);
 		$this->attributes['poster'] = $path;
 	}
 }
