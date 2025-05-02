@@ -12,3 +12,7 @@ Route::get('/file/{filename}/directory/{directory}', [\App\Http\Controllers\Home
 
 Route::get('/run', [\App\Http\Controllers\HomeController::class, 'run']);
 // Route::get('/confirm', [\App\Http\Controllers\SiteController::class, 'confirmMail']);
+
+Route::get('/{any}', function () {
+    return view('welcome');
+})->where('any', '.*');

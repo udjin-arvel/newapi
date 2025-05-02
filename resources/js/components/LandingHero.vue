@@ -375,7 +375,7 @@ function goToForm(service = '') {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
     .clip-diagonal {
         clip-path: polygon(0 0, 64% 0, 36% 100%, 0% 100%);
     }

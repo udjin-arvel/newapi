@@ -8,7 +8,7 @@
     </head>
     <body>
         <div id="app">
-            <landing-hero />
+            <router-view></router-view>
         </div>
     </body>
 </html>
