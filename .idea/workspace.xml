@@ -56,7 +56,7 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/OSPanel/domains/arvelov&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/OSPanel/domains/thebook&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -135,6 +135,7 @@
       <workItem from="1744801305827" duration="1553000" />
       <workItem from="1745918754457" duration="26534000" />
       <workItem from="1746180246534" duration="6041000" />
+      <workItem from="1746251591736" duration="28657000" />
     </task>
     <servers />
   </component>

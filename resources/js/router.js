@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import LandingHero from './components/LandingHero.vue';
 import BeGent from './components/BeGent.vue';
-import BeGOST from './components/BeGOST.vue';
+import ToGOST from './components/ToGOST.vue';
 
 const routes = [
     {
@@ -15,9 +15,9 @@ const routes = [
         component: BeGent,
     },
     {
-        path: '/begost',
-        name: 'begost',
-        component: BeGOST,
+        path: '/togost',
+        name: 'togost',
+        component: ToGOST,
     },
 ];
 
