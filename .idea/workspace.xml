@@ -5,27 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7ad24375-b5a6-455e-b3f2-95ba1730cd38" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/LandingController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/firebase.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/build/assets/app-BaV2v4Sr.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/build/assets/app-DCtib-GU.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/build/assets/app-Ds42-dH_.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/directives/emailValidator.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/directives/phoneMask.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/MainLandingController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/filesystems.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/filesystems.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/firebase_credentials.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/build/assets/app-B8BOWdYe.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/build/assets/app-BloJ6hJo.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/build/assets/app-Cdg9zLJa.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/build/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/build/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/LandingHero.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/LandingHero.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/ToGOST.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/ToGOST.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,7 +128,7 @@
       <workItem from="1746251591736" duration="29108000" />
       <workItem from="1746341138251" duration="5457000" />
       <workItem from="1746513878757" duration="2947000" />
-      <workItem from="1746541864195" duration="14262000" />
+      <workItem from="1746541864195" duration="14622000" />
     </task>
     <servers />
   </component>

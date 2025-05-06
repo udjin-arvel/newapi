@@ -144,6 +144,7 @@
                                 >
                                 <label
                                     for="file-upload"
+                                    role="button"
                                     class="flex flex-col items-center justify-center w-full bg-gray-700 rounded-lg border-2 border-dashed border-gray-600 p-8 hover:border-blue-500 transition"
                                     :class="{ 'border-blue-500': file }"
                                 >
