@@ -103,3 +103,6 @@ Route::group(['middleware' => 'auth:api'], function() {
     // ------------------------ Character routes ------------------------ //
     Route::resource('characters', Api\CharacterController::class)->only(['store', 'update', 'destroy']);
 });
+
+// Arvelov Landings Routes
+Route::post('addCallbackRequest', [Api\MainLandingController::class, 'addCallbackRequest']);

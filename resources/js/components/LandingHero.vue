@@ -348,6 +348,7 @@
 import { reactive } from 'vue';
 import { onMounted } from 'vue';
 import { useRoute } from 'vue-router';
+import axios from 'axios';
 
 const route = useRoute();
 
@@ -365,10 +366,21 @@ onMounted(() => {
     }
 });
 
-function submitForm() {
-    // Здесь можно добавить отправку формы через axios
-    console.log('Форма отправлена', form);
-    console.log('route.query.service', route.query);
+async function submitForm() {
+    const formData = new FormData();
+
+    formData.append('name', form.name);
+    formData.append('phone', form.phone);
+    formData.append('email', form.email);
+    formData.append('service', form.service);
+    formData.append('details', form.details);
+
+    try {
+        await axios.post('/api/addCallbackRequest', formData);
+        alert('Успешно отправлено!');
+    } catch (error) {
+        alert('Ошибка отправки');
+    }
 }
 
 function goToForm(service = '') {
