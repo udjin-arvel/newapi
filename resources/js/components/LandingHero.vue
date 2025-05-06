@@ -225,20 +225,21 @@
         <div class="flex flex-col overflow-hidden">
             <h3 class="text-2xl font-semibold text-white mb-5">Заявка на услугу</h3>
 
-            <div class="bg-[#E7EAEF] w-[500px] p-6 rounded-lg max-w-lg shadow-lg">
+            <div class="bg-[#E7EAEF] sm:w-[500px] p-6 rounded-lg max-w-lg shadow-lg">
                 <!-- Форма обратной связи -->
                 <form @submit.prevent="submitForm" class="space-y-6">
                     <!-- Сетка 2x2 -->
                     <div class="grid grid-cols-1 gap-4">
                         <div>
-                            <label class="block text-sm font-medium text-[#111826] mb-1" for="name">ФИО*</label>
+                            <label class="block text-sm font-medium text-[#111826] mb-1" for="name">Имя*</label>
                             <input
                                 type="text"
                                 id="name"
-                                placeholder="Иванов Иван Иванович"
+                                name="name"
+                                placeholder="Как к вам обращаться"
                                 v-model="form.name"
                                 required
-                                class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#44535e]"
+                                class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-1 focus:ring-[#1D0F0F]"
                             />
                         </div>
 
@@ -247,10 +248,12 @@
                             <input
                                 type="tel"
                                 id="phone"
+                                name="phone"
+                                v-mask-phone
                                 placeholder="+7 999 876 54 32"
                                 v-model="form.phone"
                                 required
-                                class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#44535e]"
+                                class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-1 focus:ring-[#1D0F0F]"
                             />
                         </div>
 
@@ -259,9 +262,11 @@
                             <input
                                 type="email"
                                 id="email"
+                                name="email"
+                                v-validate-email
                                 placeholder="example@site.com"
                                 v-model="form.email"
-                                class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#44535e]"
+                                class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-1 focus:ring-[#1D0F0F]"
                             />
                         </div>
 
@@ -269,17 +274,18 @@
                             <label class="block text-sm font-medium text-[#111826] mb-1" for="type">Тип услуги</label>
                             <select
                                 id="type"
+                                name="type"
                                 v-model="form.service"
-                                class="w-full border border-gray-300 rounded-lg px-4 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-[#44535e] outline-none appearance-none bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxwb2x5bGluZSBwb2ludHM9IjYgOSAxMiAxNSAxOCA5Ij48L3BvbHlsaW5lPjwvc3ZnPg')] bg-[length:20px_20px] bg-no-repeat bg-[right_0.75rem_center] pr-10"
+                                class="w-full border border-gray-300 rounded-lg px-4 py-2 bg-white focus:outline-none focus:ring-0 focus:ring-[#D2D2D4] outline-none appearance-none bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxwb2x5bGluZSBwb2ludHM9IjYgOSAxMiAxNSAxOCA5Ij48L3BvbHlsaW5lPjwvc3ZnPg')] bg-[length:20px_20px] bg-no-repeat bg-[right_0.75rem_center] pr-10"
                             >
-                                <option disabled value="">Выберите услугу</option>
-                                <option value="site">Создание сайта</option>
-                                <option value="prototype">Прототипирование</option>
-                                <option value="tg">Telegram-бот или канал</option>
-                                <option value="app">Мобильное приложение</option>
-                                <option value="integration">Интеграция с другими сервисами</option>
-                                <option value="consulting">Консультация</option>
-                                <option value="support">Техническая поддержка</option>
+                                <option disabled value="">Выберите желаемую услугу</option>
+                                <option value="Создание сайта">Создание сайта</option>
+                                <option value="Прототипирование">Прототипирование</option>
+                                <option value="Telegram-бот или канал">Telegram-бот или канал</option>
+                                <option value="Мобильное приложение">Мобильное приложение</option>
+                                <option value="Интеграция с другими сервисами">Интеграция с другими сервисами</option>
+                                <option value="Консультация">Консультация</option>
+                                <option value="Техническая поддержка">Техническая поддержка</option>
                             </select>
                         </div>
                     </div>
@@ -289,10 +295,11 @@
                         <label class="block text-sm font-medium text-[#111826] mb-1" for="comment">Дополнительно</label>
                         <textarea
                             id="comment"
-                            placeholder="По желанию оставьте комментарий"
+                            name="comment"
+                            placeholder="Оставьте комментарий (необязательно)"
                             v-model="form.details"
                             rows="4"
-                            class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#44535e]"
+                            class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-1 focus:ring-[#1D0F0F]"
                         ></textarea>
                     </div>
 

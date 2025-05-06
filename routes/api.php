@@ -105,4 +105,6 @@ Route::group(['middleware' => 'auth:api'], function() {
 });
 
 // Arvelov Landings Routes
-Route::post('addCallbackRequest', [Api\MainLandingController::class, 'addCallbackRequest']);
+Route::post('addCallbackRequest', [Api\LandingController::class, 'addCallbackRequest']);
+Route::post('addGostRequest', [Api\LandingController::class, 'addGostRequest']);
+Route::post('addGentRequest', [Api\LandingController::class, 'addGentRequest']);

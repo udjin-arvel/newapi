@@ -1,6 +1,7 @@
 /node_modules
 /public/hot
 /public/storage
+/public/uploads
 /storage/*.key
 /vendor
 /dump/backup__*
@@ -11,7 +12,6 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
-.htaccess
 .bash_history
 /.cache
 .rnd

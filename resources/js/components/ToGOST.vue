@@ -25,7 +25,7 @@
         <main class="container mx-auto px-4 py-4 md:py-16">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
                 <!-- Левая колонка - Описания ГОСТов -->
-                <section class="bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-700 max-h-[547px] overflow-auto">
+                <section class="bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-700 max-h-[460px] md:max-h-[744px] xl:max-h-[672px] overflow-auto">
                     <h2 class="text-2xl font-bold text-gray-100 mb-4 pb-2">Информация о ГОСТах</h2>
 
                     <div class="space-y-6">
@@ -81,31 +81,86 @@
                 <div class="bg-gray-800 p-8 rounded-2xl">
                     <h2 class="text-2xl font-bold text-gray-100 mb-4 pb-2">Форма отправки</h2>
 
-                    <form class="space-y-6">
+                    <form @submit.prevent="submitForm" class="space-y-6">
                         <div>
-                            <label class="block text-sm font-medium mb-2">Ссылка на вашу социальную сеть, мессенджер или почту</label>
-                            <input type="text" placeholder="Куда отправить файл?"
-                                   class="w-full bg-gray-700 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 outline-none">
+                            <label class="block text-sm font-medium mb-2" for="name">Имя:</label>
+                            <input
+                                v-model="formData.name"
+                                id="name"
+                                name="name"
+                                type="text"
+                                placeholder="Как к вам обращаться?"
+                                class="w-full bg-gray-700 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 outline-none"
+                            >
+                        </div>
+
+                        <div class="relative">
+                            <label class="text-sm font-medium mb-2 text-gray-300 flex items-center" for="contact">
+                                Контактная информация:
+                                <!-- Иконка с тултипом -->
+                                <div class="group relative ml-2">
+                                    <svg class="w-4 h-4 mt-[-10px] text-gray-400 cursor-help" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+
+                                    <!-- Тултип -->
+                                    <div class="absolute hidden group-hover:block bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 text-sm bg-gray-700 text-gray-200 rounded-lg shadow-lg w-64 text-center transform transition-opacity duration-300">
+                                        Телефон, почта или ссылка на вашу социальную сеть или мессенджер
+                                        <div class="absolute w-3 h-3 bg-gray-700 rotate-45 -bottom-1 left-1/2 -translate-x-1/2"></div>
+                                    </div>
+                                </div>
+                            </label>
+                            <input
+                                v-model="formData.contact"
+                                id="contact"
+                                name="contact"
+                                type="text"
+                                placeholder="Куда отправить файл?"
+                                class="w-full bg-gray-700 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 outline-none"
+                            >
                         </div>
 
                         <div>
-                            <label class="block text-sm font-medium mb-2">Выберите ГОСТ</label>
-                            <select class="w-full bg-gray-700 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 outline-none appearance-none bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cG9seWxpbmUgcG9pbnRzPSI2IDkgMTIgMTUgMTggOSI+PC9wb2x5bGluZT48L3N2Zz4=')] bg-[length:20px_20px] bg-no-repeat bg-[right_0.75rem_center] pr-10">
-                                <option>ГОСТ Р 7.0.97-2016</option>
-                                <option>ГОСТ 2.105-95</option>
-                                <option>ГОСТ 7.32-2017</option>
+                            <label class="block text-sm font-medium mb-2" for="gost">ГОСТ:</label>
+                            <select v-model="formData.gost" id="gost" class="w-full bg-gray-700 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 outline-none appearance-none bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cG9seWxpbmUgcG9pbnRzPSI2IDkgMTIgMTUgMTggOSI+PC9wb2x5bGluZT48L3N2Zz4=')] bg-[length:20px_20px] bg-no-repeat bg-[right_0.75rem_center] pr-10">
+                                <option disabled value="">Укажите требуемый ГОСТ</option>
+                                <option value="Р 7.0.97-2016">ГОСТ Р 7.0.97-2016</option>
+                                <option value="2.105-95">ГОСТ 2.105-95</option>
+                                <option value="7.32-2017">ГОСТ 7.32-2017</option>
                             </select>
                         </div>
 
-                        <div>
-                            <label class="block text-sm font-medium mb-2">Прикрепить файл</label>
-                            <div class="flex items-center justify-center w-full bg-gray-700 rounded-lg border-2 border-dashed border-gray-600 p-8 cursor-pointer hover:border-blue-500 transition">
-                                <div class="text-center">
-                                    <svg class="w-8 h-8 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium mb-2 text-gray-300" for="file-upload">Прикрепить файл</label>
+                            <div class="relative">
+                                <input
+                                    type="file"
+                                    id="file-upload"
+                                    ref="fileInput"
+                                    class="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                                    @change="handleFileUpload"
+                                    accept=".doc,.docx"
+                                    required
+                                >
+                                <label
+                                    for="file-upload"
+                                    class="flex flex-col items-center justify-center w-full bg-gray-700 rounded-lg border-2 border-dashed border-gray-600 p-8 hover:border-blue-500 transition"
+                                    :class="{ 'border-blue-500': file }"
+                                >
+                                    <svg class="w-8 h-8 mx-auto mb-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
                                     </svg>
-                                    <p class="text-sm mt-2 text-gray-400">Перетащите или загрузите файл</p>
-                                </div>
+
+                                    <template v-if="!file">
+                                        <p class="text-sm text-gray-400 mb-1">Загрузите файл</p>
+                                        <p class="text-xs text-gray-500">Форматы: .doc, .docx</p>
+                                    </template>
+
+                                    <template v-else>
+                                        <p class="text-sm text-blue-400 font-medium mb-1">{{ file.name }}</p>
+                                        <p class="text-xs text-gray-400">{{ formatFileSize(file.size) }}</p>
+                                    </template>
+                                </label>
                             </div>
                         </div>
 
@@ -194,20 +249,99 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
     name: 'ToGOSTLanding',
 
     data() {
         return {
+            formData: {
+                name: '',
+                contact: '',
+                gost: '',
+            },
+            file: null,
+            error: null,
+            isLoading: false,
+            successMessage: '',
             steps: [
-                "Указываете вашу электронную почту, ссылку на профиль или телефон, привязанный к мессенджеру, куда отправить отредактированный файл.",
-                "Выбираете ГОСТ, в соответствии которому надо привести файл.",
+                "Укажите электронную почту, ссылку на профиль или телефон, привязанный к мессенджеру, куда отправить файл после редактирования.",
+                "Выбираете ГОСТ, в соответствии которому необходимо привести файл.",
                 "Прикрепляете целевой Word-файл.",
                 "Оплачиваете услугу по тарифу: 250 рублей (без учета комиссии).",
-                "Получаете отредактированный файл в течение максимум одного часа."
-            ]
+                "Получаете отредактированный файл в течение максимум одного часа.",
+            ],
         }
-    }
+    },
+
+    methods: {
+        handleFileUpload(event) {
+            const files = event.target.files;
+            if (files && files[0]) {
+                const validTypes = ['application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+                if (!validTypes.includes(files[0].type)) {
+                    alert('Пожалуйста, загрузите файл в формате .doc или .docx');
+                    return;
+                }
+
+                if (files[0].size > 20 * 1024 * 1024) {
+                    alert('Файл слишком большой. Максимальный размер: 20MB');
+                    return;
+                }
+
+                this.file = files[0];
+            }
+        },
+        formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
+        },
+
+        async submitForm() {
+            if (!this.file) {
+                this.error = 'Пожалуйста, загрузите файл';
+                return;
+            }
+
+            this.isLoading = true;
+
+            try {
+                const formData = new FormData();
+                formData.append('name', this.formData.name);
+                formData.append('contact', this.formData.contact);
+                formData.append('gost', this.formData.gost);
+                formData.append('file', this.file);
+
+                const response = await axios.post('/api/addGostRequest', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                });
+
+                this.successMessage = 'Запрос успешно отправлен!';
+                this.resetForm();
+
+            } catch (error) {
+                console.error('Ошибка отправки:', error);
+                this.error = error.response?.data?.message || 'Произошла ошибка при отправке';
+            } finally {
+                this.isLoading = false;
+            }
+        },
+
+        resetForm() {
+            this.formData = {
+                name: '',
+                contact: ''
+            };
+            this.file = null;
+            this.$refs.fileInput.value = '';
+        }
+    },
 }
 </script>
 
