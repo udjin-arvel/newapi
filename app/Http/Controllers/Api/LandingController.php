@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Storage;
@@ -78,15 +79,49 @@ class LandingController extends Controller
     public function addGentRequest(Request $request)
     {
         // Валидация
-        $request->validate([
+        $data = $request->validate([
             'name' => 'required|string|max:255',
-            'contact' => 'required|string|max:255',
-            'gost' => 'required|string',
+            'service' => 'required|string|max:255',
+            'gender' => 'required|in:male,female',
+            'weight' => 'required|numeric|min:30|max:300', // кг
+            'height' => 'required|numeric|min:100|max:250', // см
+            'age' => 'required|integer|min:18|max:100',
+            'activity' => 'required|numeric|min:1.2|max:2.5',
+            'diet' => 'nullable|string|max:1024',
+            'expenses' => 'nullable|numeric',
         ]);
 
-        return response()->json(['success' => json_encode($request->all())]);
+        $tgMessage = "
+            <b>BeGent. Заявка. $request->service</b>\n
+            <b>Имя:</b> $request->name\n
+            <b>Цена:</b> $request->price\n
+        ";
+        if ($request->diet) {
+            $tgMessage .= "<b>Питание:</b> $request->diet\n";
+        }
 
-        return response()->json(['success' => true]);
+        // Отправка в Телеграм
+        $this->sendToTelegram($tgMessage);
+
+        // Отправка в Firebase
+        $this->saveToFirebase('beGentRequests', $request->all());
+
+        // Расчет по формуле Миффлина-Сан Жеора
+        if ($data['gender'] === 'male') {
+            $bmr = (10 * $data['weight']) + (6.25 * $data['height']) - (5 * $data['age']) + 5;
+        } else {
+            $bmr = (10 * $data['weight']) + (6.25 * $data['height']) - (5 * $data['age']) - 161;
+        }
+
+        $totalCalories = round($bmr * $data['activity']);
+
+        // Генерация PDF
+        $pdf = PDF::loadView('pdf.begent', [
+            'bmr' => round($bmr),
+            'totalCalories' => $totalCalories,
+        ]);
+
+        return $pdf->download('be-gent.pdf');
     }
 
     private function sendToTelegram(string $message): void

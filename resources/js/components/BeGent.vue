@@ -1,7 +1,7 @@
 <template>
     <div class="min-h-screen bg-gray-900 text-gray-100 font-sans scroll-smooth">
         <!-- Главный баннер -->
-        <section class="relative min-h-screen bg-gray-900 overflow-hidden">
+        <section class="relative min-h-screen bg-gray-900 overflow-hidden" ref="firstSlide">
             <div class="container mx-auto px-4 h-screen flex items-center">
                 <!-- Левая часть с текстом -->
                 <div class="relative z-10 w-full md:w-1/2 pr-8">
@@ -32,14 +32,16 @@
                     <!-- Видео контейнер -->
                     <div class="absolute inset-0 z-10 opacity-0 transition-opacity duration-1000" :class="{ 'opacity-100': videoLoaded }">
                         <video
+                            ref="videoPlayer"
                             autoplay
                             muted
                             loop
                             playsinline
                             class="w-full h-full object-cover"
                             @loadeddata="videoLoaded = true"
+                            :poster="videoPoster"
                         >
-                            <source :src="getRandomVideoSrc()" type="video/mp4">
+                            <source :src="videoSrc" type="video/mp4">
                         </video>
                     </div>
 
@@ -64,7 +66,7 @@
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 blur-3xl opacity-20"></div>
                         <div class="relative bg-gray-800 p-8 rounded-3xl shadow-2xl">
                             <div class="mockup-book bg-gray-700 p-6 rounded-xl">
-                                <div class="page bg-gray-600 h-64 rounded-lg overflow-hidden grayscale opacity-30">
+                                <div class="page bg-gray-600 rounded-lg overflow-hidden grayscale opacity-30">
                                     <img src="/img/brochure.png" alt="">
                                 </div>
                                 <div class="text-center mt-6">
@@ -179,7 +181,7 @@
                                         </p>
                                     </div>
 
-                                    <button @click="selectRate(rates[0])" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg transition">Выбрать</button>
+                                    <button @click="selectRate('Персональный')" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg transition">Выбрать</button>
                                 </div>
 
                                 <!-- Продуктовая корзина (переименовано) -->
@@ -224,7 +226,7 @@
                                         </p>
                                     </div>
 
-                                    <button @click="selectRate(rates[1])" class="w-full bg-orange-600 hover:bg-orange-700 text-white py-3 rounded-lg transition">Выбрать</button>
+                                    <button @click="selectRate('Продуктовая корзина')" class="w-full bg-orange-600 hover:bg-orange-700 text-white py-3 rounded-lg transition">Выбрать</button>
                                 </div>
 
                                 <!-- Персональный Плюс -->
@@ -261,7 +263,7 @@
                                         </p>
                                     </div>
 
-                                    <button @click="selectRate(rates[2])" class="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-lg transition">Выбрать</button>
+                                    <button @click="selectRate('Персональный Про')" class="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-lg transition">Выбрать</button>
                                 </div>
 
                                 <!-- Максимум -->
@@ -302,11 +304,11 @@
                                     <!-- Блок с ценой -->
                                     <div class="mt-auto text-center mb-6">
                                         <p class="text-xl font-bold text-gray-800 dark:text-gray-100">
-                                            Цена: 1500 р.
+                                            Цена: 1250 р.
                                         </p>
                                     </div>
 
-                                    <button @click="selectRate(rates[3])" class="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg transition">Выбрать</button>
+                                    <button @click="selectRate('Максимум')" class="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg transition">Выбрать</button>
                                 </div>
                             </div>
                         </div>
@@ -427,7 +429,7 @@
                         <div>
                             <p class="text-sm text-gray-400">Минимальное содержание:</p>
                             <p class="text-blue-400 mb-2">• Общая информация<br>• Ежедневный калораж<br>• Советы по тренировкам<br>• Калорийность популярных продуктов<br>• Рекомендации по питанию с примерами</p>
-                            <p class="text-sm text-gray-400">За дополнительную цену:</p>
+                            <p class="text-sm text-gray-400">Дополнительно:</p>
                             <p class="text-blue-400">• Расчет продуктовой корзины<br>• Личный комментарий автора</p>
                         </div>
                     </div>
@@ -441,74 +443,101 @@
                 <div class="bg-gray-900 p-8 rounded-2xl shadow-xl">
                     <h3 class="text-2xl font-bold mb-8 text-center">Форма анкеты</h3>
 
-                    <form class="space-y-6">
+                    <form @submit.prevent="submitForm" class="space-y-6">
                         <!-- Выбор услуги -->
                         <div>
-                            <label class="block text-sm font-medium mb-2 text-gray-400">Тариф</label>
-                            <select v-model="form.rateId" @change="({ target }) => selectRate(rates[target?.value - 1])" class="w-full bg-gray-800 rounded-lg px-4 py-3 text-gray-300 focus:ring-2 focus:ring-blue-500 outline-none border border-gray-700 appearance-none bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cG9seWxpbmUgcG9pbnRzPSI2IDkgMTIgMTUgMTggOSI+PC9wb2x5bGluZT48L3N2Zz4=')] bg-[length:20px_20px] bg-no-repeat bg-[right_0.75rem_center] pr-10">
-                                <option class="bg-gray-800" v-for="(rate, index) in rates" :key="index" :value="rate?.id || 0">{{ rate.desc }}</option>
+                            <label class="block text-sm font-medium mb-2 text-gray-400" for="service">Тариф</label>
+                            <select v-model="form.service" id="service" @change="({ target }) => selectRate(target?.value)" class="w-full bg-gray-800 rounded-lg px-4 py-3 text-gray-300 focus:ring-2 focus:ring-blue-500 outline-none border border-gray-700 appearance-none bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cG9seWxpbmUgcG9pbnRzPSI2IDkgMTIgMTUgMTggOSI+PC9wb2x5bGluZT48L3N2Zz4=')] bg-[length:20px_20px] bg-no-repeat bg-[right_0.75rem_center] pr-10">
+                                <option class="bg-gray-800" v-for="(rate, index) in rates" :key="index" :value="rate.title">{{ rate.desc }}</option>
                             </select>
                         </div>
 
                         <!-- Основные поля -->
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
-                                <label class="block text-sm font-medium mb-2 text-gray-400">Имя</label>
-                                <input type="text"
-                                       class="w-full bg-gray-800 rounded-lg px-4 py-3 text-gray-300 focus:ring-2 focus:ring-blue-500 outline-none border border-gray-700">
+                                <label class="block text-sm font-medium mb-2 text-gray-400" for="name">Имя</label>
+                                <input
+                                    v-model="form.name"
+                                    id="name"
+                                    name="name"
+                                    type="text"
+                                    class="w-full bg-gray-800 rounded-lg px-4 py-3 text-gray-300 focus:ring-2 focus:ring-blue-500 outline-none border border-gray-700"
+                                >
                             </div>
 
                             <div>
-                                <label class="block text-sm font-medium mb-2 text-gray-400">Пол</label>
-                                <select class="w-full bg-gray-800 rounded-lg px-4 py-3 text-gray-300 focus:ring-2 focus:ring-blue-500 outline-none border border-gray-700 appearance-none bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cG9seWxpbmUgcG9pbnRzPSI2IDkgMTIgMTUgMTggOSI+PC9wb2x5bGluZT48L3N2Zz4=')] bg-[length:20px_20px] bg-no-repeat bg-[right_0.75rem_center] pr-10">
-                                    <option class="bg-gray-800">Женский</option>
-                                    <option class="bg-gray-800">Мужской</option>
+                                <label class="block text-sm font-medium mb-2 text-gray-400" for="gender">Пол</label>
+                                <select v-model="form.gender" id="gender" class="w-full bg-gray-800 rounded-lg px-4 py-3 text-gray-300 focus:ring-2 focus:ring-blue-500 outline-none border border-gray-700 appearance-none bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cG9seWxpbmUgcG9pbnRzPSI2IDkgMTIgMTUgMTggOSI+PC9wb2x5bGluZT48L3N2Zz4=')] bg-[length:20px_20px] bg-no-repeat bg-[right_0.75rem_center] pr-10">
+                                    <option class="bg-gray-800" value="male">Мужской</option>
+                                    <option class="bg-gray-800" value="female">Женский</option>
                                 </select>
                             </div>
 
                             <div>
-                                <label class="block text-sm font-medium mb-2 text-gray-400">Возраст</label>
-                                <input type="number"
-                                       class="w-full bg-gray-800 rounded-lg px-4 py-3 text-gray-300 focus:ring-2 focus:ring-blue-500 outline-none border border-gray-700">
+                                <label class="block text-sm font-medium mb-2 text-gray-400" for="age">Возраст</label>
+                                <input
+                                    v-model="form.age"
+                                    id="age"
+                                    name="age"
+                                    type="number"
+                                    class="w-full bg-gray-800 rounded-lg px-4 py-3 text-gray-300 focus:ring-2 focus:ring-blue-500 outline-none border border-gray-700"
+                                >
                             </div>
 
                             <div>
-                                <label class="block text-sm font-medium mb-2 text-gray-400">Рост (см)</label>
-                                <input type="number"
-                                       class="w-full bg-gray-800 rounded-lg px-4 py-3 text-gray-300 focus:ring-2 focus:ring-blue-500 outline-none border border-gray-700">
+                                <label class="block text-sm font-medium mb-2 text-gray-400" for="height">Рост (см)</label>
+                                <input
+                                    v-model="form.height"
+                                    id="height"
+                                    name="height"
+                                    type="number"
+                                    class="w-full bg-gray-800 rounded-lg px-4 py-3 text-gray-300 focus:ring-2 focus:ring-blue-500 outline-none border border-gray-700"
+                                >
                             </div>
 
                             <div>
-                                <label class="block text-sm font-medium mb-2 text-gray-400">Вес (кг)</label>
-                                <input type="number"
-                                       class="w-full bg-gray-800 rounded-lg px-4 py-3 text-gray-300 focus:ring-2 focus:ring-blue-500 outline-none border border-gray-700">
+                                <label class="block text-sm font-medium mb-2 text-gray-400" for="weight">Вес (кг)</label>
+                                <input
+                                    v-model="form.weight"
+                                    id="weight"
+                                    name="weight"
+                                    type="number"
+                                    class="w-full bg-gray-800 rounded-lg px-4 py-3 text-gray-300 focus:ring-2 focus:ring-blue-500 outline-none border border-gray-700"
+                                >
                             </div>
 
                             <div>
-                                <label class="block text-sm font-medium mb-2 text-gray-400">Ежедневная нагрузка</label>
-                                <select class="w-full bg-gray-800 rounded-lg px-4 py-3 text-gray-300 focus:ring-2 focus:ring-blue-500 outline-none border border-gray-700 appearance-none bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cG9seWxpbmUgcG9pbnRzPSI2IDkgMTIgMTUgMTggOSI+PC9wb2x5bGluZT48L3N2Zz4=')] bg-[length:20px_20px] bg-no-repeat bg-[right_0.75rem_center] pr-10">
-                                    <option class="bg-gray-800">Сидячий образ жизни</option>
-                                    <option class="bg-gray-800">Умеренная активность</option>
-                                    <option class="bg-gray-800">Высокая активность</option>
+                                <label class="block text-sm font-medium mb-2 text-gray-400" for="activity">Уровень активности</label>
+                                <select v-model="form.activity" id="activity" class="w-full bg-gray-800 rounded-lg px-4 py-3 text-gray-300 focus:ring-2 focus:ring-blue-500 outline-none border border-gray-700 appearance-none bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cG9seWxpbmUgcG9pbnRzPSI2IDkgMTIgMTUgMTggOSI+PC9wb2x5bGluZT48L3N2Zz4=')] bg-[length:20px_20px] bg-no-repeat bg-[right_0.75rem_center] pr-10">
+                                    <option class="bg-gray-800" value="1.2">Сидячий образ жизни</option>
+                                    <option class="bg-gray-800" value="1.375">Низкая</option>
+                                    <option class="bg-gray-800" value="1.55">Умеренная</option>
+                                    <option class="bg-gray-800" value="1.725">Высокая</option>
                                 </select>
                             </div>
                         </div>
 
                         <!-- Дополнительные поля -->
-                        <div v-if="form.service === 'С комментарием автора'" class="space-y-6">
-                            <div>
-                                <label class="block text-sm font-medium mb-2 text-gray-400">Описание питания</label>
-                                <textarea
-                                    rows="4"
-                                    class="w-full bg-gray-800 rounded-lg px-4 py-3 text-gray-300 focus:ring-2 focus:ring-blue-500 outline-none border border-gray-700"
-                                    placeholder="Опишите ваше текущее питание"></textarea>
-                            </div>
+                        <div v-if="form.service === 'Продуктовая корзина' || form.service === 'Максимум'">
+                            <label class="block text-sm font-medium mb-2 text-gray-400" for="expenses">Ежемесячные траты на еду (₽)</label>
+                            <select v-model="form.expenses" id="expenses" class="w-full bg-gray-800 rounded-lg px-4 py-3 text-gray-300 focus:ring-2 focus:ring-blue-500 outline-none border border-gray-700 appearance-none bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cG9seWxpbmUgcG9pbnRzPSI2IDkgMTIgMTUgMTggOSI+PC9wb2x5bGluZT48L3N2Zz4=')] bg-[length:20px_20px] bg-no-repeat bg-[right_0.75rem_center] pr-10">
+                                <option class="bg-gray-800" value="low">Менее 10 тысячи рублей</option>
+                                <option class="bg-gray-800" value="middle">10-25 тысяч рублей</option>
+                                <option class="bg-gray-800" value="high">25-50 тысяч рублей</option>
+                                <option class="bg-gray-800" value="extra">Более 50 тысяч рублей</option>
+                            </select>
                         </div>
 
-                        <div v-if="form.service === 'Калькулятор продуктовой корзины'">
-                            <label class="block text-sm font-medium mb-2 text-gray-400">Ежемесячные траты на еду (₽)</label>
-                            <input type="number"
-                                   class="w-full bg-gray-800 rounded-lg px-4 py-3 text-gray-300 focus:ring-2 focus:ring-blue-500 outline-none border border-gray-700">
+                        <div v-if="form.service === 'Персональный Про' || form.service === 'Максимум'" class="space-y-6">
+                            <div>
+                                <label class="block text-sm font-medium mb-2 text-gray-400" for="diet">Ваш рацион</label>
+                                <textarea
+                                    v-model="form.diet"
+                                    id="diet"
+                                    rows="4"
+                                    class="w-full bg-gray-800 rounded-lg px-4 py-3 text-gray-300 focus:ring-2 focus:ring-blue-500 outline-none border border-gray-700"
+                                    placeholder="Подробно опишите повседневные приемы пищи"></textarea>
+                            </div>
                         </div>
 
                         <!-- Промокод -->
@@ -516,12 +545,13 @@
                             <div class="relative">
                                 <input
                                     type="text"
-                                    placeholder="Введите промокод, если таковой имеется"
+                                    placeholder="Промокод"
+                                    v-model="code"
                                     class="w-full bg-gray-100 dark:bg-gray-700 rounded-lg px-4 py-3 text-gray-800 dark:text-gray-200 focus:ring-2 focus:ring-blue-500 outline-none border border-gray-300 dark:border-gray-600 transition"
                                 >
                                 <button
                                     class="absolute right-2 top-1/2 transform -translate-y-1/2 text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition"
-                                    @click="applyPromo"
+                                    @click.prevent="applyPromo"
                                 >
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7"/>
@@ -533,13 +563,19 @@
                         <!-- Цена -->
                         <div class="mb-6 flex gap-8 justify-between text-white font-bold text-[1.25rem]">
                             <div>Тариф "{{ currentRate?.title }}":</div>
-                            <div>{{ currentRate?.price }} рублей</div>
+                            <div class="flex items-center gap-4">
+                                <div v-if="newPrice !== price" class="text-gray-400 text-sm line-through">{{ currentRate?.price }} рублей</div>
+                                <div>{{ newPrice ? newPrice : price }} рублей</div>
+                            </div>
                         </div>
 
                         <!-- Кнопка отправки -->
-                        <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 rounded-lg transition duration-300 flex items-center justify-center">
-                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 rounded-lg transition duration-300 flex items-center justify-center">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" v-if="form.name">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" v-else>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                             </svg>
                             Получить рекомендации
                         </button>
@@ -601,14 +637,27 @@
 
         <!-- Футер -->
         <footer class="bg-gray-900 py-8">
-            <div class="container mx-auto px-4 text-center text-gray-500">
-                © {{ new Date().getFullYear() }} Arvelov. BeGent. Все права защищены
+            <div class="container mx-auto px-4 text-center text-gray-500 flex justify-between items-center gap-3">
+                <a
+                    href="/doc/oferta.docx"
+                    target="_blank"
+                    class="flex items-end gap-1 text-sm font-bold"
+                >
+                    Договор оферты
+                    <svg class="w-5 h-5 text-gray-200 cursor-help" fill="none" stroke="currentColor" viewBox="0 0 48 48">
+                        <path d="M 12.5 4 C 10.032499 4 8 6.0324991 8 8.5 L 8 39.5 C 8 41.967501 10.032499 44 12.5 44 L 35.5 44 C 37.967501 44 40 41.967501 40 39.5 L 40 18.5 A 1.50015 1.50015 0 0 0 39.560547 17.439453 L 39.544922 17.423828 L 26.560547 4.4394531 A 1.50015 1.50015 0 0 0 25.5 4 L 12.5 4 z M 12.5 7 L 24 7 L 24 15.5 C 24 17.967501 26.032499 20 28.5 20 L 37 20 L 37 39.5 C 37 40.346499 36.346499 41 35.5 41 L 12.5 41 C 11.653501 41 11 40.346499 11 39.5 L 11 8.5 C 11 7.6535009 11.653501 7 12.5 7 z M 27 9.1210938 L 34.878906 17 L 28.5 17 C 27.653501 17 27 16.346499 27 15.5 L 27 9.1210938 z M 17.5 25 A 1.50015 1.50015 0 1 0 17.5 28 L 30.5 28 A 1.50015 1.50015 0 1 0 30.5 25 L 17.5 25 z M 17.5 32 A 1.50015 1.50015 0 1 0 17.5 35 L 26.5 35 A 1.50015 1.50015 0 1 0 26.5 32 L 17.5 32 z"></path>
+                    </svg>
+                </a>
+                <span>© {{ new Date().getFullYear() }} Arvelov. BeGent. Все права защищены.</span>
             </div>
         </footer>
     </div>
 </template>
 
 <script>
+import axios from 'axios';
+import { throttle } from 'lodash-es';
+
 /**
  * Массив тарифов
  * @type {[{price: number, id: number, title: string, slug: string, desc: string},{price: number, id: number, title: string, slug: string, desc: string},{price: number, id: number, title: string, slug: string, desc: string},{price: number, id: number, title: string, slug: string, desc: string}]}
@@ -617,7 +666,7 @@ const RATES_LIST = [
     {id: 1, title: 'Персональный', desc: 'Персонализированная инструкция', slug: 'personal', price: 500},
     {id: 2, title: 'Продуктовая корзина', desc: 'Калькулятор продуктовой корзины', slug: 'grocery_basket', price: 750},
     {id: 3, title: 'Персональный Про', desc: 'Инструкция с комментарием автора', slug: 'personal_pro', price: 1000},
-    {id: 4, title: 'Максимум', desc: 'Инструкция с комментарием и рассчет продуктовой корзины', slug: 'maximum', price: 1500},
+    {id: 4, title: 'Максимум', desc: 'Инструкция с комментарием и рассчет продуктовой корзины', slug: 'maximum', price: 1250},
 ];
 
 export default {
@@ -628,12 +677,95 @@ export default {
             videoLoaded: false,
             rates: RATES_LIST,
             currentRate: RATES_LIST[0],
-            form: {},
-            videos: ['/video/cherry.mp4', '/video/food.mp4', '/video/vegetables.mp4', '/video/woman.mp4'],
+            form: {
+                name: '',
+                gender: 'male',
+                weight: 70,
+                height: 175,
+                age: 30,
+                activity: 1.375,
+                service: 'Персональный',
+            },
+            diet: '',
+            expenses: '',
+            code: '',
+            price: 500,
+            newPrice: 500,
+            promocodes: [
+                {
+                    value: 'XXX999',
+                    discount: 50,
+                },
+                {
+                    value: 'XXX555',
+                    discount: 25,
+                },
+            ],
+            videoSrc: ['/video/cherry.mp4', '/video/food.mp4', '/video/vegetables.mp4', '/video/woman.mp4'][Math.floor(Math.random() * 4)],
+            videoPoster: '/img/begent_poster.jpg',
+            isFirstSlideVisible: true,
+            observer: null
         }
     },
 
+    mounted() {
+        this.initVideoControls();
+        window.addEventListener('scroll', this.handleScroll);
+
+        setTimeout(() => {
+
+        }, 1000);
+    },
+
+    beforeDestroy() {
+        window.removeEventListener('scroll', this.handleScroll);
+        if (this.observer) this.observer.disconnect();
+    },
+
     methods: {
+        async submitForm() {
+            let isValid = true;
+
+            for (const field in this.form) {
+                isValid = Boolean(this.form[field]);
+                if (!isValid) break;
+            }
+            if (this.currentRate.title === 'Продуктовая корзина' && !this.expenses) {
+                isValid = false;
+            }
+            if ((this.currentRate.title === 'Персональный Про' || this.currentRate.title === 'Максимум') && !this.diet) {
+                isValid = false;
+            }
+
+            if (isValid) {
+                try {
+                    const data = {
+                        ...this.form,
+                        diet: this.diet,
+                        expenses: this.expenses,
+                        code: this.code,
+                        price: this.newPrice || this.price,
+                    };
+
+                    const response = await axios.post('/api/addGentRequest', data, {
+                        responseType: 'blob' // Важно для получения файла
+                    });
+
+                    // Создаем ссылку для скачивания
+                    const url = window.URL.createObjectURL(new Blob([response.data]));
+                    const link = document.createElement('a');
+                    link.href = url;
+                    link.setAttribute('download', 'calories-calculation.pdf');
+                    document.body.appendChild(link);
+                    link.click();
+
+                } catch (error) {
+                    console.error('Ошибка генерации PDF:', error);
+                }
+            } else {
+                alert('Ошибка формы');
+            }
+        },
         goToForm(service = '') {
             const el = document.getElementById('anketa');
 
@@ -642,6 +774,7 @@ export default {
                 this.form.service = service;
             }
         },
+
         goToAbout() {
             const el = document.getElementById('about');
 
@@ -649,20 +782,73 @@ export default {
                 el.scrollIntoView({behavior: 'smooth'});
             }
         },
-        getRandomVideoSrc() {
-            const randomIndex = Math.floor(Math.random() * 4);
-            return this.videos[randomIndex] || '/video/woman.mp4';
-        },
-        selectRate(rate) {
-            this.currentRate = rate;
-            const el = document.getElementById('anketa');
-            this.form.rateId = rate?.id;
 
-            if (el) {
-                el.scrollIntoView({behavior: 'smooth'});
-                this.form.service = rate?.title || '';
+        selectRate(rateTitle = '') {
+            const rate = this.rates.find(r => r.title === rateTitle);
+
+            if (rate) {
+                this.currentRate = rate;
+                this.price = rate.price;
+                this.newPrice = rate.price;
+                const el = document.getElementById('anketa');
+
+                if (el) {
+                    el.scrollIntoView({behavior: 'smooth'});
+                    this.form.service = rate.title;
+                }
             }
-        }
+        },
+
+        applyPromo() {
+            if (this.code) {
+                const find = this.promocodes.find(p => p.value === this.code.toUpperCase());
+
+                if (find) {
+                    this.newPrice = this.price - Math.floor(this.price * find.discount / 100);
+                }
+            }
+        },
+
+        initVideoControls() {
+            // Инициализация Intersection Observer
+            this.observer = new IntersectionObserver(
+                entries => {
+                    entries.forEach(entry => {
+                        this.isFirstSlideVisible = entry.isIntersecting;
+                        this.toggleVideoPlayback();
+                    });
+                },
+                { threshold: 0.5 }
+            );
+
+            this.observer.observe(this.$refs.firstSlide);
+        },
+
+        toggleVideoPlayback: throttle(function() {
+            const video = this.$refs.videoPlayer;
+            if (!video) return;
+
+            if (this.isFirstSlideVisible) {
+                video.play().catch(() => {
+                    // Обработка ошибки автовоспроизведения
+                    video.controls = true;
+                });
+            } else {
+                video.pause();
+            }
+        }, 300),
+
+        handleScroll() {
+            // Дополнительная проверка для старых браузеров
+            if (!this.observer) {
+                const rect = this.$refs.firstSlide.getBoundingClientRect();
+                this.isFirstSlideVisible = (
+                    rect.top >= 0 &&
+                    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight)
+                );
+                this.toggleVideoPlayback();
+            }
+        },
     },
 }
 </script>

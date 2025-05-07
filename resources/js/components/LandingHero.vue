@@ -11,7 +11,7 @@
             <nav class="xl:space-x-8 t-white text-sm font-medium flex flex-col-reverse xl:flex-row items-center gap-8">
                 <button @click="goTo('solutions')" class="hover:underline">IT-решения</button>
                 <button @click="goTo('projects')" class="hover:underline">Проекты</button>
-                <button @click="goTo('contact')" class="inline-block px-5 py-2 border border-[#E7EAEF] text-[#E7EAEF] rounded-full transition duration-300 hover:bg-[#E7EAEF] hover:text-[#0E0613]">Связаться</button>
+                <button @click="goTo('contact')" class="inline-block px-5 py-2 border border-[#E7EAEF] text-[#E7EAEF] rounded-full transition duration-300 hover:bg-[#E7EAEF] hover:text-[#0E0613]">Заказать</button>
             </nav>
         </header>
 
@@ -33,7 +33,7 @@
 
         <!-- Центрированная фамилия -->
         <div class="absolute inset-0 flex items-center justify-center z-10">
-            <h1 class="text-[65px] xl:text-[130px] font-semibold tracking-tight flex" style="margin-right: -12px">
+            <h1 class="text-[48px] xl:text-[130px] font-semibold tracking-tight flex" style="margin-right: -12px">
                 <span class="t-black px-1">A</span>
                 <span class="t-black px-1">R</span>
                 <span class="t-black px-1">V</span>
@@ -59,7 +59,7 @@
         </div>
 
         <!-- Нижний правый блок -->
-        <div class="absolute bottom-16 right-10 sm:right-28 left-10 sm:left-auto z-10 bg-white/80 backdrop-blur-md border-2 border-dashed border-[#44535e] rounded-2xl p-6 max-w-full sm:max-w-sm text-[#111826]">
+        <div class="absolute bottom-16 right-4 sm:right-28 left-4 sm:left-auto z-10 bg-white/80 backdrop-blur-md border-2 border-dashed border-[#44535e] rounded-2xl p-6 max-w-full sm:max-w-sm text-[#111826]">
             <h2 class="text-xl font-bold mb-2">IT-решения</h2>
             <p>
                 Ваш it-запрос я могу превратить в долгосрочный план. Если вы хотите что-то сделать в сети интернет и сделать это хорошо, просто оставьте заявку в конце этой страницы.
@@ -69,7 +69,7 @@
 
     <section class="flex justify-center pt-12 sm:pt-24 xl:pt-40 pb-16 sm:pb-24 xl:pb-48 w-full overflow-hidden bg-[#0E0613]" id="solutions">
         <div class="w-[900px]">
-            <h2 class="text-white text-[32px] font-bold mb-5">Обо мне</h2>
+            <h2 class="text-white text-[32px] font-bold mb-5 pl-6 sm:pl-0">Обо мне</h2>
 
             <div class="bg-white/90 backdrop-blur-md border-2 border-dashed border-[#44535e] rounded-2xl p-6 text-[#111826]">
                 <p class="mb-3">
@@ -139,7 +139,7 @@
                 </div>
             </div>
 
-            <h2 class="text-white text-[32px] font-bold mb-5 pt-8">PS:</h2>
+            <h2 class="text-white text-[32px] font-bold mb-5 pt-8 pl-6 sm:pl-0">PS:</h2>
             <div class="bg-white/90 backdrop-blur-md border-2 border-dashed border-[#44535e] rounded-2xl p-6 text-[#111826]">
                 <p class="text-md-left">
                     Всё, что вы задумали в интернете — можно превратить в систему, которая работает.
@@ -223,7 +223,7 @@
 
     <section class="flex justify-center pt-16 sm:pt-36 pb-32 sm:pb-48 w-full overflow-hidden bg-[#0E0613]" id="contact">
         <div class="flex flex-col overflow-hidden">
-            <h3 class="text-2xl font-semibold text-white mb-5">Заявка на услугу</h3>
+            <h3 class="text-2xl font-semibold text-white mb-5 pl-6 sm:pl-0">Форма обратной связи</h3>
 
             <div class="bg-[#E7EAEF] sm:w-[500px] p-6 rounded-lg max-w-lg shadow-lg">
                 <!-- Форма обратной связи -->
@@ -410,7 +410,11 @@ function goTo(id) {
 
 <style lang="scss" scoped>
     .clip-diagonal {
-        clip-path: polygon(0 0, 64% 0, 36% 100%, 0% 100%);
+        clip-path: polygon(0 0, 55% 0, 45% 100%, 0% 100%);
+
+        @media (min-width: 640px) {
+            clip-path: polygon(0 0, 64% 0, 36% 100%, 0% 100%);
+        }
     }
 
     .t-white {
@@ -427,10 +431,14 @@ function goTo(id) {
         &--revert {
             transform: scaleX(-1) scaleY(-1) translateX(140px) translateY(-105px);
         }
+
+        @media (max-width: 640px) {
+            opacity: 0.25;
+        }
     }
 
     .first-e {
-        margin-right: -32px;
+        margin-right: -24px;
 
         @media (min-width: 1280px) {
             margin-right: -58px;
