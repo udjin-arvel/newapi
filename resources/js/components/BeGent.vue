@@ -1,8 +1,8 @@
 <template>
     <div class="min-h-screen bg-gray-900 text-gray-100 font-sans scroll-smooth">
         <!-- Главный баннер -->
-        <section class="relative min-h-screen bg-gray-900 overflow-hidden" ref="firstSlide">
-            <div class="container mx-auto px-4 h-screen flex items-center">
+        <section class="main-slider relative min-h-screen bg-gray-900 overflow-hidden" ref="firstSlide">
+            <div class="main-slider__text container mx-auto px-4 h-screen flex items-center">
                 <!-- Левая часть с текстом -->
                 <div class="relative z-10 w-full md:w-1/2 pr-8">
                     <div class="flex justify-between items-start mb-6 pb-4">
@@ -862,6 +862,12 @@ export default {
 @media (min-width: 768px) {
     .clip-diagonal {
         clip-path: polygon(30% 0%, 100% 0%, 100% 100%, 0% 100%);
+    }
+}
+
+.main-slider {
+    &__text {
+        background: linear-gradient(115deg,rgba(17, 24, 39, 1) 0%, rgba(17, 24, 39, 1) 25%, rgba(0, 0, 0, 1) 100%);
     }
 }
 

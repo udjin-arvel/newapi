@@ -174,11 +174,12 @@
                                 </label>
                             </div>
                         </div>
-
-                        <button class="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 rounded-lg transition duration-200">
-                            Оплатить и Отправить
-                        </button>
                     </form>
+
+                    <PaymentModal
+                        buttonText="Оплатить и Отправить"
+                        buttonClass="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 mt-6 rounded-lg transition duration-200"
+                    />
                 </div>
 
                 <!-- Правая колонка - Шаги -->
@@ -261,9 +262,11 @@
 
 <script>
 import axios from 'axios';
+import PaymentModal from "@/widgets/PaymentModal.vue";
 
 export default {
     name: 'ToGOSTLanding',
+    components: {PaymentModal},
 
     data() {
         return {
