@@ -87,8 +87,9 @@ class LandingController extends Controller
             'height' => 'required|numeric|min:100|max:250', // см
             'age' => 'required|integer|min:18|max:100',
             'activity' => 'required|numeric|min:1.2|max:2.5',
-            'diet' => 'nullable|string|max:1024',
-            'expenses' => 'nullable|numeric',
+            'activityTitle' => 'required',
+            'diet' => 'nullable|string|min:128|max:2048',
+            'expenses' => 'nullable|string',
         ]);
 
         $tgMessage = "
@@ -101,10 +102,10 @@ class LandingController extends Controller
         }
 
         // Отправка в Телеграм
-        $this->sendToTelegram($tgMessage);
+        // $this->sendToTelegram($tgMessage);
 
         // Отправка в Firebase
-        $this->saveToFirebase('beGentRequests', $request->all());
+        // $this->saveToFirebase('beGentRequests', $request->all());
 
         // Расчет по формуле Миффлина-Сан Жеора
         if ($data['gender'] === 'male') {
@@ -114,12 +115,26 @@ class LandingController extends Controller
         }
 
         $totalCalories = round($bmr * $data['activity']);
+        $proteinsMin = round(1.5 * $request->weight);
+        $proteinsMax = round(2.5 * $request->weight);
+        $fatsMin = round(0.8 * $request->weight);
+        $fatsMax = $proteinsMin;
+        $carbohydratesMin = round(($totalCalories - ($proteinsMax * 4 + $fatsMax * 9)) / 4);
+        $carbohydratesMax = round(($totalCalories - ($proteinsMin * 4 + $fatsMin * 9)) / 4);
 
         // Генерация PDF
-        $pdf = PDF::loadView('pdf.begent', [
+        $pdf = PDF::loadView('pdf.begent', array_merge([
             'bmr' => round($bmr),
             'totalCalories' => $totalCalories,
-        ]);
+            'targetCalories' => $totalCalories - 500,
+            'proteinsMin' => $proteinsMin,
+            'proteinsMax' => $proteinsMax,
+            'fatsMin' => $fatsMin,
+            'fatsMax' => $fatsMax,
+            'carbohydratesMin' => $carbohydratesMin,
+            'carbohydratesMax' => $carbohydratesMax,
+            'oneIngestion' => round(($totalCalories - 500) / 3),
+        ], $request->all()));
 
         return $pdf->download('be-gent.pdf');
     }

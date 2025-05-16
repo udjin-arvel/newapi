@@ -508,7 +508,7 @@
 
                             <div>
                                 <label class="block text-sm font-medium mb-2 text-gray-400" for="activity">Уровень активности</label>
-                                <select v-model="form.activity" id="activity" class="w-full bg-gray-800 rounded-lg px-4 py-3 text-gray-300 focus:ring-2 focus:ring-blue-500 outline-none border border-gray-700 appearance-none bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cG9seWxpbmUgcG9pbnRzPSI2IDkgMTIgMTUgMTggOSI+PC9wb2x5bGluZT48L3N2Zz4=')] bg-[length:20px_20px] bg-no-repeat bg-[right_0.75rem_center] pr-10">
+                                <select v-model="form.activity" ref="activityField" id="activity" class="w-full bg-gray-800 rounded-lg px-4 py-3 text-gray-300 focus:ring-2 focus:ring-blue-500 outline-none border border-gray-700 appearance-none bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cG9seWxpbmUgcG9pbnRzPSI2IDkgMTIgMTUgMTggOSI+PC9wb2x5bGluZT48L3N2Zz4=')] bg-[length:20px_20px] bg-no-repeat bg-[right_0.75rem_center] pr-10">
                                     <option class="bg-gray-800" value="1.2">Сидячий образ жизни</option>
                                     <option class="bg-gray-800" value="1.375">Низкая</option>
                                     <option class="bg-gray-800" value="1.55">Умеренная</option>
@@ -725,6 +725,7 @@ export default {
     methods: {
         async submitForm() {
             let isValid = true;
+            let activityTitle = this.$refs?.activityField?.selectedOptions[0]?.innerText || 'Низкая';
 
             for (const field in this.form) {
                 isValid = Boolean(this.form[field]);
@@ -741,6 +742,7 @@ export default {
                 try {
                     const data = {
                         ...this.form,
+                        activityTitle: activityTitle.toLowerCase(),
                         diet: this.diet,
                         expenses: this.expenses,
                         code: this.code,
