@@ -6,11 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="7ad24375-b5a6-455e-b3f2-95ba1730cd38" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/LandingController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/LandingController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/BeGent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/BeGent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pdf/begent.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pdf/begent.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/ToGOST.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/ToGOST.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,7 +137,12 @@
       <workItem from="1747139266154" duration="24000" />
       <workItem from="1747147649705" duration="1938000" />
       <workItem from="1747207568424" duration="78000" />
-      <workItem from="1747387237486" duration="8785000" />
+      <workItem from="1747387237486" duration="9383000" />
+      <workItem from="1747399087795" duration="1000" />
+      <workItem from="1747399937602" duration="458000" />
+      <workItem from="1747559567272" duration="615000" />
+      <workItem from="1747561809869" duration="15000" />
+      <workItem from="1747659506760" duration="308000" />
     </task>
     <servers />
   </component>

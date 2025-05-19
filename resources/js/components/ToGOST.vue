@@ -254,7 +254,7 @@
         <!-- Футер -->
         <footer class="bg-gray-800 py-6">
             <div class="container mx-auto px-4 text-center text-gray-400">
-                © Arvelov {{ new Date().getFullYear() }}. ToGOST. Все права защищены
+                © {{ new Date().getFullYear() }}. ToGOST. Все права защищены. Самозанятый Бедных Евгений Евгеньевич. ИНН: 701742187861
             </div>
         </footer>
     </div>
