@@ -3,6 +3,11 @@
 use App\Http\Controllers\Api;
 use Illuminate\Support\Facades\Route;
 
+// ------------------------ Payment routes ------------------------ //
+Route::group(['prefix' => 'payment'], function() {
+    Route::get('confirm', [Api\PaymentController::class, 'confirm']);
+});
+
 // ------------------------ Start routes ------------------------ //
 Route::post('login', [Api\UserController::class, 'login']);
 Route::post('register', [Api\UserController::class, 'register']);

@@ -174,12 +174,15 @@
                                 </label>
                             </div>
                         </div>
+
+                        <PaymentModal
+                            :iframe-url="paymentUrl"
+                            button-class="text-center w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold mt-6 py-3 rounded-lg transition duration-200"
+                            button-text="Оплатить и Отправить"
+                        />
                     </form>
 
-                    <PaymentModal
-                        buttonText="Оплатить и Отправить"
-                        buttonClass="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 mt-6 rounded-lg transition duration-200"
-                    />
+
                 </div>
 
                 <!-- Правая колонка - Шаги -->
@@ -262,7 +265,7 @@
 
 <script>
 import axios from 'axios';
-import PaymentModal from "@/widgets/PaymentModal.vue";
+import PaymentModal from "../widgets/PaymentModal.vue";
 
 export default {
     name: 'ToGOSTLanding',
@@ -274,11 +277,14 @@ export default {
                 name: '',
                 contact: '',
                 gost: '',
+                orderId: null,
             },
             file: null,
             error: null,
             isLoading: false,
             successMessage: '',
+            paymentUrl: '',
+            showModal: false,
             steps: [
                 "Укажите электронную почту, ссылку на профиль или телефон, привязанный к мессенджеру, куда отправить файл после редактирования.",
                 "Выбираете ГОСТ, в соответствии которому необходимо привести файл.",
@@ -307,6 +313,7 @@ export default {
                 this.file = files[0];
             }
         },
+
         formatFileSize(bytes) {
             if (bytes === 0) return '0 Bytes';
             const k = 1024;
@@ -316,6 +323,10 @@ export default {
         },
 
         async submitForm() {
+            if (this.paymentUrl) {
+                return;
+            }
+
             if (!this.file) {
                 this.error = 'Пожалуйста, загрузите файл';
                 return;
@@ -325,16 +336,20 @@ export default {
 
             try {
                 const formData = new FormData();
+
                 formData.append('name', this.formData.name);
                 formData.append('contact', this.formData.contact);
                 formData.append('gost', this.formData.gost);
                 formData.append('file', this.file);
+                formData.append('orderId', this.formData.orderId);
 
                 const response = await axios.post('/api/addGostRequest', formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }
                 });
+
+                console.log(response)
 
                 this.successMessage = 'Запрос успешно отправлен!';
                 this.resetForm();
@@ -355,6 +370,31 @@ export default {
             this.file = null;
             this.$refs.fileInput.value = '';
         }
+    },
+
+    computed: {
+        // paymentUrl() {
+        //     const orderId = this.formData.orderId;
+        //
+        //     if (orderId) {
+        //         const InvId = 0; // 0 - автогенерация номера
+        //         const OutSum = 1;
+        //         const params = new URLSearchParams({
+        //             MerchantLogin: import.meta.env.VITE_ROBOKASSA_LOGIN,
+        //             InvId,
+        //             OutSum,
+        //             Description: `Оплата заказа с сервиса ToGOST`,
+        //             SignatureValue: md5(`${import.meta.env.VITE_ROBOKASSA_LOGIN}:${OutSum}:${InvId}:${import.meta.env.VITE_ROBOKASSA_PASSWORD1}:shp_order_id=${orderId}`),
+        //             shp_order_id: orderId,
+        //             Culture: 'ru',
+        //             IsTest: import.meta.env.VITE_TEST_MODE === 'true' ? 1 : 0,
+        //         });
+        //
+        //         return `https://auth.robokassa.ru/Merchant/Index.aspx?${params}`;
+        //     }
+        //
+        //     return '';
+        // },
     },
 }
 </script>

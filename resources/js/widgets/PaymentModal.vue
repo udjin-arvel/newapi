@@ -1,29 +1,27 @@
 <template>
     <!-- Кнопка для открытия -->
     <button
-        @click="isOpen = true"
+        type="submit"
         :class="buttonClass"
+        @click="handleModalOpen"
     >
         {{ buttonText }}
     </button>
 
     <!-- Модальное окно -->
     <transition name="modal">
-        <div v-if="isOpen" class="fixed inset-0 z-50">
+        <div v-if="showModal && iframeUrl" class="fixed inset-0 z-50">
             <!-- Затемнение фона -->
             <div
                 class="absolute inset-0 bg-black/50 backdrop-blur-sm"
-                @click.self="isOpen = false"
+                @click.self="showModal = false"
             ></div>
 
             <!-- Контент модалки -->
-            <div class="relative flex items-center justify-center min-h-screen">
-                <div class="bg-gray-800 rounded-2xl p-8 max-w-md w-full mx-4 shadow-xl">
+            <div class="relative flex items-center justify-center min-h-screen" @click="showModal = false">
+                <div class="bg-gray-800 rounded-2xl p-8 max-w-screen-lg w-full mx-4 shadow-xl">
                     <!-- Крестик закрытия -->
-                    <button
-                        @click="isOpen = false"
-                        class="absolute top-4 right-4 text-gray-400 hover:text-white transition"
-                    >
+                    <button class="absolute top-4 right-4 text-gray-400 hover:text-white transition">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                         </svg>
@@ -32,13 +30,67 @@
                     <!-- Блок с оплатой -->
                     <div class="border-2 border-dashed border-blue-500 rounded-xl p-6 text-center">
                         <h3 class="text-xl font-bold text-white mb-4">Оплата</h3>
-                        <!-- Здесь можно добавить форму оплаты -->
+
+                        <!-- Контейнер для виджета Robokassa -->
+                        <iframe
+                            v-if="iframeUrl"
+                            :src="iframeUrl"
+                            class="w-full min-h-[600px] border-0"
+                            @load="loading = false"
+                        ></iframe>
+
+                        <div v-if="loading" class="text-center py-4">
+                            Загрузка платежной формы...
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </transition>
 </template>
+
+<script setup>
+import { ref, onMounted, onBeforeUnmount } from 'vue';
+
+const props = defineProps({
+    iframeUrl: {
+        type: String,
+        required: true,
+    },
+    buttonText: {
+        type: String,
+        default: 'Оплата',
+    },
+    buttonClass: {
+        type: String,
+        default: 'bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition',
+    },
+});
+
+const emit = defineEmits(['close', 'payment-success', 'payment-create']);
+const loading = ref(true);
+const showModal = ref(false);
+
+const handleModalOpen = () => {
+    showModal.value = true;
+    emit('payment-create');
+};
+
+const handleMessage = (event) => {
+    if (event.data === 'PaymentSuccess') {
+        emit('payment-success');
+        emit('close');
+    }
+};
+
+onMounted(() => {
+    window.addEventListener('message', handleMessage);
+});
+
+onBeforeUnmount(() => {
+    window.removeEventListener('message', handleMessage);
+});
+</script>
 
 <script>
 export default {

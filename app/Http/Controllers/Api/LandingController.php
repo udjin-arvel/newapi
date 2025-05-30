@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Barryvdh\DomPDF\Facade\Pdf;
+use GuzzleHttp\RequestOptions;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Storage;
 use Kreait\Firebase\Factory;
+use Kreait\Firebase\Http\HttpClientOptions;
 use Log;
 
 /**
@@ -48,8 +50,8 @@ class LandingController extends Controller
     public function addGostRequest(Request $request)
     {
         // Валидация
-        $request->validate([
-            'name' => 'required|string|max:255',
+        $validated = $request->validate([
+            'name' => 'nullable|string|max:255',
             'contact' => 'required|string|max:255',
             'gost' => 'required|string',
             'file' => 'required|file|max:20480|mimes:doc,docx',
@@ -58,22 +60,37 @@ class LandingController extends Controller
         // Сохранение файла
         $filePath = $request->file('file')->store('requests', 'public');
         $fileUrl = Storage::disk('public')->url($filePath);
+        $orderId = md5(time() . uniqid());
 
-        $tgMessage = "
-            <b>ToGOST. Заявка.</b>\n
-            <b>Имя:</b> $request->name\n
-            <b>Способ связи:</b> $request->contact\n
-            <b>ГОСТ:</b> $request->gost\n
-            <b>Ссылка на файл:</b> $fileUrl\n
-        ";
+//        $tgMessage = "
+//            <b>ToGOST. Заявка.</b>\n
+//            <b>Имя:</b> $request->name\n
+//            <b>Способ связи:</b> $request->contact\n
+//            <b>ГОСТ:</b> $request->gost\n
+//            <b>Ссылка на файл:</b> $fileUrl\n
+//        ";
+//
+//        // Отправка в Телеграм
+//        $this->sendToTelegram($tgMessage);
 
-        // Отправка в Телеграм
-        $this->sendToTelegram($tgMessage);
+        $paymentData = [
+            'order_id' => $orderId,
+            'status' => 'pending', // ожидает оплаты
+            'user_data' => $validated,
+            'amount' => 250, // сумма в копейках
+            'file' => $fileUrl,
+            'service' => 'togost',
+        ];
 
         // Отправка в Firebase
-        $this->saveToFirebase('toGostRequests', array_merge($request->all(), ['file' => $fileUrl]));
+        $this->saveToFirebase("payments/{$orderId}", $paymentData);
 
-        return response()->json(['success' => true]);
+        $paymentUrl = $this->generateRobokassaUrl($orderId, $paymentData['amount'], 'Оплата заказа с сервиса ToGOST');
+
+        return response()->json([
+            'order_id' => $orderId,
+            'payment_url' => $paymentUrl
+        ]);
     }
 
     public function addGentRequest(Request $request)
@@ -164,12 +181,37 @@ class LandingController extends Controller
 
     private function saveToFirebase(string $table, array $data)
     {
+        $httpClientOptions = HttpClientOptions::default()->withGuzzleConfigOption(RequestOptions::VERIFY, false);
         $firebase = (new Factory)
             ->withServiceAccount(config('firebase'))
-            ->withDatabaseUri('https://arvelov-1f937-default-rtdb.europe-west1.firebasedatabase.app');
+            ->withDatabaseUri('https://arvelov-1f937-default-rtdb.europe-west1.firebasedatabase.app')
+            ->withHttpClientOptions($httpClientOptions);
 
         $database = $firebase->createDatabase();
         $result = $database->getReference($table)->push(array_merge($data, ['timestamp' => time()]));
         Log::info('Data saved to Firebase', ['key' => $result->getKey()]);
+    }
+
+    private function generateRobokassaUrl(string $orderId, int $amount, string $desc = ''): string
+    {
+        $merchantLogin = config('services.robokassa.login');
+        $password1 = config('services.robokassa.password1');
+
+        // Формирование подписи
+        $signature = md5("{$merchantLogin}:{$amount}:0:{$password1}:shp_order_id={$orderId}");
+
+        $params = [
+            'MerchantLogin' => $merchantLogin,
+            'OutSum' => $amount,
+            'InvId' => 0, // 0 - для автоматической генерации номера
+            'Description' => $desc,
+            'SignatureValue' => $signature,
+            'shp_order_id' => $orderId,
+            'Culture' => 'ru',
+            'Encoding' => 'utf-8',
+            'IsTest' => config('app.env') === 'production' ? 0 : 1,
+        ];
+
+        return 'https://auth.robokassa.ru/Merchant/Index.aspx?' . http_build_query($params);
     }
 }
