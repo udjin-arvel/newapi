@@ -149,7 +149,7 @@
             <p><strong>PS:</strong> вы можете сократить количество приемов пищи, просто объединяя завтрак с перекусом или обед с полдником.</p>
         </div>
 
-        @if($expenses)
+        @if(isset($expenses))
             <h2>Рассчет продуктовой корзины</h2>
             @include("pdf.expensesVariants.$expenses")
         @endif

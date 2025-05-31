@@ -6,8 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="7ad24375-b5a6-455e-b3f2-95ba1730cd38" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/PaymentStatus.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/PaymentStatus.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/widgets/PaymentModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/widgets/PaymentModal.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pdf/begent.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pdf/begent.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,7 +147,7 @@
       <workItem from="1747991989856" duration="3328000" />
       <workItem from="1748075032318" duration="3402000" />
       <workItem from="1748422696598" duration="9978000" />
-      <workItem from="1748681622030" duration="13397000" />
+      <workItem from="1748681622030" duration="15129000" />
     </task>
     <servers />
   </component>
