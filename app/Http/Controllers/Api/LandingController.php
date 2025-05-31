@@ -166,7 +166,7 @@ class LandingController extends Controller
     private function generateRobokassaUrl(string $orderId, int $amount, string $desc = ''): string
     {
         $merchantLogin = 'arvelov_begent'; // config('services.robokassa.login');
-        $password1 = config('services.robokassa.password1');
+        $password1 = 'NEhZBVH3C0hoi7PsN18E'; // config('services.robokassa.password1');
 
         // Формирование подписи
         $signature = md5("{$merchantLogin}:{$amount}:0:{$password1}:shp_order_id={$orderId}");
@@ -296,7 +296,7 @@ class LandingController extends Controller
         $validSignature = md5(
             $request->OutSum . ':' .
             $request->InvId . ':' .
-            config('services.robokassa.password2') . ':' .
+            'R8lzfrmO4ZD614HanVWy' . ':' .
             'shp_order_id=' . $request->shp_order_id
         );
 
