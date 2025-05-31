@@ -744,10 +744,11 @@ export default {
                 const url = window.URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
-                a.download = `begent-plan-${orderId.value}.pdf`;
+                a.download = `begent-plan-${this.orderId}.pdf`;
                 document.body.appendChild(a);
                 a.click();
-                document.body.removeChild(a);
+
+                // document.body.removeChild(a);
 
                 // Показываем уведомление об успехе
                 // alert('Ваш план питания успешно сгенерирован и скачивается!');
