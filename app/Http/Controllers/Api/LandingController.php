@@ -255,6 +255,8 @@ class LandingController extends Controller
             // Отправка уведомления в Telegram
             $this->sendTelegramNotification($orderId, $request->InvId, $ref->getValue());
 
+            Log::info('Handled Robokassa Webhook. InvID: ' . $request->InvId);
+
             return response()->json(['OK' => $request->InvId]);
 
         } catch (\Exception $e) {
@@ -277,7 +279,7 @@ class LandingController extends Controller
             . "💰 Сумма: {$paymentData['amount']} руб.\n"
             . "👤 Клиент: {$paymentData['user_data']['name']}\n"
             . "📞 Способ связи: {$paymentData['user_data']['contact']}\n"
-            . "📧 GOST: {$paymentData['user_data']['gost']}\n"
+            . "📧 ГОСТ: {$paymentData['user_data']['gost']}\n"
             . "📧 Файл: {$paymentData['file']}\n"
             . "🔖 Robokassa Inv ID: `{$invId}`";
 
