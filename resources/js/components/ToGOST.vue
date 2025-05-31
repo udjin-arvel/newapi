@@ -277,9 +277,9 @@ export default {
                 name: '',
                 contact: '',
                 gost: '',
-                orderId: null,
             },
             file: null,
+            orderId: null,
             error: null,
             isLoading: false,
             successMessage: '',
@@ -341,7 +341,6 @@ export default {
                 formData.append('contact', this.formData.contact);
                 formData.append('gost', this.formData.gost);
                 formData.append('file', this.file);
-                formData.append('orderId', this.formData.orderId);
 
                 const response = await axios.post('/api/addGostRequest', formData, {
                     headers: {
@@ -368,7 +367,8 @@ export default {
         resetForm() {
             this.formData = {
                 name: '',
-                contact: ''
+                contact: '',
+                gost: '',
             };
             this.file = null;
             this.$refs.fileInput.value = '';

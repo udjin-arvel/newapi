@@ -19,6 +19,7 @@
         "vue-router": "^4.5.1"
     },
     "dependencies": {
+        "@heroicons/vue": "^2.2.0",
         "md5": "^2.3.0"
     }
 }
