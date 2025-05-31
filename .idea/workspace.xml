@@ -5,13 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7ad24375-b5a6-455e-b3f2-95ba1730cd38" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/js/components/PaymentStatus.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/ToGOST.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/ToGOST.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/router.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/LandingController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/LandingController.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,7 +146,7 @@
       <workItem from="1747991989856" duration="3328000" />
       <workItem from="1748075032318" duration="3402000" />
       <workItem from="1748422696598" duration="9978000" />
-      <workItem from="1748681622030" duration="4795000" />
+      <workItem from="1748681622030" duration="5641000" />
     </task>
     <servers />
   </component>

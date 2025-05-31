@@ -272,9 +272,10 @@ class LandingController extends Controller
         $botToken = config('services.telegram.bot_token');
         $chatId = config('services.telegram.chat_id');
 
+        Log::info(json_encode($paymentData));
+
         $message = "✅ Успешная оплата!\n"
             . "🆔 Order ID: `{$orderId}`\n"
-            . "💰 Сумма: {$paymentData['amount']} руб.\n"
             . "👤 Клиент: {$paymentData['user_data']['name']}\n"
             . "📞 Способ связи: {$paymentData['user_data']['contact']}\n"
             . "📧 GOST: {$paymentData['user_data']['gost']}\n"
