@@ -40,7 +40,6 @@
                             :src="iframeUrl"
                             class="w-full min-h-[600px] border-0"
                             @load="loading = false"
-                            @message="handle"
                         ></iframe>
 
                         <div v-if="loading" class="text-center py-4">
@@ -80,14 +79,10 @@ const handleModalOpen = () => {
 };
 
 const handleMessage = (event) => {
-    console.log('1', event)
-    if (event.data === 'PaymentSuccess') {
+    if (event.data === 'paymentCompleted') {
+        console.log('GET IT!')
         emit('payment-success');
     }
-};
-
-const handle = (event) => {
-    console.log('2', event)
 };
 
 onMounted(() => {

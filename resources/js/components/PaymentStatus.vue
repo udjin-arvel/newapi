@@ -28,7 +28,7 @@
 </template>
 
 <script setup>
-import { computed } from 'vue';
+import { computed, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import {
     CheckCircleIcon,
@@ -37,6 +37,16 @@ import {
 
 const route = useRoute();
 const status = computed(() => route.meta.paymentStatus);
+
+onMounted(() => {
+    // Отправляем сообщение в родительское окно
+    window.opener.postMessage('paymentCompleted', '*');
+
+    // Перенаправляем обратно через 3 секунды
+    setTimeout(() => {
+        window.close();
+    }, 3000);
+});
 </script>
 
 <style scoped>
