@@ -184,7 +184,7 @@ class LandingController extends Controller
     {
         $firebase = $this->initFirebase();
         $database = $firebase->createDatabase();
-        $result = $database->getReference($table)->push(array_merge($data, ['timestamp' => time()]));
+        $result = $database->getReference($table)->set(array_merge($data, ['timestamp' => time()]));
 
         Log::info('Data saved to Firebase', ['key' => $result->getKey()]);
 
@@ -272,10 +272,9 @@ class LandingController extends Controller
         $botToken = config('services.telegram.bot_token');
         $chatId = config('services.telegram.chat_id');
 
-        Log::info(json_encode($paymentData));
-
         $message = "✅ Успешная оплата!\n"
             . "🆔 Order ID: `{$orderId}`\n"
+            . "💰 Сумма: {$paymentData['amount']} руб.\n"
             . "👤 Клиент: {$paymentData['user_data']['name']}\n"
             . "📞 Способ связи: {$paymentData['user_data']['contact']}\n"
             . "📧 GOST: {$paymentData['user_data']['gost']}\n"
