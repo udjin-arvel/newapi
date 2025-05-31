@@ -350,7 +350,7 @@ export default {
 
                 if (response?.data?.payment_url) {
                     this.paymentUrl = response.data.payment_url;
-                    this.formData.orderId = response.data.order_id;
+                    this.orderId = response.data.order_id;
                     this.successMessage = 'Запрос успешно отправлен!';
                 }
 

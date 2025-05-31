@@ -97,7 +97,7 @@ class LandingController extends Controller
     public function addGentRequest(Request $request)
     {
         // Валидация
-        $data = $request->validate([
+        $validated = $request->validate([
             'name' => 'required|string|max:255',
             'service' => 'required|string|max:255',
             'gender' => 'required|in:male,female',
@@ -106,55 +106,27 @@ class LandingController extends Controller
             'age' => 'required|integer|min:18|max:100',
             'activity' => 'required|numeric|min:1.2|max:2.5',
             'activityTitle' => 'required',
+            'price' => 'required',
             'diet' => 'nullable|string|min:128|max:2048',
             'expenses' => 'nullable|string',
         ]);
 
-        $tgMessage = "
-            <b>BeGent. Заявка. $request->service</b>\n
-            <b>Имя:</b> $request->name\n
-            <b>Цена:</b> $request->price\n
-        ";
-        if ($request->diet) {
-            $tgMessage .= "<b>Питание:</b> $request->diet\n";
-        }
-
-        // Отправка в Телеграм
-        // $this->sendToTelegram($tgMessage);
+        // Генерация уникального ID заказа
+        $orderId = md5(time() . uniqid());
 
         // Отправка в Firebase
-        // $this->saveToFirebase('beGentRequests', $request->all());
+        $this->saveToFirebase("payments/{$orderId}", [
+            'status' => 'pending',
+            'created_at' => time(),
+            'user_data' => $validated,
+        ]);
 
-        // Расчет по формуле Миффлина-Сан Жеора
-        if ($data['gender'] === 'male') {
-            $bmr = (10 * $data['weight']) + (6.25 * $data['height']) - (5 * $data['age']) + 5;
-        } else {
-            $bmr = (10 * $data['weight']) + (6.25 * $data['height']) - (5 * $data['age']) - 161;
-        }
+        $paymentUrl = $this->generateRobokassaUrl($orderId, $validated['price'], 'Оплата заказа с сервиса BeGent');
 
-        $totalCalories = round($bmr * $data['activity']);
-        $proteinsMin = round(1.5 * $request->weight);
-        $proteinsMax = round(2.5 * $request->weight);
-        $fatsMin = round(0.8 * $request->weight);
-        $fatsMax = $proteinsMin;
-        $carbohydratesMin = round(($totalCalories - ($proteinsMax * 4 + $fatsMax * 9)) / 4);
-        $carbohydratesMax = round(($totalCalories - ($proteinsMin * 4 + $fatsMin * 9)) / 4);
-
-        // Генерация PDF
-        $pdf = PDF::loadView('pdf.begent', array_merge([
-            'bmr' => round($bmr),
-            'totalCalories' => $totalCalories,
-            'targetCalories' => $totalCalories - 500,
-            'proteinsMin' => $proteinsMin,
-            'proteinsMax' => $proteinsMax,
-            'fatsMin' => $fatsMin,
-            'fatsMax' => $fatsMax,
-            'carbohydratesMin' => $carbohydratesMin,
-            'carbohydratesMax' => $carbohydratesMax,
-            'oneIngestion' => round(($totalCalories - 500) / 3),
-        ], $request->all()));
-
-        return $pdf->download('be-gent.pdf');
+        return response()->json([
+            'order_id' => $orderId,
+            'payment_url' => $paymentUrl
+        ]);
     }
 
     private function sendToTelegram(string $message): void
@@ -193,7 +165,7 @@ class LandingController extends Controller
 
     private function generateRobokassaUrl(string $orderId, int $amount, string $desc = ''): string
     {
-        $merchantLogin = config('services.robokassa.login');
+        $merchantLogin = 'arvelov_begent'; // config('services.robokassa.login');
         $password1 = config('services.robokassa.password1');
 
         // Формирование подписи
@@ -212,6 +184,56 @@ class LandingController extends Controller
         ];
 
         return 'https://auth.robokassa.ru/Merchant/Index.aspx?' . http_build_query($params);
+    }
+
+    public function generatePdf($orderId)
+    {
+        $firebase = $this->initFirebase();
+        $db = $firebase->createDatabase();
+        $orderData = $db->getReference("payments/{$orderId}")->getValue();
+
+        // Проверяем наличие данных
+        if (empty($orderData['user_data'])) {
+            return response()->json(['error' => 'Data not found'], 404);
+        }
+
+        // Проверяем статус оплаты
+        if ($orderData['status'] !== 'completed') {
+            return response()->json(['error' => 'Payment not completed'], 403);
+        }
+
+        $data = $orderData['user_data'];
+
+        // Расчет по формуле Миффлина-Сан Жеора
+        if ($data['gender'] === 'male') {
+            $bmr = (10 * $data['weight']) + (6.25 * $data['height']) - (5 * $data['age']) + 5;
+        } else {
+            $bmr = (10 * $data['weight']) + (6.25 * $data['height']) - (5 * $data['age']) - 161;
+        }
+
+        $totalCalories = round($bmr * $data['activity']);
+        $proteinsMin = round(1.5 * $data['weight']);
+        $proteinsMax = round(2.5 * $data['weight']);
+        $fatsMin = round(0.8 * $data['weight']);
+        $fatsMax = $proteinsMin;
+        $carbohydratesMin = round(($totalCalories - ($proteinsMax * 4 + $fatsMax * 9)) / 4);
+        $carbohydratesMax = round(($totalCalories - ($proteinsMin * 4 + $fatsMin * 9)) / 4);
+
+        // Генерация PDF
+        $pdf = PDF::loadView('pdf.begent', array_merge([
+            'bmr' => round($bmr),
+            'totalCalories' => $totalCalories,
+            'targetCalories' => $totalCalories - 500,
+            'proteinsMin' => $proteinsMin,
+            'proteinsMax' => $proteinsMax,
+            'fatsMin' => $fatsMin,
+            'fatsMax' => $fatsMax,
+            'carbohydratesMin' => $carbohydratesMin,
+            'carbohydratesMax' => $carbohydratesMax,
+            'oneIngestion' => round(($totalCalories - 500) / 3),
+        ], $data));
+
+        return $pdf->download("be-gent-{$orderId}.pdf");
     }
 
     public function handleWebhook(Request $request)
@@ -255,7 +277,58 @@ class LandingController extends Controller
             // Отправка уведомления в Telegram
             $this->sendTelegramNotification($orderId, $request->InvId, $ref->getValue());
 
-            Log::info('Handled Robokassa Webhook. InvID: ' . $request->InvId);
+            return response()->json(['OK' => $request->InvId]);
+
+        } catch (\Exception $e) {
+            Log::error('Error processing Robokassa webhook', [
+                'order_id' => $orderId,
+                'error' => $e->getMessage()
+            ]);
+
+            return response()->json(['error' => 'Server error'], 500);
+        }
+    }
+
+    public function handleWebhook2(Request $request)
+    {
+        // Проверка подписи
+        $signature = strtolower($request->SignatureValue);
+        $validSignature = md5(
+            $request->OutSum . ':' .
+            $request->InvId . ':' .
+            config('services.robokassa.password2') . ':' .
+            'shp_order_id=' . $request->shp_order_id
+        );
+
+        if ($signature !== $validSignature) {
+            Log::error('Invalid Robokassa signature', $request->all());
+            return response()->json(['error' => 'Invalid signature'], 403);
+        }
+
+        // Извлечение order_id
+        $orderId = $request->shp_order_id;
+
+        // Обновление статуса в Firebase
+        try {
+            $firebase = $this->initFirebase();
+            $db = $firebase->createDatabase();
+            $ref = $db->getReference("payments/{$orderId}");
+
+            // Проверяем существование записи
+            if (!$ref->getSnapshot()->exists()) {
+                Log::error('Payment record not found in Firebase', ['order_id' => $orderId]);
+                return response()->json(['error' => 'Record not found'], 404);
+            }
+
+            // Обновляем статус
+            $ref->update([
+                'status' => 'completed',
+                'paid_at' => time(),
+                'robokassa_inv_id' => $request->InvId,
+            ]);
+
+            // Отправка уведомления в Telegram
+            // $this->sendTelegramNotification($orderId, $request->InvId, $ref->getValue());
 
             return response()->json(['OK' => $request->InvId]);
 
@@ -280,7 +353,7 @@ class LandingController extends Controller
             . "👤 Клиент: {$paymentData['user_data']['name']}\n"
             . "📞 Способ связи: {$paymentData['user_data']['contact']}\n"
             . "📧 ГОСТ: {$paymentData['user_data']['gost']}\n"
-            . "📧 Файл: {$paymentData['file']}\n"
+            . "📎 Файл: {$paymentData['file']}\n"
             . "🔖 Robokassa Inv ID: `{$invId}`";
 
         $response = Http::post("https://api.telegram.org/bot{$botToken}/sendMessage", [

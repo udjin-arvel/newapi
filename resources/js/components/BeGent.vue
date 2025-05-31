@@ -569,16 +569,22 @@
                             </div>
                         </div>
 
-                        <!-- Кнопка отправки -->
-                        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 rounded-lg transition duration-300 flex items-center justify-center">
-                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" v-if="form.name">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                            </svg>
-                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" v-else>
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                            </svg>
-                            Получить рекомендации
-                        </button>
+                        <PaymentModal
+                            :iframe-url="paymentUrl"
+                            :button-text="isLoading ? 'Загрузка данных...' : 'Получить рекомендации'"
+                            @payment-success="handlePaymentSuccess"
+                            button-class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 rounded-lg transition duration-300 flex items-center justify-center"
+                        />
+
+<!--                        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 rounded-lg transition duration-300 flex items-center justify-center">-->
+<!--                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" v-if="form.name">-->
+<!--                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>-->
+<!--                            </svg>-->
+<!--                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" v-else>-->
+<!--                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>-->
+<!--                            </svg>-->
+<!--                            Получить рекомендации-->
+<!--                        </button>-->
                     </form>
                 </div>
             </div>
@@ -657,6 +663,7 @@
 <script>
 import axios from 'axios';
 import { throttle } from 'lodash-es';
+import PaymentModal from "@/widgets/PaymentModal.vue";
 
 /**
  * Массив тарифов
@@ -671,6 +678,7 @@ const RATES_LIST = [
 
 export default {
     name: 'BeGentLanding',
+    components: {PaymentModal},
 
     data() {
         return {
@@ -704,7 +712,11 @@ export default {
             videoSrc: ['/video/cherry.mp4', '/video/food.mp4', '/video/vegetables.mp4', '/video/woman.mp4'][Math.floor(Math.random() * 4)],
             videoPoster: '/img/begent_poster.jpg',
             isFirstSlideVisible: true,
-            observer: null
+            observer: null,
+            orderId: null,
+            isLoading: false,
+            successMessage: '',
+            paymentUrl: '',
         }
     },
 
@@ -723,6 +735,28 @@ export default {
     },
 
     methods: {
+        async handlePaymentSuccess() {
+            try {
+                const response = await fetch(`/api/generatePdf/${this.orderId}`);
+                const blob = await response.blob();
+
+                // Создаем ссылку для скачивания
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `begent-plan-${orderId.value}.pdf`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+
+                // Показываем уведомление об успехе
+                // alert('Ваш план питания успешно сгенерирован и скачивается!');
+            } catch (error) {
+                console.error('Ошибка генерации PDF:', error);
+                // alert('Произошла ошибка при генерации PDF. Мы отправим его вам по email');
+            }
+        },
+
         async submitForm() {
             let isValid = true;
             let activityTitle = this.$refs?.activityField?.selectedOptions[0]?.innerText || 'Низкая';
@@ -739,6 +773,8 @@ export default {
             }
 
             if (isValid) {
+                this.isLoading = true;
+
                 try {
                     const data = {
                         ...this.form,
@@ -749,25 +785,26 @@ export default {
                         price: this.newPrice || this.price,
                     };
 
-                    const response = await axios.post('/api/addGentRequest', data, {
-                        responseType: 'blob' // Важно для получения файла
-                    });
+                    const response = await axios.post('/api/addGentRequest', data);
 
-                    // Создаем ссылку для скачивания
-                    const url = window.URL.createObjectURL(new Blob([response.data]));
-                    const link = document.createElement('a');
-                    link.href = url;
-                    link.setAttribute('download', 'calories-calculation.pdf');
-                    document.body.appendChild(link);
-                    link.click();
+                    if (response?.data?.payment_url) {
+                        this.paymentUrl = response.data.payment_url;
+                        this.orderId = response.data.order_id;
+                        this.successMessage = 'Запрос успешно отправлен!';
+                    }
+
+                    // Очистить форму
 
                 } catch (error) {
                     console.error('Ошибка генерации PDF:', error);
+                } finally {
+                    this.isLoading = false;
                 }
             } else {
                 alert('Ошибка формы');
             }
         },
+
         goToForm(service = '') {
             const el = document.getElementById('anketa');
 

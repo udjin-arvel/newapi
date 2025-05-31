@@ -8,6 +8,8 @@ Route::post('addCallbackRequest', [Api\LandingController::class, 'addCallbackReq
 Route::post('addGostRequest', [Api\LandingController::class, 'addGostRequest']);
 Route::post('addGentRequest', [Api\LandingController::class, 'addGentRequest']);
 Route::post('handleWebhook', [Api\LandingController::class, 'handleWebhook']);
+Route::post('handleWebhook2', [Api\LandingController::class, 'handleWebhook2']);
+Route::get('generatePdf/{orderId}', [Api\LandingController::class, 'generatePdf']);
 
 // ------------------------ Start routes ------------------------ //
 Route::post('login', [Api\UserController::class, 'login']);

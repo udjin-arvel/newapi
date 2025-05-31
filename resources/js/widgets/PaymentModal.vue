@@ -70,19 +70,17 @@ const props = defineProps({
     },
 });
 
-const emit = defineEmits(['close', 'payment-success', 'payment-create']);
+const emit = defineEmits(['payment-success']);
 const loading = ref(true);
 const showModal = ref(false);
 
 const handleModalOpen = () => {
     showModal.value = true;
-    emit('payment-create');
 };
 
 const handleMessage = (event) => {
     if (event.data === 'PaymentSuccess') {
         emit('payment-success');
-        emit('close');
     }
 };
 
