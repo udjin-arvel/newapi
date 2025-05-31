@@ -39,13 +39,10 @@ const route = useRoute();
 const status = computed(() => route.meta.paymentStatus);
 
 onMounted(() => {
-    // Отправляем сообщение в родительское окно
-    window.opener.postMessage('paymentCompleted', '*');
-
-    // Перенаправляем обратно через 3 секунды
-    setTimeout(() => {
-        window.close();
-    }, 3000);
+    window.parent.postMessage({
+        event: 'paymentCompleted',
+        data: route.query,
+    }, '*');
 });
 </script>
 

@@ -79,8 +79,8 @@ const handleModalOpen = () => {
 };
 
 const handleMessage = (event) => {
-    if (event.data === 'paymentCompleted') {
-        console.log('GET IT!')
+    if (event.data.event === 'paymentCompleted') {
+        console.log('Оплата прошла! Данные:', event.data.data);
         emit('payment-success');
     }
 };
