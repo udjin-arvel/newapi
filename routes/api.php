@@ -3,10 +3,11 @@
 use App\Http\Controllers\Api;
 use Illuminate\Support\Facades\Route;
 
-// ------------------------ Payment routes ------------------------ //
-Route::group(['prefix' => 'payment'], function() {
-    Route::get('confirm', [Api\PaymentController::class, 'confirm']);
-});
+// ------------------------ Landings routes ------------------------ //
+Route::post('addCallbackRequest', [Api\LandingController::class, 'addCallbackRequest']);
+Route::post('addGostRequest', [Api\LandingController::class, 'addGostRequest']);
+Route::post('addGentRequest', [Api\LandingController::class, 'addGentRequest']);
+Route::post('handleWebhook', [Api\LandingController::class, 'handleWebhook']);
 
 // ------------------------ Start routes ------------------------ //
 Route::post('login', [Api\UserController::class, 'login']);
@@ -108,8 +109,3 @@ Route::group(['middleware' => 'auth:api'], function() {
     // ------------------------ Character routes ------------------------ //
     Route::resource('characters', Api\CharacterController::class)->only(['store', 'update', 'destroy']);
 });
-
-// Arvelov Landings Routes
-Route::post('addCallbackRequest', [Api\LandingController::class, 'addCallbackRequest']);
-Route::post('addGostRequest', [Api\LandingController::class, 'addGostRequest']);
-Route::post('addGentRequest', [Api\LandingController::class, 'addGentRequest']);

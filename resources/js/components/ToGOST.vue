@@ -177,8 +177,8 @@
 
                         <PaymentModal
                             :iframe-url="paymentUrl"
+                            :button-text="isLoading ? 'Загрузка данных...' : 'Оплатить и Отправить'"
                             button-class="text-center w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold mt-6 py-3 rounded-lg transition duration-200"
-                            button-text="Оплатить и Отправить"
                         />
                     </form>
 
@@ -349,9 +349,12 @@ export default {
                     }
                 });
 
-                console.log(response)
+                if (response?.data?.payment_url) {
+                    this.paymentUrl = response.data.payment_url;
+                    this.formData.orderId = response.data.order_id;
+                    this.successMessage = 'Запрос успешно отправлен!';
+                }
 
-                this.successMessage = 'Запрос успешно отправлен!';
                 this.resetForm();
 
             } catch (error) {

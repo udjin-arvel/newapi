@@ -18,10 +18,13 @@
             ></div>
 
             <!-- Контент модалки -->
-            <div class="relative flex items-center justify-center min-h-screen" @click="showModal = false">
+            <div class="relative flex items-center justify-center min-h-screen">
                 <div class="bg-gray-800 rounded-2xl p-8 max-w-screen-lg w-full mx-4 shadow-xl">
                     <!-- Крестик закрытия -->
-                    <button class="absolute top-4 right-4 text-gray-400 hover:text-white transition">
+                    <button
+                        class="absolute top-4 right-4 text-gray-400 hover:text-white transition"
+                        @click="showModal = false"
+                    >
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                         </svg>
