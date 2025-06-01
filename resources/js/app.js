@@ -1,5 +1,5 @@
 import { createApp } from 'vue';
-import LandingHero from './components/LandingHero.vue';
+import LandingHero from './pages/LandingHero.vue';
 import router from './router';
 import phoneMask from './directives/phoneMask';
 import emailValidator from './directives/emailValidator';

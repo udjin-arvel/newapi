@@ -4,12 +4,12 @@ use App\Http\Controllers\Api;
 use Illuminate\Support\Facades\Route;
 
 // ------------------------ Landings routes ------------------------ //
-Route::post('addCallbackRequest', [Api\LandingController::class, 'addCallbackRequest']);
-Route::post('addGostRequest', [Api\LandingController::class, 'addGostRequest']);
-Route::post('addGentRequest', [Api\LandingController::class, 'addGentRequest']);
-Route::post('handleWebhook', [Api\LandingController::class, 'handleWebhook']);
-Route::post('handleWebhook2', [Api\LandingController::class, 'handleWebhook2']);
-Route::get('generatePdf/{orderId}', [Api\LandingController::class, 'generatePdf']);
+Route::post('addCallbackRequest', [Api\Landings\MainController::class, 'addRequest']);
+Route::post('addGostRequest', [Api\Landings\TogostController::class, 'addRequest']);
+Route::post('addGentRequest', [Api\Landings\BegentController::class, 'addRequest']);
+Route::post('handleRkWebhookBeGent', [Api\Landings\BegentController::class, 'handleRobokassaWebhook']);
+Route::post('handleRkWebhookToGost', [Api\Landings\TogostController::class, 'handleRobokassaWebhook']);
+Route::get('generatePdf/{orderId}', [Api\Landings\BegentController::class, 'generatePdf']);
 
 // ------------------------ Start routes ------------------------ //
 Route::post('login', [Api\UserController::class, 'login']);

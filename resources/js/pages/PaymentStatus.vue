@@ -39,10 +39,9 @@ const route = useRoute();
 const status = computed(() => route.meta.paymentStatus);
 
 onMounted(() => {
-    window.parent.postMessage({
-        event: 'paymentCompleted',
-        data: route.query,
-    }, '*');
+    if (status.value === 'success') {
+        window.parent.postMessage({ event: 'paymentCompleted', data: route.query }, '*');
+    }
 });
 </script>
 

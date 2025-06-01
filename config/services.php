@@ -31,10 +31,18 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    // TODO: Перенести в .env, если буду публиковать проект
     'robokassa' => [
-        'login' => env('ROBOKASSA_LOGIN'),
-        'password1' => env('ROBOKASSA_PASSWORD1'),
-        'password2' => env('ROBOKASSA_PASSWORD2'),
+        'togost' => [
+            'login'     => 'arvelov_togost',
+            'password1' => 'tQd4jyvg36I2v4LRaZFP',
+            'password2' => 'IA4pPyx3x1j3lJtVUgQ6',
+        ],
+        'begent' => [
+            'login'     => 'arvelov_begent',
+            'password1' => 'NEhZBVH3C0hoi7PsN18E',
+            'password2' => 'R8lzfrmO4ZD614HanVWy',
+        ],
     ],
 
     'telegram' => [

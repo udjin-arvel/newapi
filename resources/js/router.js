@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import LandingHero from './components/LandingHero.vue';
-import BeGent from './components/BeGent.vue';
-import ToGOST from './components/ToGOST.vue';
-import PaymentStatus from './components/PaymentStatus.vue';
+import LandingHero from './pages/LandingHero.vue';
+import BeGent from './pages/BeGent.vue';
+import ToGOST from './pages/ToGOST.vue';
+import PaymentStatus from './pages/PaymentStatus.vue';
 
 const routes = [
     {

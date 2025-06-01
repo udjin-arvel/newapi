@@ -748,8 +748,6 @@ export default {
                 document.body.appendChild(a);
                 a.click();
 
-                // document.body.removeChild(a);
-
                 // Показываем уведомление об успехе
                 // alert('Ваш план питания успешно сгенерирован и скачивается!');
             } catch (error) {
