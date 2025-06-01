@@ -41,12 +41,12 @@ class BegentController extends MainController
         $orderId = md5(time() . uniqid());
 
         // Отправка в Firebase
-//        $this->saveToFirebase("orders/{$this->rk_login}_{$orderId}", [
-//            'status' => 'pending',
-//            'created_at' => time(),
-//            'user_data' => $validated,
-//            'service' => $this->rk_login,
-//        ]);
+        $this->saveToFirebase("orders/{$this->rk_login}_{$orderId}", [
+            'status' => 'pending',
+            'created_at' => time(),
+            'user_data' => $validated,
+            'service' => $this->rk_login,
+        ]);
 
         $paymentUrl = $this->generateRobokassaUrl($orderId, $validated['price'], 'Оплата заказа с сервиса BeGent');
 

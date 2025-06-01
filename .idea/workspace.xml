@@ -5,6 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7ad24375-b5a6-455e-b3f2-95ba1730cd38" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/public/build/assets/app-BTk_Rwz0.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/build/assets/app-CLpWs1Ku.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/build/assets/app-CMVJpy8V.css" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/resources/js/widgets/Toast.vue" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/resources/js/widgets/Tooltip.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
@@ -14,6 +17,10 @@
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/Landings/TogostController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/Landings/TogostController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/PaymentController.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/config/services.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/assets/app-C8v5U4Vw.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/assets/app-Cq7WHZ_R.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/assets/app-DOvK3wto.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/build/manifest.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/pages/BeGent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/BeGent.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/pages/PaymentStatus.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/PaymentStatus.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/pages/ToGOST.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/ToGOST.vue" afterDir="false" />
@@ -160,7 +167,7 @@
       <workItem from="1748075032318" duration="3402000" />
       <workItem from="1748422696598" duration="9978000" />
       <workItem from="1748681622030" duration="15298000" />
-      <workItem from="1748762284456" duration="15720000" />
+      <workItem from="1748762284456" duration="16350000" />
     </task>
     <servers />
   </component>
