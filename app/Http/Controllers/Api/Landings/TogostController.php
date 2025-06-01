@@ -11,12 +11,6 @@ use Illuminate\Support\Facades\Storage;
  */
 class TogostController extends MainController
 {
-    protected $rk_login;
-
-    protected $rk_password1;
-
-    protected $rk_password2;
-
     public function __construct()
     {
         $this->rk_login     = config('services.robokassa.togost.login');

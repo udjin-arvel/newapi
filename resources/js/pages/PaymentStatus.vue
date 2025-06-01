@@ -40,6 +40,8 @@ const message = ref('Искренне благодарю за использов
 onMounted(() => {
     if (service.value === 'togost') {
         message.value += " В течение часа отредактированный в соответствии с ГОСТом файл придет вам по указанным контактным данным. <br>Ожидайте.";
+    } else {
+        message.value += " Загрузка вашего файла уже началась. Если вы не получили файл, напишите по контактным данным, указанным ниже.";
     }
     if (status.value === 'success') {
         window.parent.postMessage({ event: 'paymentCompleted', data: route.query }, '*');

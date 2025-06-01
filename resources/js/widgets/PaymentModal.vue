@@ -19,7 +19,7 @@
 
             <!-- Контент модалки -->
             <div class="relative flex items-center justify-center min-h-screen">
-                <div class="bg-gray-800 rounded-2xl p-8 max-w-screen-lg w-full mx-4 shadow-xl">
+                <div class="bg-gray-800 rounded-2xl p-3 sm:p-8 max-w-screen-lg w-full mx-4 shadow-xl">
                     <!-- Крестик закрытия -->
                     <button
                         class="absolute top-4 right-4 text-gray-400 hover:text-white transition"
@@ -31,7 +31,7 @@
                     </button>
 
                     <!-- Блок с оплатой -->
-                    <div class="border-2 border-dashed border-blue-500 rounded-xl p-6 text-center">
+                    <div class="border-2 border-dashed border-blue-500 rounded-xl p-3 sm:p-6 text-center">
                         <h3 class="text-xl font-bold text-white mb-4">Оплата</h3>
 
                         <!-- Контейнер для виджета Robokassa -->
@@ -92,27 +92,6 @@ onMounted(() => {
 onBeforeUnmount(() => {
     window.removeEventListener('message', handleMessage);
 });
-</script>
-
-<script>
-export default {
-    props: {
-        buttonText: {
-            type: String,
-            default: 'Оплата',
-        },
-        buttonClass: {
-            type: String,
-            default: 'bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition',
-        },
-    },
-
-    data() {
-        return {
-            isOpen: false,
-        }
-    },
-}
 </script>
 
 <style>

@@ -46,8 +46,8 @@ return [
     ],
 
     'telegram' => [
-        'bot_token' => env('TELEGRAM_BOT_TOKEN'),
-        'chat_id' => env('TELEGRAM_CHAT_ID'),
+        'bot_token' => '8083650333:AAFi-Wq3DjS9MGfmXgjC8pM09cbsoSOZjxs',
+        'chat_id' => '237982888',
     ],
 
 ];

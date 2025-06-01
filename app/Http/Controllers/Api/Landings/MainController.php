@@ -33,8 +33,11 @@ class MainController extends Controller
 
         $message = "Заявка на обратую связь!\n"
             . "👤 Клиент: {$validated['name']}\n"
-            . "📞 Телефон: {$validated['phone']}\n"
-            . "📧 Коментарий: {$validated['details']}";
+            . "📞 Телефон: {$validated['phone']}";
+
+        if ($validated['details']) {
+            $message .= "\n📧 Коментарий: {$validated['details']}";
+        }
 
         // Отправка в Телеграм
         $this->sendToTelegram($message);
@@ -76,7 +79,7 @@ class MainController extends Controller
         try {
             $firebase = $this->initFirebase();
             $db = $firebase->createDatabase();
-            $ref = $db->getReference("orders/{$orderId}");
+            $ref = $db->getReference("orders/{$this->rk_login}_{$orderId}");
 
             // Проверяем существование записи
             if (!$ref->getSnapshot()->exists()) {

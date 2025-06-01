@@ -517,27 +517,55 @@
                             </div>
                         </div>
 
+                        <div>
+                            <label class="flex items-center cursor-pointer">
+                                <span class="block text-gray-300">
+                                    Хочу просто знать о правильном питании
+                                </span>
+                                <Tooltip text="Поставьте галочку, если вам не нужно худеть, и вы просто желаете больше узнать про правильное питание" />
+                                <input
+                                    type="checkbox"
+                                    v-model="nutritionOnly"
+                                    class="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 h-5 w-5 ml-auto"
+                                >
+                            </label>
+                        </div>
+
+                        <div v-if="form.service === 'Персональный Про' || form.service === 'Максимум'" class="space-y-6">
+                            <div>
+                                <label class="flex items-center text-sm font-medium mb-2 text-gray-400" for="contact">
+                                    Контактные данные
+                                    <Tooltip text="Телефон, почта или ссылка на ваш мессенджер или социальную сеть" />
+                                </label>
+                                <input
+                                    v-model="contact"
+                                    id="contact"
+                                    name="contact"
+                                    type="text"
+                                    class="w-full bg-gray-800 rounded-lg px-4 py-3 text-gray-300 focus:ring-2 focus:ring-blue-500 outline-none border border-gray-700"
+                                >
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium mb-2 text-gray-400" for="diet">Ваш рацион</label>
+                                <textarea
+                                    v-model="diet"
+                                    id="diet"
+                                    rows="4"
+                                    class="w-full bg-gray-800 rounded-lg px-4 py-3 text-gray-300 focus:ring-2 focus:ring-blue-500 outline-none border border-gray-700"
+                                    placeholder="Опишите в подробностях регулярное содержимое вашей тарелки"></textarea>
+                            </div>
+                        </div>
+
                         <!-- Дополнительные поля -->
                         <div v-if="form.service === 'Продуктовая корзина' || form.service === 'Максимум'">
                             <label class="block text-sm font-medium mb-2 text-gray-400" for="expenses">Ежемесячные траты на еду (₽)</label>
-                            <select v-model="form.expenses" id="expenses" class="w-full bg-gray-800 rounded-lg px-4 py-3 text-gray-300 focus:ring-2 focus:ring-blue-500 outline-none border border-gray-700 appearance-none bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cG9seWxpbmUgcG9pbnRzPSI2IDkgMTIgMTUgMTggOSI+PC9wb2x5bGluZT48L3N2Zz4=')] bg-[length:20px_20px] bg-no-repeat bg-[right_0.75rem_center] pr-10">
+                            <select v-model="expenses" id="expenses" class="w-full bg-gray-800 rounded-lg px-4 py-3 text-gray-300 focus:ring-2 focus:ring-blue-500 outline-none border border-gray-700 appearance-none bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cG9seWxpbmUgcG9pbnRzPSI2IDkgMTIgMTUgMTggOSI+PC9wb2x5bGluZT48L3N2Zz4=')] bg-[length:20px_20px] bg-no-repeat bg-[right_0.75rem_center] pr-10">
                                 <option class="bg-gray-800" value="low">Менее 10 тысячи рублей</option>
                                 <option class="bg-gray-800" value="middle">10-25 тысяч рублей</option>
                                 <option class="bg-gray-800" value="high">25-50 тысяч рублей</option>
                                 <option class="bg-gray-800" value="extra">Более 50 тысяч рублей</option>
                             </select>
-                        </div>
-
-                        <div v-if="form.service === 'Персональный Про' || form.service === 'Максимум'" class="space-y-6">
-                            <div>
-                                <label class="block text-sm font-medium mb-2 text-gray-400" for="diet">Ваш рацион</label>
-                                <textarea
-                                    v-model="form.diet"
-                                    id="diet"
-                                    rows="4"
-                                    class="w-full bg-gray-800 rounded-lg px-4 py-3 text-gray-300 focus:ring-2 focus:ring-blue-500 outline-none border border-gray-700"
-                                    placeholder="Подробно опишите повседневные приемы пищи"></textarea>
-                            </div>
                         </div>
 
                         <!-- Промокод -->
@@ -657,6 +685,8 @@
                 </a>
             </div>
         </footer>
+
+        <Toast ref="toast" />
     </div>
 </template>
 
@@ -664,6 +694,8 @@
 import axios from 'axios';
 import { throttle } from 'lodash-es';
 import PaymentModal from "@/widgets/PaymentModal.vue";
+import Tooltip from "@/widgets/Tooltip.vue";
+import Toast from "@/widgets/Toast.vue";
 
 /**
  * Массив тарифов
@@ -678,7 +710,7 @@ const RATES_LIST = [
 
 export default {
     name: 'BeGentLanding',
-    components: {PaymentModal},
+    components: {Toast, Tooltip, PaymentModal},
 
     data() {
         return {
@@ -694,6 +726,8 @@ export default {
                 activity: 1.375,
                 service: 'Персональный',
             },
+            nutritionOnly: false,
+            contact: '',
             diet: '',
             expenses: '',
             code: '',
@@ -748,57 +782,52 @@ export default {
                 document.body.appendChild(a);
                 a.click();
 
-                // Показываем уведомление об успехе
-                // alert('Ваш план питания успешно сгенерирован и скачивается!');
+                this.$refs.toast?.showToast('Ваша брошюра по питанию успешно сгенерирована и скачивается!');
             } catch (error) {
-                console.error('Ошибка генерации PDF:', error);
-                // alert('Произошла ошибка при генерации PDF. Мы отправим его вам по email');
+                this.$refs.toast?.showToast('Ошибка генерации PDF. Пожалуйста, обратитесь к администратору');
+                console.error(error);
             }
         },
 
         async submitForm() {
-            let isValid = true;
-            let activityTitle = this.$refs?.activityField?.selectedOptions[0]?.innerText || 'Низкая';
-
             for (const field in this.form) {
-                isValid = Boolean(this.form[field]);
-                if (!isValid) break;
+                if (!Boolean(this.form[field])) {
+                    return this.$refs.toast?.showToast('Заполните все обязательные поля', 'error');
+                }
             }
             if (this.currentRate.title === 'Продуктовая корзина' && !this.expenses) {
-                isValid = false;
+                return this.$refs.toast?.showToast('Укажите ваши ежемесячные траты на еду', 'error');
             }
-            if ((this.currentRate.title === 'Персональный Про' || this.currentRate.title === 'Максимум') && !this.diet) {
-                isValid = false;
+            if ((this.currentRate.title === 'Персональный Про' || this.currentRate.title === 'Максимум') && (!this.diet || !this.contact)) {
+                return this.$refs.toast?.showToast('Опишите ваш рацион и укажите контактные данные', 'error');
             }
 
-            if (isValid) {
-                this.isLoading = true;
+            this.isLoading = true;
 
-                try {
-                    const data = {
-                        ...this.form,
-                        activityTitle: activityTitle.toLowerCase(),
-                        diet: this.diet,
-                        expenses: this.expenses,
-                        code: this.code,
-                        price: this.newPrice || this.price,
-                    };
+            try {
+                const activityTitle = this.$refs?.activityField?.selectedOptions[0]?.innerText || 'Низкая';
+                const data = {
+                    ...this.form,
+                    activityTitle: activityTitle.toLowerCase(),
+                    nutritionOnly: this.nutritionOnly,
+                    contact: this.contact,
+                    diet: this.diet,
+                    expenses: this.expenses,
+                    code: this.code,
+                    price: this.newPrice || this.price,
+                };
 
-                    const response = await axios.post('/api/addGentRequest', data);
+                const response = await axios.post('/api/addGentRequest', data);
 
-                    if (response?.data?.payment_url) {
-                        this.paymentUrl = response.data.payment_url;
-                        this.orderId = response.data.order_id;
-                        this.successMessage = 'Запрос успешно отправлен!';
-                    }
-
-                } catch (error) {
-                    console.error('Ошибка генерации PDF:', error);
-                } finally {
-                    this.isLoading = false;
+                if (response?.data?.payment_url) {
+                    this.paymentUrl = response.data.payment_url;
+                    this.orderId = response.data.order_id;
                 }
-            } else {
-                alert('Ошибка формы');
+
+            } catch (error) {
+                this.$refs.toast?.showToast('Возникла ошибка при создании запроса. Пожалуйста, обратитесь к администратору', 'error');
+            } finally {
+                this.isLoading = false;
             }
         },
 

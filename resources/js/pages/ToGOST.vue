@@ -107,18 +107,7 @@
                         <div class="relative">
                             <label class="text-sm font-medium mb-2 text-gray-300 flex items-center" for="contact">
                                 Контактная информация:
-                                <!-- Иконка с тултипом -->
-                                <div class="group relative ml-2">
-                                    <svg class="w-4 h-4 mt-[-10px] text-gray-400 cursor-help" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                    </svg>
-
-                                    <!-- Тултип -->
-                                    <div class="absolute hidden group-hover:block bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 text-sm bg-gray-700 text-gray-200 rounded-lg shadow-lg w-64 text-center transform transition-opacity duration-300">
-                                        Телефон, почта или ссылка на вашу социальную сеть или мессенджер
-                                        <div class="absolute w-3 h-3 bg-gray-700 rotate-45 -bottom-1 left-1/2 -translate-x-1/2"></div>
-                                    </div>
-                                </div>
+                                <Tooltip text="Телефон, почта или ссылка на ваш мессенджер или социальную сеть" />
                             </label>
                             <input
                                 v-model="formData.contact"
@@ -260,16 +249,20 @@
                 © {{ new Date().getFullYear() }}. ToGOST. Все права защищены. Самозанятый Бедных Евгений Евгеньевич. ИНН: 701742187861
             </div>
         </footer>
+
+        <Toast ref="toast" />
     </div>
 </template>
 
 <script>
 import axios from 'axios';
 import PaymentModal from "../widgets/PaymentModal.vue";
+import Tooltip from "@/widgets/Tooltip.vue";
+import Toast from "@/widgets/Toast.vue";
 
 export default {
     name: 'ToGOSTLanding',
-    components: {PaymentModal},
+    components: {Toast, Tooltip, PaymentModal},
 
     data() {
         return {
@@ -301,13 +294,11 @@ export default {
             if (files && files[0]) {
                 const validTypes = ['application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
                 if (!validTypes.includes(files[0].type)) {
-                    alert('Пожалуйста, загрузите файл в формате .doc или .docx');
-                    return;
+                    return this.$refs.toast?.showToast('Пожалуйста, загрузите файл в формате .doc или .docx', 'error');
                 }
 
                 if (files[0].size > 20 * 1024 * 1024) {
-                    alert('Файл слишком большой. Максимальный размер: 20MB');
-                    return;
+                    return this.$refs.toast?.showToast('Файл слишком большой. Максимальный размер: 20MB', 'error');
                 }
 
                 this.file = files[0];
@@ -328,8 +319,7 @@ export default {
             }
 
             if (!this.file) {
-                this.error = 'Пожалуйста, загрузите файл';
-                return;
+                return this.$refs.toast?.showToast('Пожалуйста, загрузите файл', 'error');
             }
 
             this.isLoading = true;
@@ -351,14 +341,14 @@ export default {
                 if (response?.data?.payment_url) {
                     this.paymentUrl = response.data.payment_url;
                     this.orderId = response.data.order_id;
-                    this.successMessage = 'Запрос успешно отправлен!';
+                    this.$refs.toast?.showToast('Запрос успешно отправлен!');
                 }
 
                 this.resetForm();
 
             } catch (error) {
-                console.error('Ошибка отправки:', error);
-                this.error = error.response?.data?.message || 'Произошла ошибка при отправке';
+                this.$refs.toast?.showToast('Возникла ошибка при создании запроса. Пожалуйста, обратитесь к администратору', 'error');
+                console.error(error);
             } finally {
                 this.isLoading = false;
             }
@@ -373,31 +363,6 @@ export default {
             this.file = null;
             this.$refs.fileInput.value = '';
         }
-    },
-
-    computed: {
-        // paymentUrl() {
-        //     const orderId = this.formData.orderId;
-        //
-        //     if (orderId) {
-        //         const InvId = 0; // 0 - автогенерация номера
-        //         const OutSum = 1;
-        //         const params = new URLSearchParams({
-        //             MerchantLogin: import.meta.env.VITE_ROBOKASSA_LOGIN,
-        //             InvId,
-        //             OutSum,
-        //             Description: `Оплата заказа с сервиса ToGOST`,
-        //             SignatureValue: md5(`${import.meta.env.VITE_ROBOKASSA_LOGIN}:${OutSum}:${InvId}:${import.meta.env.VITE_ROBOKASSA_PASSWORD1}:shp_order_id=${orderId}`),
-        //             shp_order_id: orderId,
-        //             Culture: 'ru',
-        //             IsTest: import.meta.env.VITE_TEST_MODE === 'true' ? 1 : 0,
-        //         });
-        //
-        //         return `https://auth.robokassa.ru/Merchant/Index.aspx?${params}`;
-        //     }
-        //
-        //     return '';
-        // },
     },
 }
 </script>

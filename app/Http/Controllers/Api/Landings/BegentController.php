@@ -11,12 +11,6 @@ use Illuminate\Http\Request;
  */
 class BegentController extends MainController
 {
-    protected $rk_login;
-
-    protected $rk_password1;
-
-    protected $rk_password2;
-
     public function __construct()
     {
         $this->rk_login     = config('services.robokassa.begent.login');
@@ -37,6 +31,8 @@ class BegentController extends MainController
             'activity' => 'required|numeric|min:1.2|max:2.5',
             'activityTitle' => 'required',
             'price' => 'required',
+            'nutritionOnly' => 'boolean',
+            'contact' => 'nullable|string|max:255',
             'diet' => 'nullable|string|min:128|max:2048',
             'expenses' => 'nullable|string',
         ]);
@@ -45,12 +41,12 @@ class BegentController extends MainController
         $orderId = md5(time() . uniqid());
 
         // Отправка в Firebase
-        $this->saveToFirebase("orders/{$this->rk_login}_{$orderId}", [
-            'status' => 'pending',
-            'created_at' => time(),
-            'user_data' => $validated,
-            'service' => $this->rk_login,
-        ]);
+//        $this->saveToFirebase("orders/{$this->rk_login}_{$orderId}", [
+//            'status' => 'pending',
+//            'created_at' => time(),
+//            'user_data' => $validated,
+//            'service' => $this->rk_login,
+//        ]);
 
         $paymentUrl = $this->generateRobokassaUrl($orderId, $validated['price'], 'Оплата заказа с сервиса BeGent');
 
@@ -62,10 +58,19 @@ class BegentController extends MainController
 
     protected function getTelegramMessageByData($data): string
     {
-        return "✅ Сервис BeGent. Успешная оплата!\n"
+        $message = "✅ Сервис BeGent. Успешная оплата!\n"
             . "💰 Сумма: {$data['user_data']['price']} руб.\n"
             . "👤 Клиент: {$data['user_data']['name']}\n"
             . "📧 Тариф: {$data['user_data']['service']}";
+
+        if (!empty($data['user_data']['contact'])) {
+            $message .= "\n📞 Способ связи: {$data['user_data']['contact']}";
+        }
+        if (!empty($data['user_data']['diet'])) {
+            $message .= "\n📎 Рацион: {$data['user_data']['diet']}";
+        }
+
+        return $message;
     }
 
     public function generatePdf($orderId)
@@ -100,19 +105,20 @@ class BegentController extends MainController
         $fatsMax = $proteinsMin;
         $carbohydratesMin = round(($totalCalories - ($proteinsMax * 4 + $fatsMax * 9)) / 4);
         $carbohydratesMax = round(($totalCalories - ($proteinsMin * 4 + $fatsMin * 9)) / 4);
+        $targetCalories = $data['nutritionOnly'] ? $totalCalories : $totalCalories - 500;
 
         // Генерация PDF
         $pdf = PDF::loadView('pdf.begent', array_merge([
             'bmr' => round($bmr),
             'totalCalories' => $totalCalories,
-            'targetCalories' => $totalCalories - 500,
+            'targetCalories' => $targetCalories,
             'proteinsMin' => $proteinsMin,
             'proteinsMax' => $proteinsMax,
             'fatsMin' => $fatsMin,
             'fatsMax' => $fatsMax,
             'carbohydratesMin' => $carbohydratesMin,
             'carbohydratesMax' => $carbohydratesMax,
-            'oneIngestion' => round(($totalCalories - 500) / 3),
+            'oneIngestion' => round($targetCalories / 3),
         ], $data));
 
         return $pdf->download("be-gent-{$orderId}.pdf");
