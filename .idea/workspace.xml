@@ -5,25 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7ad24375-b5a6-455e-b3f2-95ba1730cd38" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/Landings/BegentController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/Landings/MainController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/Landings/TogostController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bootstrap/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/bootstrap/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/services.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/build/assets/app-CvyKq9N-.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/build/assets/app-DOvK3wto.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/build/assets/app-DOvK3wto.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/build/assets/app-DaD7g6xa.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/build/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/build/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/BeGent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/BeGent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/LandingHero.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/LandingHero.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/PaymentStatus.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/PaymentStatus.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/ToGOST.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/ToGOST.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/router.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/Landings/MainController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/Landings/MainController.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,7 +148,7 @@
       <workItem from="1748075032318" duration="3402000" />
       <workItem from="1748422696598" duration="9978000" />
       <workItem from="1748681622030" duration="15298000" />
-      <workItem from="1748762284456" duration="5710000" />
+      <workItem from="1748762284456" duration="6499000" />
     </task>
     <servers />
   </component>

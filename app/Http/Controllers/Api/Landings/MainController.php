@@ -94,7 +94,7 @@ class MainController extends Controller
             // Отправка уведомления в Telegram
             $this->sendToTelegram($this->getTelegramMessageByData($ref->getValue()));
 
-            return response()->json(['OK' => $request->InvId]);
+            return response()->json("OK{$request->InvId}\n");
 
         } catch (\Exception $e) {
             Log::error('Error processing Robokassa webhook', [
