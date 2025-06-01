@@ -792,8 +792,6 @@ export default {
                         this.successMessage = 'Запрос успешно отправлен!';
                     }
 
-                    // Очистить форму
-
                 } catch (error) {
                     console.error('Ошибка генерации PDF:', error);
                 } finally {

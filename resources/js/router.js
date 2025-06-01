@@ -21,14 +21,24 @@ const routes = [
         component: ToGOST,
     },
     {
-        path: '/payment_success',
+        path: '/begent_payment_success',
         component: PaymentStatus,
-        meta: { paymentStatus: 'success' },
+        meta: { paymentStatus: 'success', service: 'begent' },
     },
     {
-        path: '/payment_error',
+        path: '/begent_payment_error',
         component: PaymentStatus,
-        meta: { paymentStatus: 'error' },
+        meta: { paymentStatus: 'error', service: 'begent' },
+    },
+    {
+        path: '/togost_payment_success',
+        component: PaymentStatus,
+        meta: { paymentStatus: 'success', service: 'togost' },
+    },
+    {
+        path: '/togost_payment_error',
+        component: PaymentStatus,
+        meta: { paymentStatus: 'error', service: 'togost' },
     },
 ];
 

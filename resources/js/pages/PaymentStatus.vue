@@ -7,10 +7,7 @@
                 <h1 class="text-3xl md:text-4xl font-bold text-white">
                     Оплата подтверждена
                 </h1>
-                <p class="text-xl text-gray-300">
-                    В течение часа отредактированный в соответствии с ГОСТом файл придет вам по указанным контактным данным.
-                    <br>Ожидайте.
-                </p>
+                <p class="text-xl text-gray-300" v-html="message"></p>
             </div>
 
             <!-- Ошибка оплаты -->
@@ -28,7 +25,7 @@
 </template>
 
 <script setup>
-import { computed, onMounted } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import {
     CheckCircleIcon,
@@ -37,8 +34,13 @@ import {
 
 const route = useRoute();
 const status = computed(() => route.meta.paymentStatus);
+const service = computed(() => route.meta.service);
+const message = ref('Искренне благодарю за использование услуг сервисов Arvelov.');
 
 onMounted(() => {
+    if (service.value === 'togost') {
+        message.value += " В течение часа отредактированный в соответствии с ГОСТом файл придет вам по указанным контактным данным. <br>Ожидайте.";
+    }
     if (status.value === 'success') {
         window.parent.postMessage({ event: 'paymentCompleted', data: route.query }, '*');
     }

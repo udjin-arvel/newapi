@@ -45,11 +45,11 @@ class TogostController extends MainController
             'user_data' => $validated,
             'amount' => 250, // сумма в копейках
             'file' => $fileUrl,
-            'service' => 'togost',
+            'service' => $this->rk_login,
         ];
 
         // Отправка в Firebase
-        $this->saveToFirebase("orders/{$orderId}", $paymentData);
+        $this->saveToFirebase("orders/{$this->rk_login}_{$orderId}", $paymentData);
 
         $paymentUrl = $this->generateRobokassaUrl($orderId, $paymentData['amount'], 'Оплата заказа с сервиса ToGOST');
 
