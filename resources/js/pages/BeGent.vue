@@ -519,7 +519,7 @@
 
                         <div>
                             <label class="flex items-center cursor-pointer">
-                                <span class="block text-gray-300">
+                                <span class="block text-gray-300 w-[50%] sm:w-auto">
                                     Хочу просто знать о правильном питании
                                 </span>
                                 <Tooltip text="Поставьте галочку, если вам не нужно худеть, и вы просто желаете больше узнать про правильное питание" />
