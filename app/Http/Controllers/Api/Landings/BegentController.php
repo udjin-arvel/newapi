@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Landings;
 
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Log;
 
 /**
  * Class BegentController
