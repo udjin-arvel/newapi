@@ -772,6 +772,11 @@ export default {
         async handlePaymentSuccess() {
             try {
                 const response = await fetch(`/api/generatePdf/${this.orderId}`);
+
+                if (!response.ok) {
+                    console.error(`HTTP error! status: ${response.status}`);
+                }
+
                 const blob = await response.blob();
 
                 // Создаем ссылку для скачивания
@@ -817,23 +822,7 @@ export default {
                     price: this.newPrice || this.price,
                 };
 
-                // const response = await axios.post('/api/addGentRequest', data);
-                const response = await fetch(`/api/addGentRequest`, {
-                    method: "POST",
-                    body: JSON.stringify(data),
-                });
-                console.log('response', response); return;
-                const blob = await response.blob();
-
-                // Создаем ссылку для скачивания
-                const url = window.URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = `begent-plan.pdf`;
-                document.body.appendChild(a);
-                a.click();
-
-                return;
+                const response = await axios.post('/api/addGentRequest', data);
 
                 if (response?.data?.payment_url) {
                     this.paymentUrl = response.data.payment_url;

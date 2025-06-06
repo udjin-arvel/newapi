@@ -152,7 +152,7 @@
         </div>
 
         @if(isset($expenses))
-            <h2>Рассчет продуктовой корзины</h2>
+            <h2>Рассчет здоровой продуктовой корзины</h2>
             @include("pdf.expensesVariants.$expenses")
         @endif
 
