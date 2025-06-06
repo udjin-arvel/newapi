@@ -718,11 +718,11 @@ export default {
             rates: RATES_LIST,
             currentRate: RATES_LIST[0],
             form: {
-                name: '',
-                gender: 'male',
-                weight: 70,
-                height: 175,
-                age: 30,
+                name: 'Анастасия',
+                gender: 'female',
+                weight: 64,
+                height: 158,
+                age: 21,
                 activity: 1.375,
                 service: 'Персональный',
             },
@@ -817,7 +817,23 @@ export default {
                     price: this.newPrice || this.price,
                 };
 
-                const response = await axios.post('/api/addGentRequest', data);
+                // const response = await axios.post('/api/addGentRequest', data);
+                const response = await fetch(`/api/addGentRequest`, {
+                    method: "POST",
+                    body: JSON.stringify(data),
+                });
+                console.log('response', response); return;
+                const blob = await response.blob();
+
+                // Создаем ссылку для скачивания
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `begent-plan.pdf`;
+                document.body.appendChild(a);
+                a.click();
+
+                return;
 
                 if (response?.data?.payment_url) {
                     this.paymentUrl = response.data.payment_url;

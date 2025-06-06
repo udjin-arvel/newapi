@@ -38,6 +38,57 @@ class BegentController extends MainController
             'expenses' => 'nullable|string',
         ]);
 
+        $data = $validated;
+
+        Log::info(111);
+
+        return response()->json([]);
+
+        // Расчет по формуле Миффлина-Сан Жеора
+        if ($data['gender'] === 'male') {
+            $bmr = (10 * $data['weight']) + (6.25 * $data['height']) - (5 * $data['age']) + 5;
+        } else {
+            $bmr = (10 * $data['weight']) + (6.25 * $data['height']) - (5 * $data['age']) - 161;
+        }
+
+        $totalCalories = round($bmr * $data['activity']);
+        $proteinsMin = round(1.5 * $data['weight']);
+        $proteinsMax = round(2.5 * $data['weight']);
+        $fatsMin = round(0.8 * $data['weight']);
+        $fatsMax = $proteinsMin;
+        $carbohydratesMin = round(($totalCalories - ($proteinsMax * 4 + $fatsMax * 9)) / 4);
+        $carbohydratesMax = round(($totalCalories - ($proteinsMin * 4 + $fatsMin * 9)) / 4);
+        $targetCalories = $data['nutritionOnly'] ? $totalCalories : $totalCalories - 500;
+
+        return response()->json(array_merge([
+            'bmr' => round($bmr),
+            'totalCalories' => $totalCalories,
+            'targetCalories' => $targetCalories,
+            'proteinsMin' => $proteinsMin,
+            'proteinsMax' => $proteinsMax,
+            'fatsMin' => $fatsMin,
+            'fatsMax' => $fatsMax,
+            'carbohydratesMin' => $carbohydratesMin,
+            'carbohydratesMax' => $carbohydratesMax,
+            'oneIngestion' => round($targetCalories / 3),
+        ], $data));
+
+        // Генерация PDF
+        $pdf = PDF::loadView('pdf.begent', array_merge([
+            'bmr' => round($bmr),
+            'totalCalories' => $totalCalories,
+            'targetCalories' => $targetCalories,
+            'proteinsMin' => $proteinsMin,
+            'proteinsMax' => $proteinsMax,
+            'fatsMin' => $fatsMin,
+            'fatsMax' => $fatsMax,
+            'carbohydratesMin' => $carbohydratesMin,
+            'carbohydratesMax' => $carbohydratesMax,
+            'oneIngestion' => round($targetCalories / 3),
+        ], $data));
+
+        return $pdf->download("be-gent.pdf");
+
         // Генерация уникального ID заказа
         $orderId = md5(time() . uniqid());
 

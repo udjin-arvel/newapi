@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7ad24375-b5a6-455e-b3f2-95ba1730cd38" name="Default Changelist" comment="" />
+    <list default="true" id="7ad24375-b5a6-455e-b3f2-95ba1730cd38" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/Landings/BegentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/Landings/BegentController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/BeGent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/BeGent.vue" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -151,6 +155,7 @@
       <workItem from="1749030496742" duration="2258000" />
       <workItem from="1749135219228" duration="181000" />
       <workItem from="1749206736174" duration="2000" />
+      <workItem from="1749215001965" duration="1639000" />
     </task>
     <servers />
   </component>
