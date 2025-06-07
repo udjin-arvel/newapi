@@ -13,6 +13,7 @@ use App\Models\Composition;
 use App\Models\News;
 use App\Models\Story;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Log;
 
@@ -186,5 +187,43 @@ class StoryController extends Controller
         ]))
             ->response()
             ->setStatusCode(200);
+    }
+
+    /**
+     * Опубликовать историю
+     *
+     * @param int $id ID истории
+     * @return JsonResponse
+     */
+    public function publish(int $id): JsonResponse
+    {
+        $story = Story::findOrFail($id);
+
+        $story->update(['is_public' => true]);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'История опубликована',
+            'data' => new StoryResource($story),
+        ]);
+    }
+
+    /**
+     * Снять историю с публикации
+     *
+     * @param int $id ID истории
+     * @return JsonResponse
+     */
+    public function unpublish(int $id): JsonResponse
+    {
+        $story = Story::findOrFail($id);
+
+        $story->update(['is_public' => false]);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'История снята с публикации',
+            'data' => new StoryResource($story),
+        ]);
     }
 }

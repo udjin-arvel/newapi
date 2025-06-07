@@ -17,7 +17,6 @@ class StoryRequest extends BaseRequest
 			'title'        => 'required|max:255',
 			'fragments'    => 'required|array',
 			'descriptions' => 'array',
-			'names'        => 'json',
 			'type'         => 'required|string|in:' . implode(',', array_keys(Story::TYPES)),
 		];
 	}

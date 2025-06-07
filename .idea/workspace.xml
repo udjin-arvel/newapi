@@ -4,178 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7ad24375-b5a6-455e-b3f2-95ba1730cd38" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/Landings/BegentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/Landings/BegentController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/pages/BeGent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/BeGent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pdf/begent.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pdf/begent.blade.php" afterDir="false" />
+    <list default="true" id="94fc8e56-8f8e-4850-8e04-8c3d2c03d942" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/StoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/StoryController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/StoryRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/StoryRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Scopes/PublicScope.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Scopes/PublicScope.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
-    <pharConfigPath>$PROJECT_DIR$/TheBook/composer.json</pharConfigPath>
+  <component name="ComposerSettings">
     <execution />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Vue Composition API Component" />
-      </list>
-    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitSEFilterConfiguration">
-    <file-type-list>
-      <filtered-out-file-type name="LOCAL_BRANCH" />
-      <filtered-out-file-type name="REMOTE_BRANCH" />
-      <filtered-out-file-type name="TAG" />
-      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
-    </file-type-list>
-  </component>
-  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="C:\Dev\PHP\php.exe" />
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 2
-}</component>
-  <component name="ProjectId" id="2WgwbaNdQRVTZ8n6CQt0xQBrYJ2" />
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showLibraryContents" value="true" />
-  </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/OSPanel/domains/arvelov",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "configurable.group.editor",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\PhpStorm2024.1\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
-    "vue.rearranger.settings.migration": "true"
-  },
-  "keyToStringList": {
-    "vue.recent.templates": [
-      "Vue Composition API Component"
-    ]
+    "git-widget-placeholder": "main"
   }
 }]]></component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-PS-241.19416.23" />
-        <option value="bundled-php-predefined-ba97393d7c68-48a1a656d44e-com.jetbrains.php.sharedIndexes-PS-241.19416.23" />
-      </set>
-    </attachedChunks>
-  </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="7ad24375-b5a6-455e-b3f2-95ba1730cd38" name="Default Changelist" comment="" />
-      <created>1697167604349</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1697167604349</updated>
-      <workItem from="1697167608386" duration="7596000" />
-      <workItem from="1697176440623" duration="5630000" />
-      <workItem from="1697194132140" duration="71000" />
-      <workItem from="1697650441041" duration="1026000" />
-      <workItem from="1699194703508" duration="2584000" />
-      <workItem from="1699527597047" duration="29000" />
-      <workItem from="1701326163125" duration="8703000" />
-      <workItem from="1702628303367" duration="18000" />
-      <workItem from="1703803485385" duration="22311000" />
-      <workItem from="1703854680575" duration="1143000" />
-      <workItem from="1706863535602" duration="619000" />
-      <workItem from="1706958656494" duration="1189000" />
-      <workItem from="1707373990653" duration="620000" />
-      <workItem from="1707382918224" duration="5000" />
-      <workItem from="1707824329551" duration="4540000" />
-      <workItem from="1708326891214" duration="605000" />
-      <workItem from="1708526523733" duration="297000" />
-      <workItem from="1715310216621" duration="2616000" />
-      <workItem from="1715320053653" duration="4447000" />
-      <workItem from="1715523296170" duration="641000" />
-      <workItem from="1715595248185" duration="11000" />
-      <workItem from="1716120826507" duration="8627000" />
-      <workItem from="1716308044133" duration="1516000" />
-      <workItem from="1716372462355" duration="16000" />
-      <workItem from="1716812824651" duration="3850000" />
-      <workItem from="1716919054578" duration="2342000" />
-      <workItem from="1718287981283" duration="104000" />
-      <workItem from="1718294305290" duration="402000" />
-      <workItem from="1721590220528" duration="3719000" />
-      <workItem from="1721606471886" duration="613000" />
-      <workItem from="1722008699833" duration="114000" />
-      <workItem from="1725007977262" duration="4405000" />
-      <workItem from="1725868939863" duration="2830000" />
-      <workItem from="1726051125614" duration="2896000" />
-      <workItem from="1726575969561" duration="2956000" />
-      <workItem from="1726581888945" duration="360000" />
-      <workItem from="1727974372308" duration="2678000" />
-      <workItem from="1735479952440" duration="1831000" />
-      <workItem from="1735551154545" duration="1437000" />
-      <workItem from="1743004158699" duration="494000" />
-      <workItem from="1743066732434" duration="885000" />
-      <workItem from="1743082245603" duration="1998000" />
-      <workItem from="1744123196855" duration="2120000" />
-      <workItem from="1744126240225" duration="9000" />
-      <workItem from="1744644396747" duration="1599000" />
-      <workItem from="1744801305827" duration="1553000" />
-      <workItem from="1745918754457" duration="26534000" />
-      <workItem from="1746180246534" duration="6041000" />
-      <workItem from="1746251591736" duration="29108000" />
-      <workItem from="1746341138251" duration="5457000" />
-      <workItem from="1746513878757" duration="2947000" />
-      <workItem from="1746541864195" duration="14788000" />
-      <workItem from="1746603848321" duration="16276000" />
-      <workItem from="1746629379542" duration="780000" />
-      <workItem from="1747060641007" duration="622000" />
-      <workItem from="1747139266154" duration="24000" />
-      <workItem from="1747147649705" duration="1938000" />
-      <workItem from="1747207568424" duration="78000" />
-      <workItem from="1747387237486" duration="9383000" />
-      <workItem from="1747399087795" duration="1000" />
-      <workItem from="1747399937602" duration="458000" />
-      <workItem from="1747559567272" duration="615000" />
-      <workItem from="1747561809869" duration="15000" />
-      <workItem from="1747659506760" duration="483000" />
-      <workItem from="1747991989856" duration="3328000" />
-      <workItem from="1748075032318" duration="3402000" />
-      <workItem from="1748422696598" duration="9978000" />
-      <workItem from="1748681622030" duration="15298000" />
-      <workItem from="1748762284456" duration="16432000" />
-      <workItem from="1748953919983" duration="668000" />
-      <workItem from="1748966299445" duration="2470000" />
-      <workItem from="1749030496742" duration="2258000" />
-      <workItem from="1749135219228" duration="181000" />
-      <workItem from="1749206736174" duration="2000" />
-      <workItem from="1749215001965" duration="1639000" />
-    </task>
     <servers />
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand />
-    <select />
   </component>
 </project>

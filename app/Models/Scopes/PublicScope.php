@@ -23,6 +23,10 @@ trait PublicScope
 	 */
 	public function scopeIsPublic(Builder $query, bool $value = true)
 	{
+        if ($userId = auth()->id()) {
+            return $query->where('is_public', $value)->orWhere('user_id', $userId);
+        }
+
 		return $query->where('is_public', $value);
 	}
 }

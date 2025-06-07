@@ -77,6 +77,8 @@ Route::group(['middleware' => 'auth:api'], function() {
 
     // ------------------------ Story routes ------------------------ //
 	Route::resource('stories', Api\StoryController::class)->only(['store', 'update', 'destroy']);
+    Route::post('/stories/{id}/publish', [Api\StoryController::class, 'publish']);
+    Route::post('/stories/{id}/unpublish', [Api\StoryController::class, 'unpublish']);
 
     // ------------------------ Fragment routes ------------------------ //
     Route::resource('fragments', Api\FragmentController::class)->only(['store', 'update', 'destroy']);
