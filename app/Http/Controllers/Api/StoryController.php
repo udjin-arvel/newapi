@@ -173,7 +173,7 @@ class StoryController extends Controller
                     $next = [
                         'id' => $stories[$key + 1]['id'],
                         'title' => $stories[$key + 1]['title'],
-                        'chapter' => $stories[$key - 1]['chapter'],
+                        'chapter' => $stories[$key + 1]['chapter'],
                     ];
                 }
 
