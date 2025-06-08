@@ -34,7 +34,7 @@ class BegentController extends MainController
             'price' => 'required',
             'nutritionOnly' => 'boolean',
             'contact' => 'nullable|string|max:255',
-            'diet' => 'nullable|string|min:128|max:2048',
+            'diet' => 'nullable|string|min:50|max:2048',
             'expenses' => 'nullable|string',
         ]);
 

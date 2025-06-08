@@ -718,11 +718,11 @@ export default {
             rates: RATES_LIST,
             currentRate: RATES_LIST[0],
             form: {
-                name: 'Анастасия',
-                gender: 'female',
-                weight: 64,
-                height: 158,
-                age: 21,
+                name: '',
+                gender: 'male',
+                weight: 70,
+                height: 170,
+                age: 30,
                 activity: 1.375,
                 service: 'Персональный',
             },
@@ -822,7 +822,12 @@ export default {
                     price: this.newPrice || this.price,
                 };
 
-                const response = await axios.post('/api/addGentRequest', data);
+                const response = await axios.post('/api/addGentRequest', data)
+                    .catch((res) => {
+                        if (res?.response?.data?.message) {
+                            this.$refs.toast?.showToast(res.response.data.message, 'error');
+                        }
+                    });
 
                 if (response?.data?.payment_url) {
                     this.paymentUrl = response.data.payment_url;
@@ -830,7 +835,7 @@ export default {
                 }
 
             } catch (error) {
-                this.$refs.toast?.showToast('Возникла ошибка при создании запроса. Пожалуйста, обратитесь к администратору', 'error');
+                console.error('Возникла ошибка при выполнении запроса');
             } finally {
                 this.isLoading = false;
             }
