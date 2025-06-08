@@ -71,70 +71,34 @@
         <div class="w-[900px]">
             <h2 class="text-white text-[32px] font-bold mb-5 pl-6 sm:pl-0">Обо мне</h2>
 
-            <div class="bg-white/90 backdrop-blur-md border-2 border-dashed border-[#44535e] rounded-2xl p-6 text-[#111826]">
+            <div class="bg-white/90 backdrop-blur-md border-2 border-dashed border-[#44535e] rounded-2xl p-6">
                 <p class="mb-3">
                     Я создаю и развиваю цифровые продукты, которые работают стабильно, выглядят современно и легко
                     масштабируются.
                 </p>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-sm">
-                    <div
-                        role="button"
-                        @click="goToForm('site')"
-                        class="service-card flex items-center gap-3 bg-[url(/img/development.jpg)] h-60 bg-cover bg-center rounded-xl p-4 shadow-sm overflow-hidden"
-                    >
-                        <div class="service-card__title flex items-center justify-center leading-8 text-white text-[28px] font-bold text-center p-4">
-                            <span>Разработка сайтов</span>
-                        </div>
-                    </div>
 
+                <div class="services-grid grid md:grid-cols-2 gap-6">
                     <div
-                        role="button"
-                        @click="goToForm('tg')"
-                        class="service-card flex items-start gap-3 bg-[url(/img/telegram.jpg)] h-60 bg-cover bg-center rounded-xl p-4 shadow-sm overflow-hidden"
+                        v-for="(service, index) in services"
+                        :key="index"
+                        @click="toggleService(index)"
+                        :class="`service-card relative rounded-xl shadow-md overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg border`"
                     >
-                        <div class="service-card__title flex items-center justify-center leading-8 text-white text-[28px] font-bold text-center p-4">
-                            <span>Интеграция с Telegram</span>
+                        <div class="p-6 flex justify-between items-center">
+                            <h3 class="text-xl font-semibold text-white">{{ service.title }}</h3>
+                            <span class="transform transition-transform duration-300 text-white" :class="{'rotate-180': service.isOpen}">
+                                ▼
+                            </span>
                         </div>
-                    </div>
 
-                    <div
-                        role="button"
-                        @click="goToForm('app')"
-                        class="service-card flex items-start gap-3 bg-[url(/img/application.jpg)] h-60 bg-cover bg-center rounded-xl p-4 shadow-sm overflow-hidden"
-                    >
-                        <div class="service-card__title flex items-center justify-center leading-8 text-white text-[28px] font-bold text-center p-4">
-                            <span>Создание приложений</span>
-                        </div>
-                    </div>
+                        <transition name="slide">
+                            <div v-show="service.isOpen" class="px-6 pb-6 pt-2 border-t">
+                                <p class="text-white leading-relaxed">{{ service.description }}</p>
+                            </div>
+                        </transition>
 
-                    <div
-                        role="button"
-                        @click="goToForm('lk')"
-                        class="service-card flex items-start gap-3 bg-[url(/img/lk.jpg)] h-60 bg-cover bg-center rounded-xl p-4 shadow-sm overflow-hidden"
-                    >
-                        <div class="service-card__title flex items-center justify-center leading-8 text-white text-[28px] font-bold text-center p-4">
-                            <span>Личные кабинеты и админки</span>
-                        </div>
-                    </div>
-
-                    <div
-                        role="button"
-                        @click="goToForm('consulting')"
-                        class="service-card flex items-start gap-3 bg-[url(/img/consulting.jpg)] h-60 bg-cover bg-center rounded-xl p-4 shadow-sm overflow-hidden"
-                    >
-                        <div class="service-card__title flex items-center justify-center leading-8 text-white text-[28px] font-bold text-center p-4">
-                            <span>Консалтинг</span>
-                        </div>
-                    </div>
-
-                    <div
-                        role="button"
-                        @click="goToForm('support')"
-                        class="service-card flex items-start gap-3 bg-[url(/img/tech.jpg)] h-60 bg-cover bg-center rounded-xl p-4 shadow-sm overflow-hidden"
-                    >
-                        <div class="service-card__title flex items-center justify-center leading-8 text-white text-[28px] font-bold text-center p-4">
-                            <span>Техническая поддержка</span>
-                        </div>
+                        <div :class="`absolute inset-0 bg-[url(${service.poster})] bg-cover bg-center -z-10`"></div>
+                        <div :class="`absolute inset-0 ${service.isOpen ? 'bg-black/70' : 'bg-black/50'} -z-10`"></div>
                     </div>
                 </div>
             </div>
@@ -352,7 +316,7 @@
 </template>
 
 <script setup>
-import { reactive } from 'vue';
+import { reactive, ref } from 'vue';
 import { onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import axios from 'axios';
@@ -367,11 +331,59 @@ const form = reactive({
     details: '',
 });
 
+const services = ref([
+    {
+        title: "Разработка сайтов",
+        description: "Создаю современные, быстрые и адаптивные веб-сайты с упором на надежность и простоту. Каждый проект проходит тщательное тестирование на различных устройствах и браузерах. Использую оптимизированный код для максимальной производительности и простоты дальнейшего обслуживания.",
+        poster: '/img/development.jpg',
+        isOpen: false,
+    },
+    {
+        title: "Интеграция с Telegram",
+        description: "Надежная интеграция веб-сервисов с Telegram API: чат-боты для поддержки клиентов, автоматизация уведомлений, платежные системы. Гарантирую простую настройку и стабильную работу 24/7. Все решения защищены от сбоев и несанкционированного доступа.",
+        poster: '/img/telegram.jpg',
+        isOpen: false,
+    },
+    {
+        title: "Создание приложений",
+        description: "Разработка кроссплатформенных мобильных и десктопных приложений с акцентом на надежность архитектуры и понятный интерфейс. Применяю проверенные фреймворки для создания стабильных решений, которые легко обновлять и масштабировать. Тестирование на всех этапах разработки гарантирует отсутствие критических ошибок.",
+        poster: '/img/application.jpg',
+        isOpen: false,
+    },
+    {
+        title: "Личные кабинеты и админки",
+        description: "Создание интуитивно понятных административных панелей и личных кабинетов с упором на безопасность и надежность. Реализую сложную бизнес-логику в простом для понимания интерфейсе. Все системы защищены от уязвимостей и оптимизированы для работы с большими объемами данных.",
+        poster: '/img/lk.jpg',
+        isOpen: false,
+    },
+    {
+        title: "Техническая поддержка",
+        description: "Комплексное обслуживание и оперативная техническая поддержка существующих проектов. Гарантирую простоту коммуникации: одна заявка - решение проблемы. Регулярный мониторинг, резервное копирование и своевременные обновления обеспечивают надежную работу ваших систем.",
+        poster: '/img/tech.jpg',
+        isOpen: false,
+    },
+    {
+        title: "Консалтинг",
+        description: "Экспертная оценка проектов, оптимизация архитектуры и планирование развития. Предоставляю понятные и практичные рекомендации для повышения надежности и упрощения ваших IT-систем. Помогаю принимать технически обоснованные решения без сложных терминов.",
+        poster: '/img/consulting.jpg',
+        isOpen: false,
+    }
+]);
+
 onMounted(() => {
     if (route.query.service) {
         form.service = route.query.service;
     }
 });
+
+const toggleService = (index) => {
+    const wasOpen = services.value[index].isOpen;
+    services.value.forEach(service => service.isOpen = false);
+
+    if (!wasOpen) {
+        services.value[index].isOpen = true;
+    }
+};
 
 async function submitForm() {
     const formData = new FormData();
@@ -445,29 +457,6 @@ function goTo(id) {
         }
     }
 
-    .service-card {
-        position: relative;
-
-        &:after {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            left: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, .5);
-        }
-
-        &__title {
-            position: absolute;
-            top: 0;
-            right: 0;
-            left: 0;
-            bottom: 0;
-            z-index: 2;
-        }
-    }
-
     footer {
         &::before {
             content: "";
@@ -485,5 +474,20 @@ function goTo(id) {
             );
             z-index: 1;
         }
+    }
+
+    .slide-enter-active,
+    .slide-leave-active {
+        transition: all 0.4s ease;
+        max-height: 500px;
+    }
+
+    .slide-enter-from,
+    .slide-leave-to {
+        opacity: 0;
+        max-height: 0;
+        transform: translateY(-10px);
+        padding-top: 0;
+        padding-bottom: 0;
     }
 </style>
