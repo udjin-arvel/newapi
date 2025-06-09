@@ -11,6 +11,9 @@ export default {
     },
     plugins: [],
     safelist: [
+        // {
+        //     pattern: /bg-\[url\(.+\)\]/, // Все классы с bg-[url(...)]
+        // },
         'bg-[url(/img/development.jpg)]',
         'bg-[url(/img/telegram.jpg)]',
         'bg-[url(/img/application.jpg)]',
