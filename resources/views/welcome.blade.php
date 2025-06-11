@@ -4,10 +4,10 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <meta property="og:site_name" content="Arvelov">
         <meta name="application-name" content="Arvelov">
         <meta name="description" content="Частная web-студия">
 
+        <meta property="og:site_name" content="Arvelov">
         <meta property="og:title" content="ArvelovGroup">
         <meta property="og:description" content="Частная web-студия">
         <meta property="og:image" content="https://arvelov.online/logo.png">

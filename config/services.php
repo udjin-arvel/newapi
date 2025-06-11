@@ -34,20 +34,20 @@ return [
     // TODO: Перенести в .env, если буду публиковать проект
     'robokassa' => [
         'togost' => [
-            'login'     => 'arvelov_togost',
-            'password1' => 'tQd4jyvg36I2v4LRaZFP',
-            'password2' => 'IA4pPyx3x1j3lJtVUgQ6',
+            'login'     => env('ROBOKASSA_TOGOST_LOGIN'),
+            'password1' => env('ROBOKASSA_TOGOST_PASSWORD1'),
+            'password2' => env('ROBOKASSA_TOGOST_PASSWORD2'),
         ],
         'begent' => [
-            'login'     => 'arvelov_begent',
-            'password1' => 'NEhZBVH3C0hoi7PsN18E',
-            'password2' => 'R8lzfrmO4ZD614HanVWy',
+            'login'     => env('ROBOKASSA_BEGENT_LOGIN'),
+            'password1' => env('ROBOKASSA_BEGENT_PASSWORD1'),
+            'password2' => env('ROBOKASSA_BEGENT_PASSWORD2'),
         ],
     ],
 
     'telegram' => [
-        'bot_token' => '8083650333:AAFi-Wq3DjS9MGfmXgjC8pM09cbsoSOZjxs',
-        'chat_id' => '237982888',
+        'bot_token' => env('TELEGRAM_BOT_TOKEN'),
+        'chat_id' => env('TELEGRAM_CHAT_ID'),
     ],
 
 ];
