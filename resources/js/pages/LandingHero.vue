@@ -65,6 +65,8 @@
                 Ваш it-запрос я могу превратить в долгосрочный план. Если вы хотите что-то сделать в сети интернет и сделать это хорошо, просто оставьте заявку в конце этой страницы.
             </p>
         </div>
+
+        <Toast ref="toast" />
     </section>
 
     <section class="flex justify-center pt-12 sm:pt-24 xl:pt-40 pb-16 sm:pb-24 xl:pb-48 w-full overflow-hidden bg-[#0E0613]" id="solutions">
@@ -320,6 +322,7 @@ import { reactive, ref } from 'vue';
 import { onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import axios from 'axios';
+import Toast from "../widgets/Toast.vue";
 
 const route = useRoute();
 
@@ -369,6 +372,7 @@ const services = ref([
         isOpen: false,
     }
 ]);
+const toast = ref(null);
 
 onMounted(() => {
     if (route.query.service) {
@@ -396,9 +400,9 @@ async function submitForm() {
 
     try {
         await axios.post('/api/addCallbackRequest', formData);
-        alert('Успешно отправлено!');
+        toast.value?.showToast('Ваша заявка успешно отправлена!');
     } catch (error) {
-        alert('Ошибка отправки');
+        toast.value?.showToast('Возникла ошибка при создании запроса. Пожалуйста, обратитесь к администратору по указанным внизу контактам', 'error');
     }
 }
 
