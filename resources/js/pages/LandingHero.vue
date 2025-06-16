@@ -69,7 +69,9 @@
         <Toast ref="toast" />
     </section>
 
-    <section class="flex justify-center pt-12 sm:pt-24 xl:pt-40 pb-16 sm:pb-24 xl:pb-48 w-full overflow-hidden bg-[#0E0613]" id="solutions">
+    <section class="flex justify-center pt-12 sm:pt-24 xl:pt-40 pb-16 sm:pb-24 xl:pb-48 w-full overflow-hidden bg-gradient-to-b from-[#0a0a0a] to-[#111111] p-8
+              shadow-[inset_0_4px_6px_-1px_rgba(0,0,0,0.4),inset_0_2px_4px_-2px_rgba(0,0,0,0.3),inset_0_0_0_1px_rgba(255,255,255,0.05)]
+              border-t border-gray-900" id="solutions">
         <div class="w-[900px]">
             <h2 class="text-white text-[32px] font-bold mb-5 pl-6 sm:pl-0">Обо мне</h2>
 
@@ -187,7 +189,9 @@
         </div>
     </section>
 
-    <section class="flex justify-center pt-16 sm:pt-36 pb-32 sm:pb-48 w-full overflow-hidden bg-[#0E0613]" id="contact">
+    <section class="flex justify-center pt-16 sm:pt-36 pb-32 sm:pb-48 w-full overflow-hidden bg-gradient-to-b from-[#0a0a0a] to-[#111111] p-8
+              shadow-[inset_0_4px_6px_-1px_rgba(0,0,0,0.4),inset_0_2px_4px_-2px_rgba(0,0,0,0.3),inset_0_0_0_1px_rgba(255,255,255,0.05)]
+              border-t border-gray-900 text-[#E7EAEF]" id="contact">
         <div class="flex flex-col overflow-hidden">
             <h3 class="text-2xl font-semibold text-white mb-5 pl-6 sm:pl-0">Форма обратной связи</h3>
 
@@ -278,7 +282,9 @@
         </div>
     </section>
 
-    <footer class="relative bg-[#0E0613] text-[#E7EAEF] py-6 px-4 mt-12">
+    <footer class="relative bg-gradient-to-b from-[#0a0a0a] to-[#111111] p-8
+              shadow-[inset_0_4px_6px_-1px_rgba(0,0,0,0.4),inset_0_2px_4px_-2px_rgba(0,0,0,0.3),inset_0_0_0_1px_rgba(255,255,255,0.05)]
+              border-t border-gray-900 text-[#E7EAEF] py-6 px-4 mt-12">
         <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
             <!-- Контакты -->
             <div class="text-sm flex gap-1 sm:block">
@@ -477,6 +483,7 @@ function goTo(id) {
                     #E7EAEF 20px
             );
             z-index: 1;
+
         }
     }
 
