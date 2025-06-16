@@ -600,6 +600,7 @@
                         <PaymentModal
                             :iframe-url="paymentUrl"
                             :button-text="isLoading ? 'Загрузка данных...' : 'Получить рекомендации'"
+                            :helper-text="`После оплаты начнется загрузка файла. Проверьте вашу папку Загрузки.<br> Если вы не можете обнаружить файл, вы всегда можете написать автору по контактам ниже.`"
                             @payment-success="handlePaymentSuccess"
                             button-class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 rounded-lg transition duration-300 flex items-center justify-center"
                         />

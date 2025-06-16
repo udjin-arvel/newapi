@@ -45,9 +45,7 @@
                         <div v-if="loading" class="text-center py-4">
                             Загрузка платежной формы...
                         </div>
-                        <div v-else class="text-center py-4">
-                            Заявка создана, ваш файл сохранен.<br> Вернитесь в магазин, после совершения платежа, чтобы отправить заявку в работу.
-                        </div>
+                        <div v-if="!loading && helperText" class="text-center py-4" v-html="helperText"></div>
                     </div>
                 </div>
             </div>
@@ -70,6 +68,10 @@ const props = defineProps({
     buttonClass: {
         type: String,
         default: 'bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition',
+    },
+    helperText: {
+        type: String,
+        default: '',
     },
 });
 

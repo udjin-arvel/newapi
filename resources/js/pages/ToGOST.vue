@@ -167,6 +167,7 @@
                         <PaymentModal
                             :iframe-url="paymentUrl"
                             :button-text="isLoading ? 'Загрузка данных...' : 'Оплатить и Отправить'"
+                            :helper-text="`Заявка создана, ваш файл сохранен.<br> Вернитесь в магазин, после совершения платежа, чтобы отправить заявку в работу.`"
                             button-class="text-center w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold mt-6 py-3 rounded-lg transition duration-200"
                         />
                     </form>
