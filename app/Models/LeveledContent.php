@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Builder;
 class LeveledContent extends BaseModel
 {
     use UserRelation, Contentable;
-    
+
     protected $fillable = [
         'text',
         'level',
@@ -27,12 +27,15 @@ class LeveledContent extends BaseModel
         'content_type',
         'user_id',
     ];
-    
+
     /**
      * Scope a query to only include popular users.
      */
     public function scopeAvailable(Builder $query): void
     {
-        $query->where('user_id', \auth()->id())->orWhere('level', '<=', optional(\auth()->user())->level);
+        $query->where('user_id', auth()->id())
+            ->when(auth()->check(), function ($query) {
+                $query->orWhere('level', '<=', auth()->user()->level);
+            });
     }
 }
