@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Traits\Contentable;
 use App\Models\Traits\UserRelation;
 
 /**
@@ -10,15 +9,15 @@ use App\Models\Traits\UserRelation;
  * @package App\Models
  *
  * @property int    $user_id
- * @property int    $content_id
- * @property string $content_type
+ * @property string $path
  * @property string $old_variant
  * @property string $new_variant
+ * @property string $status
  */
 class Correction extends BaseModel
 {
-    use UserRelation, Contentable;
-	
+    use UserRelation;
+
 	/**
 	 * Статусы исправления
 	 */

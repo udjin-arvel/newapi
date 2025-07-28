@@ -16,7 +16,7 @@ return new class extends Migration
 
             $table->text('old_variant');
             $table->text('new_variant');
-            $table->morphs('content');
+            $table->string('path');
             $table->string('status', 64);
 
             $table->unsignedBigInteger('user_id');

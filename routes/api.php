@@ -14,6 +14,7 @@ Route::get('generatePdf/{orderId}', [Api\Landings\BegentController::class, 'gene
 // ------------------------ Start routes ------------------------ //
 Route::post('login', [Api\UserController::class, 'login']);
 Route::post('register', [Api\UserController::class, 'register']);
+Route::post('correct', [Api\SiteController::class, 'correct']);
 Route::get('notifications', [Api\SiteController::class, 'notifications']);
 Route::get('news', [Api\SiteController::class, 'news']);
 Route::get('tags', [Api\SiteController::class, 'tags']);
